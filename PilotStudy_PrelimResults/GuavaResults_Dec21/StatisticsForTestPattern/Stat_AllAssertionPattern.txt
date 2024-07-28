@@ -1,0 +1,1132 @@
+Project: guava
+ Class: RangeTest
+ Method: testCanonical_unboundedDomain
+ Body: {
+    assertEquals(Range.lessThan(0), Range.lessThan(0).canonical(UNBOUNDED_DOMAIN));
+    assertEquals(Range.lessThan(1), Range.atMost(0).canonical(UNBOUNDED_DOMAIN));
+    assertEquals(Range.atLeast(0), Range.atLeast(0).canonical(UNBOUNDED_DOMAIN));
+    assertEquals(Range.atLeast(1), Range.greaterThan(0).canonical(UNBOUNDED_DOMAIN));
+
+    assertEquals(Range.all(), Range.<Integer>all().canonical(UNBOUNDED_DOMAIN));
+  }
+ Pattern Name: AllAssertionPattern - Action: lessThan (Alternative Action: canonical=5 ) - Predicate: canonical - Scenario: Range.lessThan(0) (Alternative Scenario:  )
+
+Project: guava
+ Class: RangeTest
+ Method: testCanonical
+ Body: {
+    assertEquals(Range.closedOpen(1, 5), Range.closed(1, 4).canonical(integers()));
+    assertEquals(Range.closedOpen(1, 5), Range.open(0, 5).canonical(integers()));
+    assertEquals(Range.closedOpen(1, 5), Range.closedOpen(1, 5).canonical(integers()));
+    assertEquals(Range.closedOpen(1, 5), Range.openClosed(0, 4).canonical(integers()));
+
+    assertEquals(
+        Range.closedOpen(Integer.MIN_VALUE, 0),
+        Range.closedOpen(Integer.MIN_VALUE, 0).canonical(integers()));
+
+    assertEquals(Range.closedOpen(Integer.MIN_VALUE, 0), Range.lessThan(0).canonical(integers()));
+    assertEquals(Range.closedOpen(Integer.MIN_VALUE, 1), Range.atMost(0).canonical(integers()));
+    assertEquals(Range.atLeast(0), Range.atLeast(0).canonical(integers()));
+    assertEquals(Range.atLeast(1), Range.greaterThan(0).canonical(integers()));
+
+    assertEquals(Range.atLeast(Integer.MIN_VALUE), Range.<Integer>all().canonical(integers()));
+  }
+ Pattern Name: AllAssertionPattern - Action: closedOpen (Alternative Action: canonical=10 ) - Predicate: canonical - Scenario: Range.closed(1, 4) (Alternative Scenario:  )
+
+Project: guava
+ Class: RangeTest
+ Method: testEncloseAll
+ Body: {
+    assertEquals(Range.closed(0, 0), Range.encloseAll(Arrays.asList(0)));
+    assertEquals(Range.closed(-3, 5), Range.encloseAll(Arrays.asList(5, -3)));
+    assertEquals(Range.closed(-3, 5), Range.encloseAll(Arrays.asList(1, 2, 2, 2, 5, -3, 0, -1)));
+  }
+ Pattern Name: AllAssertionPattern - Action: closed (Alternative Action: encloseAll=3 ) - Predicate: encloseAll - Scenario: Range(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: MultimapAsMapTester
+ Method: testAsMapRemove
+ Body: {
+    assertContentsInOrder(multimap().asMap().remove(k0()), v0());
+    assertGet(k0());
+    assertEquals(getNumElements() - 1, multimap().size());
+  }
+ Pattern Name: AllAssertionPattern - Action: remove (Alternative Action: k0=2 ) - Predicate: v0 - Scenario: multimap().asMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: SubscriberRegistryTest
+ Method: testFlattenHierarchy
+ Body: {
+    assertEquals(
+        ImmutableSet.of(
+            Object.class,
+            HierarchyFixtureInterface.class,
+            HierarchyFixtureSubinterface.class,
+            HierarchyFixtureParent.class,
+            HierarchyFixture.class),
+        SubscriberRegistry.flattenHierarchy(HierarchyFixture.class));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: flattenHierarchy=1 ) - Predicate: flattenHierarchy - Scenario: SubscriberRegistry (Alternative Scenario:  )
+
+Project: guava
+ Class: MultimapKeysTester
+ Method: testKeysElementSet
+ Body: {
+    assertEquals(multimap().keySet(), multimap().keys().elementSet());
+  }
+ Pattern Name: AllAssertionPattern - Action: keySet (Alternative Action: multimap=2 ) - Predicate: elementSet - Scenario: multimap().keys() (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testColumnMap
+ Body: {
+    assertEquals(ImmutableMap.of(), INSTANCE.columnMap());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: columnMap=1 ) - Predicate: columnMap - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testColumnKeySet
+ Body: {
+    assertEquals(ImmutableSet.of(), INSTANCE.columnKeySet());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: columnKeySet=1 ) - Predicate: columnKeySet - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testRow
+ Body: {
+    assertEquals(ImmutableMap.of(), INSTANCE.row('a'));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=1 ) - Predicate: row - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testRowMap
+ Body: {
+    assertEquals(ImmutableMap.of(), INSTANCE.rowMap());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=1 ) - Predicate: rowMap - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testColumn
+ Body: {
+    assertEquals(ImmutableMap.of(), INSTANCE.column(1));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=1 ) - Predicate: column - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testCellSet
+ Body: {
+    assertEquals(ImmutableSet.of(), INSTANCE.cellSet());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: cellSet=1 ) - Predicate: cellSet - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testRowKeySet
+ Body: {
+    assertEquals(ImmutableSet.of(), INSTANCE.rowKeySet());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=1 ) - Predicate: rowKeySet - Scenario: INSTANCE (Alternative Scenario:  )
+
+Project: guava
+ Class: ArbitraryInstancesTest
+ Method: testGet_regex
+ Body: {
+    assertEquals(Pattern.compile("").pattern(), ArbitraryInstances.get(Pattern.class).pattern());
+    assertEquals(0, ArbitraryInstances.get(MatchResult.class).groupCount());
+  }
+ Pattern Name: AllAssertionPattern - Action: pattern (Alternative Action: get=2 ) - Predicate: pattern - Scenario: ArbitraryInstances.get(Pattern.class) (Alternative Scenario:  )
+
+Project: guava
+ Class: BiMapInverseTester
+ Method: testInverseSame
+ Body: {
+    assertSame(getMap(), getMap().inverse().inverse());
+  }
+ Pattern Name: AllAssertionPattern - Action: getMap (Alternative Action: inverse=2 ) - Predicate: inverse - Scenario: getMap().inverse() (Alternative Scenario:  )
+
+Project: guava
+ Class: MapSizeTester
+ Method: testSize
+ Body: {
+    assertEquals("size():", getNumElements(), getMap().size());
+  }
+ Pattern Name: AllAssertionPattern - Action: getNumElements (Alternative Action: size=1 ) - Predicate: size - Scenario: getMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: SortedIterablesTest
+ Method: testComparator
+ Body: {
+    assertEquals(Ordering.natural(), SortedIterables.comparator(Sets.newTreeSet()));
+  }
+ Pattern Name: AllAssertionPattern - Action: natural (Alternative Action: comparator=1 ) - Predicate: comparator - Scenario: SortedIterables (Alternative Scenario:  )
+
+Project: guava
+ Class: FreshValueGeneratorTest
+ Method: testObject
+ Body: {
+    assertEquals(
+        new FreshValueGenerator().generateFresh(String.class),
+        new FreshValueGenerator().generateFresh(Object.class));
+  }
+ Pattern Name: AllAssertionPattern - Action: generateFresh (Alternative Action: generateFresh=2 ) - Predicate: generateFresh - Scenario: new FreshValueGenerator()(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: BytesTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Bytes.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Bytes (Alternative Scenario:  )
+
+Project: guava
+ Class: CollectionSerializationTester
+ Method: testReserialize
+ Body: {
+    // For a bare Collection, the most we can guarantee is that the elements are preserved.
+    Helpers.assertEqualIgnoringOrder(
+        actualContents(), SerializableTester.reserialize(actualContents()));
+  }
+ Pattern Name: AllAssertionPattern - Action: actualContents (Alternative Action: actualContents=2 ) - Predicate: reserialize - Scenario: SerializableTester (Alternative Scenario:  )
+
+Project: guava
+ Class: MultimapToStringTester
+ Method: testToStringMatchesAsMap
+ Body: {
+    assertEquals(multimap().asMap().toString(), multimap().toString());
+  }
+ Pattern Name: AllAssertionPattern - Action: toString (Alternative Action: toString=2 ) - Predicate: toString - Scenario: multimap() (Alternative Scenario:  )
+
+Project: guava
+ Class: SuppliersTest
+ Method: testSerialization
+ Body: {
+    assertEquals(Integer.valueOf(5), reserialize(Suppliers.ofInstance(5)).get());
+    assertEquals(
+        Integer.valueOf(5),
+        reserialize(Suppliers.compose(Functions.identity(), Suppliers.ofInstance(5))).get());
+    assertEquals(Integer.valueOf(5), reserialize(Suppliers.memoize(Suppliers.ofInstance(5))).get());
+    assertEquals(
+        Integer.valueOf(5),
+        reserialize(Suppliers.memoizeWithExpiration(Suppliers.ofInstance(5), 30, TimeUnit.SECONDS))
+            .get());
+    assertEquals(
+        Integer.valueOf(5),
+        reserialize(Suppliers.synchronizedSupplier(Suppliers.ofInstance(5))).get());
+  }
+ Pattern Name: AllAssertionPattern - Action: valueOf (Alternative Action: ofInstance=5 ) - Predicate: get - Scenario: reserialize(Suppliers.ofInstance(5)) (Alternative Scenario:  )
+
+Project: guava
+ Class: CharSourceTester
+ Method: testLength
+ Body: {
+    assertEquals(expected.length(), source.length());
+  }
+ Pattern Name: AllAssertionPattern - Action: length (Alternative Action: length=2 ) - Predicate: length - Scenario: source (Alternative Scenario:  )
+
+Project: guava
+ Class: CharSourceTester
+ Method: testIsEmpty
+ Body: {
+    assertEquals(expected.isEmpty(), source.isEmpty());
+  }
+ Pattern Name: AllAssertionPattern - Action: isEmpty (Alternative Action: isEmpty=2 ) - Predicate: isEmpty - Scenario: source (Alternative Scenario:  )
+
+Project: guava
+ Class: ImmutableClassToInstanceMapTest
+ Method: testSerialization_empty
+ Body: {
+    assertSame(
+        ImmutableClassToInstanceMap.of(),
+        SerializableTester.reserialize(ImmutableClassToInstanceMap.of()));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: reserialize - Scenario: SerializableTester (Alternative Scenario:  )
+
+Project: guava
+ Class: FloatsTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Floats.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Floats (Alternative Scenario:  )
+
+Project: guava
+ Class: ClassPathTest
+ Method: testGetClassPathEntry
+ Body: {
+    assertEquals(
+        new File("/usr/test/dep.jar").toURI(),
+        ClassPath.Scanner.getClassPathEntry(
+                new File("/home/build/outer.jar"), "file:/usr/test/dep.jar")
+            .toURI());
+    assertEquals(
+        new File("/home/build/a.jar").toURI(),
+        ClassPath.Scanner.getClassPathEntry(new File("/home/build/outer.jar"), "a.jar").toURI());
+    assertEquals(
+        new File("/home/build/x/y/z").toURI(),
+        ClassPath.Scanner.getClassPathEntry(new File("/home/build/outer.jar"), "x/y/z").toURI());
+    assertEquals(
+        new File("/home/build/x/y/z.jar").toURI(),
+        ClassPath.Scanner.getClassPathEntry(new File("/home/build/outer.jar"), "x/y/z.jar")
+            .toURI());
+    assertEquals(
+        "/home/build/x y.jar",
+        ClassPath.Scanner.getClassPathEntry(new File("/home/build/outer.jar"), "x y.jar")
+            .getFile());
+  }
+ Pattern Name: AllAssertionPattern - Action: toURI (Alternative Action: toURI=8 ) - Predicate: toURI - Scenario: ClassPath.Scanner.getClassPathEntry(
+                new File("/home/build/outer.jar"), "file:/usr/test/dep.jar") (Alternative Scenario:  )
+
+Project: guava
+ Class: BooleansTest
+ Method: testHashCode
+ Body: {
+    assertEquals(Boolean.TRUE.hashCode(), Booleans.hashCode(true));
+    assertEquals(Boolean.FALSE.hashCode(), Booleans.hashCode(false));
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=4 ) - Predicate: hashCode - Scenario: Booleans (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testTransform_presentIdentity
+ Body: {
+    assertEquals(Optional.of("a"), Optional.of("a").transform(Functions.identity()));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: transform - Scenario: Optional.of("a") (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testToJavaUtil_instance
+ Body: {
+    assertEquals(java.util.Optional.empty(), Optional.absent().toJavaUtil());
+    assertEquals(java.util.Optional.of("abc"), Optional.of("abc").toJavaUtil());
+  }
+ Pattern Name: AllAssertionPattern - Action: empty (Alternative Action: of=2 ) - Predicate: toJavaUtil - Scenario: Optional.absent() (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testOr_Optional_absent
+ Body: {
+    assertEquals(Optional.of("fallback"), Optional.absent().or(Optional.of("fallback")));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: or - Scenario: Optional.absent() (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testTransform_presentToString
+ Body: {
+    assertEquals(Optional.of("42"), Optional.of(42).transform(Functions.toStringFunction()));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: transform - Scenario: Optional.of(42) (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testOr_Optional_present
+ Body: {
+    assertEquals(Optional.of("a"), Optional.of("a").or(Optional.of("fallback")));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=3 ) - Predicate: or - Scenario: Optional.of("a") (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testTransform_absent_functionReturnsNull
+ Body: {
+    assertEquals(
+        Optional.absent(),
+        Optional.absent()
+            .transform(
+                new Function<Object, Object>() {
+                  @Override
+                  public Object apply(Object input) {
+                    return null;
+                  }
+                }));
+  }
+ Pattern Name: AllAssertionPattern - Action: absent (Alternative Action: absent=2 ) - Predicate: transform - Scenario: Optional.absent() (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testTransform_absent
+ Body: {
+    assertEquals(Optional.absent(), Optional.absent().transform(Functions.identity()));
+    assertEquals(Optional.absent(), Optional.absent().transform(Functions.toStringFunction()));
+  }
+ Pattern Name: AllAssertionPattern - Action: absent (Alternative Action: absent=4 ) - Predicate: transform - Scenario: Optional.absent() (Alternative Scenario:  )
+
+Project: guava
+ Class: OptionalTest
+ Method: testFromNullable_null
+ Body: {
+    // not promised by spec, but easier to test
+    assertSame(Optional.absent(), Optional.fromNullable(null));
+  }
+ Pattern Name: AllAssertionPattern - Action: absent (Alternative Action: fromNullable=1 ) - Predicate: fromNullable - Scenario: Optional(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: FinalizableReferenceQueueTest
+ Method: testFinalizeClassHasNoNestedClasses
+ Body: {
+    // Ensure that the Finalizer class has no nested classes.
+    // See https://code.google.com/p/guava-libraries/issues/detail?id=1505
+    assertEquals(Collections.emptyList(), Arrays.asList(Finalizer.class.getDeclaredClasses()));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Arrays (Alternative Scenario:  )
+
+Project: guava
+ Class: ImmutableListMultimapTest
+ Method: testInverse
+ Body: {
+    assertEquals(
+        ImmutableListMultimap.<Integer, String>of(),
+        ImmutableListMultimap.<String, Integer>of().inverse());
+    assertEquals(ImmutableListMultimap.of(1, "one"), ImmutableListMultimap.of("one", 1).inverse());
+    assertEquals(
+        ImmutableListMultimap.of(1, "one", 2, "two"),
+        ImmutableListMultimap.of("one", 1, "two", 2).inverse());
+    assertEquals(
+        ImmutableListMultimap.of("of", 'o', "of", 'f', "to", 't', "to", 'o').inverse(),
+        ImmutableListMultimap.of('o', "of", 'f', "of", 't', "to", 'o', "to"));
+    assertEquals(
+        ImmutableListMultimap.of('f', "foo", 'o', "foo", 'o', "foo"),
+        ImmutableListMultimap.of("foo", 'f', "foo", 'o', "foo", 'o').inverse());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=10 ) - Predicate: inverse - Scenario: ImmutableListMultimap.<String, Integer>of() (Alternative Scenario:  )
+
+Project: guava
+ Class: ContiguousSetTest
+ Method: testCreate_empty
+ Body: {
+    assertEquals(ImmutableSet.of(), ContiguousSet.create(Range.closedOpen(1, 1), integers()));
+    assertEquals(ImmutableSet.of(), ContiguousSet.closedOpen(1, 1));
+    assertEquals(ImmutableSet.of(), ContiguousSet.create(Range.openClosed(5, 5), integers()));
+    assertEquals(
+        ImmutableSet.of(), ContiguousSet.create(Range.lessThan(Integer.MIN_VALUE), integers()));
+    assertEquals(
+        ImmutableSet.of(), ContiguousSet.create(Range.greaterThan(Integer.MAX_VALUE), integers()));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=5 ) - Predicate: create - Scenario: ContiguousSet (Alternative Scenario:  )
+
+Project: guava
+ Class: ContiguousSetTest
+ Method: testRange
+ Body: {
+    assertEquals(Range.closed(1, 3), ContiguousSet.create(Range.closed(1, 3), integers()).range());
+    assertEquals(Range.closed(1, 3), ContiguousSet.closed(1, 3).range());
+    assertEquals(
+        Range.closed(1, 3), ContiguousSet.create(Range.closedOpen(1, 4), integers()).range());
+    assertEquals(Range.closed(1, 3), ContiguousSet.closedOpen(1, 4).range());
+    assertEquals(Range.closed(1, 3), ContiguousSet.create(Range.open(0, 4), integers()).range());
+    assertEquals(
+        Range.closed(1, 3), ContiguousSet.create(Range.openClosed(0, 3), integers()).range());
+
+    assertEquals(
+        Range.openClosed(0, 3),
+        ContiguousSet.create(Range.closed(1, 3), integers()).range(OPEN, CLOSED));
+    assertEquals(
+        Range.openClosed(0, 3),
+        ContiguousSet.create(Range.closedOpen(1, 4), integers()).range(OPEN, CLOSED));
+    assertEquals(
+        Range.openClosed(0, 3),
+        ContiguousSet.create(Range.open(0, 4), integers()).range(OPEN, CLOSED));
+    assertEquals(
+        Range.openClosed(0, 3),
+        ContiguousSet.create(Range.openClosed(0, 3), integers()).range(OPEN, CLOSED));
+
+    assertEquals(
+        Range.open(0, 4), ContiguousSet.create(Range.closed(1, 3), integers()).range(OPEN, OPEN));
+    assertEquals(
+        Range.open(0, 4),
+        ContiguousSet.create(Range.closedOpen(1, 4), integers()).range(OPEN, OPEN));
+    assertEquals(
+        Range.open(0, 4), ContiguousSet.create(Range.open(0, 4), integers()).range(OPEN, OPEN));
+    assertEquals(
+        Range.open(0, 4),
+        ContiguousSet.create(Range.openClosed(0, 3), integers()).range(OPEN, OPEN));
+
+    assertEquals(
+        Range.closedOpen(1, 4),
+        ContiguousSet.create(Range.closed(1, 3), integers()).range(CLOSED, OPEN));
+    assertEquals(
+        Range.closedOpen(1, 4),
+        ContiguousSet.create(Range.closedOpen(1, 4), integers()).range(CLOSED, OPEN));
+    assertEquals(
+        Range.closedOpen(1, 4),
+        ContiguousSet.create(Range.open(0, 4), integers()).range(CLOSED, OPEN));
+    assertEquals(
+        Range.closedOpen(1, 4),
+        ContiguousSet.create(Range.openClosed(0, 3), integers()).range(CLOSED, OPEN));
+  }
+ Pattern Name: AllAssertionPattern - Action: closed (Alternative Action: range=18 ) - Predicate: range - Scenario: ContiguousSet.create(Range.closed(1, 3), integers()) (Alternative Scenario:  )
+
+Project: guava
+ Class: ContiguousSetTest
+ Method: testRange_unboundedRange
+ Body: {
+    assertEquals(
+        Range.closed(Integer.MIN_VALUE, Integer.MAX_VALUE),
+        ContiguousSet.create(Range.<Integer>all(), integers()).range());
+    assertEquals(
+        Range.atLeast(Integer.MIN_VALUE),
+        ContiguousSet.create(Range.<Integer>all(), integers()).range(CLOSED, OPEN));
+    assertEquals(
+        Range.all(), ContiguousSet.create(Range.<Integer>all(), integers()).range(OPEN, OPEN));
+    assertEquals(
+        Range.atMost(Integer.MAX_VALUE),
+        ContiguousSet.create(Range.<Integer>all(), integers()).range(OPEN, CLOSED));
+  }
+ Pattern Name: AllAssertionPattern - Action: closed (Alternative Action: all=5 ) - Predicate: range - Scenario: ContiguousSet.create(Range.<Integer>all(), integers()) (Alternative Scenario:  )
+
+Project: guava
+ Class: CollectionSizeTester
+ Method: testSize
+ Body: {
+    assertEquals("size():", getNumElements(), collection.size());
+  }
+ Pattern Name: AllAssertionPattern - Action: getNumElements (Alternative Action: size=1 ) - Predicate: size - Scenario: collection (Alternative Scenario:  )
+
+Project: guava
+ Class: ShortsTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Shorts.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Shorts (Alternative Scenario:  )
+
+Project: guava
+ Class: DoublesTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Doubles.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Doubles (Alternative Scenario:  )
+
+Project: guava
+ Class: MapToStringTester
+ Method: testToString_formatting
+ Body: {
+    assertEquals(
+        "map.toString() incorrect", expectedToString(getMap().entrySet()), getMap().toString());
+  }
+ Pattern Name: AllAssertionPattern - Action: expectedToString (Alternative Action: getMap=2 ) - Predicate: toString - Scenario: getMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetSupertype_fromRawClass
+ Body: {
+    assertEquals(
+        Types.newParameterizedType(Iterable.class, List.class.getTypeParameters()[0]),
+        new TypeToken<List>() {}.getSupertype(Iterable.class).getType());
+  }
+ Pattern Name: AllAssertionPattern - Action: newParameterizedType (Alternative Action: getType=1 ) - Predicate: getType - Scenario: new TypeToken<List>() {}.getSupertype(Iterable.class) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetGenericSuperclass_wildcard_lowerBounded
+ Body: {
+    assertEquals(
+        TypeToken.of(Object.class),
+        TypeToken.of(Types.supertypeOf(String.class)).getGenericSuperclass());
+    assertEquals(
+        new TypeToken<Object>() {},
+        TypeToken.of(Types.supertypeOf(String[].class)).getGenericSuperclass());
+    assertEquals(
+        new TypeToken<Object>() {},
+        TypeToken.of(Types.supertypeOf(CharSequence.class)).getGenericSuperclass());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=4 ) - Predicate: getGenericSuperclass - Scenario: TypeToken.of(Types.supertypeOf(String.class)) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetGenericSuperclass_typeVariable_unbounded
+ Body: {
+    assertEquals(
+        TypeToken.of(Object.class),
+        TypeToken.of(new TypeCapture<T>() {}.capture()).getGenericSuperclass());
+    assertEquals(TypeToken.of(Object.class), new TypeToken<T[]>() {}.getGenericSuperclass());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=3 ) - Predicate: getGenericSuperclass - Scenario: TypeToken.of(new TypeCapture<T>() {}.capture()) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetGenericSuperclass_typeVariable_boundIsTypeVariableAndClass
+ Body: {
+    assertEquals(
+        TypeToken.of(new TypeCapture<T>() {}.capture()),
+        TypeToken.of(new TypeCapture<T1>() {}.capture()).getGenericSuperclass());
+    assertEquals(TypeToken.of(Object.class), new TypeToken<T[]>() {}.getGenericSuperclass());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=3 ) - Predicate: getGenericSuperclass - Scenario: TypeToken.of(new TypeCapture<T1>() {}.capture()) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testToString
+ Body: {
+    assertEquals(String.class.getName(), new TypeToken<String>() {}.toString());
+    assertEquals("T", TypeToken.of(new TypeCapture<T>() {}.capture()).toString());
+    assertEquals("java.lang.String", new Entry<String, Integer>() {}.keyType().toString());
+  }
+ Pattern Name: AllAssertionPattern - Action: getName (Alternative Action: toString=3 ) - Predicate: toString - Scenario: new TypeToken<String>() {} (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetComponentType_wildcardType
+ Body: {
+    assertEquals(
+        Types.subtypeOf(Object.class),
+        TypeToken.of(Types.subtypeOf(Object[].class)).getComponentType().getType());
+    assertEquals(
+        Types.subtypeOf(Object[].class),
+        Types.newArrayType(
+            TypeToken.of(Types.subtypeOf(Object[].class)).getComponentType().getType()));
+    assertEquals(
+        int.class, TypeToken.of(Types.subtypeOf(int[].class)).getComponentType().getType());
+    assertNull(TypeToken.of(Types.subtypeOf(Object.class)).getComponentType());
+    assertNull(TypeToken.of(Types.supertypeOf(Object[].class)).getComponentType());
+  }
+ Pattern Name: AllAssertionPattern - Action: subtypeOf (Alternative Action: subtypeOf=6 ) - Predicate: getType - Scenario: TypeToken.of(Types.subtypeOf(Object[].class)).getComponentType() (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetSubtype_withArray
+ Body: {
+    assertEquals(
+        TypeToken.of(StringListIterable[].class),
+        TypeToken.of(Iterable[].class).getSubtype(StringListIterable[].class));
+    assertEquals(
+        TypeToken.of(String[].class), TypeToken.of(Object[].class).getSubtype(String[].class));
+    assertEquals(TypeToken.of(int[].class), TypeToken.of(Object.class).getSubtype(int[].class));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=6 ) - Predicate: getSubtype - Scenario: TypeToken.of(Iterable[].class) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetGenericSuperclass_wildcard_boundIsClass
+ Body: {
+    assertEquals(
+        TypeToken.of(Object.class),
+        TypeToken.of(Types.subtypeOf(Object.class)).getGenericSuperclass());
+    assertEquals(
+        new TypeToken<Object[]>() {},
+        TypeToken.of(Types.subtypeOf(Object[].class)).getGenericSuperclass());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=3 ) - Predicate: getGenericSuperclass - Scenario: TypeToken.of(Types.subtypeOf(Object.class)) (Alternative Scenario:  )
+
+Project: guava
+ Class: AbstractMapEntryTest
+ Method: testHashCodeNull
+ Body: {
+    assertEquals(control(NK, 1).hashCode(), entry(NK, 1).hashCode());
+    assertEquals(control("bar", NV).hashCode(), entry("bar", NV).hashCode());
+    assertEquals(control(NK, NV).hashCode(), entry(NK, NV).hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=6 ) - Predicate: hashCode - Scenario: entry(NK, 1) (Alternative Scenario:  )
+
+Project: guava
+ Class: AbstractMapEntryTest
+ Method: testHashCode
+ Body: {
+    assertEquals(control("foo", 1).hashCode(), entry("foo", 1).hashCode());
+    assertEquals(control("bar", 2).hashCode(), entry("bar", 2).hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=4 ) - Predicate: hashCode - Scenario: entry("foo", 1) (Alternative Scenario:  )
+
+Project: guava
+ Class: CharsTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Chars.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Chars (Alternative Scenario:  )
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testToString
+ Body: {
+    assertEquals(getMultiset().entrySet().toString(), getMultiset().toString());
+  }
+ Pattern Name: AllAssertionPattern - Action: toString (Alternative Action: toString=2 ) - Predicate: toString - Scenario: getMultiset() (Alternative Scenario:  )
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase16UpperCaseIsNoOp
+ Body: {
+    assertSame(base16(), base16().upperCase());
+  }
+ Pattern Name: AllAssertionPattern - Action: base16 (Alternative Action: base16=2 ) - Predicate: upperCase - Scenario: base16() (Alternative Scenario:  )
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase32UpperCaseIsNoOp
+ Body: {
+    assertSame(base32(), base32().upperCase());
+  }
+ Pattern Name: AllAssertionPattern - Action: base32 (Alternative Action: base32=2 ) - Predicate: upperCase - Scenario: base32() (Alternative Scenario:  )
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase32HexUpperCaseIsNoOp
+ Body: {
+    assertSame(base32Hex(), base32Hex().upperCase());
+  }
+ Pattern Name: AllAssertionPattern - Action: base32Hex (Alternative Action: base32Hex=2 ) - Predicate: upperCase - Scenario: base32Hex() (Alternative Scenario:  )
+
+Project: guava
+ Class: MultisetEqualsTester
+ Method: testHashCodeMatchesEntrySet
+ Body: {
+    assertEquals(getMultiset().entrySet().hashCode(), getMultiset().hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=2 ) - Predicate: hashCode - Scenario: getMultiset() (Alternative Scenario:  )
+
+Project: guava
+ Class: MultimapEntriesTester
+ Method: testEntries
+ Body: {
+    assertEqualIgnoringOrder(getSampleElements(), multimap().entries());
+  }
+ Pattern Name: AllAssertionPattern - Action: getSampleElements (Alternative Action: getSampleElements=1 ) - Predicate: entries - Scenario: multimap() (Alternative Scenario:  )
+
+Project: guava
+ Class: SortedSetMultimapGetTester
+ Method: testValueComparator
+ Body: {
+    assertEquals(multimap().valueComparator(), multimap().get(k0()).comparator());
+  }
+ Pattern Name: AllAssertionPattern - Action: valueComparator (Alternative Action: multimap=2 ) - Predicate: comparator - Scenario: multimap().get(k0()) (Alternative Scenario:  )
+
+Project: guava
+ Class: RunnablesTest
+ Method: testDoNothingRunnableIsSingleton
+ Body: {
+    assertSame(Runnables.doNothing(), Runnables.doNothing());
+  }
+ Pattern Name: AllAssertionPattern - Action: doNothing (Alternative Action: doNothing=2 ) - Predicate: doNothing - Scenario: Runnables(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypesTest
+ Method: testNewParameterizedType_ownerMissing
+ Body: {
+    assertEquals(
+        Types.newParameterizedType(Entry.class, String.class, Integer.class),
+        Types.newParameterizedTypeWithOwner(null, Entry.class, String.class, Integer.class));
+  }
+ Pattern Name: AllAssertionPattern - Action: newParameterizedType (Alternative Action: newParameterizedType=1 ) - Predicate: newParameterizedTypeWithOwner - Scenario: Types(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithParameters
+ Body: {
+    assertEquals(
+        MediaType.parse("text/plain; a=1; a=2; b=3"),
+        MediaType.parse("text/plain").withParameters(PARAMETERS));
+    assertEquals(
+        MediaType.parse("text/plain; a=1; a=2; b=3"),
+        MediaType.parse("text/plain; a=1; a=2; b=3").withParameters(PARAMETERS));
+  }
+ Pattern Name: AllAssertionPattern - Action: parse (Alternative Action: parse=4 ) - Predicate: withParameters - Scenario: MediaType.parse("text/plain") (Alternative Scenario:  )
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithParameter
+ Body: {
+    assertEquals(
+        MediaType.parse("text/plain; a=1"), MediaType.parse("text/plain").withParameter("a", "1"));
+    assertEquals(
+        MediaType.parse("text/plain; a=1"),
+        MediaType.parse("text/plain; a=1; a=2").withParameter("a", "1"));
+    assertEquals(
+        MediaType.parse("text/plain; a=3"),
+        MediaType.parse("text/plain; a=1; a=2").withParameter("a", "3"));
+    assertEquals(
+        MediaType.parse("text/plain; a=1; a=2; b=3"),
+        MediaType.parse("text/plain; a=1; a=2").withParameter("b", "3"));
+  }
+ Pattern Name: AllAssertionPattern - Action: parse (Alternative Action: parse=8 ) - Predicate: withParameter - Scenario: MediaType.parse("text/plain") (Alternative Scenario:  )
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithParametersIterable
+ Body: {
+    assertEquals(
+        MediaType.parse("text/plain"),
+        MediaType.parse("text/plain; a=1; a=2").withParameters("a", ImmutableSet.<String>of()));
+    assertEquals(
+        MediaType.parse("text/plain; a=1"),
+        MediaType.parse("text/plain").withParameters("a", ImmutableSet.of("1")));
+    assertEquals(
+        MediaType.parse("text/plain; a=1"),
+        MediaType.parse("text/plain; a=1; a=2").withParameters("a", ImmutableSet.of("1")));
+    assertEquals(
+        MediaType.parse("text/plain; a=1; a=3"),
+        MediaType.parse("text/plain; a=1; a=2").withParameters("a", ImmutableSet.of("1", "3")));
+    assertEquals(
+        MediaType.parse("text/plain; a=1; a=2; b=3; b=4"),
+        MediaType.parse("text/plain; a=1; a=2").withParameters("b", ImmutableSet.of("3", "4")));
+  }
+ Pattern Name: AllAssertionPattern - Action: parse (Alternative Action: parse=10 ) - Predicate: withParameters - Scenario: MediaType.parse("text/plain; a=1; a=2") (Alternative Scenario:  )
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithoutParameters
+ Body: {
+    assertSame(MediaType.parse("image/gif"), MediaType.parse("image/gif").withoutParameters());
+    assertEquals(
+        MediaType.parse("image/gif"), MediaType.parse("image/gif; foo=bar").withoutParameters());
+  }
+ Pattern Name: AllAssertionPattern - Action: parse (Alternative Action: parse=4 ) - Predicate: withoutParameters - Scenario: MediaType.parse("image/gif") (Alternative Scenario:  )
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithCharset
+ Body: {
+    assertEquals(
+        MediaType.parse("text/plain; charset=utf-8"),
+        MediaType.parse("text/plain").withCharset(UTF_8));
+    assertEquals(
+        MediaType.parse("text/plain; charset=utf-8"),
+        MediaType.parse("text/plain; charset=utf-16").withCharset(UTF_8));
+  }
+ Pattern Name: AllAssertionPattern - Action: parse (Alternative Action: parse=4 ) - Predicate: withCharset - Scenario: MediaType.parse("text/plain") (Alternative Scenario:  )
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testGetParameters
+ Body: {
+    assertEquals(ImmutableListMultimap.of(), MediaType.parse("text/plain").parameters());
+    assertEquals(
+        ImmutableListMultimap.of("charset", "utf-8"),
+        MediaType.parse("application/atom+xml; charset=utf-8").parameters());
+    assertEquals(PARAMETERS, MediaType.parse("application/atom+xml; a=1; a=2; b=3").parameters());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: parse=3 ) - Predicate: parameters - Scenario: MediaType.parse("text/plain") (Alternative Scenario:  )
+
+Project: guava
+ Class: LongsTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Longs.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Longs (Alternative Scenario:  )
+
+Project: guava
+ Class: CharMatcherTest
+ Method: testAnyAndNone_logicalOps
+ Body: {
+    // These are testing behavior that's never promised by the API, but since
+    // we're lucky enough that these do pass, it saves us from having to write
+    // more excruciating tests! Hooray!
+
+    assertSame(CharMatcher.any(), CharMatcher.none().negate());
+    assertSame(CharMatcher.none(), CharMatcher.any().negate());
+
+    assertSame(WHATEVER, CharMatcher.any().and(WHATEVER));
+    assertSame(CharMatcher.any(), CharMatcher.any().or(WHATEVER));
+
+    assertSame(CharMatcher.none(), CharMatcher.none().and(WHATEVER));
+    assertSame(WHATEVER, CharMatcher.none().or(WHATEVER));
+  }
+ Pattern Name: AllAssertionPattern - Action: any (Alternative Action: none=5 ) - Predicate: negate - Scenario: CharMatcher.none() (Alternative Scenario:  )
+
+Project: guava
+ Class: FunnelsTest
+ Method: testSerialization
+ Body: {
+    assertSame(
+        Funnels.byteArrayFunnel(), SerializableTester.reserialize(Funnels.byteArrayFunnel()));
+    assertSame(Funnels.integerFunnel(), SerializableTester.reserialize(Funnels.integerFunnel()));
+    assertSame(Funnels.longFunnel(), SerializableTester.reserialize(Funnels.longFunnel()));
+    assertSame(
+        Funnels.unencodedCharsFunnel(),
+        SerializableTester.reserialize(Funnels.unencodedCharsFunnel()));
+    assertEquals(
+        Funnels.sequentialFunnel(Funnels.integerFunnel()),
+        SerializableTester.reserialize(Funnels.sequentialFunnel(Funnels.integerFunnel())));
+    assertEquals(
+        Funnels.stringFunnel(Charsets.US_ASCII),
+        SerializableTester.reserialize(Funnels.stringFunnel(Charsets.US_ASCII)));
+  }
+ Pattern Name: AllAssertionPattern - Action: byteArrayFunnel (Alternative Action: reserialize=6 ) - Predicate: reserialize - Scenario: SerializableTester (Alternative Scenario:  )
+
+Project: guava
+ Class: IntsTest
+ Method: testAsListEmpty
+ Body: {
+    assertSame(Collections.emptyList(), Ints.asList(EMPTY));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: emptyList=1 ) - Predicate: asList - Scenario: Ints (Alternative Scenario:  )
+
+Project: guava
+ Class: SortedMapNavigationTester
+ Method: testSingletonMapFirst
+ Body: {
+    assertEquals(a.getKey(), navigableMap.firstKey());
+  }
+ Pattern Name: AllAssertionPattern - Action: getKey (Alternative Action: getKey=1 ) - Predicate: firstKey - Scenario: navigableMap (Alternative Scenario:  )
+
+Project: guava
+ Class: SortedMapNavigationTester
+ Method: testLast
+ Body: {
+    assertEquals(c.getKey(), navigableMap.lastKey());
+  }
+ Pattern Name: AllAssertionPattern - Action: getKey (Alternative Action: getKey=1 ) - Predicate: lastKey - Scenario: navigableMap (Alternative Scenario:  )
+
+Project: guava
+ Class: SortedMapNavigationTester
+ Method: testFirst
+ Body: {
+    assertEquals(a.getKey(), navigableMap.firstKey());
+  }
+ Pattern Name: AllAssertionPattern - Action: getKey (Alternative Action: getKey=1 ) - Predicate: firstKey - Scenario: navigableMap (Alternative Scenario:  )
+
+Project: guava
+ Class: SortedMapNavigationTester
+ Method: testSingletonMapLast
+ Body: {
+    assertEquals(a.getKey(), navigableMap.lastKey());
+  }
+ Pattern Name: AllAssertionPattern - Action: getKey (Alternative Action: getKey=1 ) - Predicate: lastKey - Scenario: navigableMap (Alternative Scenario:  )
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testColumn
+ Body: {
+    assertEquals(ImmutableMap.of(), testTable.column(0));
+    assertEquals(ImmutableMap.of('a', "blah"), testTable.column(1));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: column - Scenario: testTable (Alternative Scenario:  )
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testRowKeySet
+ Body: {
+    assertEquals(ImmutableSet.of('a'), testTable.rowKeySet());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=1 ) - Predicate: rowKeySet - Scenario: testTable (Alternative Scenario:  )
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testRow
+ Body: {
+    assertEquals(ImmutableMap.of(), testTable.row('A'));
+    assertEquals(ImmutableMap.of(1, "blah"), testTable.row('a'));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: row - Scenario: testTable (Alternative Scenario:  )
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testHashCode
+ Body: {
+    assertEquals(Objects.hashCode('a', 1, "blah"), testTable.hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=2 ) - Predicate: hashCode - Scenario: testTable (Alternative Scenario:  )
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testColumnKeySet
+ Body: {
+    assertEquals(ImmutableSet.of(1), testTable.columnKeySet());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: columnKeySet=1 ) - Predicate: columnKeySet - Scenario: testTable (Alternative Scenario:  )
+
+Project: guava
+ Class: ImmutableSetMultimapTest
+ Method: testInverse
+ Body: {
+    assertEquals(
+        ImmutableSetMultimap.<Integer, String>of(),
+        ImmutableSetMultimap.<String, Integer>of().inverse());
+    assertEquals(ImmutableSetMultimap.of(1, "one"), ImmutableSetMultimap.of("one", 1).inverse());
+    assertEquals(
+        ImmutableSetMultimap.of(1, "one", 2, "two"),
+        ImmutableSetMultimap.of("one", 1, "two", 2).inverse());
+    assertEquals(
+        ImmutableSetMultimap.of('o', "of", 'f', "of", 't', "to", 'o', "to"),
+        ImmutableSetMultimap.of("of", 'o', "of", 'f', "to", 't', "to", 'o').inverse());
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=8 ) - Predicate: inverse - Scenario: ImmutableSetMultimap.<String, Integer>of() (Alternative Scenario:  )
+
+Project: guava
+ Class: MultimapEqualsTester
+ Method: testHashCodeMatchesAsMap
+ Body: {
+    assertEquals(multimap().asMap().hashCode(), multimap().hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=2 ) - Predicate: hashCode - Scenario: multimap() (Alternative Scenario:  )
+
+Project: guava
+ Class: MultisetReadsTester
+ Method: testEntrySet_twice
+ Body: {
+    assertEquals(
+        "calling multiset.entrySet() twice returned unequal sets",
+        getMultiset().entrySet(),
+        getMultiset().entrySet());
+  }
+ Pattern Name: AllAssertionPattern - Action: entrySet (Alternative Action: entrySet=2 ) - Predicate: entrySet - Scenario: getMultiset()(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: TypeTokenResolutionTest
+ Method: testResolvePrimitiveArrayType
+ Body: {
+    assertEquals(new TypeToken<int[]>() {}.getType(), new Holder<int[]>() {}.getContentType());
+    assertEquals(new TypeToken<int[][]>() {}.getType(), new Holder<int[][]>() {}.getContentType());
+  }
+ Pattern Name: AllAssertionPattern - Action: getType (Alternative Action: getType=2 ) - Predicate: getContentType - Scenario: new Holder<int[]>() {} (Alternative Scenario:  )
+
+Project: guava
+ Class: MultisetsImmutableEntryTest
+ Method: testHashCode
+ Body: {
+    assertEquals(control("foo", 1).hashCode(), entry("foo", 1).hashCode());
+    assertEquals(control("bar", 2).hashCode(), entry("bar", 2).hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=4 ) - Predicate: hashCode - Scenario: entry("foo", 1) (Alternative Scenario:  )
+
+Project: guava
+ Class: MultisetsImmutableEntryTest
+ Method: testHashCodeNull
+ Body: {
+    assertEquals(control(NE, 1).hashCode(), entry(NE, 1).hashCode());
+  }
+ Pattern Name: AllAssertionPattern - Action: hashCode (Alternative Action: hashCode=2 ) - Predicate: hashCode - Scenario: entry(NE, 1) (Alternative Scenario:  )
+
+Project: guava
+ Class: InetAddressesTest
+ Method: testFromInteger
+ Body: {
+    assertEquals(InetAddresses.fromInteger(0x7f000001), InetAddresses.forString("127.0.0.1"));
+  }
+ Pattern Name: AllAssertionPattern - Action: fromInteger (Alternative Action: fromInteger=1 ) - Predicate: forString - Scenario: InetAddresses(Matched) (Alternative Scenario:  )
+
+Project: guava
+ Class: ListSubListTester
+ Method: testSubList_empty
+ Body: {
+    assertEquals("subList(0, 0) should be empty", emptyList(), getList().subList(0, 0));
+  }
+ Pattern Name: AllAssertionPattern - Action: emptyList (Alternative Action: subList=1 ) - Predicate: subList - Scenario: getList() (Alternative Scenario:  )
+
+Project: guava
+ Class: ListSubListTester
+ Method: testSubList_entireList
+ Body: {
+    assertEquals(
+        "subList(0, size) should be equal to the original list",
+        getList(),
+        getList().subList(0, getNumElements()));
+  }
+ Pattern Name: AllAssertionPattern - Action: getList (Alternative Action: getList=2 ) - Predicate: subList - Scenario: getList() (Alternative Scenario:  )
+
+Project: guava
+ Class: MapGetOrDefaultTester
+ Method: testGetOrDefault_present
+ Body: {
+    assertEquals(
+        "getOrDefault(present, def) should return the associated value",
+        v0(),
+        getMap().getOrDefault(k0(), v3()));
+  }
+ Pattern Name: AllAssertionPattern - Action: v0 (Alternative Action: getOrDefault=1 ) - Predicate: getOrDefault - Scenario: getMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: MapGetOrDefaultTester
+ Method: testGetOrDefault_absentNull
+ Body: {
+    assertEquals(
+        "getOrDefault(null, def) should return the default value",
+        v3(),
+        getMap().getOrDefault(null, v3()));
+  }
+ Pattern Name: AllAssertionPattern - Action: v3 (Alternative Action: v3=2 ) - Predicate: getOrDefault - Scenario: getMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: MapGetOrDefaultTester
+ Method: testGetOrDefault_presentNullDefault
+ Body: {
+    assertEquals(
+        "getOrDefault(present, null) should return the associated value",
+        v0(),
+        getMap().getOrDefault(k0(), null));
+  }
+ Pattern Name: AllAssertionPattern - Action: v0 (Alternative Action: getOrDefault=1 ) - Predicate: getOrDefault - Scenario: getMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: MapGetOrDefaultTester
+ Method: testGetOrDefault_absent
+ Body: {
+    assertEquals(
+        "getOrDefault(absent, def) should return the default value",
+        v3(),
+        getMap().getOrDefault(k3(), v3()));
+  }
+ Pattern Name: AllAssertionPattern - Action: v3 (Alternative Action: v3=2 ) - Predicate: getOrDefault - Scenario: getMap() (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testOf_empty
+ Body: {
+    assertEquals(ImmutableList.of(), Lists.newArrayList(FluentIterable.of()));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: newArrayList - Scenario: Lists (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testToSortedList_withComparator
+ Body: {
+    assertEquals(
+        Lists.newArrayList(4, 3, 2, 1),
+        fluent(4, 1, 3, 2).toSortedList(Ordering.<Integer>natural().reverse()));
+  }
+ Pattern Name: AllAssertionPattern - Action: newArrayList (Alternative Action: natural=1 ) - Predicate: toSortedList - Scenario: fluent(4, 1, 3, 2) (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testOf
+ Body: {
+    assertEquals(ImmutableList.of(1, 2, 3, 4), Lists.newArrayList(FluentIterable.of(1, 2, 3, 4)));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: newArrayList - Scenario: Lists (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testFrom
+ Body: {
+    assertEquals(
+        ImmutableList.of(1, 2, 3, 4),
+        Lists.newArrayList(FluentIterable.from(ImmutableList.of(1, 2, 3, 4))));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: of=2 ) - Predicate: newArrayList - Scenario: Lists (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testToSortedList_withDuplicates
+ Body: {
+    assertEquals(
+        Lists.newArrayList(4, 3, 1, 1),
+        fluent(1, 4, 1, 3).toSortedList(Ordering.<Integer>natural().reverse()));
+  }
+ Pattern Name: AllAssertionPattern - Action: newArrayList (Alternative Action: natural=1 ) - Predicate: toSortedList - Scenario: fluent(1, 4, 1, 3) (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testFromArray
+ Body: {
+    assertEquals(
+        ImmutableList.of("1", "2", "3", "4"),
+        Lists.newArrayList(FluentIterable.from(new Object[] {"1", "2", "3", "4"})));
+  }
+ Pattern Name: AllAssertionPattern - Action: of (Alternative Action: newArrayList=1 ) - Predicate: newArrayList - Scenario: Lists (Alternative Scenario:  )
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testToList
+ Body: {
+    assertEquals(Lists.newArrayList(1, 2, 3, 4), fluent(1, 2, 3, 4).toList());
+  }
+ Pattern Name: AllAssertionPattern - Action: newArrayList (Alternative Action: newArrayList=1 ) - Predicate: toList - Scenario: fluent(1, 2, 3, 4) (Alternative Scenario:  )
+

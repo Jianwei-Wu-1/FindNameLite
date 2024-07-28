@@ -1,0 +1,940 @@
+Project: guava
+ Class: ToStringHelperTest
+ Method: testToStringHelper_localInnerClass
+ Body: {
+    // Local inner classes have names ending like "Outer.$1Inner"
+    class LocalInnerClass {}
+    String toTest = MoreObjects.toStringHelper(new LocalInnerClass()).toString();
+    assertEquals("LocalInnerClass{}", toTest);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: toString - Predicate: N/A - Scenario: MoreObjects.toStringHelper(new LocalInnerClass())
+
+Project: guava
+ Class: ToStringHelperTest
+ Method: testToStringHelper_localInnerNestedClass
+ Body: {
+    class LocalInnerClass {
+      class LocalInnerNestedClass {}
+    }
+    String toTest =
+        MoreObjects.toStringHelper(new LocalInnerClass().new LocalInnerNestedClass()).toString();
+    assertEquals("LocalInnerNestedClass{}", toTest);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: toString - Predicate: N/A - Scenario: MoreObjects.toStringHelper(new LocalInnerClass().new LocalInnerNestedClass())
+
+Project: guava
+ Class: ToStringHelperTest
+ Method: testToStringHelper_moreThanNineAnonymousClasses
+ Body: {
+    // The nth anonymous class has a name ending like "Outer.$n"
+    Object o1 = new Object() {};
+    Object o2 = new Object() {};
+    Object o3 = new Object() {};
+    Object o4 = new Object() {};
+    Object o5 = new Object() {};
+    Object o6 = new Object() {};
+    Object o7 = new Object() {};
+    Object o8 = new Object() {};
+    Object o9 = new Object() {};
+    Object o10 = new Object() {};
+    String toTest = MoreObjects.toStringHelper(o10).toString();
+    assertEquals("{}", toTest);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: toString - Predicate: N/A - Scenario: MoreObjects.toStringHelper(o10)
+
+Project: guava
+ Class: AbstractExecutionThreadServiceTest
+ Method: testServiceExitingOnItsOwn
+ Body: {
+    WaitOnRunService service = new WaitOnRunService();
+    service.expectedShutdownState = Service.State.RUNNING;
+
+    service.startAsync().awaitRunning();
+    assertTrue(service.startUpCalled);
+    assertEquals(Service.State.RUNNING, service.state());
+
+    exitRun.countDown(); // the service will exit voluntarily
+    executionThread.join();
+
+    assertTrue(service.shutDownCalled);
+    assertEquals(Service.State.TERMINATED, service.state());
+
+    service.stopAsync().awaitTerminated(); // no-op
+    assertEquals(Service.State.TERMINATED, service.state());
+    assertTrue(service.shutDownCalled);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: state - Predicate: N/A - Scenario: service
+
+Project: guava
+ Class: ConverterTest
+ Method: testSerialization_reverse
+ Body: {
+    Converter<Long, String> reverseConverter = Longs.stringConverter().reverse();
+    SerializableTester.reserializeAndAssert(reverseConverter);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: reverse - Predicate: N/A - Scenario: Longs.stringConverter()
+
+Project: guava
+ Class: ConverterTest
+ Method: testSerialization_identity
+ Body: {
+    Converter<String, String> identityConverter = Converter.identity();
+    SerializableTester.reserializeAndAssert(identityConverter);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: identity - Predicate: N/A - Scenario: Converter
+
+Project: guava
+ Class: TablesTest
+ Method: testImmutableEntrySerialization
+ Body: {
+    Cell<String, Integer, Character> entry = Tables.immutableCell("foo", 1, 'a');
+    SerializableTester.reserializeAndAssert(entry);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: immutableCell - Predicate: N/A - Scenario: Tables
+
+Project: guava
+ Class: FreshValueGeneratorTest
+ Method: testPrimitiveArray
+ Body: {
+    FreshValueGenerator generator = new FreshValueGenerator();
+    int[] a1 = generator.generateFresh(int[].class);
+    int[] a2 = generator.generateFresh(int[].class);
+    assertTrue(a1[0] != a2[0]);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: generateFresh - Predicate: N/A - Scenario: generator
+
+Project: guava
+ Class: FreshValueGeneratorTest
+ Method: testFreshCurrency
+ Body: {
+    FreshValueGenerator generator = new FreshValueGenerator();
+    // repeat a few times to make sure we don't stumble upon a bad Locale
+    assertNotNull(generator.generateFresh(Currency.class));
+    assertNotNull(generator.generateFresh(Currency.class));
+    assertNotNull(generator.generateFresh(Currency.class));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: generateFresh - Predicate: N/A - Scenario: generator
+
+Project: guava
+ Class: EndpointPairTest
+ Method: testOrderedEndpointPair
+ Body: {
+    EndpointPair<String> ordered = EndpointPair.ordered("source", "target");
+    assertThat(ordered.isOrdered()).isTrue();
+    assertThat(ordered).containsExactly("source", "target").inOrder();
+    assertThat(ordered.source()).isEqualTo("source");
+    assertThat(ordered.target()).isEqualTo("target");
+    assertThat(ordered.nodeU()).isEqualTo("source");
+    assertThat(ordered.nodeV()).isEqualTo("target");
+    assertThat(ordered.adjacentNode("source")).isEqualTo("target");
+    assertThat(ordered.adjacentNode("target")).isEqualTo("source");
+    assertThat(ordered.toString()).isEqualTo("<source -> target>");
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: ordered - Predicate: N/A - Scenario: EndpointPair
+
+Project: guava
+ Class: EndpointPairTest
+ Method: testSelfLoop
+ Body: {
+    EndpointPair<String> unordered = EndpointPair.unordered("node", "node");
+    assertThat(unordered.isOrdered()).isFalse();
+    assertThat(unordered).containsExactly("node", "node");
+    assertThat(unordered.nodeU()).isEqualTo("node");
+    assertThat(unordered.nodeV()).isEqualTo("node");
+    assertThat(unordered.adjacentNode("node")).isEqualTo("node");
+    assertThat(unordered.toString()).isEqualTo("[node, node]");
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: unordered - Predicate: N/A - Scenario: EndpointPair
+
+Project: guava
+ Class: StopwatchTest
+ Method: testElapsed_millis
+ Body: {
+    stopwatch.start();
+    ticker.advance(999999);
+    assertEquals(0, stopwatch.elapsed(MILLISECONDS));
+    ticker.advance(1);
+    assertEquals(1, stopwatch.elapsed(MILLISECONDS));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elapsed - Predicate: N/A - Scenario: stopwatch
+
+Project: guava
+ Class: StopwatchTest
+ Method: testElapsed_notRunning
+ Body: {
+    ticker.advance(1);
+    stopwatch.start();
+    ticker.advance(4);
+    stopwatch.stop();
+    ticker.advance(9);
+    assertEquals(4, stopwatch.elapsed(NANOSECONDS));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elapsed - Predicate: N/A - Scenario: stopwatch
+
+Project: guava
+ Class: StopwatchTest
+ Method: testElapsed_whileRunning
+ Body: {
+    ticker.advance(78);
+    stopwatch.start();
+    assertEquals(0, stopwatch.elapsed(NANOSECONDS));
+
+    ticker.advance(345);
+    assertEquals(345, stopwatch.elapsed(NANOSECONDS));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elapsed - Predicate: N/A - Scenario: stopwatch
+
+Project: guava
+ Class: StopwatchTest
+ Method: testElapsed_micros
+ Body: {
+    stopwatch.start();
+    ticker.advance(999);
+    assertEquals(0, stopwatch.elapsed(MICROSECONDS));
+    ticker.advance(1);
+    assertEquals(1, stopwatch.elapsed(MICROSECONDS));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elapsed - Predicate: N/A - Scenario: stopwatch
+
+Project: guava
+ Class: StopwatchTest
+ Method: testElapsed_multipleSegments
+ Body: {
+    stopwatch.start();
+    ticker.advance(9);
+    stopwatch.stop();
+
+    ticker.advance(16);
+
+    stopwatch.start();
+    assertEquals(9, stopwatch.elapsed(NANOSECONDS));
+    ticker.advance(25);
+    assertEquals(34, stopwatch.elapsed(NANOSECONDS));
+
+    stopwatch.stop();
+    ticker.advance(36);
+    assertEquals(34, stopwatch.elapsed(NANOSECONDS));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elapsed - Predicate: N/A - Scenario: stopwatch
+
+Project: guava
+ Class: IterablesTest
+ Method: testElementsEqual
+ Body: {
+    Iterable<?> a;
+    Iterable<?> b;
+
+    // A few elements.
+    a = asList(4, 8, 15, 16, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertTrue(Iterables.elementsEqual(a, b));
+
+    // An element differs.
+    a = asList(4, 8, 15, 12, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterables.elementsEqual(a, b));
+
+    // null versus non-null.
+    a = asList(4, 8, 15, null, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterables.elementsEqual(a, b));
+    assertFalse(Iterables.elementsEqual(b, a));
+
+    // Different lengths.
+    a = asList(4, 8, 15, 16, 23);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterables.elementsEqual(a, b));
+    assertFalse(Iterables.elementsEqual(b, a));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elementsEqual - Predicate: N/A - Scenario: Iterables
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGenericArrayTypeToArrayType
+ Body: {
+    TypeToken<List<String>[]> tokL = new TypeToken<List<String>[]>() {};
+    TypeToken<ArrayList<String>[]> token = new TypeToken<ArrayList<String>[]>() {};
+    assertTrue(tokL.isSupertypeOf(tokL.getType()));
+    assertTrue(tokL.isSupertypeOf(token.getType()));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: isSupertypeOf - Predicate: N/A - Scenario: tokL
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetSubtype_outerTypeVarTranslatesInnerTypeVar
+ Body: {
+    class TwoTypeArgs<K, V> {}
+    class StringForFirstTypeArg<V> extends TwoTypeArgs<String, V> {}
+    class OuterTypeVar<V> extends StringForFirstTypeArg<List<V>> {}
+    TypeToken<StringForFirstTypeArg<List<?>>> type =
+        new TypeToken<StringForFirstTypeArg<List<?>>>() {};
+    assertEquals(new TypeToken<OuterTypeVar<?>>() {}, type.getSubtype(OuterTypeVar.class));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: getSubtype - Predicate: N/A - Scenario: type
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testLastIndexOf
+ Body: {
+    ImmutableDoubleArray iia = ImmutableDoubleArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.lastIndexOf(1)).isEqualTo(1);
+    assertThat(iia.lastIndexOf(8)).isEqualTo(5);
+    assertThat(iia.lastIndexOf(4)).isEqualTo(-1);
+    assertThat(ImmutableDoubleArray.of(13).lastIndexOf(13)).isEqualTo(0);
+    assertThat(ImmutableDoubleArray.of().lastIndexOf(21)).isEqualTo(-1);
+    assertThat(iia.subArray(1, 5).lastIndexOf(1)).isEqualTo(0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableDoubleArray
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testCopyOf_array_nonempty
+ Body: {
+    double[] array = new double[] {0, 1, 3};
+    ImmutableDoubleArray iia = ImmutableDoubleArray.copyOf(array);
+    array[2] = 2;
+    assertThat(iia.asList()).containsExactly(0.0, 1.0, 3.0).inOrder();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: copyOf - Predicate: N/A - Scenario: ImmutableDoubleArray
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testIndexOf
+ Body: {
+    ImmutableDoubleArray iia = ImmutableDoubleArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.indexOf(1)).isEqualTo(0);
+    assertThat(iia.indexOf(8)).isEqualTo(5);
+    assertThat(iia.indexOf(4)).isEqualTo(-1);
+    assertThat(ImmutableDoubleArray.of(13).indexOf(13)).isEqualTo(0);
+    assertThat(ImmutableDoubleArray.of().indexOf(21)).isEqualTo(-1);
+    assertThat(iia.subArray(1, 5).indexOf(1)).isEqualTo(0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableDoubleArray
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testContains
+ Body: {
+    ImmutableDoubleArray iia = ImmutableDoubleArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.contains(1)).isTrue();
+    assertThat(iia.contains(8)).isTrue();
+    assertThat(iia.contains(4)).isFalse();
+    assertThat(ImmutableDoubleArray.of(13).contains(13)).isTrue();
+    assertThat(ImmutableDoubleArray.of().contains(21)).isFalse();
+    assertThat(iia.subArray(1, 5).contains(1)).isTrue();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableDoubleArray
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testGet_good
+ Body: {
+    ImmutableDoubleArray iia = ImmutableDoubleArray.of(0, 1, 3);
+    assertThat(iia.get(0)).isEqualTo(0.0);
+    assertThat(iia.get(2)).isEqualTo(3.0);
+    assertThat(iia.subArray(1, 3).get(1)).isEqualTo(3.0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableDoubleArray
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testIndexOf_specialValues
+ Body: {
+    ImmutableDoubleArray iia =
+        ImmutableDoubleArray.of(-0.0, 0.0, Double.MAX_VALUE, Double.POSITIVE_INFINITY, Double.NaN);
+    assertThat(iia.indexOf(-0.0)).isEqualTo(0);
+    assertThat(iia.indexOf(0.0)).isEqualTo(1);
+    assertThat(iia.indexOf(Double.MAX_VALUE)).isEqualTo(2);
+    assertThat(iia.indexOf(Double.POSITIVE_INFINITY)).isEqualTo(3);
+    assertThat(iia.indexOf(Double.NaN)).isEqualTo(4);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableDoubleArray
+
+Project: guava
+ Class: ArrayBasedUnicodeEscaperTest
+ Method: testCodePointsFromSurrogatePairs
+ Body: {
+    UnicodeEscaper surrogateEscaper =
+        new ArrayBasedUnicodeEscaper(NO_REPLACEMENTS, 0, 0x20000, null) {
+          private final char[] escaped = new char[] {'X'};
+
+          @Override
+          protected char[] escapeUnsafe(int c) {
+            return escaped;
+          }
+        };
+    EscaperAsserts.assertBasic(surrogateEscaper);
+
+    // A surrogate pair defining a code point within the safe range.
+    String safeInput = "\uD800\uDC00"; // 0x10000
+    assertEquals(safeInput, surrogateEscaper.escape(safeInput));
+
+    // A surrogate pair defining a code point outside the safe range (but both
+    // of the surrogate characters lie within the safe range). It is important
+    // not to accidentally treat this as a sequence of safe characters.
+    String unsafeInput = "\uDBFF\uDFFF"; // 0x10FFFF
+    assertEquals("X", surrogateEscaper.escape(unsafeInput));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: escape - Predicate: N/A - Scenario: surrogateEscaper
+
+Project: guava
+ Class: HashingTest
+ Method: testGoodFastHash128
+ Body: {
+    HashTestUtils.check2BitAvalanche(Hashing.goodFastHash(128), 250, 0.20);
+    HashTestUtils.checkAvalanche(Hashing.goodFastHash(128), 250, 0.17);
+    HashTestUtils.checkNo2BitCharacteristics(Hashing.goodFastHash(128));
+    HashTestUtils.checkNoFunnels(Hashing.goodFastHash(128));
+    HashTestUtils.assertInvariants(Hashing.goodFastHash(128));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: goodFastHash - Predicate: N/A - Scenario: Hashing
+
+Project: guava
+ Class: HashingTest
+ Method: testGoodFastHash32
+ Body: {
+    HashTestUtils.check2BitAvalanche(Hashing.goodFastHash(32), 250, 0.20);
+    HashTestUtils.checkAvalanche(Hashing.goodFastHash(32), 250, 0.17);
+    HashTestUtils.checkNo2BitCharacteristics(Hashing.goodFastHash(32));
+    HashTestUtils.checkNoFunnels(Hashing.goodFastHash(32));
+    HashTestUtils.assertInvariants(Hashing.goodFastHash(32));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: goodFastHash - Predicate: N/A - Scenario: Hashing
+
+Project: guava
+ Class: HashingTest
+ Method: testGoodFastHash256
+ Body: {
+    HashTestUtils.check2BitAvalanche(Hashing.goodFastHash(256), 250, 0.20);
+    HashTestUtils.checkAvalanche(Hashing.goodFastHash(256), 250, 0.17);
+    HashTestUtils.checkNo2BitCharacteristics(Hashing.goodFastHash(256));
+    HashTestUtils.checkNoFunnels(Hashing.goodFastHash(256));
+    HashTestUtils.assertInvariants(Hashing.goodFastHash(256));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: goodFastHash - Predicate: N/A - Scenario: Hashing
+
+Project: guava
+ Class: ImmutableIntArrayTest
+ Method: testGet_good
+ Body: {
+    ImmutableIntArray iia = ImmutableIntArray.of(0, 1, 3);
+    assertThat(iia.get(0)).isEqualTo(0);
+    assertThat(iia.get(2)).isEqualTo(3);
+    assertThat(iia.subArray(1, 3).get(1)).isEqualTo(3);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableIntArray
+
+Project: guava
+ Class: ImmutableIntArrayTest
+ Method: testContains
+ Body: {
+    ImmutableIntArray iia = ImmutableIntArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.contains(1)).isTrue();
+    assertThat(iia.contains(8)).isTrue();
+    assertThat(iia.contains(4)).isFalse();
+    assertThat(ImmutableIntArray.of(13).contains(13)).isTrue();
+    assertThat(ImmutableIntArray.of().contains(21)).isFalse();
+    assertThat(iia.subArray(1, 5).contains(1)).isTrue();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableIntArray
+
+Project: guava
+ Class: ImmutableIntArrayTest
+ Method: testLastIndexOf
+ Body: {
+    ImmutableIntArray iia = ImmutableIntArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.lastIndexOf(1)).isEqualTo(1);
+    assertThat(iia.lastIndexOf(8)).isEqualTo(5);
+    assertThat(iia.lastIndexOf(4)).isEqualTo(-1);
+    assertThat(ImmutableIntArray.of(13).lastIndexOf(13)).isEqualTo(0);
+    assertThat(ImmutableIntArray.of().lastIndexOf(21)).isEqualTo(-1);
+    assertThat(iia.subArray(1, 5).lastIndexOf(1)).isEqualTo(0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableIntArray
+
+Project: guava
+ Class: ImmutableIntArrayTest
+ Method: testIndexOf
+ Body: {
+    ImmutableIntArray iia = ImmutableIntArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.indexOf(1)).isEqualTo(0);
+    assertThat(iia.indexOf(8)).isEqualTo(5);
+    assertThat(iia.indexOf(4)).isEqualTo(-1);
+    assertThat(ImmutableIntArray.of(13).indexOf(13)).isEqualTo(0);
+    assertThat(ImmutableIntArray.of().indexOf(21)).isEqualTo(-1);
+    assertThat(iia.subArray(1, 5).indexOf(1)).isEqualTo(0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableIntArray
+
+Project: guava
+ Class: ImmutableIntArrayTest
+ Method: testCopyOf_array_nonempty
+ Body: {
+    int[] array = new int[] {0, 1, 3};
+    ImmutableIntArray iia = ImmutableIntArray.copyOf(array);
+    array[2] = 2;
+    assertThat(iia.asList()).containsExactly(0, 1, 3).inOrder();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: copyOf - Predicate: N/A - Scenario: ImmutableIntArray
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testEquals_immutableMultiset
+ Body: {
+    Collection<String> c = ImmutableMultiset.of("a", "b", "a");
+    assertEquals(c, ImmutableMultiset.of("a", "b", "a"));
+    assertEquals(c, ImmutableMultiset.of("a", "a", "b"));
+    assertThat(c).isNotEqualTo(ImmutableMultiset.of("a", "b"));
+    assertThat(c).isNotEqualTo(ImmutableMultiset.of("a", "b", "c", "d"));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableMultiset
+
+Project: guava
+ Class: CharMatcherTest
+ Method: testTrimFrom
+ Body: {
+    // trimming -
+    doTestTrimFrom("-", "");
+    doTestTrimFrom("x-", "x");
+    doTestTrimFrom("-x", "x");
+    doTestTrimFrom("--", "");
+    doTestTrimFrom("x--", "x");
+    doTestTrimFrom("--x", "x");
+    doTestTrimFrom("-x-", "x");
+    doTestTrimFrom("x-x", "x-x");
+    doTestTrimFrom("---", "");
+    doTestTrimFrom("--x-", "x");
+    doTestTrimFrom("--xx", "xx");
+    doTestTrimFrom("-x--", "x");
+    doTestTrimFrom("-x-x", "x-x");
+    doTestTrimFrom("-xx-", "xx");
+    doTestTrimFrom("x--x", "x--x");
+    doTestTrimFrom("x-x-", "x-x");
+    doTestTrimFrom("x-xx", "x-xx");
+    doTestTrimFrom("x-x--xx---x----x", "x-x--xx---x----x");
+    // additional testing using the doc example
+    assertEquals("cat", anyOf("ab").trimFrom("abacatbab"));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: trimFrom - Predicate: N/A - Scenario: anyOf("ab")
+
+Project: guava
+ Class: CharMatcherTest
+ Method: testTrimTrailingFrom
+ Body: {
+    // trimming -
+    doTestTrimTrailingFrom("-", "");
+    doTestTrimTrailingFrom("x-", "x");
+    doTestTrimTrailingFrom("-x", "-x");
+    doTestTrimTrailingFrom("--", "");
+    doTestTrimTrailingFrom("x--", "x");
+    doTestTrimTrailingFrom("--x", "--x");
+    doTestTrimTrailingFrom("-x-", "-x");
+    doTestTrimTrailingFrom("x-x", "x-x");
+    doTestTrimTrailingFrom("---", "");
+    doTestTrimTrailingFrom("--x-", "--x");
+    doTestTrimTrailingFrom("--xx", "--xx");
+    doTestTrimTrailingFrom("-x--", "-x");
+    doTestTrimTrailingFrom("-x-x", "-x-x");
+    doTestTrimTrailingFrom("-xx-", "-xx");
+    doTestTrimTrailingFrom("x--x", "x--x");
+    doTestTrimTrailingFrom("x-x-", "x-x");
+    doTestTrimTrailingFrom("x-xx", "x-xx");
+    doTestTrimTrailingFrom("x-x--xx---x----x", "x-x--xx---x----x");
+    // additional testing using the doc example
+    assertEquals("abacat", anyOf("ab").trimTrailingFrom("abacatbab"));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: trimTrailingFrom - Predicate: N/A - Scenario: anyOf("ab")
+
+Project: guava
+ Class: CharMatcherTest
+ Method: testTrimLeadingFrom
+ Body: {
+    // trimming -
+    doTestTrimLeadingFrom("-", "");
+    doTestTrimLeadingFrom("x-", "x-");
+    doTestTrimLeadingFrom("-x", "x");
+    doTestTrimLeadingFrom("--", "");
+    doTestTrimLeadingFrom("x--", "x--");
+    doTestTrimLeadingFrom("--x", "x");
+    doTestTrimLeadingFrom("-x-", "x-");
+    doTestTrimLeadingFrom("x-x", "x-x");
+    doTestTrimLeadingFrom("---", "");
+    doTestTrimLeadingFrom("--x-", "x-");
+    doTestTrimLeadingFrom("--xx", "xx");
+    doTestTrimLeadingFrom("-x--", "x--");
+    doTestTrimLeadingFrom("-x-x", "x-x");
+    doTestTrimLeadingFrom("-xx-", "xx-");
+    doTestTrimLeadingFrom("x--x", "x--x");
+    doTestTrimLeadingFrom("x-x-", "x-x-");
+    doTestTrimLeadingFrom("x-xx", "x-xx");
+    doTestTrimLeadingFrom("x-x--xx---x----x", "x-x--xx---x----x");
+    // additional testing using the doc example
+    assertEquals("catbab", anyOf("ab").trimLeadingFrom("abacatbab"));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: trimLeadingFrom - Predicate: N/A - Scenario: anyOf("ab")
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testEquals_immutableMultiset
+ Body: {
+    Collection<String> c = ImmutableSortedMultiset.of("a", "b", "a");
+    assertEquals(c, ImmutableSortedMultiset.of("a", "b", "a"));
+    assertEquals(c, ImmutableSortedMultiset.of("a", "a", "b"));
+    assertThat(c).isNotEqualTo(ImmutableSortedMultiset.of("a", "b"));
+    assertThat(c).isNotEqualTo(ImmutableSortedMultiset.of("a", "b", "c", "d"));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableSortedMultiset
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_applyBinary
+ Body: {
+    Predicate<Integer> falseOrFalse = Predicates.or(FALSE, FALSE);
+    Predicate<Integer> falseOrTrue = Predicates.or(FALSE, TRUE);
+    Predicate<Integer> trueOrAnything = Predicates.or(TRUE, NEVER_REACHED);
+
+    assertEvalsToFalse(falseOrFalse);
+    assertEvalsToTrue(falseOrTrue);
+    assertEvalsToTrue(trueOrAnything);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: or - Predicate: N/A - Scenario: Predicates
+
+Project: guava
+ Class: IteratorsTest
+ Method: testElementsEqual
+ Body: {
+    Iterable<?> a;
+    Iterable<?> b;
+
+    // Base case.
+    a = Lists.newArrayList();
+    b = Collections.emptySet();
+    assertTrue(Iterators.elementsEqual(a.iterator(), b.iterator()));
+
+    // A few elements.
+    a = asList(4, 8, 15, 16, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertTrue(Iterators.elementsEqual(a.iterator(), b.iterator()));
+
+    // The same, but with nulls.
+    a = asList(4, 8, null, 16, 23, 42);
+    b = asList(4, 8, null, 16, 23, 42);
+    assertTrue(Iterators.elementsEqual(a.iterator(), b.iterator()));
+
+    // Different Iterable types (still equal elements, though).
+    a = ImmutableList.of(4, 8, 15, 16, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertTrue(Iterators.elementsEqual(a.iterator(), b.iterator()));
+
+    // An element differs.
+    a = asList(4, 8, 15, 12, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterators.elementsEqual(a.iterator(), b.iterator()));
+
+    // null versus non-null.
+    a = asList(4, 8, 15, null, 23, 42);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterators.elementsEqual(a.iterator(), b.iterator()));
+    assertFalse(Iterators.elementsEqual(b.iterator(), a.iterator()));
+
+    // Different lengths.
+    a = asList(4, 8, 15, 16, 23);
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterators.elementsEqual(a.iterator(), b.iterator()));
+    assertFalse(Iterators.elementsEqual(b.iterator(), a.iterator()));
+
+    // Different lengths, one is empty.
+    a = Collections.emptySet();
+    b = asList(4, 8, 15, 16, 23, 42);
+    assertFalse(Iterators.elementsEqual(a.iterator(), b.iterator()));
+    assertFalse(Iterators.elementsEqual(b.iterator(), a.iterator()));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: elementsEqual - Predicate: N/A - Scenario: Iterators
+
+Project: guava
+ Class: MapsTest
+ Method: testEnumMapWithInitialEmptyEnumMap
+ Body: {
+    EnumMap<SomeEnum, Integer> original = Maps.newEnumMap(SomeEnum.class);
+    EnumMap<SomeEnum, Integer> copy = Maps.newEnumMap(original);
+    assertEquals(original, copy);
+    assertNotSame(original, copy);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: newEnumMap - Predicate: N/A - Scenario: Maps
+
+Project: guava
+ Class: ObjectsTest
+ Method: testHashCode
+ Body: {
+    int h1 = Objects.hashCode(1, "two", 3.0);
+    int h2 = Objects.hashCode(new Integer(1), new String("two"), new Double(3.0));
+    // repeatable
+    assertEquals(h1, h2);
+
+    // These don't strictly need to be true, but they're nice properties.
+    assertTrue(Objects.hashCode(1, 2, null) != Objects.hashCode(1, 2));
+    assertTrue(Objects.hashCode(1, 2, null) != Objects.hashCode(1, null, 2));
+    assertTrue(Objects.hashCode(1, null, 2) != Objects.hashCode(1, 2));
+    assertTrue(Objects.hashCode(1, 2, 3) != Objects.hashCode(3, 2, 1));
+    assertTrue(Objects.hashCode(1, 2, 3) != Objects.hashCode(2, 3, 1));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: hashCode - Predicate: N/A - Scenario: Objects
+
+Project: guava
+ Class: ObjectsTest
+ Method: testEqual
+ Body: {
+    assertTrue(Objects.equal(1, 1));
+    assertTrue(Objects.equal(null, null));
+
+    // test distinct string objects
+    String s1 = "foobar";
+    String s2 = new String(s1);
+    assertTrue(Objects.equal(s1, s2));
+
+    assertFalse(Objects.equal(s1, null));
+    assertFalse(Objects.equal(null, s1));
+    assertFalse(Objects.equal("foo", "bar"));
+    assertFalse(Objects.equal("1", 1));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: equal - Predicate: N/A - Scenario: Objects
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testContainsColumn
+ Body: {
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    assertTrue(table.containsColumn(1));
+    assertTrue(table.containsColumn(3));
+    assertTrue(table.containsColumn(2));
+    assertFalse(table.containsColumn(-1));
+    assertFalse(table.containsColumn(null));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: containsColumn - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testContainsRow
+ Body: {
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    assertTrue(table.containsRow("foo"));
+    assertTrue(table.containsRow("bar"));
+    assertTrue(table.containsRow("cat"));
+    assertFalse(table.containsRow("bad"));
+    assertFalse(table.containsRow(null));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: containsRow - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testGetMissingKeys
+ Body: {
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    assertNull(table.get("dog", 1));
+    assertNull(table.get("foo", 4));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: get - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testContains
+ Body: {
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    assertTrue(table.contains("foo", 1));
+    assertTrue(table.contains("bar", 1));
+    assertTrue(table.contains("foo", 3));
+    assertTrue(table.contains("foo", 2));
+    assertTrue(table.contains("bar", 3));
+    assertTrue(table.contains("cat", 1));
+    assertFalse(table.contains("foo", -1));
+    assertFalse(table.contains("bad", 1));
+    assertFalse(table.contains("bad", -1));
+    assertFalse(table.contains("foo", null));
+    assertFalse(table.contains(null, 1));
+    assertFalse(table.contains(null, null));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: contains - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testIsEmpty
+ Body: {
+    assertFalse(table.isEmpty());
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    assertFalse(table.isEmpty());
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: isEmpty - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testEquals
+ Body: {
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    Table<String, Integer, Character> hashCopy = HashBasedTable.create();
+    hashCopy.put("foo", 1, 'a');
+    hashCopy.put("bar", 1, 'b');
+    hashCopy.put("foo", 3, 'c');
+    Table<String, Integer, Character> reordered =
+        create("foo", 3, 'c', "foo", 1, 'a', "bar", 1, 'b');
+    Table<String, Integer, Character> smaller = create("foo", 1, 'a', "bar", 1, 'b');
+    Table<String, Integer, Character> swapOuter =
+        create("bar", 1, 'a', "foo", 1, 'b', "bar", 3, 'c');
+    Table<String, Integer, Character> swapValues =
+        create("foo", 1, 'c', "bar", 1, 'b', "foo", 3, 'a');
+
+    new EqualsTester()
+        .addEqualityGroup(table, reordered)
+        .addEqualityGroup(hashCopy)
+        .addEqualityGroup(smaller)
+        .addEqualityGroup(swapOuter)
+        .addEqualityGroup(swapValues)
+        .testEquals();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: create - Predicate: N/A - Scenario: HashBasedTable
+
+Project: guava
+ Class: ArrayTableTest
+ Method: testContainsValue
+ Body: {
+    table = create("foo", 1, 'a', "bar", 1, 'b', "foo", 3, 'c');
+    assertTrue(table.containsValue('a'));
+    assertTrue(table.containsValue('b'));
+    assertTrue(table.containsValue('c'));
+    assertFalse(table.containsValue('x'));
+    assertTrue(table.containsValue(null));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: containsValue - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ImmutableSortedSetTest
+ Method: testLegacyComparable_of
+ Body: {
+    ImmutableSortedSet<LegacyComparable> set0 = ImmutableSortedSet.of();
+    assertThat(set0).isEmpty();
+
+    @SuppressWarnings("unchecked") // using a legacy comparable
+    ImmutableSortedSet<LegacyComparable> set1 = ImmutableSortedSet.of(LegacyComparable.Z);
+    assertThat(set1).containsExactly(LegacyComparable.Z);
+
+    @SuppressWarnings("unchecked") // using a legacy comparable
+    ImmutableSortedSet<LegacyComparable> set2 =
+        ImmutableSortedSet.of(LegacyComparable.Z, LegacyComparable.Y);
+    assertThat(set2).containsExactly(LegacyComparable.Y, LegacyComparable.Z);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableSortedSet
+
+Project: guava
+ Class: LinkedHashMultimapTest
+ Method: testSerializationOrderingKeysAndEntries
+ Body: {
+    Multimap<String, Integer> multimap = LinkedHashMultimap.create();
+    multimap.put("a", 1);
+    multimap.put("b", 2);
+    multimap.put("a", 3);
+    multimap.put("c", 4);
+    multimap.remove("a", 1);
+    multimap = SerializableTester.reserializeAndAssert(multimap);
+    assertThat(multimap.keySet()).containsExactly("a", "b", "c").inOrder();
+    assertThat(multimap.entries())
+        .containsExactly(mapEntry("b", 2), mapEntry("a", 3), mapEntry("c", 4))
+        .inOrder();
+    // note that the keys and entries are in different orders
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: create - Predicate: N/A - Scenario: LinkedHashMultimap
+
+Project: guava
+ Class: ImmutableLongArrayTest
+ Method: testContains
+ Body: {
+    ImmutableLongArray iia = ImmutableLongArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.contains(1)).isTrue();
+    assertThat(iia.contains(8)).isTrue();
+    assertThat(iia.contains(4)).isFalse();
+    assertThat(ImmutableLongArray.of(13).contains(13)).isTrue();
+    assertThat(ImmutableLongArray.of().contains(21)).isFalse();
+    assertThat(iia.subArray(1, 5).contains(1)).isTrue();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableLongArray
+
+Project: guava
+ Class: ImmutableLongArrayTest
+ Method: testIndexOf
+ Body: {
+    ImmutableLongArray iia = ImmutableLongArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.indexOf(1)).isEqualTo(0);
+    assertThat(iia.indexOf(8)).isEqualTo(5);
+    assertThat(iia.indexOf(4)).isEqualTo(-1);
+    assertThat(ImmutableLongArray.of(13).indexOf(13)).isEqualTo(0);
+    assertThat(ImmutableLongArray.of().indexOf(21)).isEqualTo(-1);
+    assertThat(iia.subArray(1, 5).indexOf(1)).isEqualTo(0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableLongArray
+
+Project: guava
+ Class: ImmutableLongArrayTest
+ Method: testCopyOf_array_nonempty
+ Body: {
+    long[] array = new long[] {0, 1, 3};
+    ImmutableLongArray iia = ImmutableLongArray.copyOf(array);
+    array[2] = 2;
+    assertThat(iia.asList()).containsExactly(0L, 1L, 3L).inOrder();
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: copyOf - Predicate: N/A - Scenario: ImmutableLongArray
+
+Project: guava
+ Class: ImmutableLongArrayTest
+ Method: testLastIndexOf
+ Body: {
+    ImmutableLongArray iia = ImmutableLongArray.of(1, 1, 2, 3, 5, 8);
+    assertThat(iia.lastIndexOf(1)).isEqualTo(1);
+    assertThat(iia.lastIndexOf(8)).isEqualTo(5);
+    assertThat(iia.lastIndexOf(4)).isEqualTo(-1);
+    assertThat(ImmutableLongArray.of(13).lastIndexOf(13)).isEqualTo(0);
+    assertThat(ImmutableLongArray.of().lastIndexOf(21)).isEqualTo(-1);
+    assertThat(iia.subArray(1, 5).lastIndexOf(1)).isEqualTo(0);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableLongArray
+
+Project: guava
+ Class: ImmutableLongArrayTest
+ Method: testGet_good
+ Body: {
+    ImmutableLongArray iia = ImmutableLongArray.of(0, 1, 3);
+    assertThat(iia.get(0)).isEqualTo(0L);
+    assertThat(iia.get(2)).isEqualTo(3L);
+    assertThat(iia.subArray(1, 3).get(1)).isEqualTo(3L);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: of - Predicate: N/A - Scenario: ImmutableLongArray
+
+Project: guava
+ Class: PatternFilenameFilterTest
+ Method: testAccept
+ Body: {
+    File dir = new File("foo");
+    FilenameFilter filter = new PatternFilenameFilter("a+");
+    assertTrue(filter.accept(dir, "a"));
+    assertTrue(filter.accept(dir, "aaaa"));
+    assertFalse(filter.accept(dir, "b"));
+
+    // Show that dir is ignored
+    assertTrue(filter.accept(null, "a"));
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: accept - Predicate: N/A - Scenario: filter
+
+Project: guava
+ Class: CharStreamsTest
+ Method: testAsWriter
+ Body: {
+    // Should wrap Appendable in a new object
+    Appendable plainAppendable = new StringBuilder();
+    Writer result = CharStreams.asWriter(plainAppendable);
+    assertNotSame(plainAppendable, result);
+    assertNotNull(result);
+
+    // A Writer should not be wrapped
+    Appendable secretlyAWriter = new StringWriter();
+    result = CharStreams.asWriter(secretlyAWriter);
+    assertSame(secretlyAWriter, result);
+  }
+ Pattern Name: OneMethodInvocationOnly_Pattern - Action: asWriter - Predicate: N/A - Scenario: CharStreams
+

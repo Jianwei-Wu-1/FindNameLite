@@ -1,0 +1,774 @@
+EventBusInheritanceSubclassNoMethodTest.testSubscriberClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassNoMethodTest.testSubscriberClassHierarchyWithoutNewSubscriberMethod
+Action: [refer to alternative] != subscriberclasshierarchy
+Predicate: assertequals != null
+Scenario: post != newsubscribermethod
+
+
+EventBusInheritanceSubclassNoMethodTest.testEventClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassNoMethodTest.testEventClassHierarchySticky
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusInheritanceSubclassNoMethodTest.testEventInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassNoMethodTest.testEventSuperInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusMultithreadedTest.testPost04Threads
+Action: runthreadssingleeventtype != post04
+Predicate: n/a == n/a
+Scenario:  != threads
+
+
+EventBusMultithreadedTest.testPost40Threads
+Action: runthreadssingleeventtype != post40
+Predicate: n/a == n/a
+Scenario:  != threads
+
+
+EventBusMultithreadedTest.testPostMixedEventType04Threads
+Action: runthreadsmixedeventtype != null
+Predicate: n/a != postmix
+Scenario:  != eventtype04threads
+
+
+EventBusMultithreadedTest.testPost01Thread
+Action: runthreadssingleeventtype != post01
+Predicate: n/a == n/a
+Scenario:  != thread
+
+
+EventBusMultithreadedTest.testPostMixedEventType01Thread
+Action: runthreadsmixedeventtype != null
+Predicate: n/a != postmix
+Scenario:  != eventtype01thread
+
+
+EventBusMultithreadedTest.testPostMixedEventType40Threads
+Action: runthreadsmixedeventtype != null
+Predicate: n/a != postmix
+Scenario:  != eventtype40threads
+
+
+EventBusSubscriberLegalTest.testSubscriberLegal
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusBuilderTest.testThrowSubscriberException
+Action: post != throw
+Predicate: n/a == n/a
+Scenario: eventbus != subscriber
+
+
+EventBusBuilderTest.testEventInheritance
+Action: register != n/a
+Predicate: n/a == n/a
+Scenario: eventbus != n/a
+
+
+EventBusBuilderTest.testDoNotSendSubscriberExceptionEvent
+Action: [refer to alternative] != n/a
+Predicate: asserteventcount != n/a
+Scenario: register != n/a
+
+
+EventBusBuilderTest.testDoNotSendNoSubscriberEvent
+Action: [refer to alternative] != n/a
+Predicate: asserteventcount != n/a
+Scenario: post != n/a
+
+
+WithIndex.testMultipleSubscribeMethodsForEvent
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+WithIndex.testPostAfterUnregister
+Action: post == Post
+Predicate: assertnull != n/a
+Scenario: post != unregister
+
+
+WithIndex.testUnregisterNotLeaking
+Action: register != n/a
+Predicate: n/a == n/a
+Scenario: subscriber != n/a
+
+
+WithIndex.testPostWithTwoSubscriber
+Action: [refer to alternative] != post
+Predicate: assertequals != null
+Scenario: register != twosubscriber
+
+
+WithIndex.testPostInEventHandler
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: register != n/a
+
+
+WithIndex.testRegisterTwice
+Action: register != n/a
+Predicate: register != n/a
+Scenario: eventbus != n/a
+
+
+WithIndex.testPostMultipleTimes
+Action: post != n/a
+Predicate: n/a == n/a
+Scenario: count != n/a
+
+
+WithIndex.testPostOnDifferentEventBus
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+WithIndex.testUnregisterWithoutRegister
+Action: unregister == Unregister
+Predicate: n/a == n/a
+Scenario: eventbus != register
+
+
+WithIndex.testHasSubscriberForEventImplementedInterface
+Action: has == has
+Predicate: assertfalse[1st] assertfalse[2rd] != for
+Scenario: subscriber == subscriber
+
+
+WithIndex.testHasSubscriberForEventSuperclass
+Action: has == has
+Predicate: assertfalse[1st] assertfalse[2rd] != for
+Scenario: subscriber == subscriber
+
+
+WithIndex.testRegisterUnregisterAndPostTwoTypes
+Action: [refer to alternative] != register
+Predicate: assertequals != n/a
+Scenario: post != unregister
+
+
+WithIndex.testRegisterAndPostTwoTypes
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+WithIndex.testPostWithoutSubscriber
+Action: post == Post
+Predicate: n/a == n/a
+Scenario: eventbus != subscriber
+
+
+WithIndex.testIsRegistered
+Action: isregistered[only] != null
+Predicate: assertfalse[1st] assertfalse[2rd] != registered
+Scenario: unregister != null
+
+
+WithIndex.testHasSubscriberForEvent
+Action: hassubscriberforevent == HasSubscriberForEvent
+Predicate: assertfalse[1st] assertfalse[2rd] != n/a
+Scenario: unregister != n/a
+
+
+WithIndex.testRegisterAndPost
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassNoMethod.testEventInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassNoMethod.testEventClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassNoMethod.testSubscriberClassHierarchyWithoutNewSubscriberMethod
+Action: [refer to alternative] != subscriberclasshierarchy
+Predicate: assertequals != null
+Scenario: post != newsubscribermethod
+
+
+EventBusInheritanceDisabledSubclassNoMethod.testEventClassHierarchySticky
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusInheritanceDisabledSubclassNoMethod.testEventSuperInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassNoMethod.testSubscriberClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusIndexTest.testManualIndexWithoutAnnotation
+Action: [refer to alternative] != manual
+Predicate: assertequals != without
+Scenario: post != index
+
+
+EventBusSubscriberInJarTest.testSubscriberInJar
+Action: size[1st] get[2rd] != n/a
+Predicate: assert.assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusSubscriberExceptionTest.testSubscriberExceptionEvent
+Action: getclass[1st] getmessage[2rd] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusSubscriberExceptionTest.testBadExceptionSubscriber
+Action: [refer to alternative] != n/a
+Predicate: asserteventcount != n/a
+Scenario: register != n/a
+
+
+EventBusGenericsTest.testGenericEventAndSubscriber
+Action: [refer to alternative] != n/a
+Predicate: asserteventcount != n/a
+Scenario: post != n/a
+
+
+EventBusGenericsTest.testGenericEventAndSubscriber_Subclass
+Action: [refer to alternative] != genericeventandsubscribersubclass
+Predicate: asserteventcount != null
+Scenario: post != null
+
+
+EventBusGenericsTest.testGenericEventAndSubscriber_TypeErasure
+Action: [refer to alternative] != genericeventandsubscribertypeerasure
+Predicate: asserteventcount != null
+Scenario: post != null
+
+
+EventBusGenericsTest.testGenericEventAndSubscriber_BaseType
+Action: [refer to alternative] != genericeventandsubscriberbasetype
+Predicate: asserteventcount != null
+Scenario: post != null
+
+
+EventBusCancelEventDeliveryTest.testCancelOutsideEventHandler
+Action: canceleventdelivery != n/a
+Predicate: n/a == n/a
+Scenario: eventbus != n/a
+
+
+EventBusCancelEventDeliveryTest.testCancel
+Action: intvalue[only] != cancel
+Predicate: assertequals[only] != n/a
+Scenario: register != n/a
+
+
+EventBusCancelEventDeliveryTest.testCancelWrongEvent
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusCancelEventDeliveryTest.testCancelInBetween
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: register != n/a
+
+
+EventBusNoSubscriberEventTest.testNoSubscriberEvent
+Action: getclass[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusNoSubscriberEventTest.testBadNoSubscriberSubscriber
+Action: getclass[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: register != n/a
+
+
+EventBusNoSubscriberEventTest.testNoSubscriberEventAfterUnregister
+Action: register != n/a
+Predicate: n/a == n/a
+Scenario: subscriber != n/a
+
+
+EventBusInheritanceDisabledTest.testEventInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledTest.testEventClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledTest.testSubscriberClassHierarchyWithoutNewSubscriberMethod
+Action: [refer to alternative] != subscriberclasshierarchy
+Predicate: assertequals != null
+Scenario: post != newsubscribermethod
+
+
+EventBusInheritanceDisabledTest.testEventClassHierarchySticky
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusInheritanceDisabledTest.testEventSuperInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledTest.testSubscriberClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusFallbackToReflectionTest.testSubscriberClassWithPublicAndPrivateEvent
+Action: size[only] != subscriberclass
+Predicate: assertequals[only] != null
+Scenario: post != publicandprivateevent
+
+
+EventBusFallbackToReflectionTest.testSubscriberExtendingClassWithPrivateEvent
+Action: size[only] != classwithprivateevent
+Predicate: assertequals[only] != subscriberextend
+Scenario: post != null
+
+
+EventBusFallbackToReflectionTest.testAnonymousSubscriberClassWithPublicSuperclass
+Action: size[only] != anonymoussubscriberclass
+Predicate: assertequals[only] != null
+Scenario: post != publicsuperclass
+
+
+EventBusFallbackToReflectionTest.testSubscriberClassWithPrivateEvent
+Action: size[only] != subscriberclass
+Predicate: assertequals[only] != null
+Scenario: privateevent == PrivateEvent
+
+
+EventBusFallbackToReflectionTest.testAnonymousSubscriberClass
+Action: size[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusFallbackToReflectionTest.testAnonymousSubscriberClassWithPrivateSuperclass
+Action: size[only] != anonymoussubscriberclass
+Predicate: assertequals[only] != null
+Scenario: post != privatesuperclass
+
+
+EventBusStickyEventTest.testPostStickyThenPostNormal
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusStickyEventTest.testPostStickyTwice
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testRemoveStickyEventInSubscriber
+Action: getstickyevent[1st] intvalue[2rd] != n/a
+Predicate: assertnull[1st] assertequals[2rd] != n/a
+Scenario: register != n/a
+
+
+EventBusStickyEventTest.testPostSticky
+Action: currentthread[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testPostStickyTwoEvents
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testPostStickyRemoveEvent
+Action: removestickyevent[1st] getstickyevent[2rd] != n/a
+Predicate: assertnull[1st] asserttrue[2rd] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testPostStickyRegisterNonSticky
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testPostStickyTwoSubscribers
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testPostNonStickyRegisterSticky
+Action: intvalue[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: post != n/a
+
+
+EventBusStickyEventTest.testPostStickyWithRegisterAndUnregister
+Action: intvalue[only] != poststicky
+Predicate: assertequals[only] != null
+Scenario: register != registerandunregister
+
+
+EventBusStickyEventTest.testPostStickyRemoveClass
+Action: getstickyevent[1st] intvalue[2rd] != n/a
+Predicate: assertnull[1st] assertequals[2rd] != n/a
+Scenario: removestickyevent != n/a
+
+
+EventBusStickyEventTest.testPostStickyRemoveAll
+Action: getstickyevent[1st] intvalue[2rd] != n/a
+Predicate: assertnull[1st] assertequals[2rd] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusStickyEventTest.testPostStickyAndGet
+Action: getstickyevent[only] != n/a
+Predicate: assertequals[only] != n/a
+Scenario: poststicky != n/a
+
+
+EventBusOrderedSubscriptionsTest.testOrderedMainThreadSticky
+Action: runtestordered != null
+Predicate: n/a != order
+Scenario:  != mainthreadsticky
+
+
+EventBusOrderedSubscriptionsTest.testOrdered
+Action: ordered == Ordered
+Predicate: n/a == n/a
+Scenario: n/a == n/a
+
+
+EventBusOrderedSubscriptionsTest.testOrderedMainThread
+Action: runtestordered != null
+Predicate: n/a != order
+Scenario:  != mainthread
+
+
+EventBusOrderedSubscriptionsTest.testOrderedSticky
+Action: runtestordered != null
+Predicate: n/a != order
+Scenario:  != sticky
+
+
+EventBusOrderedSubscriptionsTest.testOrderedBackgroundThread
+Action: ordered == ordered
+Predicate: valueof != n/a
+Scenario: n/a != background
+
+
+EventBusOrderedSubscriptionsTest.testOrderedBackgroundThreadSticky
+Action: ordered == ordered
+Predicate: valueof != n/a
+Scenario: n/a != background
+
+
+EventBusInheritanceDisabledSubclassTest.testEventInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassTest.testEventClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassTest.testSubscriberClassHierarchyWithoutNewSubscriberMethod
+Action: [refer to alternative] != subscriberclasshierarchy
+Predicate: assertequals != null
+Scenario: post != newsubscribermethod
+
+
+EventBusInheritanceDisabledSubclassTest.testEventClassHierarchySticky
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusInheritanceDisabledSubclassTest.testEventSuperInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceDisabledSubclassTest.testSubscriberClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceTest.testSubscriberClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceTest.testSubscriberClassHierarchyWithoutNewSubscriberMethod
+Action: [refer to alternative] != subscriberclasshierarchy
+Predicate: assertequals != null
+Scenario: post != newsubscribermethod
+
+
+EventBusInheritanceTest.testEventClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceTest.testEventClassHierarchySticky
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusInheritanceTest.testEventInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceTest.testEventSuperInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusBasicTest.testMultipleSubscribeMethodsForEvent
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusBasicTest.testPostAfterUnregister
+Action: post == Post
+Predicate: assertnull != n/a
+Scenario: post != unregister
+
+
+EventBusBasicTest.testUnregisterNotLeaking
+Action: register != n/a
+Predicate: n/a == n/a
+Scenario: subscriber != n/a
+
+
+EventBusBasicTest.testPostWithTwoSubscriber
+Action: [refer to alternative] != post
+Predicate: assertequals != null
+Scenario: register != twosubscriber
+
+
+EventBusBasicTest.testPostInEventHandler
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: register != n/a
+
+
+EventBusBasicTest.testRegisterTwice
+Action: register != n/a
+Predicate: register != n/a
+Scenario: eventbus != n/a
+
+
+EventBusBasicTest.testPostMultipleTimes
+Action: post != n/a
+Predicate: n/a == n/a
+Scenario: count != n/a
+
+
+EventBusBasicTest.testPostOnDifferentEventBus
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusBasicTest.testUnregisterWithoutRegister
+Action: unregister == Unregister
+Predicate: n/a == n/a
+Scenario: eventbus != register
+
+
+EventBusBasicTest.testHasSubscriberForEventImplementedInterface
+Action: has == has
+Predicate: assertfalse[1st] assertfalse[2rd] != for
+Scenario: subscriber == subscriber
+
+
+EventBusBasicTest.testHasSubscriberForEventSuperclass
+Action: has == has
+Predicate: assertfalse[1st] assertfalse[2rd] != for
+Scenario: subscriber == subscriber
+
+
+EventBusBasicTest.testRegisterUnregisterAndPostTwoTypes
+Action: [refer to alternative] != register
+Predicate: assertequals != n/a
+Scenario: post != unregister
+
+
+EventBusBasicTest.testRegisterAndPostTwoTypes
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusBasicTest.testPostWithoutSubscriber
+Action: post == Post
+Predicate: n/a == n/a
+Scenario: eventbus != subscriber
+
+
+EventBusBasicTest.testIsRegistered
+Action: isregistered[only] != null
+Predicate: assertfalse[1st] assertfalse[2rd] != registered
+Scenario: unregister != null
+
+
+EventBusBasicTest.testHasSubscriberForEvent
+Action: hassubscriberforevent == HasSubscriberForEvent
+Predicate: assertfalse[1st] assertfalse[2rd] != n/a
+Scenario: unregister != n/a
+
+
+EventBusBasicTest.testRegisterAndPost
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassTest.testSubscriberClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassTest.testSubscriberClassHierarchyWithoutNewSubscriberMethod
+Action: [refer to alternative] != subscriberclasshierarchy
+Predicate: assertequals != null
+Scenario: post != newsubscribermethod
+
+
+EventBusInheritanceSubclassTest.testEventClassHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassTest.testEventClassHierarchySticky
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: poststicky != n/a
+
+
+EventBusInheritanceSubclassTest.testEventInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+EventBusInheritanceSubclassTest.testEventSuperInterfaceHierarchy
+Action: [refer to alternative] != n/a
+Predicate: assertequals != n/a
+Scenario: post != n/a
+
+
+DepositAccountTest.test3
+Action: getresponse != 3
+Predicate: n/a != null
+Scenario: foo != null
+
+
+DepositAccountTest.test2
+Action: getfile != 2
+Predicate: n/a != null
+Scenario: foo != null
+
+
+DepositAccountTest.test4
+Action: getresponse != 4
+Predicate: n/a != null
+Scenario: response != null
+
+
+DepositAccountTest.test1
+Action: 1 == 1
+Predicate: n/a == n/a
+Scenario: foo != n/a
+
+
+DepositAccountTest.test1
+Action: 1 == 1
+Predicate: n/a == n/a
+Scenario: foo != n/a
+
+
+DepositAccountTest.test2
+Action: getfile != 2
+Predicate: n/a != null
+Scenario: foo != null
+
+
+DepositAccountTest.test3
+Action: getresponse != 3
+Predicate: n/a != null
+Scenario: foo != null
+
+
+DepositAccountTest.test4
+Action: getresponse != 4
+Predicate: n/a != null
+Scenario: response != null
+
+

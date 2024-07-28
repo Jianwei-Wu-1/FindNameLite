@@ -1,0 +1,16 @@
+Project: bank-application
+ Class: DepositAccountTest
+ Method: test1
+ Body: {
+        assertNull(foo.getResponse(""));
+    }
+ Pattern Name: AllAssertionPattern(Single) - Action: getResponse (Alternative Action: getResponse=1 ) - Predicate: N/A - Scenario: foo (Alternative Scenario:  )
+
+Project: bank-application
+ Class: DepositAccountTest
+ Method: test2
+ Body: {
+        assertNotNull(foo.getFile());
+    }
+ Pattern Name: AllAssertionPattern(Single) - Action: getFile (Alternative Action: getFile=1 ) - Predicate: N/A - Scenario: foo (Alternative Scenario:  )
+

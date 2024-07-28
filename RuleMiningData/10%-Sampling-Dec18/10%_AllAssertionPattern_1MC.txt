@@ -1,0 +1,1167 @@
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testLength_Iterable
+ Body: {
+        assertEquals(length(cons(6, Arrays.asList(5, 4, 3, 2, 1))), 6);
+        assertEquals(length(cons(null, Arrays.asList(null, 2, 1))), 4);
+        assertEquals(length(tail(Collections.singletonList(2))), 0);
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: length (Alternative Action: length=3 ) - Predicate: N/A - Scenario: null
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testIsEmpty_String
+ Body: {
+        assertFalse(isEmpty("hello"));
+        assertFalse(isEmpty("h"));
+        assertTrue(isEmpty(""));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isEmpty (Alternative Action: isEmpty=3 ) - Predicate: N/A - Scenario: null
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testLength_String
+ Body: {
+        assertFalse(isEmpty("hello"));
+        assertFalse(isEmpty("h"));
+        assertTrue(isEmpty(""));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isEmpty (Alternative Action: isEmpty=3 ) - Predicate: N/A - Scenario: null
+
+Project: worktorule
+ Class: TrelloPublicCardsTest
+ Method: archivedCardIsClosed
+ Body: {
+        assertFalse(issues.isOpen("gwPLbS16"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isOpen (Alternative Action: isOpen=1 ) - Predicate: N/A - Scenario: issues (Alternative Scenario:  )
+
+Project: worktorule
+ Class: TrelloPublicCardsTest
+ Method: cardsInDoneListsAreClosed
+ Body: {
+        assertFalse(issues.isOpen("9Dluzr6q"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isOpen (Alternative Action: isOpen=1 ) - Predicate: N/A - Scenario: issues (Alternative Scenario:  )
+
+Project: worktorule
+ Class: GitHubPublicIssuesTest
+ Method: closedIssue
+ Body: {
+        assertFalse(issues.isOpen("2"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isOpen (Alternative Action: isOpen=1 ) - Predicate: N/A - Scenario: issues (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetX
+ Body: {
+        assertEquals(17, test.getX());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getX (Alternative Action: getX=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetY
+ Body: {
+        assertEquals(29, test.getY());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getY (Alternative Action: getY=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetName
+ Body: {
+        assertEquals("Test", test.getName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getName (Alternative Action: getName=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: PersonTest
+ Method: testGetFighterSkill
+ Body: {
+        assertEquals(4, test.getFighterSkill());
+        assertEquals(5, noName.getFighterSkill());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getFighterSkill (Alternative Action: getFighterSkill=2 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: PersonTest
+ Method: testGetTraderSkill
+ Body: {
+        assertEquals(5, test.getTraderSkill());
+        assertEquals(4, noName.getTraderSkill());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getTraderSkill (Alternative Action: getTraderSkill=2 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: PersonTest
+ Method: testGetEngineerSkill
+ Body: {
+        assertEquals(8, test.getEngineerSkill());
+        assertEquals(3, noName.getEngineerSkill());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getEngineerSkill (Alternative Action: getEngineerSkill=2 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: ShipTest
+ Method: testAddItem
+ Body: {
+         
+         assertTrue(small.addItem(new TradeItem("Water")));
+         assertFalse(small.addItem(new TradeItem("Games")));
+     }
+ Pattern Name: AllAssertionPattern_1MC - Action: addItem (Alternative Action: addItem=2 ) - Predicate: N/A - Scenario: small (Alternative Scenario:  )
+
+Project: xodus
+ Class: LoggableTests
+ Method: testCompoundByteIterable1
+ Body: {
+        Assert.assertTrue(matchesArray(
+                new CompoundByteIterable(new ByteIterable[]{
+                        new ArrayByteIterable(new byte[]{})
+                }), new byte[]{}
+        ));
+
+        Assert.assertTrue(matchesArray(
+                new CompoundByteIterable(new ByteIterable[]{
+                        new ArrayByteIterable(new byte[]{}),
+                        new ArrayByteIterable(new byte[]{})
+                }), new byte[]{}
+        ));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: matchesArray (Alternative Action: matchesArray=2 ) - Predicate: N/A - Scenario: null
+
+Project: xodus
+ Class: LoggableTests
+ Method: testCompoundByteIterator
+ Body: {
+        Assert.assertTrue(matchesArray(new ByteIterableBase() {
+
+            @Override
+            protected ByteIterator getIterator() {
+
+                return new CompoundByteIteratorBase() {
+                    byte[] array1 = {0, 1, 2, 3};
+                    byte[] array2 = {4, 5, 6, 7, 8, 9};
+
+                    @Override
+                    protected ByteIterator nextIterator() {
+                        final byte[] a1 = array1;
+                        if (a1 != null) {
+                            array1 = null;
+                            return new ArrayByteIterable(a1).iterator();
+                        }
+                        final byte[] a2 = array2;
+                        if (a2 != null) {
+                            array2 = null;
+                            return new ArrayByteIterable(a2).iterator();
+                        }
+                        return null;
+                    }
+                };
+            }
+        }, new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: matchesArray (Alternative Action: iterator=2 ) - Predicate: N/A - Scenario: null
+
+Project: xodus
+ Class: LoggableTests
+ Method: testCompoundByteIteratorN
+ Body: {
+        Assert.assertTrue(matchesArray(new CompoundByteArrayIterable(new ByteIterator[]{
+                new ArrayByteIterable(new byte[]{0, 1, 2}).iterator(),
+                new ArrayByteIterable(new byte[]{3, 4, 5}).iterator(),
+                new ArrayByteIterable(new byte[]{6, 7, 8, 9}).iterator(),
+                new ArrayByteIterable(new byte[0]).iterator()
+        }), new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: matchesArray (Alternative Action: iterator=4 ) - Predicate: N/A - Scenario: null
+
+Project: mytcuml
+ Class: CompositionUnitTests
+ Method: testContainsIn_InSide
+ Body: {
+        assertTrue("Should return true.", edgeEnding.contains(10, 20));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=1 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CompositionUnitTests
+ Method: testContainsIn_InBound
+ Body: {
+        assertTrue("Should return true.", edgeEnding.contains(5, 15));
+        assertTrue("Should return true.", edgeEnding.contains(5, 25));
+        assertTrue("Should return true.", edgeEnding.contains(15, 15));
+        assertTrue("Should return true.", edgeEnding.contains(15, 25));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=4 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CompositionUnitTests
+ Method: testContainsIn_Out
+ Body: {
+        assertFalse("Should return false.", edgeEnding.contains(0, 18));
+        assertFalse("Should return false.", edgeEnding.contains(0, 22));
+        assertFalse("Should return false.", edgeEnding.contains(18, 28));
+        assertFalse("Should return false.", edgeEnding.contains(15, 12));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=4 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AccuracyTestAddSubsystemAction
+ Method: testGetPresentationName
+ Body: {
+        assertTrue("The presentation name should be correct.",
+            action.getPresentationName().equals("Add Subsystem"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action.getPresentationName() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetFontSize_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", 10, adapter.getFontSize());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getFontSize (Alternative Action: getFontSize=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetX_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", 0.0, adapter.getX());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getX (Alternative Action: getX=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetY_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", 0.0, adapter.getY());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getY (Alternative Action: getY=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetHeight_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", 0.0, adapter.getHeight());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getHeight (Alternative Action: getHeight=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetFontName_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", "Default", adapter.getFontName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getFontName (Alternative Action: getFontName=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetTextColor_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", "#000000", adapter.getTextColor());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getTextColor (Alternative Action: getTextColor=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetWidth_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", 0.0, adapter.getWidth());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getWidth (Alternative Action: getWidth=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetFillColor_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", "#FFFFFF", adapter.getFillColor());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getFillColor (Alternative Action: getFillColor=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphNodeStyleObjectAdapterTests
+ Method: testGetOutlineColor_MissingProperty
+ Body: {
+        assertEquals("The return value is not correct.", "#000000", adapter.getOutlineColor());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getOutlineColor (Alternative Action: getOutlineColor=1 ) - Predicate: N/A - Scenario: adapter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AccuracyTestPasteExtendAction
+ Method: testGetPresentationName
+ Body: {
+        assertTrue("The presentation name should be correct.",
+            action.getPresentationName().equals("Paste Extend"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action.getPresentationName() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CallOperationActionImplTest
+ Method: testgetOperation_Basic
+ Body: {
+        assertNull("The operation should be null.", test.getOperation());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getOperation (Alternative Action: getOperation=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CallOperationActionImplTest
+ Method: testisAsynchronous_Basic
+ Body: {
+        assertFalse("The operation should be called synchronous.",
+            test.isAsynchronous());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isAsynchronous (Alternative Action: isAsynchronous=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: MappingExpressionTest
+ Method: testMappingExpressionAccuracyInheritExpression
+ Body: {
+        assertTrue("MappingExpression should inherit from Expression", MappingExpression.class
+            .getInterfaces()[0].equals(Expression.class));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: equals=1 ) - Predicate: N/A - Scenario: MappingExpression.class
+            .getInterfaces()[0] (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDragEventAdapterAccuracy
+ Method: testGetLastPoint_1
+ Body: {
+        assertNull("The lastPoint should be null.", t.getLastPoint());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getLastPoint (Alternative Action: getLastPoint=1 ) - Predicate: N/A - Scenario: t (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: FontFamilySelectorTests
+ Method: testGetDefaultFontFamily
+ Body: {
+        assertEquals("Failed to get correct default font name.", "Default", selector.getDefaultFontFamily());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getDefaultFontFamily (Alternative Action: getDefaultFontFamily=1 ) - Predicate: N/A - Scenario: selector (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AcceptEventActionAccuracyTest
+ Method: testGetPreferredGraphNodeSize
+ Body: {
+
+        assertNotNull("The method does not work properly.", node.getPreferredGraphNodeSize());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPreferredGraphNodeSize (Alternative Action: getPreferredGraphNodeSize=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AcceptEventActionAccuracyTest
+ Method: testContains_False
+ Body: {
+        assertFalse("This point should be out of the shape.", node.contains(60, 160));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddAttributeActionAccuracyTest
+ Method: testAddAttributeAction
+ Body: {
+        assertEquals("The classifier is incorrect.", classifier, AccuracyHelper
+            .getObjectFieldValue(instance, "classifier"));
+        assertEquals("The attribute is incorrect.", attribute, AccuracyHelper.getObjectFieldValue(
+            instance, "attribute"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getObjectFieldValue (Alternative Action: getObjectFieldValue=2 ) - Predicate: N/A - Scenario: AccuracyHelper (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CollaborationImplAccuracyTest
+ Method: testCollaborationImpl
+ Body: {
+		assertNotNull("The collabortion instancs set should not be null.", impl.getCollaborationInstanceSets());
+	}
+ Pattern Name: AllAssertionPattern_1MC - Action: getCollaborationInstanceSets (Alternative Action: getCollaborationInstanceSets=1 ) - Predicate: N/A - Scenario: impl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteIncludeActionTest
+ Method: testGetPresentationName_Success
+ Body: {
+        assertEquals("Paste Include", pasteIncludeAction.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: pasteIncludeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorGeneralization
+ Body: {
+        assertEquals("GENERALIZATION_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.relationships.Generalization",
+                ClassElementsTransfer.GENERALIZATION_FLAVOR.getMimeType());
+        assertEquals("GENERALIZATION_FLAVOR is not correctly set.", "Generalization",
+                ClassElementsTransfer.GENERALIZATION_FLAVOR.getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.GENERALIZATION_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorClass
+ Body: {
+        assertEquals("CLASS_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.classifiers.Class",
+                ClassElementsTransfer.CLASS_FLAVOR.getMimeType());
+        assertEquals("CLASS_FLAVOR is not correctly set.", "Class", ClassElementsTransfer.CLASS_FLAVOR
+                .getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.CLASS_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorInterface
+ Body: {
+        assertEquals("INTERFACE_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.classifiers.Interface",
+                ClassElementsTransfer.INTERFACE_FLAVOR.getMimeType());
+        assertEquals("INTERFACE_FLAVOR is not correctly set.", "Interface", ClassElementsTransfer.INTERFACE_FLAVOR
+                .getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.INTERFACE_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorPackage
+ Body: {
+        assertEquals("PACKAGE_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.modelmanagement.Package",
+                ClassElementsTransfer.PACKAGE_FLAVOR.getMimeType());
+        assertEquals("PACKAGE_FLAVOR is not correctly set.", "Package", ClassElementsTransfer.PACKAGE_FLAVOR
+                .getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.PACKAGE_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorAssociation
+ Body: {
+        assertEquals("ASSOCIATION_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.relationships.Association",
+                ClassElementsTransfer.ASSOCIATION_FLAVOR.getMimeType());
+        assertEquals("ASSOCIATION_FLAVOR is not correctly set.", "Association",
+                ClassElementsTransfer.ASSOCIATION_FLAVOR.getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.ASSOCIATION_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorEnumeration
+ Body: {
+        assertEquals("ENUMERATION_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.classifiers.Enumeration",
+                ClassElementsTransfer.ENUMERATION_FLAVOR.getMimeType());
+        assertEquals("ENUMERATION_FLAVOR is not correctly set.", "Enumeration",
+                ClassElementsTransfer.ENUMERATION_FLAVOR.getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.ENUMERATION_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorException
+ Body: {
+        assertEquals("EXCEPTION_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.classifiers.Class",
+                ClassElementsTransfer.EXCEPTION_FLAVOR.getMimeType());
+        assertEquals("EXCEPTION_FLAVOR is not correctly set.", "Exception", ClassElementsTransfer.EXCEPTION_FLAVOR
+                .getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.EXCEPTION_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorAbstraction
+ Body: {
+        assertEquals("ABSTRACTION_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.dependencies.Abstraction",
+                ClassElementsTransfer.ABSTRACTION_FLAVOR.getMimeType());
+        assertEquals("ABSTRACTION_FLAVOR is not correctly set.", "Abstraction",
+                ClassElementsTransfer.ABSTRACTION_FLAVOR.getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.ABSTRACTION_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassElementsTransferTest
+ Method: testDataFlavorDependency
+ Body: {
+        assertEquals("DEPENDENCY_FLAVOR is not correctly set.",
+                "application/x-java-serialized-object; class=com.topcoder.uml.model.core.dependencies.Dependency",
+                ClassElementsTransfer.DEPENDENCY_FLAVOR.getMimeType());
+        assertEquals("DEPENDENCY_FLAVOR is not correctly set.", "Dependency", ClassElementsTransfer.DEPENDENCY_FLAVOR
+                .getHumanPresentableName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMimeType (Alternative Action: getMimeType=1 ) - Predicate: N/A - Scenario: ClassElementsTransfer.DEPENDENCY_FLAVOR (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ObjectUndoableActionUnitTest
+ Method: test_accuracy_getLog
+ Body: {
+        assertNotNull("getLog failed", objectUndoableAction.getLog());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getLog (Alternative Action: getLog=1 ) - Predicate: N/A - Scenario: objectUndoableAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ObjectUndoableActionUnitTest
+ Method: test_accuracy_getObjectUtil
+ Body: {
+        assertNotNull("getObjectUtil failed", objectUndoableAction.getObjectUtil());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getObjectUtil (Alternative Action: getObjectUtil=1 ) - Predicate: N/A - Scenario: objectUndoableAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ExtendUtilTest
+ Method: testCopyElement_ModelElement_Success
+ Body: {
+        assertNotNull(extendUtil.copyElement(modelElement));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: copyElement (Alternative Action: copyElement=1 ) - Predicate: N/A - Scenario: extendUtil (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DiagramViewAccuracyTests
+ Method: testGetDiagramAccuracy
+ Body: {
+        assertEquals("Fail to get Diagram", diagram, view.getDiagram());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getDiagram (Alternative Action: getDiagram=1 ) - Predicate: N/A - Scenario: view (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DiagramViewAccuracyTests
+ Method: testGetViewerAccuracy
+ Body: {
+        assertEquals("Fail to get DiagramViewer", viewer, view.getViewer());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getViewer (Alternative Action: getViewer=1 ) - Predicate: N/A - Scenario: view (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DiagramViewAccuracyTests
+ Method: testGetPreferredDiagramSizeAccuracy
+ Body: {
+        assertNotNull("Failed to getPreferredDiagramSize.", view.getPreferredDiagramSize());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPreferredDiagramSize (Alternative Action: getPreferredDiagramSize=1 ) - Predicate: N/A - Scenario: view (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AccuracyTestAddUseCaseAction
+ Method: testGetPresentationName
+ Body: {
+        assertTrue("The presentation name should be correct.",
+            action.getPresentationName().equals("Add Use Case"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action.getPresentationName() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCalculateLineAngle
+ Body: {
+        assertEquals("Failed to calculate the angle of the segment.", 0.785, Util.calculateLineAngle(
+            new Point(100, 100), new Point(200, 200)), 0.001);
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: calculateLineAngle (Alternative Action: calculateLineAngle=1 ) - Predicate: N/A - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AffineZoomTransformUnitTest
+ Method: testIsNoZoomAccuracy1
+ Body: {
+        assertTrue("should be true in default", transform.isNoZoom());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isNoZoom (Alternative Action: isNoZoom=1 ) - Predicate: N/A - Scenario: transform (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddCommentGraphNodeActionTest
+ Method: testGetPresentationName
+ Body: {
+        assertEquals("Incorrect name!", "Add Comment GraphNode", this.action.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: this.action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NatureZoomTransformAccuracyTests
+ Method: testGetZoomFactorAccuracy
+ Body: {
+        assertEquals("The returned value is incorrect", 2.0, transform.getZoomFactor(), EPSILON);
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getZoomFactor (Alternative Action: getZoomFactor=1 ) - Predicate: N/A - Scenario: transform (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NatureZoomTransformAccuracyTests
+ Method: testIsNoZoomAccuracy2
+ Body: {
+        assertFalse("The returned value is incorrect", transform.isNoZoom());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isNoZoom (Alternative Action: isNoZoom=1 ) - Predicate: N/A - Scenario: transform (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AccuracyTestPasteActorAction
+ Method: testGetPresentationName
+ Body: {
+        assertTrue("The presentation name should be correct.",
+            action.getPresentationName().equals("Paste Actor"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action.getPresentationName() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDialogFloatContainerAccuracy
+ Method: testCanDock_2
+ Body: {
+        assertTrue(c.canDock(d));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: canDock (Alternative Action: canDock=1 ) - Predicate: N/A - Scenario: c (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDialogFloatContainerAccuracy
+ Method: testIsDocked_1
+ Body: {
+        assertFalse("default to false.", c.isDocked());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isDocked (Alternative Action: isDocked=1 ) - Predicate: N/A - Scenario: c (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDialogFloatContainerAccuracy
+ Method: testGetCurrentDocks
+ Body: {
+        assertTrue("Should be empty.", c.getCurrentDocks().isEmpty());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isEmpty (Alternative Action: isEmpty=1 ) - Predicate: N/A - Scenario: c.getCurrentDocks() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: MouseDragHandlerUnitTests
+ Method: testGetDraggingRectangleAccuracy
+ Body: {
+        assertEquals("Fail to get DraggingRectangle.", this.mdh.getDraggingRectangle(), new Rectangle(0, 0, 0, 0));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getDraggingRectangle (Alternative Action: getDraggingRectangle=1 ) - Predicate: N/A - Scenario: this.mdh (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: MessageUndoableActionUnitTest
+ Method: test_accuracy_getMessageUtil
+ Body: {
+        assertNotNull("getMessageUtil failed", messageUndoableAction.getMessageUtil());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getMessageUtil (Alternative Action: getMessageUtil=1 ) - Predicate: N/A - Scenario: messageUndoableAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: MessageUndoableActionUnitTest
+ Method: test_accuracy_getLog
+ Body: {
+        assertNotNull("getLog failed", messageUndoableAction.getLog());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getLog (Alternative Action: getLog=1 ) - Predicate: N/A - Scenario: messageUndoableAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AccuracyTestAddIncludeAction
+ Method: testGetPresentationName
+ Body: {
+        assertTrue("The presentation name should be correct.",
+            action.getPresentationName().equals("Add Include"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action.getPresentationName() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteUseCaseActionTest
+ Method: testGetPresentationName_Success
+ Body: {
+        assertEquals("Paste Use Case Action", pasteUseCaseAction.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: pasteUseCaseAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ProgrammingLanguageDataTypeImplTest
+ Method: testProgrammingLanguageDataTypeImplAccuracy
+ Body: {
+        assertNull("Variable should be set correctly.", programmingLanguageDataTypeImpl.getExpression());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getExpression (Alternative Action: getExpression=1 ) - Predicate: N/A - Scenario: programmingLanguageDataTypeImpl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TemplateParameterImplTest
+ Method: testTemplateParameterImplAccuracy
+ Body: {
+        assertNull("Variable should be set correctly.", templateParameterImpl.getTemplate());
+        assertNull("Variable should be set correctly.", templateParameterImpl.getDefaultElement());
+        assertNull("Variable should be set correctly.", templateParameterImpl.getParameter());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getTemplate (Alternative Action: getTemplate=1 ) - Predicate: N/A - Scenario: templateParameterImpl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteFreeTextActionTest
+ Method: testGetPresentationName
+ Body: {
+        assertEquals("Incorrect name!", "Paste Free Text", this.action.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: this.action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassTest
+ Method: testClassAccuracyInheritClassifier
+ Body: {
+        assertTrue("Class should inherit from Classifier", Class.class.getInterfaces()[0].equals(Classifier.class));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: equals=1 ) - Predicate: N/A - Scenario: Class.class.getInterfaces()[0] (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: IncludeUtilTest
+ Method: testCopyElement_ModelElement_Success
+ Body: {
+        assertNotNull(includeUtil.copyElement(modelElement));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: copyElement (Alternative Action: copyElement=1 ) - Predicate: N/A - Scenario: includeUtil (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testIsSignificant
+ Body: {
+        assertTrue("The isSignificant() method should always return true", action.isSignificant());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isSignificant (Alternative Action: isSignificant=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testAddEditWithNullUndoableEdit
+ Body: {
+        assertFalse("The addEdit method should return false.", action.addEdit(null));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: addEdit (Alternative Action: addEdit=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testReplaceEditWithNullEdit
+ Body: {
+        assertFalse("The replaceEdit(UndoableEdit) method should always return false", action.replaceEdit(null));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: replaceEdit (Alternative Action: replaceEdit=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testReplaceEdit
+ Body: {
+        assertFalse("The replaceEdit(UndoableEdit) method should always return false",
+                action.replaceEdit(new CompoundEdit()));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: replaceEdit (Alternative Action: replaceEdit=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testCanRedo
+ Body: {
+        assertFalse("It is impossible to redo this operation.", action.canRedo());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: canRedo (Alternative Action: canRedo=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testGetPresentationName
+ Body: {
+        assertEquals("The PRESENTATION_NAME of the action is incorrect.",
+                PRESENTATION_NAME, action.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testGetUndoPresentationName
+ Body: {
+        assertEquals("The PRESENTATION_NAME of the action is incorrect.",
+                "Undo " + PRESENTATION_NAME, action.getUndoPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getUndoPresentationName (Alternative Action: getUndoPresentationName=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testAddEdit
+ Body: {
+        assertFalse("The addEdit method should return false.", action.addEdit(new CompoundEdit()));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: addEdit (Alternative Action: addEdit=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testCanUndo
+ Body: {
+        assertFalse("It is impossible to undo this operation.", action.canUndo());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: canUndo (Alternative Action: canUndo=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionTest
+ Method: testGetRedoPresentationName
+ Body: {
+        assertEquals("The PRESENTATION_NAME of the action is incorrect.",
+                "Redo " + PRESENTATION_NAME, action.getRedoPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getRedoPresentationName (Alternative Action: getRedoPresentationName=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveExtendActionTest
+ Method: testGetPresentationName_Success
+ Body: {
+        assertEquals("Remove Extend", removeExtendAction.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: removeExtendAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ClassImplTest
+ Method: testClassImplAccuracy
+ Body: {
+        assertFalse("Variable should be set correctly.", classImpl.isActive());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isActive (Alternative Action: isActive=1 ) - Predicate: N/A - Scenario: classImpl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TextChangeEventAccuracyTest
+ Method: testGetNewText
+ Body: {
+    	assertEquals("value should be getted correctly.", "new", textChangeEvent.getNewText());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getNewText (Alternative Action: getNewText=1 ) - Predicate: N/A - Scenario: textChangeEvent (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TextChangeEventAccuracyTest
+ Method: testGetOldTextAccuracy
+ Body: {
+        assertEquals("value should be getted correctly.", "old", textChangeEvent.getOldText());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getOldText (Alternative Action: getOldText=1 ) - Predicate: N/A - Scenario: textChangeEvent (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PrimitiveTest
+ Method: testPrimitiveAccuracyInheritDataType
+ Body: {
+        assertTrue("Primitive should inherit from DataType", Primitive.class.getInterfaces()[0].equals(DataType.class));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: equals (Alternative Action: equals=1 ) - Predicate: N/A - Scenario: Primitive.class.getInterfaces()[0] (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddInterfaceActionTest
+ Method: testGetPresentationName
+ Body: {
+        assertEquals("Presentation name is incorrect.", "Add Interface", action
+                .getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DefaultTagTableModelAccuracyTests
+ Method: testgetColumnClass
+ Body: {
+      // get the first col class to check the method.
+        assertEquals("The col class expected to be equal", String.class,
+            tagTable.getColumnClass(0));
+
+        // get the second col class to check the method.
+        assertEquals("The col class expected to be equal", String.class,
+            tagTable.getColumnClass(1));
+
+        //  get the out range col class to check the method.
+        assertNull("The col class expected to be null", tagTable.getColumnClass(3));
+
+        // get the out range col class to check the method.
+        assertNull("The col class expected to be null", tagTable.getColumnClass(-1));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getColumnClass (Alternative Action: getColumnClass=4 ) - Predicate: N/A - Scenario: tagTable (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DefaultTagTableModelAccuracyTests
+ Method: testgetColumnCount
+ Body: {
+      // get the col number to check the method.
+        assertEquals("The col number expected to be 2", 2,
+            tagTable.getColumnCount());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getColumnCount (Alternative Action: getColumnCount=1 ) - Predicate: N/A - Scenario: tagTable (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: Model2XMITransformerTests
+ Method: test_getXMIDescription_accuracy
+ Body: {
+        assertNotNull("The getXMIDescription is not set or get properly.",
+                transformer.getXMIDescription());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getXMIDescription (Alternative Action: getXMIDescription=1 ) - Predicate: N/A - Scenario: transformer (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: Model2XMITransformerTests
+ Method: test_isIgnoreUnknownElementType_accuracy
+ Body: {
+        assertTrue("The isIgnoreUnknownElementType is not set or get properly.",
+                transformer.isIgnoreUnknownElementType());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isIgnoreUnknownElementType (Alternative Action: isIgnoreUnknownElementType=1 ) - Predicate: N/A - Scenario: transformer (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: EditNameEventAccuracyTests
+ Method: testGetPosition
+ Body: {
+        assertEquals("getPosition method fails to return correct value.", position, test.getPosition());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPosition (Alternative Action: getPosition=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: JarImporterAccuracyTest
+ Method: testGetPackages
+ Body: {
+        assertNotNull("packages must not be null", jarImporter.getPackages());
+        assertTrue("packages must be empty", jarImporter.getPackages().isEmpty());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPackages (Alternative Action: getPackages=2 ) - Predicate: N/A - Scenario: jarImporter (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ActivityObjectSelectionAccuracyTests
+ Method: testIsDataFlavorSupported2
+ Body: {
+        assertFalse("isDataFlavorSupported returns true false when false is expected.", test
+                .isDataFlavorSupported(ActivityDataFlavor.ACCEPT_EVENT_ACTION));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isDataFlavorSupported (Alternative Action: isDataFlavorSupported=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ActivityObjectSelectionAccuracyTests
+ Method: testGetTransferData
+ Body: {
+        assertEquals("getTransferData returns wrong data.", TestClass.class, test.getTransferData(
+                ActivityDataFlavor.INITIAL_NODE).getClass());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getClass (Alternative Action: getClass=1 ) - Predicate: N/A - Scenario: test.getTransferData(
+                ActivityDataFlavor.INITIAL_NODE) (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ActivityObjectSelectionAccuracyTests
+ Method: testIsDataFlavorSupported1
+ Body: {
+        assertTrue("isDataFlavorSupported returns false when true is expected.", test
+                .isDataFlavorSupported(ActivityDataFlavor.INITIAL_NODE));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isDataFlavorSupported (Alternative Action: isDataFlavorSupported=1 ) - Predicate: N/A - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TextChangedEventTest
+ Method: testGetOldText
+ Body: {
+        assertEquals("Old text should be got correctly.", event.getOldValue(), oldText);
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getOldValue (Alternative Action: getOldValue=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TextChangedEventTest
+ Method: testGetNewText
+ Body: {
+        assertEquals("New text should be got correctly.", event.getNewValue(), newText);
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getNewValue (Alternative Action: getNewValue=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DefaultDockTests
+ Method: testGetDockable
+ Body: {
+        assertEquals("The dockable should be equal.", dockable, dock.getDockable());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getDockable (Alternative Action: getDockable=1 ) - Predicate: N/A - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionAccuracyTest
+ Method: testIsDataFlavorSupportedTrue
+ Body: {
+        assertTrue("comment data flavor must be supported", auxiliaryElementSelection
+            .isDataFlavorSupported(AuxiliaryElementDataFlavor.COMMENT));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isDataFlavorSupported (Alternative Action: isDataFlavorSupported=1 ) - Predicate: N/A - Scenario: auxiliaryElementSelection (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionAccuracyTest
+ Method: testIsDataFlavorSupportedFalseFirst
+ Body: {
+        assertFalse("polyline data flavor must be supported", auxiliaryElementSelection
+            .isDataFlavorSupported(AuxiliaryElementDataFlavor.POLYLINE));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isDataFlavorSupported (Alternative Action: isDataFlavorSupported=1 ) - Predicate: N/A - Scenario: auxiliaryElementSelection (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionAccuracyTest
+ Method: testGetTransferData
+ Body: {
+        assertEquals("objects must be equal", obj, auxiliaryElementSelection
+            .getTransferData(AuxiliaryElementDataFlavor.COMMENT));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getTransferData (Alternative Action: getTransferData=1 ) - Predicate: N/A - Scenario: auxiliaryElementSelection (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionAccuracyTest
+ Method: testIsDataFlavorSupportedFalseSecond
+ Body: {
+        assertFalse("polyline data flavor must be supported", auxiliaryElementSelection
+            .isDataFlavorSupported(new DataFlavor(Comment.class, "other")));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isDataFlavorSupported (Alternative Action: isDataFlavorSupported=1 ) - Predicate: N/A - Scenario: auxiliaryElementSelection (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveSynchronousMessageActionUnitTest
+ Method: test_accuracy_getPresentationName
+ Body: {
+        assertEquals("getPresentationName failed", removeSynchronousMessageAction.getPresentationName(),
+            "Remove Synchronous Message");
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: removeSynchronousMessageAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: XMIHeaderTransformerUnitTest
+ Method: testXMIHeaderTransformer_Accuracy
+ Body: {
+        assertEquals("exporter field not set.", EXPORTER, TestHelper.getFieldValue(xmiHeaderTransformer, "exporter"));
+        assertEquals("exporterVersion field not set.", EXPORTER_VERSION, TestHelper.getFieldValue(xmiHeaderTransformer,
+                "exporterVersion"));
+        assertEquals("metaModelVersion field not set.", META_MODEL_VERSION, TestHelper.getFieldValue(
+                xmiHeaderTransformer, "metaModelVersion"));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getFieldValue (Alternative Action: getFieldValue=3 ) - Predicate: N/A - Scenario: TestHelper (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RedoChangesEventTest
+ Method: testGetAction_Accuracy
+ Body: {
+        assertEquals("Test method for 'RedoChangesEvent.getAction()' failed.", action, redoChangesEvent.getAction());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getAction (Alternative Action: getAction=1 ) - Predicate: N/A - Scenario: redoChangesEvent (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplTest
+ Method: testLinkImplAccuracy
+ Body: {
+        assertEquals("Variable should be set correctly.", 0, linkImpl.getConnections().size());
+        assertEquals("Variable should be set correctly.", 0, linkImpl.getStimuli().size());
+        assertNull("Variable should be set correctly.", linkImpl.getOwner());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: size (Alternative Action: size=2 ) - Predicate: N/A - Scenario: linkImpl.getConnections() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NoArrowUnitTests
+ Method: testContainsIn_Vertex
+ Body: {
+        assertTrue("Should return true.", edgeEnding.contains(20, 20));
+        assertTrue("Should return true.", edgeEnding.contains(20, 10));
+        assertTrue("Should return true.", edgeEnding.contains(25, 20));
+        assertTrue("Should return true.", edgeEnding.contains(25, 10));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=4 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NoArrowUnitTests
+ Method: testContainsIn_InBound
+ Body: {
+        assertTrue("Should return true.", edgeEnding.contains(22, 20));
+        assertTrue("Should return true.", edgeEnding.contains(20, 15));
+        assertTrue("Should return true.", edgeEnding.contains(21, 10));
+        assertTrue("Should return true.", edgeEnding.contains(25, 15));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=4 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NoArrowUnitTests
+ Method: testContainsIn_Out
+ Body: {
+        assertFalse("Should return false.", edgeEnding.contains(18, 16));
+        assertFalse("Should return false.", edgeEnding.contains(26, 16));
+        assertFalse("Should return false.", edgeEnding.contains(22, 8));
+        assertFalse("Should return false.", edgeEnding.contains(19, 28));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=4 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NoArrowUnitTests
+ Method: testContainsIn_InSide
+ Body: {
+        assertTrue("Should return true.", edgeEnding.contains(23, 16));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: contains (Alternative Action: contains=1 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ZoomTextFieldActionUnitTests
+ Method: testGetDiagramViewerAccuracy
+ Body: {
+        assertEquals("Fail to get DiagramViewer", this.diagramViewer, this.ztfa.getDiagramViewer());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getDiagramViewer (Alternative Action: getDiagramViewer=1 ) - Predicate: N/A - Scenario: this.ztfa (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TransitionAccuracyTest
+ Method: testGetNameCompartment
+ Body: {
+
+        assertEquals("The method does not work properly.",
+                        edge.getNameCompartment().getText(),  "TransitionNameCompartment");
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getText (Alternative Action: getNameCompartment=1 ) - Predicate: N/A - Scenario: edge.getNameCompartment() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TransitionAccuracyTest
+ Method: testGetStereotypeCompartment
+ Body: {
+
+        assertEquals("The method does not work properly.", edge.getNameCompartment()
+                        .getText(), "TransitionStereotypeCompartment");
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getText (Alternative Action: getNameCompartment=1 ) - Predicate: N/A - Scenario: edge.getNameCompartment() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: BaseNodeTests
+ Method: testConsumeEvent
+ Body: {
+        assertFalse("The BaseNode#ConsumeEvent() should always return false.", node.consumeEvent(null));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: consumeEvent (Alternative Action: consumeEvent=1 ) - Predicate: N/A - Scenario: baseNode (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CommentNodeAccuracyTest
+ Method: testGetTextAccuracy
+ Body: {
+        assertEquals("value of text should be getted correctly", "Comment", commentNode.getText());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getText (Alternative Action: getText=1 ) - Predicate: N/A - Scenario: commentNode (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testAddEdit
+ Body: {
+        assertFalse("Should be false.", pde.addEdit(null));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: addEdit (Alternative Action: addEdit=1 ) - Predicate: N/A - Scenario: pde (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testGetUndoPresentationName
+ Body: {
+        assertEquals("Should be equal.", "UndoPasteDiagramElementAction", pde.getUndoPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getUndoPresentationName (Alternative Action: getUndoPresentationName=1 ) - Predicate: N/A - Scenario: pde (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testGetPresentationName
+ Body: {
+        assertEquals("Should be equal.", "PasteDiagramElementAction", pde.getPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getPresentationName (Alternative Action: getPresentationName=1 ) - Predicate: N/A - Scenario: pde (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testGetRedoPresentationName
+ Body: {
+        assertEquals("Should be equal.", "RedoPasteDiagramElementAction", pde.getRedoPresentationName());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: getRedoPresentationName (Alternative Action: getRedoPresentationName=1 ) - Predicate: N/A - Scenario: pde (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testIsSignificant
+ Body: {
+        assertTrue("Should be true.", pde.isSignificant());
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: isSignificant (Alternative Action: isSignificant=1 ) - Predicate: N/A - Scenario: pde (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testReplaceEdit
+ Body: {
+        assertFalse("Should be false.", pde.replaceEdit(new CompoundUndoableAction("undo")));
+    }
+ Pattern Name: AllAssertionPattern_1MC - Action: replaceEdit (Alternative Action: replaceEdit=1 ) - Predicate: N/A - Scenario: pde (Alternative Scenario:  )
+

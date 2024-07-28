@@ -1,0 +1,4818 @@
+Project: guava
+ Class: SetsTest
+ Method: testNewSetFromMap
+ Body: {
+    Set<Integer> set = Sets.newSetFromMap(new HashMap<Integer, Boolean>());
+    set.addAll(SOME_COLLECTION);
+    verifySetContents(set, SOME_COLLECTION);
+  }
+ Pattern Name: NoAssertionPattern - Action: addAll - Predicate: verifySetContents - Scenario: set
+
+Project: guava
+ Class: SetsTest
+ Method: testCartesianProduct_hashCode
+ Body: {
+    // Run through the same cartesian products we tested above
+
+    Set<List<Integer>> degenerate = Sets.cartesianProduct();
+    checkHashCode(degenerate);
+
+    checkHashCode(Sets.cartesianProduct(set(1, 2)));
+
+    int num = Integer.MAX_VALUE / 3 * 2; // tickle overflow-related problems
+    checkHashCode(Sets.cartesianProduct(set(1, 2, num)));
+
+    Set<Integer> mt = emptySet();
+    checkHashCode(Sets.cartesianProduct(mt, mt));
+    checkHashCode(Sets.cartesianProduct(mt, set(num)));
+    checkHashCode(Sets.cartesianProduct(set(num), mt));
+    checkHashCode(Sets.cartesianProduct(set(num), set(1)));
+    checkHashCode(Sets.cartesianProduct(set(1), set(2, num)));
+    checkHashCode(Sets.cartesianProduct(set(1, num), set(2, num - 1)));
+    checkHashCode(Sets.cartesianProduct(set(1, num), set(2, num - 1), set(3, num + 1)));
+
+    // a bigger one
+    checkHashCode(
+        Sets.cartesianProduct(set(1, num, num + 1), set(2), set(3, num + 2), set(4, 5, 6, 7, 8)));
+  }
+ Pattern Name: NoAssertionPattern - Action: checkHashCode - Predicate: N/A - Scenario: degenerate
+
+Project: guava
+ Class: RangeNonGwtTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+
+    tester.testAllPublicStaticMethods(Range.class);
+    tester.testAllPublicStaticMethods(Range.class);
+
+    tester.testAllPublicInstanceMethods(Range.all());
+    tester.testAllPublicInstanceMethods(Range.open(1, 3));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: AbstractExecutionThreadServiceTest
+ Method: testDefaultService
+ Body: {
+    WaitOnRunService service = new WaitOnRunService();
+    service.startAsync().awaitRunning();
+    enterRun.await();
+    service.stopAsync().awaitTerminated();
+  }
+ Pattern Name: NoAssertionPattern - Action: awaitRunning - Predicate: N/A - Scenario: service
+
+Project: guava
+ Class: JoinerTest
+ Method: testSkipNulls
+ Body: {
+    Joiner skipNulls = J.skipNulls();
+    checkNoOutput(skipNulls, ITERABLE_);
+    checkNoOutput(skipNulls, ITERABLE_NULL);
+    checkNoOutput(skipNulls, ITERABLE_NULL_NULL);
+    checkNoOutput(skipNulls, ITERABLE_FOUR_NULLS);
+    checkResult(skipNulls, ITERABLE_1, "1");
+    checkResult(skipNulls, ITERABLE_12, "1-2");
+    checkResult(skipNulls, ITERABLE_123, "1-2-3");
+    checkResult(skipNulls, ITERABLE_NULL_1, "1");
+    checkResult(skipNulls, ITERABLE_1_NULL, "1");
+    checkResult(skipNulls, ITERABLE_1_NULL_2, "1-2");
+  }
+ Pattern Name: NoAssertionPattern - Action: checkNoOutput - Predicate: N/A - Scenario: skipNulls
+
+Project: guava
+ Class: JoinerTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(Joiner.class);
+    tester.testInstanceMethods(Joiner.on(","), NullPointerTester.Visibility.PACKAGE);
+    tester.testInstanceMethods(Joiner.on(",").skipNulls(), NullPointerTester.Visibility.PACKAGE);
+    tester.testInstanceMethods(
+        Joiner.on(",").useForNull("x"), NullPointerTester.Visibility.PACKAGE);
+    tester.testInstanceMethods(
+        Joiner.on(",").withKeyValueSeparator("="), NullPointerTester.Visibility.PACKAGE);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: JoinerTest
+ Method: testOnCharOverride
+ Body: {
+    Joiner onChar = Joiner.on('-');
+    checkNoOutput(onChar, ITERABLE_);
+    checkResult(onChar, ITERABLE_1, "1");
+    checkResult(onChar, ITERABLE_12, "1-2");
+    checkResult(onChar, ITERABLE_123, "1-2-3");
+  }
+ Pattern Name: NoAssertionPattern - Action: checkNoOutput - Predicate: N/A - Scenario: onChar
+
+Project: guava
+ Class: JoinerTest
+ Method: testUseForNull
+ Body: {
+    Joiner zeroForNull = J.useForNull("0");
+    checkNoOutput(zeroForNull, ITERABLE_);
+    checkResult(zeroForNull, ITERABLE_1, "1");
+    checkResult(zeroForNull, ITERABLE_12, "1-2");
+    checkResult(zeroForNull, ITERABLE_123, "1-2-3");
+    checkResult(zeroForNull, ITERABLE_NULL, "0");
+    checkResult(zeroForNull, ITERABLE_NULL_NULL, "0-0");
+    checkResult(zeroForNull, ITERABLE_NULL_1, "0-1");
+    checkResult(zeroForNull, ITERABLE_1_NULL, "1-0");
+    checkResult(zeroForNull, ITERABLE_1_NULL_2, "1-0-2");
+    checkResult(zeroForNull, ITERABLE_FOUR_NULLS, "0-0-0-0");
+  }
+ Pattern Name: NoAssertionPattern - Action: checkNoOutput - Predicate: N/A - Scenario: zeroForNull
+
+Project: guava
+ Class: SetOperationsTest_gwt
+ Method: testSymmetricDifference__MoreTests
+ Body: {
+  com.google.common.collect.SetOperationsTest.MoreTests testCase = new com.google.common.collect.SetOperationsTest.MoreTests();
+  testCase.setUp();
+  testCase.testSymmetricDifference();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSymmetricDifference - Scenario: testCase
+
+Project: guava
+ Class: SetOperationsTest_gwt
+ Method: testDifference__MoreTests
+ Body: {
+  com.google.common.collect.SetOperationsTest.MoreTests testCase = new com.google.common.collect.SetOperationsTest.MoreTests();
+  testCase.setUp();
+  testCase.testDifference();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testDifference - Scenario: testCase
+
+Project: guava
+ Class: SetOperationsTest_gwt
+ Method: testUnion__MoreTests
+ Body: {
+  com.google.common.collect.SetOperationsTest.MoreTests testCase = new com.google.common.collect.SetOperationsTest.MoreTests();
+  testCase.setUp();
+  testCase.testUnion();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testUnion - Scenario: testCase
+
+Project: guava
+ Class: SetOperationsTest_gwt
+ Method: testIntersection__MoreTests
+ Body: {
+  com.google.common.collect.SetOperationsTest.MoreTests testCase = new com.google.common.collect.SetOperationsTest.MoreTests();
+  testCase.setUp();
+  testCase.testIntersection();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIntersection - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testRemove
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemove - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testPutNullReplace
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testPutNullReplace();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNullReplace - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testTransposeTransposed
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testTransposeTransposed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTransposeTransposed - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testPutAllTable
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testPutAllTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAllTable - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testPutNull
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testPutNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNull - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testPutTransposeModifiesOriginal
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testPutTransposeModifiesOriginal();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutTransposeModifiesOriginal - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testClear
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testClear();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testClear - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testTransposedViews
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testTransposedViews();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTransposedViews - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testPutOriginalModifiesTranspose
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testPutOriginalModifiesTranspose();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutOriginalModifiesTranspose - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testRowClearAndPut
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: TransposedTableTest_gwt
+ Method: testPut
+ Body: {
+  com.google.common.collect.TransposedTableTest testCase = new com.google.common.collect.TransposedTableTest();
+  testCase.setUp();
+  testCase.testPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPut - Scenario: testCase
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testEqualsObject
+ Body: {
+    Table<Character, Integer, String> nonEmptyTable = HashBasedTable.create();
+    nonEmptyTable.put('A', 1, "blah");
+
+    new EqualsTester()
+        .addEqualityGroup(INSTANCE, HashBasedTable.create(), TreeBasedTable.create())
+        .addEqualityGroup(nonEmptyTable)
+        .testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: testEquals - Scenario: nonEmptyTable
+
+Project: guava
+ Class: CompactLinkedHashMapTest
+ Method: testInsertionOrderAfterRemoveFirstEntry
+ Body: {
+    Map<Integer, String> map = CompactLinkedHashMap.create();
+    map.put(1, "a");
+    map.put(4, "b");
+    map.put(3, "d");
+    map.put(2, "c");
+    map.remove(1);
+    testHasMapEntriesInOrder(map, 4, "b", 3, "d", 2, "c");
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: map
+
+Project: guava
+ Class: CompactLinkedHashMapTest
+ Method: testInsertionOrderAfterRemoveLastEntry
+ Body: {
+    Map<Integer, String> map = CompactLinkedHashMap.create();
+    map.put(1, "a");
+    map.put(4, "b");
+    map.put(3, "d");
+    map.put(2, "c");
+    map.remove(2);
+    testHasMapEntriesInOrder(map, 1, "a", 4, "b", 3, "d");
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: map
+
+Project: guava
+ Class: CompactLinkedHashMapTest
+ Method: testInsertionOrderAfterPutKeyTwice
+ Body: {
+    Map<Integer, String> map = CompactLinkedHashMap.create();
+    map.put(1, "a");
+    map.put(4, "b");
+    map.put(3, "d");
+    map.put(2, "c");
+    map.put(1, "e");
+    testHasMapEntriesInOrder(map, 1, "e", 4, "b", 3, "d", 2, "c");
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: map
+
+Project: guava
+ Class: CompactLinkedHashMapTest
+ Method: testInsertionOrder
+ Body: {
+    Map<Integer, String> map = CompactLinkedHashMap.create();
+    map.put(1, "a");
+    map.put(4, "b");
+    map.put(3, "d");
+    map.put(2, "c");
+    testHasMapEntriesInOrder(map, 1, "a", 4, "b", 3, "d", 2, "c");
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: map
+
+Project: guava
+ Class: CompactLinkedHashMapTest
+ Method: testInsertionOrderAfterRemoveMiddleEntry
+ Body: {
+    Map<Integer, String> map = CompactLinkedHashMap.create();
+    map.put(1, "a");
+    map.put(4, "b");
+    map.put(3, "d");
+    map.put(2, "c");
+    map.remove(3);
+    testHasMapEntriesInOrder(map, 1, "a", 4, "b", 2, "c");
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: map
+
+Project: guava
+ Class: ImmutableMapTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(ImmutableMap.class);
+    tester.testAllPublicInstanceMethods(new ImmutableMap.Builder<Object, Object>());
+    tester.testAllPublicInstanceMethods(ImmutableMap.of());
+    tester.testAllPublicInstanceMethods(ImmutableMap.of("one", 1));
+    tester.testAllPublicInstanceMethods(ImmutableMap.of("one", 1, "two", 2, "three", 3));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: SynchronizedNavigableMapTest
+ Method: testFirstKey
+ Body: {
+    NavigableMap<String, Integer> map = create();
+    map.put("a", 1);
+    map.firstKey();
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: firstKey - Scenario: map
+
+Project: guava
+ Class: SynchronizedNavigableMapTest
+ Method: testLastKey
+ Body: {
+    NavigableMap<String, Integer> map = create();
+    map.put("a", 1);
+    map.lastKey();
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: lastKey - Scenario: map
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testTest_NoData
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testTest_NoData();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTest_NoData - Scenario: testCase
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testTest_trasitive
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testTest_trasitive();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTest_trasitive - Scenario: testCase
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testTest_inequivalence
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testTest_inequivalence();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTest_inequivalence - Scenario: testCase
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testTest
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testTest();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTest - Scenario: testCase
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testTest_hash
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testTest_hash();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTest_hash - Scenario: testCase
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testTest_symmetric
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testTest_symmetric();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTest_symmetric - Scenario: testCase
+
+Project: guava
+ Class: EquivalenceTesterTest_gwt
+ Method: testOf_NullPointerException
+ Body: {
+  com.google.common.testing.EquivalenceTesterTest testCase = new com.google.common.testing.EquivalenceTesterTest();
+  testCase.setUp();
+  testCase.testOf_NullPointerException();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testOf_NullPointerException - Scenario: testCase
+
+Project: guava
+ Class: MacHashFunctionTest
+ Method: testNulls
+ Body: {
+    NullPointerTester tester =
+        new NullPointerTester().setDefault(String.class, "HmacMD5").setDefault(Key.class, MD5_KEY);
+    tester.testAllPublicConstructors(MacHashFunction.class);
+    tester.testAllPublicInstanceMethods(new MacHashFunction("HmacMD5", MD5_KEY, "toString"));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: testAllPublicInstanceMethods - Scenario: tester
+
+Project: guava
+ Class: BasicTests
+ Method: testNullPointers
+ Body: {
+      NullPointerTester tester = new NullPointerTester();
+      tester.testAllPublicStaticMethods(ImmutableList.class);
+      tester.testAllPublicInstanceMethods(ImmutableList.of(1, 2, 3));
+    }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: testAllPublicInstanceMethods - Scenario: tester
+
+Project: guava
+ Class: EndpointPairTest
+ Method: endpointPair_directedNetwork
+ Body: {
+    MutableNetwork<Integer, String> directedNetwork =
+        NetworkBuilder.directed().allowsSelfLoops(true).build();
+    directedNetwork.addNode(N0);
+    directedNetwork.addEdge(N1, N2, E12);
+    directedNetwork.addEdge(N2, N1, E21);
+    directedNetwork.addEdge(N1, N3, E13);
+    directedNetwork.addEdge(N4, N4, E44);
+    containsExactlySanityCheck(
+        directedNetwork.asGraph().edges(),
+        EndpointPair.ordered(N1, N2),
+        EndpointPair.ordered(N2, N1),
+        EndpointPair.ordered(N1, N3),
+        EndpointPair.ordered(N4, N4));
+  }
+ Pattern Name: NoAssertionPattern - Action: addNode - Predicate: N/A - Scenario: directedNetwork
+
+Project: guava
+ Class: EndpointPairTest
+ Method: endpointPair_undirectedNetwork
+ Body: {
+    MutableNetwork<Integer, String> undirectedNetwork =
+        NetworkBuilder.undirected().allowsParallelEdges(true).allowsSelfLoops(true).build();
+    undirectedNetwork.addNode(N0);
+    undirectedNetwork.addEdge(N1, N2, E12);
+    undirectedNetwork.addEdge(N2, N1, E12_A); // adds parallel edge, won't be in Graph edges
+    undirectedNetwork.addEdge(N1, N3, E13);
+    undirectedNetwork.addEdge(N4, N4, E44);
+    containsExactlySanityCheck(
+        undirectedNetwork.asGraph().edges(),
+        EndpointPair.unordered(N1, N2),
+        EndpointPair.unordered(N1, N3),
+        EndpointPair.unordered(N4, N4));
+  }
+ Pattern Name: NoAssertionPattern - Action: addNode - Predicate: N/A - Scenario: undirectedNetwork
+
+Project: guava
+ Class: EndpointPairTest
+ Method: endpointPair_undirectedGraph
+ Body: {
+    MutableGraph<Integer> undirectedGraph = GraphBuilder.undirected().allowsSelfLoops(true).build();
+    undirectedGraph.addNode(N0);
+    undirectedGraph.putEdge(N1, N2);
+    undirectedGraph.putEdge(N2, N1); // does nothing
+    undirectedGraph.putEdge(N1, N3);
+    undirectedGraph.putEdge(N4, N4);
+    containsExactlySanityCheck(
+        undirectedGraph.edges(),
+        EndpointPair.unordered(N1, N2),
+        EndpointPair.unordered(N1, N3),
+        EndpointPair.unordered(N4, N4));
+  }
+ Pattern Name: NoAssertionPattern - Action: addNode - Predicate: N/A - Scenario: undirectedGraph
+
+Project: guava
+ Class: EndpointPairTest
+ Method: endpointPair_directedGraph
+ Body: {
+    MutableGraph<Integer> directedGraph = GraphBuilder.directed().allowsSelfLoops(true).build();
+    directedGraph.addNode(N0);
+    directedGraph.putEdge(N1, N2);
+    directedGraph.putEdge(N2, N1);
+    directedGraph.putEdge(N1, N3);
+    directedGraph.putEdge(N4, N4);
+    containsExactlySanityCheck(
+        directedGraph.edges(),
+        EndpointPair.ordered(N1, N2),
+        EndpointPair.ordered(N2, N1),
+        EndpointPair.ordered(N1, N3),
+        EndpointPair.ordered(N4, N4));
+  }
+ Pattern Name: NoAssertionPattern - Action: addNode - Predicate: N/A - Scenario: directedGraph
+
+Project: guava
+ Class: BloomFilterTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicInstanceMethods(BloomFilter.create(Funnels.unencodedCharsFunnel(), 100));
+    tester.testAllPublicStaticMethods(BloomFilter.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicInstanceMethods - Predicate: testAllPublicStaticMethods - Scenario: tester
+
+Project: guava
+ Class: BloomFilterTest
+ Method: testEquals
+ Body: {
+    BloomFilter<String> bf1 = BloomFilter.create(Funnels.unencodedCharsFunnel(), 100);
+    bf1.put("1");
+    bf1.put("2");
+
+    BloomFilter<String> bf2 = BloomFilter.create(Funnels.unencodedCharsFunnel(), 100);
+    bf2.put("1");
+    bf2.put("2");
+
+    new EqualsTester().addEqualityGroup(bf1, bf2).testEquals();
+
+    bf2.put("3");
+
+    new EqualsTester().addEqualityGroup(bf1).addEqualityGroup(bf2).testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: bf1
+
+Project: guava
+ Class: AbstractServiceTest
+ Method: testListenerDoesntDeadlockOnStartAndWaitFromRunning
+ Body: {
+    final NoOpThreadedService service = new NoOpThreadedService();
+    service.addListener(
+        new Listener() {
+          @Override
+          public void running() {
+            service.awaitRunning();
+          }
+        },
+        directExecutor());
+    service.startAsync().awaitRunning(LONG_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+    service.stopAsync();
+  }
+ Pattern Name: NoAssertionPattern - Action: addListener - Predicate: N/A - Scenario: service
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testEqualityGroups
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testEqualityGroups();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEqualityGroups - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testInvalidHashCode
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testInvalidHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInvalidHashCode - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testInvalidEqualsIncompatibleClass
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testInvalidEqualsIncompatibleClass();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInvalidEqualsIncompatibleClass - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testTransitivityBrokenInEqualityGroup
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testTransitivityBrokenInEqualityGroup();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTransitivityBrokenInEqualityGroup - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testInvalidEqualsNull
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testInvalidEqualsNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInvalidEqualsNull - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testTransitivityBrokenAcrossEqualityGroups
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testTransitivityBrokenAcrossEqualityGroups();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTransitivityBrokenAcrossEqualityGroups - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testAddNullReference
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testAddNullReference();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAddNullReference - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testAddTwoEqualObjectsAtOnceWithNull
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testAddTwoEqualObjectsAtOnceWithNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAddTwoEqualObjectsAtOnceWithNull - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testTestEqualsEqualsObjects
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testTestEqualsEqualsObjects();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTestEqualsEqualsObjects - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testAddEqualObjectWithOArgConstructor
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testAddEqualObjectWithOArgConstructor();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAddEqualObjectWithOArgConstructor - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testSymmetryBroken
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testSymmetryBroken();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSymmetryBroken - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testAddNullEqualObject
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testAddNullEqualObject();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAddNullEqualObject - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testNullEqualityGroup
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testNullEqualityGroup();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullEqualityGroup - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testUnequalObjectsInEqualityGroup
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testUnequalObjectsInEqualityGroup();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testUnequalObjectsInEqualityGroup - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testNonreflexiveEquals
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testNonreflexiveEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNonreflexiveEquals - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testTestEqualsEmptyLists
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testTestEqualsEmptyLists();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testTestEqualsEmptyLists - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testInvalidNotEqualsEqualObject
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testInvalidNotEqualsEqualObject();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInvalidNotEqualsEqualObject - Scenario: testCase
+
+Project: guava
+ Class: EqualsTesterTest_gwt
+ Method: testNullObjectInEqualityGroup
+ Body: {
+  com.google.common.testing.EqualsTesterTest testCase = new com.google.common.testing.EqualsTesterTest();
+  testCase.setUp();
+  testCase.testNullObjectInEqualityGroup();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullObjectInEqualityGroup - Scenario: testCase
+
+Project: guava
+ Class: ThreadFactoryBuilderTest
+ Method: testNulls
+ Body: {
+    NullPointerTester npTester = new NullPointerTester();
+    npTester.testAllPublicConstructors(ThreadFactoryBuilder.class);
+    npTester.testAllPublicStaticMethods(ThreadFactoryBuilder.class);
+    npTester.testAllPublicInstanceMethods(builder);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: N/A - Scenario: npTester
+
+Project: guava
+ Class: ListMultimapAsMapTester
+ Method: testEntrySetEquals
+ Body: {
+    resetContainer(
+        Helpers.mapEntry(k0(), v0()), Helpers.mapEntry(k1(), v0()), Helpers.mapEntry(k0(), v3()));
+    Set<Entry<K, Collection<V>>> expected = Sets.newHashSet();
+    expected.add(Helpers.mapEntry(k0(), (Collection<V>) Lists.newArrayList(v0(), v3())));
+    expected.add(Helpers.mapEntry(k1(), (Collection<V>) Lists.newArrayList(v0())));
+    new EqualsTester().addEqualityGroup(expected, multimap().asMap().entrySet()).testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: resetContainer - Predicate: N/A - Scenario: expected
+
+Project: guava
+ Class: ListMultimapAsMapTester
+ Method: testEquals
+ Body: {
+    resetContainer(
+        Helpers.mapEntry(k0(), v0()), Helpers.mapEntry(k1(), v0()), Helpers.mapEntry(k0(), v3()));
+    Map<K, Collection<V>> expected = Maps.newHashMap();
+    expected.put(k0(), Lists.newArrayList(v0(), v3()));
+    expected.put(k1(), Lists.newArrayList(v0()));
+    new EqualsTester().addEqualityGroup(expected, multimap().asMap()).testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: resetContainer - Predicate: N/A - Scenario: expected
+
+Project: guava
+ Class: HashingOutputStreamTest
+ Method: testChecksForNull
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicInstanceMethods(
+        new HashingOutputStream(Hashing.md5(), new ByteArrayOutputStream()));
+    tester.testAllPublicStaticMethods(HashingOutputStream.class);
+    tester.testAllPublicConstructors(HashingOutputStream.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicInstanceMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMap_containsValue
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMap_containsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMap_containsValue - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMapKeySet_contains
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMapKeySet_contains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMapKeySet_contains - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMapEntrySet
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMapEntrySet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMapEntrySet - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testExpireAfterAccess
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testExpireAfterAccess();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testExpireAfterAccess - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMapKeySet
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMapKeySet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMapKeySet - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMapValues_contains
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMapValues_contains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMapValues_contains - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMapValues_iteratorRemove
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMapValues_iteratorRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMapValues_iteratorRemove - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testPutAll
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testPutAll();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAll - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testSizeConstraint
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testSizeConstraint();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSizeConstraint - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testExpireAfterWrite
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testExpireAfterWrite();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testExpireAfterWrite - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testMapMethods
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testMapMethods();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testMapMethods - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testInvalidate
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testInvalidate();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInvalidate - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testRemovalListener
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testRemovalListener();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemovalListener - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testAsMap_containsKey
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testAsMap_containsKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAsMap_containsKey - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testInvalidateAll
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testInvalidateAll();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInvalidateAll - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testLoader
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testLoader();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testLoader - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testLoadingCache
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testLoadingCache();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testLoadingCache - Scenario: testCase
+
+Project: guava
+ Class: CacheBuilderGwtTest_gwt
+ Method: testExpireAfterWriteAndAccess
+ Body: {
+  com.google.common.cache.CacheBuilderGwtTest testCase = new com.google.common.cache.CacheBuilderGwtTest();
+  testCase.setUp();
+  testCase.testExpireAfterWriteAndAccess();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testExpireAfterWriteAndAccess - Scenario: testCase
+
+Project: guava
+ Class: GraphsTest
+ Method: transitiveClosure_directedPathGraph
+ Body: {
+    MutableGraph<Integer> directedGraph = GraphBuilder.directed().allowsSelfLoops(false).build();
+    directedGraph.putEdge(N1, N2);
+    directedGraph.putEdge(N2, N3);
+    directedGraph.putEdge(N3, N4);
+
+    MutableGraph<Integer> expectedClosure = GraphBuilder.directed().allowsSelfLoops(true).build();
+    expectedClosure.putEdge(N1, N1);
+    expectedClosure.putEdge(N1, N2);
+    expectedClosure.putEdge(N1, N3);
+    expectedClosure.putEdge(N1, N4);
+    expectedClosure.putEdge(N2, N2);
+    expectedClosure.putEdge(N2, N3);
+    expectedClosure.putEdge(N2, N4);
+    expectedClosure.putEdge(N3, N3);
+    expectedClosure.putEdge(N3, N4);
+    expectedClosure.putEdge(N4, N4);
+
+    checkTransitiveClosure(directedGraph, expectedClosure);
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: N/A - Scenario: directedGraph
+
+Project: guava
+ Class: GraphsTest
+ Method: transitiveClosure_undirectedGraph
+ Body: {
+    MutableGraph<Integer> undirectedGraph =
+        GraphBuilder.undirected().allowsSelfLoops(false).build();
+    undirectedGraph.putEdge(N1, N2);
+    undirectedGraph.putEdge(N1, N3);
+    undirectedGraph.putEdge(N2, N3);
+    undirectedGraph.addNode(N4);
+
+    MutableGraph<Integer> expectedClosure = GraphBuilder.undirected().allowsSelfLoops(true).build();
+    expectedClosure.putEdge(N1, N1);
+    expectedClosure.putEdge(N1, N2);
+    expectedClosure.putEdge(N1, N3);
+    expectedClosure.putEdge(N2, N2);
+    expectedClosure.putEdge(N2, N3);
+    expectedClosure.putEdge(N3, N3);
+    expectedClosure.putEdge(N4, N4);
+
+    checkTransitiveClosure(undirectedGraph, expectedClosure);
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: N/A - Scenario: undirectedGraph
+
+Project: guava
+ Class: GraphsTest
+ Method: transitiveClosure_directedGraph
+ Body: {
+    MutableGraph<Integer> directedGraph = GraphBuilder.directed().allowsSelfLoops(false).build();
+    directedGraph.putEdge(N1, N2);
+    directedGraph.putEdge(N1, N3);
+    directedGraph.putEdge(N2, N3);
+    directedGraph.addNode(N4);
+
+    MutableGraph<Integer> expectedClosure = GraphBuilder.directed().allowsSelfLoops(true).build();
+    expectedClosure.putEdge(N1, N1);
+    expectedClosure.putEdge(N1, N2);
+    expectedClosure.putEdge(N1, N3);
+    expectedClosure.putEdge(N2, N2);
+    expectedClosure.putEdge(N2, N3);
+    expectedClosure.putEdge(N3, N3);
+    expectedClosure.putEdge(N4, N4);
+
+    checkTransitiveClosure(directedGraph, expectedClosure);
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: N/A - Scenario: directedGraph
+
+Project: guava
+ Class: GraphsTest
+ Method: transitiveClosure_undirectedPathGraph
+ Body: {
+    MutableGraph<Integer> undirectedGraph =
+        GraphBuilder.undirected().allowsSelfLoops(false).build();
+    undirectedGraph.putEdge(N1, N2);
+    undirectedGraph.putEdge(N2, N3);
+    undirectedGraph.putEdge(N3, N4);
+
+    MutableGraph<Integer> expectedClosure = GraphBuilder.undirected().allowsSelfLoops(true).build();
+    expectedClosure.putEdge(N1, N1);
+    expectedClosure.putEdge(N1, N2);
+    expectedClosure.putEdge(N1, N3);
+    expectedClosure.putEdge(N1, N4);
+    expectedClosure.putEdge(N2, N2);
+    expectedClosure.putEdge(N2, N3);
+    expectedClosure.putEdge(N2, N4);
+    expectedClosure.putEdge(N3, N3);
+    expectedClosure.putEdge(N3, N4);
+    expectedClosure.putEdge(N4, N4);
+
+    checkTransitiveClosure(undirectedGraph, expectedClosure);
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: N/A - Scenario: undirectedGraph
+
+Project: guava
+ Class: GraphsTest
+ Method: transitiveClosure_directedCycleGraph
+ Body: {
+    MutableGraph<Integer> directedGraph = GraphBuilder.directed().allowsSelfLoops(false).build();
+    directedGraph.putEdge(N1, N2);
+    directedGraph.putEdge(N2, N3);
+    directedGraph.putEdge(N3, N4);
+    directedGraph.putEdge(N4, N1);
+
+    MutableGraph<Integer> expectedClosure = GraphBuilder.directed().allowsSelfLoops(true).build();
+    expectedClosure.putEdge(N1, N1);
+    expectedClosure.putEdge(N1, N2);
+    expectedClosure.putEdge(N1, N3);
+    expectedClosure.putEdge(N1, N4);
+    expectedClosure.putEdge(N2, N1);
+    expectedClosure.putEdge(N2, N2);
+    expectedClosure.putEdge(N2, N3);
+    expectedClosure.putEdge(N2, N4);
+    expectedClosure.putEdge(N3, N1);
+    expectedClosure.putEdge(N3, N2);
+    expectedClosure.putEdge(N3, N3);
+    expectedClosure.putEdge(N3, N4);
+    expectedClosure.putEdge(N4, N1);
+    expectedClosure.putEdge(N4, N2);
+    expectedClosure.putEdge(N4, N3);
+    expectedClosure.putEdge(N4, N4);
+
+    checkTransitiveClosure(directedGraph, expectedClosure);
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: N/A - Scenario: directedGraph
+
+Project: guava
+ Class: GraphsTest
+ Method: transitiveClosure_undirectedCycleGraph
+ Body: {
+    MutableGraph<Integer> undirectedGraph =
+        GraphBuilder.undirected().allowsSelfLoops(false).build();
+    undirectedGraph.putEdge(N1, N2);
+    undirectedGraph.putEdge(N2, N3);
+    undirectedGraph.putEdge(N3, N4);
+    undirectedGraph.putEdge(N4, N1);
+
+    MutableGraph<Integer> expectedClosure = GraphBuilder.undirected().allowsSelfLoops(true).build();
+    expectedClosure.putEdge(N1, N1);
+    expectedClosure.putEdge(N1, N2);
+    expectedClosure.putEdge(N1, N3);
+    expectedClosure.putEdge(N1, N4);
+    expectedClosure.putEdge(N2, N2);
+    expectedClosure.putEdge(N2, N3);
+    expectedClosure.putEdge(N2, N4);
+    expectedClosure.putEdge(N3, N3);
+    expectedClosure.putEdge(N3, N4);
+    expectedClosure.putEdge(N4, N4);
+
+    checkTransitiveClosure(undirectedGraph, expectedClosure);
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: N/A - Scenario: undirectedGraph
+
+Project: guava
+ Class: AtomicsTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicConstructors(Atomics.class); // there aren't any
+    tester.testAllPublicStaticMethods(Atomics.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: testAllPublicStaticMethods - Scenario: tester
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testNulls
+ Body: {
+    final NullPointerTester tester = new NullPointerTester();
+
+    tester.testAllPublicStaticMethods(InternetDomainName.class);
+    tester.testAllPublicInstanceMethods(InternetDomainName.from("google.com"));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: testAllPublicInstanceMethods - Scenario: tester
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testPutNullReplace
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testPutNullReplace();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNullReplace - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testRowClearAndPut
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testPutAllTable
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testPutAllTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAllTable - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testPutNull
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testPutNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNull - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testRemove
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemove - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testClear
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testClear();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testClear - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testPut
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPut - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: TablesTransformValuesTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.TablesTransformValuesTest testCase = new com.google.common.collect.TablesTransformValuesTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: OptionalTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester npTester = new NullPointerTester();
+    npTester.testAllPublicConstructors(Optional.class);
+    npTester.testAllPublicStaticMethods(Optional.class);
+    npTester.testAllPublicInstanceMethods(Optional.absent());
+    npTester.testAllPublicInstanceMethods(Optional.of("training"));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: N/A - Scenario: npTester
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterFailed
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterFailed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterFailed - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateCancelled
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateCancelled - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterCancelled
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterCancelled - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateSuccessful
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateSuccessful - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testNullExecutor
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNullExecutor();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullExecutor - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSuccessful
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSuccessful - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetNull
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetNull - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateLaterSuccessful
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateLaterSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateLaterSuccessful - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateLaterCancelled
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateLaterCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateLaterCancelled - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testPending
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testPending();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPending - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterSelfCancelled
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterSelfCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterSelfCancelled - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateInterrupted
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateInterrupted - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testNullTimeUnit
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNullTimeUnit();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullTimeUnit - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateLaterInterrupted
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateLaterInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateLaterInterrupted - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateAlreadyCancelled
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateAlreadyCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateAlreadyCancelled - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateAlreadySuccessful
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateAlreadySuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateAlreadySuccessful - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testNegativeTimeout
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNegativeTimeout();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNegativeTimeout - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureThenCancel
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureThenCancel();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureThenCancel - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testFailed
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testFailed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testFailed - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronously
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronously();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronously - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testCanceled
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testCanceled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCanceled - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterSelfInterrupted
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterSelfInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterSelfInterrupted - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureThenInterrupt
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureThenInterrupt();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureThenInterrupt - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateFailed
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateFailed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateFailed - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testInterrupted
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInterrupted - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterSuccessful
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSuccessful - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testMisbehavingListenerAlreadyDone
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testMisbehavingListenerAlreadyDone();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testMisbehavingListenerAlreadyDone - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testNullListener
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNullListener();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullListener - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testMisbehavingListenerLaterDone
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testMisbehavingListenerLaterDone();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testMisbehavingListenerLaterDone - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureNull
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureNull - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateAlreadyInterrupted
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateAlreadyInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateAlreadyInterrupted - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testListenLaterInterrupted
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterInterrupted - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetExceptionNull
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetExceptionNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetExceptionNull - Scenario: testCase
+
+Project: guava
+ Class: TrustedInputFutureTest_gwt
+ Method: testSetFuturePending
+ Body: {
+  com.google.common.util.concurrent.TrustedInputFutureTest testCase = new com.google.common.util.concurrent.TrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFuturePending();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFuturePending - Scenario: testCase
+
+Project: guava
+ Class: FunctionsTest
+ Method: testComposition_includeReserializabled
+ Body: {
+    Map<String, Integer> mJapaneseToInteger = Maps.newHashMap();
+    mJapaneseToInteger.put("Ichi", 1);
+    mJapaneseToInteger.put("Ni", 2);
+    mJapaneseToInteger.put("San", 3);
+    Function<String, Integer> japaneseToInteger = Functions.forMap(mJapaneseToInteger);
+
+    Map<Integer, String> mIntegerToSpanish = Maps.newHashMap();
+    mIntegerToSpanish.put(1, "Uno");
+    mIntegerToSpanish.put(3, "Tres");
+    mIntegerToSpanish.put(4, "Cuatro");
+    Function<Integer, String> integerToSpanish = Functions.forMap(mIntegerToSpanish);
+
+    Function<String, String> japaneseToSpanish =
+        Functions.compose(integerToSpanish, japaneseToInteger);
+
+    new EqualsTester()
+        .addEqualityGroup(
+            japaneseToSpanish,
+            Functions.compose(integerToSpanish, japaneseToInteger),
+            SerializableTester.reserialize(japaneseToSpanish))
+        .addEqualityGroup(japaneseToInteger)
+        .addEqualityGroup(integerToSpanish)
+        .addEqualityGroup(Functions.compose(japaneseToInteger, integerToSpanish))
+        .testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: mJapaneseToInteger
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testRemove
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemove - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testPutAllTable
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testPutAllTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAllTable - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testRowClearAndPut
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testClear
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testClear();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testClear - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testPut
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPut - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testCreateWithValidSizes
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testCreateWithValidSizes();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateWithValidSizes - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testIterationOrder
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testIterationOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIterationOrder - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testCreateWithInvalidSizes
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testCreateWithInvalidSizes();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateWithInvalidSizes - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testPutNullReplace
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testPutNullReplace();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNullReplace - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testPutNull
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testPutNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNull - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testCreateCopy
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testCreateCopy();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateCopy - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: HashBasedTableTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.HashBasedTableTest testCase = new com.google.common.collect.HashBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: RateLimiterTest
+ Method: testNulls
+ Body: {
+    NullPointerTester tester =
+        new NullPointerTester()
+            .setDefault(SleepingStopwatch.class, stopwatch)
+            .setDefault(int.class, 1)
+            .setDefault(double.class, 1.0d);
+    tester.testStaticMethods(RateLimiter.class, Visibility.PACKAGE);
+    tester.testInstanceMethods(RateLimiter.create(5.0, stopwatch), Visibility.PACKAGE);
+  }
+ Pattern Name: NoAssertionPattern - Action: testStaticMethods - Predicate: testInstanceMethods - Scenario: tester
+
+Project: guava
+ Class: RateLimiterTest
+ Method: testMockingEasyMock
+ Body: {
+    RateLimiter mock = EasyMock.createNiceMock(RateLimiter.class);
+    EasyMock.replay(mock);
+    doTestMocking(mock);
+  }
+ Pattern Name: NoAssertionPattern - Action: replay - Predicate: doTestMocking - Scenario: mock
+
+Project: guava
+ Class: EvictingQueueTest
+ Method: testNullPointerExceptions
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(EvictingQueue.class);
+    tester.testAllPublicConstructors(EvictingQueue.class);
+    EvictingQueue<String> queue = EvictingQueue.create(5);
+    // The queue must be non-empty so it throws a NPE correctly
+    queue.add("one");
+    tester.testAllPublicInstanceMethods(queue);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetTypes_rawTypes_ignoresTypeVariablesByDefault
+ Body: {
+    TypeToken<?>.TypeSet types = TypeToken.of(new TypeCapture<B>() {}.capture()).getTypes();
+    makeUnmodifiable(types.rawTypes())
+        .containsExactly(Interface1.class, Class1.class, Object.class);
+    makeUnmodifiable(types.interfaces().rawTypes()).containsExactly(Interface1.class);
+    makeUnmodifiable(types.classes().rawTypes())
+        .containsExactly(Class1.class, Object.class)
+        .inOrder();
+  }
+ Pattern Name: NoAssertionPattern - Action: containsExactly - Predicate: N/A - Scenario: types
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeyMapSubMap
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeyMapSubMap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeyMapSubMap - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testPutNullReplace
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testPutNullReplace();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNullReplace - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRemove
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemove - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowMapComparator
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowMapComparator();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowMapComparator - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testPutNull
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testPutNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNull - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testCreateExplicitComparators
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testCreateExplicitComparators();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateExplicitComparators - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testClear
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testClear();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testClear - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testCellSetToString_ordered
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testCellSetToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCellSetToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testToString_ordered
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeyMapTailMap
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeyMapTailMap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeyMapTailMap - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetTailSet
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetTailSet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetTailSet - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetToString_ordered
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testPutAllTable
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testPutAllTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAllTable - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowComparator
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowComparator();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowComparator - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowMapLastKey
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowMapLastKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowMapLastKey - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnKeySet_oneRow
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySet_oneRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySet_oneRow - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetSubSet
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetSubSet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetSubSet - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testCreateCopy
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testCreateCopy();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateCopy - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetFirst
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetFirst();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetFirst - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testValuesToString_ordered
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testValuesToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testValuesToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnKeySet_empty
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySet_empty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySet_empty - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowSize
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowSize - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnKeySet_oneColumn
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySet_oneColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySet_oneColumn - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnComparator
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnComparator();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnComparator - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnKeySet_oneEntry
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySet_oneEntry();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySet_oneEntry - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowMapValuesAreSorted
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowMapValuesAreSorted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowMapValuesAreSorted - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testPut
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPut - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowEntrySetRemove
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowEntrySetRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowEntrySetRemove - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetComparator
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetComparator();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetComparator - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeyMapHeadMap
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeyMapHeadMap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeyMapHeadMap - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnKeySet_isSortedWithRealComparator
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySet_isSortedWithRealComparator();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySet_isSortedWithRealComparator - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowEntrySetContains
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowEntrySetContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowEntrySetContains - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testColumnKeySet_isSorted
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySet_isSorted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySet_isSorted - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetHeadSet
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetHeadSet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetHeadSet - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowMapFirstKey
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowMapFirstKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowMapFirstKey - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testSubRowClearAndPut
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testSubRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSubRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowClearAndPut
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: TreeBasedTableTest_gwt
+ Method: testRowKeySetLast
+ Body: {
+  com.google.common.collect.TreeBasedTableTest testCase = new com.google.common.collect.TreeBasedTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetLast();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetLast - Scenario: testCase
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase64StreamingAlternatePadding
+ Body: {
+    BaseEncoding enc = base64().withPadChar('~');
+    testStreamingEncodingWithSeparators(enc, "", "");
+    testStreamingEncodingWithSeparators(enc, "f", "Zg~~");
+    testStreamingEncodingWithSeparators(enc, "fo", "Zm8~");
+    testStreamingEncodingWithSeparators(enc, "foo", "Zm9v");
+    testStreamingEncodingWithSeparators(enc, "foob", "Zm9vYg~~");
+    testStreamingEncodingWithSeparators(enc, "fooba", "Zm9vYmE~");
+    testStreamingEncodingWithSeparators(enc, "foobar", "Zm9vYmFy");
+  }
+ Pattern Name: NoAssertionPattern - Action: testStreamingEncodingWithSeparators - Predicate: N/A - Scenario: enc
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase64StreamingOmitPadding
+ Body: {
+    BaseEncoding enc = base64().omitPadding();
+    testStreamingEncodingWithSeparators(enc, "", "");
+    testStreamingEncodingWithSeparators(enc, "f", "Zg");
+    testStreamingEncodingWithSeparators(enc, "fo", "Zm8");
+    testStreamingEncodingWithSeparators(enc, "foo", "Zm9v");
+    testStreamingEncodingWithSeparators(enc, "foob", "Zm9vYg");
+    testStreamingEncodingWithSeparators(enc, "fooba", "Zm9vYmE");
+    testStreamingEncodingWithSeparators(enc, "foobar", "Zm9vYmFy");
+  }
+ Pattern Name: NoAssertionPattern - Action: testStreamingEncodingWithSeparators - Predicate: N/A - Scenario: enc
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase64AlternatePadding
+ Body: {
+    BaseEncoding enc = base64().withPadChar('~');
+    testEncodingWithSeparators(enc, "", "");
+    testEncodingWithSeparators(enc, "f", "Zg~~");
+    testEncodingWithSeparators(enc, "fo", "Zm8~");
+    testEncodingWithSeparators(enc, "foo", "Zm9v");
+    testEncodingWithSeparators(enc, "foob", "Zm9vYg~~");
+    testEncodingWithSeparators(enc, "fooba", "Zm9vYmE~");
+    testEncodingWithSeparators(enc, "foobar", "Zm9vYmFy");
+  }
+ Pattern Name: NoAssertionPattern - Action: testEncodingWithSeparators - Predicate: N/A - Scenario: enc
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase64OmitPadding
+ Body: {
+    BaseEncoding enc = base64().omitPadding();
+    testEncodingWithSeparators(enc, "", "");
+    testEncodingWithSeparators(enc, "f", "Zg");
+    testEncodingWithSeparators(enc, "fo", "Zm8");
+    testEncodingWithSeparators(enc, "foo", "Zm9v");
+    testEncodingWithSeparators(enc, "foob", "Zm9vYg");
+    testEncodingWithSeparators(enc, "fooba", "Zm9vYmE");
+    testEncodingWithSeparators(enc, "foobar", "Zm9vYmFy");
+  }
+ Pattern Name: NoAssertionPattern - Action: testEncodingWithSeparators - Predicate: N/A - Scenario: enc
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testBase32AlternatePadding
+ Body: {
+    BaseEncoding enc = base32().withPadChar('~');
+    testEncodingWithCasing(enc, "", "");
+    testEncodingWithCasing(enc, "f", "MY~~~~~~");
+    testEncodingWithCasing(enc, "fo", "MZXQ~~~~");
+    testEncodingWithCasing(enc, "foo", "MZXW6~~~");
+    testEncodingWithCasing(enc, "foob", "MZXW6YQ~");
+    testEncodingWithCasing(enc, "fooba", "MZXW6YTB");
+    testEncodingWithCasing(enc, "foobar", "MZXW6YTBOI~~~~~~");
+  }
+ Pattern Name: NoAssertionPattern - Action: testEncodingWithCasing - Predicate: N/A - Scenario: enc
+
+Project: guava
+ Class: CloserTest
+ Method: testNullCloseable
+ Body: {
+    Closer closer = Closer.create();
+    closer.register(null);
+    closer.close();
+  }
+ Pattern Name: NoAssertionPattern - Action: register - Predicate: close - Scenario: closer
+
+Project: guava
+ Class: HostSpecifierTest
+ Method: testNulls
+ Body: {
+    final NullPointerTester tester = new NullPointerTester();
+
+    tester.testAllPublicStaticMethods(HostSpecifier.class);
+    tester.testAllPublicInstanceMethods(HostSpecifier.fromValid("google.com"));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: testAllPublicInstanceMethods - Scenario: tester
+
+Project: guava
+ Class: MinMaxPriorityQueueTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicConstructors(MinMaxPriorityQueue.class);
+    tester.testAllPublicStaticMethods(MinMaxPriorityQueue.class);
+    tester.testAllPublicInstanceMethods(MinMaxPriorityQueue.<String>create());
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testRowKeySetOrdering
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetOrdering();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetOrdering - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testPutAllTable
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testPutAllTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAllTable - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testRowOrdering
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testRowOrdering();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowOrdering - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testClear
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testClear();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testClear - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testPut
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPut - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testPutNull
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testPutNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNull - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testPutNullReplace
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testPutNullReplace();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNullReplace - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testRowClearAndPut
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: NewCustomTableTest_gwt
+ Method: testRemove
+ Body: {
+  com.google.common.collect.NewCustomTableTest testCase = new com.google.common.collect.NewCustomTableTest();
+  testCase.setUp();
+  testCase.testRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemove - Scenario: testCase
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testNullPointer
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicConstructors(MediaType.class);
+    tester.testAllPublicStaticMethods(MediaType.class);
+    tester.testAllPublicInstanceMethods(MediaType.parse("text/plain"));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: CharMatcherTest
+ Method: testStaticNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(CharMatcher.class);
+    tester.testAllPublicInstanceMethods(CharMatcher.any());
+    tester.testAllPublicInstanceMethods(CharMatcher.anyOf("abc"));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: SetMultimapAsMapTester
+ Method: testEquals
+ Body: {
+    resetContainer(
+        Helpers.mapEntry(k0(), v0()), Helpers.mapEntry(k1(), v0()), Helpers.mapEntry(k0(), v3()));
+    Map<K, Collection<V>> expected = Maps.newHashMap();
+    expected.put(k0(), Sets.newHashSet(v0(), v3()));
+    expected.put(k1(), Sets.newHashSet(v0()));
+    new EqualsTester().addEqualityGroup(expected, multimap().asMap()).testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: resetContainer - Predicate: N/A - Scenario: expected
+
+Project: guava
+ Class: SetMultimapAsMapTester
+ Method: testEntrySetEquals
+ Body: {
+    resetContainer(
+        Helpers.mapEntry(k0(), v0()), Helpers.mapEntry(k1(), v0()), Helpers.mapEntry(k0(), v3()));
+    Set<Entry<K, Collection<V>>> expected = Sets.newHashSet();
+    expected.add(Helpers.mapEntry(k0(), (Collection<V>) Sets.newHashSet(v0(), v3())));
+    expected.add(Helpers.mapEntry(k1(), (Collection<V>) Sets.newHashSet(v0())));
+    new EqualsTester().addEqualityGroup(expected, multimap().asMap().entrySet()).testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: resetContainer - Predicate: N/A - Scenario: expected
+
+Project: guava
+ Class: FunnelsTest
+ Method: testForStrings
+ Body: {
+    PrimitiveSink primitiveSink = mock(PrimitiveSink.class);
+    Funnels.unencodedCharsFunnel().funnel("test", primitiveSink);
+    verify(primitiveSink).putUnencodedChars("test");
+  }
+ Pattern Name: NoAssertionPattern - Action: funnel - Predicate: putUnencodedChars - Scenario: primitiveSink
+
+Project: guava
+ Class: FunnelsTest
+ Method: testForBytes
+ Body: {
+    PrimitiveSink primitiveSink = mock(PrimitiveSink.class);
+    Funnels.byteArrayFunnel().funnel(new byte[] {4, 3, 2, 1}, primitiveSink);
+    verify(primitiveSink).putBytes(new byte[] {4, 3, 2, 1});
+  }
+ Pattern Name: NoAssertionPattern - Action: funnel - Predicate: putBytes - Scenario: primitiveSink
+
+Project: guava
+ Class: LongMathTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.setDefault(int.class, 1);
+    tester.setDefault(long.class, 1L);
+    tester.testAllPublicStaticMethods(LongMath.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: setDefault - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: OrderingTest
+ Method: testReverse
+ Body: {
+    Ordering<Number> reverseOrder = numberOrdering.reverse();
+    Helpers.testComparator(reverseOrder, Integer.MAX_VALUE, 1, 0, -1, Integer.MIN_VALUE);
+
+    new EqualsTester()
+        .addEqualityGroup(reverseOrder, numberOrdering.reverse())
+        .addEqualityGroup(Ordering.natural().reverse())
+        .addEqualityGroup(Collections.reverseOrder())
+        .testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: testComparator - Predicate: testEquals - Scenario: reverseOrder
+
+Project: guava
+ Class: OrderingTest
+ Method: testNullPointerExceptions
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(Ordering.class);
+
+    // any Ordering<Object> instance that accepts nulls should be good enough
+    tester.testAllPublicInstanceMethods(Ordering.usingToString().nullsFirst());
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: testAllPublicInstanceMethods - Scenario: tester
+
+Project: guava
+ Class: OrderingTest
+ Method: testNullsFirst
+ Body: {
+    Ordering<Integer> ordering = Ordering.natural().nullsFirst();
+    Helpers.testComparator(ordering, null, Integer.MIN_VALUE, 0, 1);
+
+    new EqualsTester()
+        .addEqualityGroup(ordering, Ordering.natural().nullsFirst())
+        .addEqualityGroup(numberOrdering.nullsFirst())
+        .addEqualityGroup(Ordering.natural())
+        .testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: testComparator - Predicate: testEquals - Scenario: ordering
+
+Project: guava
+ Class: OrderingTest
+ Method: testNullsLast
+ Body: {
+    Ordering<Integer> ordering = Ordering.natural().nullsLast();
+    Helpers.testComparator(ordering, 0, 1, Integer.MAX_VALUE, null);
+
+    new EqualsTester()
+        .addEqualityGroup(ordering, Ordering.natural().nullsLast())
+        .addEqualityGroup(numberOrdering.nullsLast())
+        .addEqualityGroup(Ordering.natural())
+        .testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: testComparator - Predicate: testEquals - Scenario: ordering
+
+Project: guava
+ Class: TraverserTest
+ Method: forTree_acceptsDirectedValueGraph
+ Body: {
+    MutableValueGraph<String, Integer> valueGraph = ValueGraphBuilder.directed().build();
+    valueGraph.putEdgeValue("a", "b", 11);
+
+    Traverser.forTree(valueGraph); // Does not throw
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdgeValue - Predicate: forTree - Scenario: valueGraph
+
+Project: guava
+ Class: TraverserTest
+ Method: forTree_acceptsDirectedGraph
+ Body: {
+    MutableGraph<String> graph = GraphBuilder.directed().build();
+    graph.putEdge("a", "b");
+
+    Traverser.forTree(graph); // Does not throw
+  }
+ Pattern Name: NoAssertionPattern - Action: putEdge - Predicate: forTree - Scenario: graph
+
+Project: guava
+ Class: TraverserTest
+ Method: forTree_acceptsDirectedNetwork
+ Body: {
+    MutableNetwork<String, Integer> network = NetworkBuilder.directed().build();
+    network.addEdge("a", "b", 11);
+
+    Traverser.forTree(network); // Does not throw
+  }
+ Pattern Name: NoAssertionPattern - Action: addEdge - Predicate: forTree - Scenario: network
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testCopyOfDense
+ Body: {
+    Table<Character, Integer, String> table = TreeBasedTable.create();
+    table.put('c', 3, "foo");
+    table.put('c', 2, "bar");
+    table.put('c', 1, "baz");
+    table.put('b', 3, "cat");
+    table.put('b', 1, "dog");
+    table.put('a', 3, "foo");
+    table.put('a', 2, "bar");
+    table.put('a', 1, "baz");
+    validateTableCopies(table);
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testCopyOfSparse
+ Body: {
+    Table<Character, Integer, String> table = TreeBasedTable.create();
+    table.put('x', 2, "foo");
+    table.put('r', 1, "bar");
+    table.put('c', 3, "baz");
+    table.put('b', 7, "cat");
+    table.put('e', 5, "dog");
+    table.put('c', 0, "axe");
+    table.put('e', 3, "tub");
+    table.put('r', 4, "foo");
+    table.put('x', 5, "bar");
+    validateTableCopies(table);
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: table
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_withMutableCell
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_withMutableCell();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_withMutableCell - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSparseSerialization_manualOrder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSparseSerialization_manualOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSparseSerialization_manualOrder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderRowsAndColumnsBy_sparse
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderRowsAndColumnsBy_sparse();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderRowsAndColumnsBy_sparse - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testDenseSerialization_rowOrder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testDenseSerialization_rowOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testDenseSerialization_rowOrder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableMergingNullMerge
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableMergingNullMerge();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableMergingNullMerge - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_withImmutableCellAndNullContents
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_withImmutableCellAndNullContents();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_withImmutableCellAndNullContents - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableNullRowKey
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableNullRowKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableNullRowKey - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderRowsAndColumnsBy_dense
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderRowsAndColumnsBy_dense();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderRowsAndColumnsBy_dense - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_noNulls
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_noNulls();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_noNulls - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableMergingNullColumnKey
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableMergingNullColumnKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableMergingNullColumnKey - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableNullColumnKey
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableNullColumnKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableNullColumnKey - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderColumnsBy_sparse
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderColumnsBy_sparse();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderColumnsBy_sparse - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSerialization_empty
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSerialization_empty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSerialization_empty - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testCopyOf
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testCopyOf();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCopyOf - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testCopyOfSparse
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testCopyOfSparse();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCopyOfSparse - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderRowsBy_dense
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderRowsBy_dense();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderRowsBy_dense - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_noDuplicates
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_noDuplicates();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_noDuplicates - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testDenseSerialization_manualOrder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testDenseSerialization_manualOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testDenseSerialization_manualOrder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderRowsAndColumnsBy_putAll
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderRowsAndColumnsBy_putAll();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderRowsAndColumnsBy_putAll - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderColumnsBy_dense
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderColumnsBy_dense();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderColumnsBy_dense - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableNullValue
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableNullValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableNullValue - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_orderRowsBy_sparse
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_orderRowsBy_sparse();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_orderRowsBy_sparse - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSparseSerialization_bothOrders
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSparseSerialization_bothOrders();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSparseSerialization_bothOrders - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSerialization_singleElement
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSerialization_singleElement();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSerialization_singleElement - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testDenseSerialization_bothOrders
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testDenseSerialization_bothOrders();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testDenseSerialization_bothOrders - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testDenseSerialization_columnOrder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testDenseSerialization_columnOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testDenseSerialization_columnOrder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTable
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTable - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSparseSerialization_rowOrder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSparseSerialization_rowOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSparseSerialization_rowOrder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSparseSerialization_columnOrder
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSparseSerialization_columnOrder();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSparseSerialization_columnOrder - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableConflict
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableConflict();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableConflict - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableMergingNullRowKey
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableMergingNullRowKey();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableMergingNullRowKey - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testCopyOfDense
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testCopyOfDense();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCopyOfDense - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableMergingNullValue
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableMergingNullValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableMergingNullValue - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testBuilder_withImmutableCell
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testBuilder_withImmutableCell();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testBuilder_withImmutableCell - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: ImmutableTableTest_gwt
+ Method: testToImmutableTableMerging
+ Body: {
+  com.google.common.collect.ImmutableTableTest testCase = new com.google.common.collect.ImmutableTableTest();
+  testCase.setUp();
+  testCase.testToImmutableTableMerging();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToImmutableTableMerging - Scenario: testCase
+
+Project: guava
+ Class: AtomicLongMapTest
+ Method: testNulls
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicConstructors(AtomicLongMap.class);
+    tester.testAllPublicStaticMethods(AtomicLongMap.class);
+    AtomicLongMap<Object> map = AtomicLongMap.create();
+    tester.testAllPublicInstanceMethods(map);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicConstructors - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: HashingInputStreamTest
+ Method: testChecksForNull
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+
+    tester.testAllPublicInstanceMethods(new HashingInputStream(Hashing.md5(), buffer));
+    tester.testAllPublicStaticMethods(HashingInputStream.class);
+    tester.testAllPublicConstructors(HashingInputStream.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicInstanceMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.setDefault(BigInteger.class, ONE);
+    tester.setDefault(int.class, 1);
+    tester.setDefault(long.class, 1L);
+    tester.testAllPublicStaticMethods(BigIntegerMath.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: setDefault - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: SplitterTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(Splitter.class);
+    tester.testAllPublicInstanceMethods(COMMA_SPLITTER);
+    tester.testAllPublicInstanceMethods(COMMA_SPLITTER.trimResults());
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: IntMathTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.setDefault(int.class, 1);
+    tester.testAllPublicStaticMethods(IntMath.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: setDefault - Predicate: testAllPublicStaticMethods - Scenario: tester
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testEquals
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testEquals();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEquals - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testGetMissingKeys
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testGetMissingKeys();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGetMissingKeys - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateCopyEmptyTable
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateCopyEmptyTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateCopyEmptyTable - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testHashCode
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testHashCode();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testHashCode - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCellSetToString_ordered
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCellSetToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCellSetToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRow
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRow - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateCopyHashBasedTable
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateCopyHashBasedTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateCopyHashBasedTable - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testGet
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testGet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testGet - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateDuplicateColumns
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateDuplicateColumns();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateDuplicateColumns - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testEraseAll
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testEraseAll();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testEraseAll - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRowClearAndPut
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRowClearAndPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowClearAndPut - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testContains
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testContains();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContains - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRowPutIllegal
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRowPutIllegal();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowPutIllegal - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRowNull
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRowNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowNull - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumnNull
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumnNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnNull - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testPutNull
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testPutNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNull - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumnPutIllegal
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumnPutIllegal();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnPutIllegal - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateCopyArrayTable
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateCopyArrayTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateCopyArrayTable - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumnKeySetToString_ordered
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumnKeySetToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeySetToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testContainsColumn
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testContainsColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsColumn - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testClear
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testClear();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testClear - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateDuplicateRows
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateDuplicateRows();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateDuplicateRows - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testSerialization
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testSerialization();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSerialization - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testPutAllTable
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testPutAllTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutAllTable - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateEmptyRowsXColumns
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateEmptyRowsXColumns();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateEmptyRowsXColumns - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRowMissing
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRowMissing();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowMissing - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCellReflectsChanges
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCellReflectsChanges();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCellReflectsChanges - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumnKeyList
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumnKeyList();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnKeyList - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumnSetPartialOverlap
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumnSetPartialOverlap();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnSetPartialOverlap - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumn
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumn();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumn - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testToString_ordered
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testColumnMissing
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testColumnMissing();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testColumnMissing - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRemove
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRemove();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRemove - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testErase
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testErase();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testErase - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testPutNullReplace
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testPutNullReplace();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutNullReplace - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testContainsValue
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testContainsValue();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsValue - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testToStringSize1
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testToStringSize1();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testToStringSize1 - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testSize
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testSize();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSize - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testValuesToString_ordered
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testValuesToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testValuesToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateCopyEmptyArrayTable
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateCopyEmptyArrayTable();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateCopyEmptyArrayTable - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRowKeySetToString_ordered
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRowKeySetToString_ordered();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeySetToString_ordered - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testAt
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testAt();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testAt - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testPutIllegal
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testPutIllegal();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPutIllegal - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testIsEmpty
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testIsEmpty();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testIsEmpty - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testRowKeyList
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testRowKeyList();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testRowKeyList - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testContainsRow
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testContainsRow();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testContainsRow - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateEmptyColumns
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateEmptyColumns();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateEmptyColumns - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testSet
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testSet();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSet - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testPut
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testPut();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPut - Scenario: testCase
+
+Project: guava
+ Class: ArrayTableTest_gwt
+ Method: testCreateEmptyRows
+ Body: {
+  com.google.common.collect.ArrayTableTest testCase = new com.google.common.collect.ArrayTableTest();
+  testCase.setUp();
+  testCase.testCreateEmptyRows();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCreateEmptyRows - Scenario: testCase
+
+Project: guava
+ Class: MultimapEqualsTester
+ Method: testEqualsFalse
+ Body: {
+    List<Entry<K, V>> targetEntries = new ArrayList<>(getSampleElements());
+    targetEntries.add(Helpers.mapEntry(k0(), v3()));
+    new EqualsTester()
+        .addEqualityGroup(multimap())
+        .addEqualityGroup(getSubjectGenerator().create(targetEntries.toArray()))
+        .testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: add - Predicate: testEquals - Scenario: targetEntries
+
+Project: guava
+ Class: LinkedHashMultimapTest
+ Method: testCreateFromMultimap
+ Body: {
+    Multimap<String, Integer> multimap = LinkedHashMultimap.create();
+    multimap.put("a", 1);
+    multimap.put("b", 2);
+    multimap.put("a", 3);
+    multimap.put("c", 4);
+    LinkedHashMultimap<String, Integer> copy = LinkedHashMultimap.create(multimap);
+    new EqualsTester().addEqualityGroup(multimap, copy).testEquals();
+  }
+ Pattern Name: NoAssertionPattern - Action: put - Predicate: N/A - Scenario: multimap
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.setDefault(double.class, 3.0);
+    tester.testAllPublicStaticMethods(DoubleMath.class);
+  }
+ Pattern Name: NoAssertionPattern - Action: setDefault - Predicate: testAllPublicStaticMethods - Scenario: tester
+
+Project: guava
+ Class: ListSubListTester
+ Method: testSubList_subListAddAtIndexAffectsOriginalLargeList
+ Body: {
+    List<E> subList = getList().subList(2, 3);
+    subList.add(0, e3());
+    expectAdded(2, e3());
+  }
+ Pattern Name: NoAssertionPattern - Action: add - Predicate: expectAdded - Scenario: subList
+
+Project: guava
+ Class: ListSubListTester
+ Method: testSubList_subListAddAffectsOriginal
+ Body: {
+    List<E> subList = getList().subList(0, 0);
+    subList.add(e3());
+    expectAdded(0, e3());
+  }
+ Pattern Name: NoAssertionPattern - Action: add - Predicate: expectAdded - Scenario: subList
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateAlreadyInterrupted
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateAlreadyInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateAlreadyInterrupted - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testCanceled
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testCanceled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testCanceled - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateLaterCancelled
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateLaterCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateLaterCancelled - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureThenCancel
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureThenCancel();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureThenCancel - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetNull
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetNull - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFuturePending
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFuturePending();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFuturePending - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateLaterInterrupted
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateLaterInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateLaterInterrupted - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterSelfInterrupted
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterSelfInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterSelfInterrupted - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateCancelled
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateCancelled - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateAlreadyCancelled
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateAlreadyCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateAlreadyCancelled - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testPending
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testPending();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testPending - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateSuccessful
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateSuccessful - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureThenInterrupt
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureThenInterrupt();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureThenInterrupt - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSuccessful
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSuccessful - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testMisbehavingListenerAlreadyDone
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testMisbehavingListenerAlreadyDone();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testMisbehavingListenerAlreadyDone - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSuccessful
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSuccessful - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterSelfCancelled
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterSelfCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterSelfCancelled - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testMisbehavingListenerLaterDone
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testMisbehavingListenerLaterDone();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testMisbehavingListenerLaterDone - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetExceptionNull
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetExceptionNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetExceptionNull - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateAlreadySuccessful
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateAlreadySuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateAlreadySuccessful - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testInterrupted
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testInterrupted - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testNullTimeUnit
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNullTimeUnit();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullTimeUnit - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureDelegateLaterSuccessful
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureDelegateLaterSuccessful();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureDelegateLaterSuccessful - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronously
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronously();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronously - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateInterrupted
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateInterrupted - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterSetAsynchronouslyLaterDelegateFailed
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterSetAsynchronouslyLaterDelegateFailed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterSetAsynchronouslyLaterDelegateFailed - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterCancelled
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterCancelled();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterCancelled - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testNullListener
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNullListener();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullListener - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testSetFutureNull
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testSetFutureNull();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testSetFutureNull - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testFailed
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testFailed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testFailed - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testNegativeTimeout
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNegativeTimeout();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNegativeTimeout - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testNullExecutor
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testNullExecutor();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testNullExecutor - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterFailed
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterFailed();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterFailed - Scenario: testCase
+
+Project: guava
+ Class: UntrustedInputFutureTest_gwt
+ Method: testListenLaterInterrupted
+ Body: {
+  com.google.common.util.concurrent.UntrustedInputFutureTest testCase = new com.google.common.util.concurrent.UntrustedInputFutureTest();
+  testCase.setUp();
+  testCase.testListenLaterInterrupted();
+}
+ Pattern Name: NoAssertionPattern - Action: setUp - Predicate: testListenLaterInterrupted - Scenario: testCase
+
+Project: guava
+ Class: ImmutableSortedMapTest
+ Method: testNullPointers
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(ImmutableSortedMap.class);
+    tester.testAllPublicInstanceMethods(ImmutableSortedMap.<String, Integer>naturalOrder());
+    tester.testAllPublicInstanceMethods(ImmutableSortedMap.of());
+    tester.testAllPublicInstanceMethods(ImmutableSortedMap.of("one", 1));
+    tester.testAllPublicInstanceMethods(ImmutableSortedMap.of("one", 1, "two", 2, "three", 3));
+  }
+ Pattern Name: NoAssertionPattern - Action: testAllPublicStaticMethods - Predicate: N/A - Scenario: tester
+

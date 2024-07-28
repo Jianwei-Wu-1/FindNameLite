@@ -1,0 +1,50 @@
+Project: guava
+ Class: RangeTest
+ Method: testLegacyComparable
+ Body: {
+    Range<LegacyComparable> range = Range.closed(LegacyComparable.X, LegacyComparable.Y);
+  }
+ Pattern Name: SingleLinePattern_ScenarioOnly - Action: N/A - Predicate: N/A - Scenario: range
+
+Project: guava
+ Class: OptionalTest
+ Method: testSampleCodeError1
+ Body: {
+    Optional<Integer> optionalInt = getSomeOptionalInt();
+    // Number value = optionalInt.or(0.5); // error
+  }
+ Pattern Name: SingleLinePattern_ScenarioOnly - Action: N/A - Predicate: N/A - Scenario: optionalInt
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testDespiteGenericSignatureFormatError
+ Body: {
+    ImmutableSet<?> unused =
+        ImmutableSet.copyOf(
+            TypeToken.of(ToReproduceGenericSignatureFormatError.SubOuter.SubInner.class)
+                .getTypes()
+                .rawTypes());
+  }
+ Pattern Name: SingleLinePattern_ScenarioOnly - Action: N/A - Predicate: N/A - Scenario: unused
+
+Project: guava
+ Class: MultimapsTest
+ Method: testMultimapCollectorGenerics
+ Body: {
+    ListMultimap<Integer, String> unused =
+        Stream.of("foo", "bar", "quux")
+            .collect(
+                Multimaps.toMultimap(
+                    String::length, s -> s, MultimapBuilder.treeKeys().arrayListValues()::build));
+  }
+ Pattern Name: SingleLinePattern_ScenarioOnly - Action: N/A - Predicate: N/A - Scenario: unused
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testFromArrayAndAppend
+ Body: {
+    FluentIterable<TimeUnit> units =
+        FluentIterable.from(TimeUnit.values()).append(TimeUnit.SECONDS);
+  }
+ Pattern Name: SingleLinePattern_ScenarioOnly - Action: N/A - Predicate: N/A - Scenario: units
+

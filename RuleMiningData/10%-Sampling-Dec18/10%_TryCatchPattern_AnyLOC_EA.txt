@@ -1,0 +1,1213 @@
+Project: xodus
+ Class: StoreTest
+ Method: testRemoveWithinTransaction
+ Body: {
+        final Store store = openStoreAutoCommit("store", StoreConfig.WITHOUT_DUPLICATES);
+        Transaction txn = env.beginTransaction();
+        store.put(txn, getKey(), getValue());
+        txn.commit();
+        assertNotNullStringValue(store, getKey(), "value");
+        txn = env.beginTransaction();
+        store.put(txn, getKey(), getValue2());
+        env.removeStore("store", txn);
+        txn.commit();
+        assertEmptyValue(store, getKey());
+
+        try {
+            openStoreAutoCommit("store", StoreConfig.USE_EXISTING);
+            fail("Exception on open removed db is not thrown!");
+        } catch (Exception ex) {
+            // ignore
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: openStoreAutoCommit(unmatched) - Predicate: getKey(outer) - Scenario: N/A(unmatched - new object)
+
+Project: TW-Travel-Jetpacked
+ Class: ContinuationsApiTest
+ Method: testErrorOnEvalCall
+ Body: {
+      Context cx = Context.enter();
+      try {
+          cx.setOptimizationLevel(-1); // must use interpreter mode
+          Script script = cx.compileString("eval('myObject.f(3);');",
+                  "test source", 1, null);
+          cx.executeScriptWithContinuations(script, globalScope);
+          fail("Should throw IllegalStateException");
+      } catch (WrappedException we) {
+          Throwable t = we.getWrappedException();
+          assertTrue(t instanceof IllegalStateException);
+          assertTrue(t.getMessage().startsWith("Cannot capture continuation"));
+      } finally {
+          Context.exit();
+      }
+  }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: executeScriptWithContinuations(oneMC) - Predicate: N/A(inner) - Scenario: cx(outer1)
+
+Project: TW-Travel-Jetpacked
+ Class: ClassShutterExceptionTest
+ Method: testClassShutterException
+ Body: {
+        Context cx = Context.enter();
+        try {
+            Scriptable globalScope = cx.initStandardObjects();
+            cx.setClassShutter(new OpaqueShutter());
+            cx.evaluateString(globalScope,
+                    "java.lang.System.out.println('hi');",
+                    "test source", 1, null);
+            fail();
+        } catch (RhinoException e) {
+            // OpaqueShutter should prevent access to java.lang...
+            return;
+        } finally {
+            Context.exit();
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: evaluateString(oneMC) - Predicate: N/A - Scenario: cx(outer1)
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testSumLong
+ Body: {
+        aeq(sumLong(Arrays.asList(10L, 11L, 12L)), 33);
+        aeq(sumLong(Arrays.asList(-4L, 6L, -8L)), -6);
+        aeq(sumLong(Arrays.asList(Long.MAX_VALUE, 1L)), Long.MIN_VALUE);
+        aeq(sumLong(new ArrayList<>()), 0);
+        try {
+            sumLong(Arrays.asList(10L, null, 12L));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: sumLong(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testInit_String
+ Body: {
+        aeq(init("hello"), "hell");
+        aeq(init("h"), "");
+        try {
+            toList(init(""));
+            fail();
+        } catch (StringIndexOutOfBoundsException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: toList(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testTail_String
+ Body: {
+        aeq(tail("hello"), "ello");
+        aeq(tail("h"), "");
+        try {
+            toList(tail(""));
+            fail();
+        } catch (StringIndexOutOfBoundsException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: toList(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testHead_List
+ Body: {
+        aeq(head((List<Integer>) Arrays.asList(5, 4, 3, 2, 1)), 5);
+        assertNull(head((List<Integer>) Arrays.asList(null, 4, 3, 2, 1)));
+        aeq(head((List<Integer>) Collections.singletonList(5)), 5);
+        List<Integer> nullList = new ArrayList<>();
+        nullList.add(null);
+        assertNull(head(nullList));
+        try {
+            head(new ArrayList<Integer>());
+            fail();
+        } catch (IndexOutOfBoundsException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: head(unmatched) - Predicate: head(outer) - Scenario: N/A(unmatched - new object)
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testTail_Iterable
+ Body: {
+        aeqit(tail(Arrays.asList(5, 4, 3, 2, 1)), "[4, 3, 2, 1]");
+        aeqit(tail(Arrays.asList(5, 4, null, 2, 1)), "[4, null, 2, 1]");
+        aeqit(tail(Collections.singletonList(5)), "[]");
+        List<Integer> nullList = new ArrayList<>();
+        nullList.add(null);
+        aeqit(tail(nullList), "[]");
+        try {
+            tail(new ArrayList<Integer>());
+            fail();
+        } catch (NoSuchElementException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: tail(unmatched) - Predicate: N/A - Scenario: N/A(unmatched - new object)
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testInit_String
+ Body: {
+        aeq(init("hello"), "hell");
+        aeq(init("h"), "");
+        try {
+            toList(init(""));
+            fail();
+        } catch (StringIndexOutOfBoundsException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: toList(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testMap_Iterable
+ Body: {
+        aeqit(map(i -> i + 3, Arrays.asList(1, 5, 3, 1, 6)), "[4, 8, 6, 4, 9]");
+        aeqit(map(i -> i == null ? -1 : i + 3, Arrays.asList(1, 5, null, 1, 6)), "[4, 8, -1, 4, 9]");
+        simpleProviderHelper(map(i -> i + 3, repeat(5)),
+                "[8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, ...]");
+        aeqit(map(s -> s + "!", Arrays.asList("BIFF", "BANG", "POW")), "[BIFF!, BANG!, POW!]");
+        aeqit(map(s -> s + "!", new ArrayList<String>()), "[]");
+        try {
+            IterableUtils.toList((Iterable<Integer>) map(i -> i + 3, Arrays.asList(1, 5, null, 1, 6)));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: toList(unmatched) - Predicate: N/A - Scenario: IterableUtils(inner2)
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testSumDouble
+ Body: {
+        aeq(sumDouble(Arrays.asList(10.0, 10.5, 11.0)), 31.5);
+        aeq(sumDouble(Arrays.asList(-4.0, 6.0, -8.0)), -6.0);
+        aeq(sumDouble(Arrays.asList(1.0e16, 1.0)), 1.0e16);
+        aeq(sumDouble(Arrays.asList(1.0, 1.0, 1.0e16)), 1.0000000000000002e16);
+        aeq(sumDouble(Arrays.asList(1.0e16, 1.0, 1.0)), 1.0e16);
+        aeq(sumDouble(Arrays.asList(1.0e16, Double.NaN, 1.0)), Double.NaN);
+        aeq(sumDouble(new ArrayList<>()), 0.0);
+        try {
+            sumDouble(Arrays.asList(10.0, null, 11.0));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: sumDouble(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testTail_String
+ Body: {
+        aeq(tail("hello"), "ello");
+        aeq(tail("h"), "");
+        try {
+            toList(tail(""));
+            fail();
+        } catch (StringIndexOutOfBoundsException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: toList(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testCharsToString
+ Body: {
+        charsToStringHelper("[h, e, l, l, o]", "hello");
+        charsToStringHelper("[]", "");
+        try {
+            charsToStringHelper("[h, null, l, l, o]", "");
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: charsToStringHelper(matched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testSumBigDecimal
+ Body: {
+        aeq(sumBigDecimal(readBigDecimalList("[10, 10.5, 11]")), 31.5);
+        aeq(sumBigDecimal(readBigDecimalList("[-4, 6, -8]")), -6);
+        aeq(sumBigDecimal(new ArrayList<>()), 0);
+        try {
+            sumBigDecimal(readBigDecimalListWithNulls("[10, null, 11]"));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: sumBigDecimal(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testSumBigInteger
+ Body: {
+        aeq(sumBigInteger(readBigIntegerList("[10, 11, 12]")), 33);
+        aeq(sumBigInteger(readBigIntegerList("[-4, 6, -8]")), -6);
+        aeq(sumBigInteger(new ArrayList<>()), 0);
+        try {
+            sumBigInteger(readBigIntegerListWithNulls("[10, null, 12]"));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: sumBigInteger(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testProductBigInteger
+ Body: {
+        aeq(productBigInteger(readBigIntegerList("[10, 11, 12]")), 1320);
+        aeq(productBigInteger(readBigIntegerList("[-4, 6, -8]")), 192);
+        aeq(productBigInteger(new ArrayList<>()), 1);
+        try {
+            productBigInteger(readBigIntegerListWithNulls("[10, null, 12]"));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: productBigInteger(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testProductDouble
+ Body: {
+        aeq(productDouble(Arrays.asList(10.0, 10.5, 11.0)), 1155.0);
+        aeq(productDouble(Arrays.asList(-4.0, 6.0, -8.0)), 192.0);
+        aeq(productDouble(Arrays.asList(Double.MAX_VALUE, 2.0)), Double.POSITIVE_INFINITY);
+        aeq(productDouble(Arrays.asList(0.2, 0.5, Double.MAX_VALUE)), 1.7976931348623158E307);
+        aeq(productDouble(Arrays.asList(Double.MAX_VALUE, 2.0, 0.5)), Double.POSITIVE_INFINITY);
+        aeq(productDouble(Arrays.asList(Double.MAX_VALUE, Double.NaN, 0.5)), Double.NaN);
+        aeq(productDouble(new ArrayList<>()), 1.0);
+        try {
+            productDouble(Arrays.asList(10.0, null, 11.0));
+            fail();
+        } catch (NullPointerException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: productDouble(unmatched) - Predicate: N/A - Scenario: N/A
+
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testLast_List
+ Body: {
+        aeq(last((List<Integer>) Arrays.asList(5, 4, 3, 2, 1)), 1);
+        assertNull(last((List<Integer>) Arrays.asList(5, 4, 3, 2, null)));
+        aeq(last((List<Integer>) Collections.singletonList(1)), 1);
+        List<Integer> nullList = new ArrayList<>();
+        nullList.add(null);
+        assertNull(last(nullList));
+        try {
+            last(new ArrayList<Integer>());
+            fail();
+        } catch (IndexOutOfBoundsException ignored) {}
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: last(unmatched) - Predicate: last(outer) - Scenario: N/A(unmatched - new object)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureNullContent
+ Body: {
+        String location = "home/tcs";
+        String packageName = "com.topcoder";
+        String fileName = "Foo.java";
+        String content = null;
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testcreateDirectoryStringStringFailureEmptyLocation
+ Body: {
+        String location = "  ";
+        String packageName = "com.topcoder";
+
+        try {
+            this.uut.createDirectory(location, packageName);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: createDirectory(oneMC) - Predicate: N/A - Scenario: packageName(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureEmptyContent
+ Body: {
+        String location = "home/tcs";
+        String packageName = "com.topcoder";
+        String fileName = "Foo.java";
+        String content = "   ";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testcreateDirectoryStringStringFailureNullLocation
+ Body: {
+        String location = null;
+        String packageName = "com.topcoder";
+
+        try {
+            this.uut.createDirectory(location, packageName);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: createDirectory(oneMC) - Predicate: N/A - Scenario: packageName(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureInvalidPackage
+ Body: {
+        File dir = TestHelper.createTempDir();
+        File file = TestHelper.createFileInDir(dir, "someFile");
+        String location = dir.getAbsolutePath();
+        String packageName = "tc..topcoder";
+        String fileName = "Foo.java";
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IOException expected");
+        } catch (IOException e) {
+            // OK
+        }
+
+        file.delete();
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureEmptyLocation
+ Body: {
+        String location = "   ";
+        String packageName = "com.topcoder";
+        String fileName = "Foo.java";
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureFileIsDirectory
+ Body: {
+        File dir = TestHelper.createTempDir();
+        File file = TestHelper.createFileInDir(dir, "someFile");
+        String location = dir.getAbsolutePath();
+        String packageName = "com.topcoder";
+        String fileName = "Foo.java";
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IOException expected");
+        } catch (IOException e) {
+            // OK
+        }
+
+        file.delete();
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureNullFile
+ Body: {
+        String location = "home/tcs";
+        String packageName = "com.topcoder";
+        String fileName = null;
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureNullLocation
+ Body: {
+        String location = null;
+        String packageName = "com.topcoder";
+        String fileName = "Foo.java";
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testdeleteDirectoryStringBooleanFailureEmptyLocation
+ Body: {
+        String location = "   ";
+        boolean deleteCurrent = false;
+
+        try {
+            this.uut.deleteDirectory(location, deleteCurrent);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: deleteDirectory(oneMC) - Predicate: N/A - Scenario: deleteCurrent(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureEmptyFile
+ Body: {
+        String location = "home/tcs";
+        String packageName = "com.topcoder";
+        String fileName = "   ";
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testwriteFileStringStringStringStringFailureEmptyPackage
+ Body: {
+        File dir = TestHelper.createTempDir();
+        File file = TestHelper.createFileInDir(dir, "someFile");
+        String location = dir.getAbsolutePath();
+        String packageName = "   ";
+        String fileName = "Foo.java";
+        String content = "class Foo{}";
+
+        try {
+            this.uut.writeFile(location, packageName, fileName, content);
+            fail("IOException expected");
+        } catch (IOException e) {
+            // OK
+        }
+
+        file.delete();
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: writeFile(oneMC) - Predicate: N/A - Scenario: content(outer1)
+
+Project: mytcuml
+ Class: ExportDiagramToImageActionFailureTest
+ Method: testExecute_Failed1
+ Body: {
+        List<String> fileNames = new ArrayList<String>();
+        fileNames.add(fileName);
+        List<JComponent> components = new ArrayList<JComponent>();
+        components.add(component);
+        List<Rectangle> viewports = new ArrayList<Rectangle>();
+        viewports.add(viewport);
+        
+        try {
+            new ExportDiagramToImageAction(components, viewports, location, 
+                    fileNames, format, imageExporter).execute();
+            fail("when failed to execute, ActionExecutionException is expected.");
+        } catch (ActionExecutionException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: execute(unmatched) - Predicate: N/A - Scenario: new ExportDiagramToImageAction(components, viewports, location, 
+                    fileNames, format, imageExporter)(unmatched - new object)
+
+Project: mytcuml
+ Class: ExportDiagramToImageActionFailureTest
+ Method: testExecute_Failed2
+ Body: {
+        List<String> fileNames = new ArrayList<String>();
+        fileNames.add(fileName);
+        List<JComponent> components = new ArrayList<JComponent>();
+        components.add(component);
+        
+        try {
+            new ExportDiagramToImageAction(components, location, 
+                    fileNames, format, imageExporter).execute();
+            fail("when failed to execute, ActionExecutionException is expected.");
+        } catch (ActionExecutionException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: execute(unmatched) - Predicate: N/A - Scenario: new ExportDiagramToImageAction(components, location, 
+                    fileNames, format, imageExporter)(unmatched - new object)
+
+Project: mytcuml
+ Class: RemoveNoteRelationshipActionFailureTest
+ Method: testUndoIfDead
+ Body: {
+        RemoveNoteRelationshipAction action = new RemoveNoteRelationshipAction(comment);
+        action.die();
+        try {
+            action.undo();
+            fail("CannotUndoException is expected because action is already dead.");
+        } catch (CannotUndoException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: undo(unmatched) - Predicate: N/A - Scenario: action(matched - new object)
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testZoomPanelWithNull
+ Body: {
+        JLabel label = new JLabel("just for the test!");
+        JScrollPane sp = new JScrollPane(label);
+        BirdsEyeView view = new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+
+        try {
+            view.setZoomPanel(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // pass
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: setZoomPanel(oneMC) - Predicate: N/A - Scenario: view(outer1)
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testInputObjectViewPostionWithNull
+ Body: {
+        JLabel label = new JLabel("just for the test!");
+        JScrollPane sp = new JScrollPane(label);
+        BirdsEyeView view = new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+
+        try {
+            view.setInputObjectViewPosition(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // pass
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: setInputObjectViewPosition(oneMC) - Predicate: N/A - Scenario: view(outer1)
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testInputObjectWithNull
+ Body: {
+        JLabel label = new JLabel("1");
+        JScrollPane sp = new JScrollPane(label);
+        BirdsEyeView view = new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+
+        try {
+            view.setInputObject(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // pass
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: setInputObject(oneMC) - Predicate: N/A - Scenario: view(outer1)
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testInputObjectViewDimensionWithNull
+ Body: {
+        JLabel label = new JLabel("just for the test!");
+        JScrollPane sp = new JScrollPane(label);
+        BirdsEyeView view = new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+
+        try {
+            view.setInputObjectViewDimension(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // pass
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: setInputObjectViewDimension(oneMC) - Predicate: N/A - Scenario: view(outer1)
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_ProjectConfigurationException3
+ Body: {
+        TestHelper.loadSingleXMLConfig(NAMESPACE + ".Test", "test_files" + File.separator
+            + "AbstractElementFormatterEmptyValue.xml");
+
+        try {
+            Util.getString(NAMESPACE, "exceptionStereotypeName");
+
+            fail("ProjectConfigurationException expected.");
+        } catch (ProjectConfigurationException e) {
+            //good
+        } finally {
+            TestHelper.clearConfigFile(NAMESPACE + ".Test");
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: getString(unmatched) - Predicate: N/A - Scenario: Util(unmatched - actionReference)
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_ProjectConfigurationException2
+ Body: {
+        TestHelper.loadSingleXMLConfig(NAMESPACE + ".Test", "test_files" + File.separator
+            + "AbstractElementFormatterNoValue.xml");
+
+        try {
+            Util.getString(NAMESPACE, "exceptionStereotypeName");
+
+            fail("ProjectConfigurationException expected.");
+        } catch (ProjectConfigurationException e) {
+            //good
+        } finally {
+            TestHelper.clearConfigFile(NAMESPACE + ".Test");
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: getString(unmatched) - Predicate: N/A - Scenario: Util(unmatched - actionReference)
+
+Project: mytcuml
+ Class: RemoveTransitionActionTests
+ Method: testUndo_CannotUndoException
+ Body: {
+        action.undo();
+        try {
+            action.undo();
+            fail("CannotUndoException expected.");
+        } catch (CannotUndoException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: undo(matched) - Predicate: N/A - Scenario: action(matched - actionReference)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadNamespace_InavalidNamespace
+ Body: {
+        String xmlFile = "test_files" + File.separator + "inavalidNamespaceJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadNamespace(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadNamespace(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadClass_NoClassTag
+ Body: {
+        String xmlFile = "test_files" + File.separator + "noClassJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadClass(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadClass(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadInterface_EmptyInterfaceAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyInterfaceAttrFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadInterface(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadInterface(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadEnumeration_EmptyEnumerationAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyEnumerationJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadEnumeration(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadEnumeration(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadPrimitive_NoPrimitiveTag
+ Body: {
+        String xmlFile = "test_files" + File.separator + "noPrimitiveJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadPrimitive(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadPrimitive(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadDataType_EmptyDataTypeAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyDataTypeJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadDataType(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadDataType(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadInterface_EmptyMethodAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyMethodAttrFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadInterface(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadInterface(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadNamespace_NoNamespaceTag
+ Body: {
+        String xmlFile = "test_files" + File.separator + "noNamespaceJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadNamespace(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadNamespace(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadNamespace_EmtptyNamespaceAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emtptyNamespaceAttrJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadNamespace(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadNamespace(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadPrimitive_EmptyPrimitiveAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyPrimitiveJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadPrimitive(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadPrimitive(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadClass_EmptyMethodOfClassAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyMethodOfClassJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadClass(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadClass(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadDataType_NoDataTypeTage
+ Body: {
+        String xmlFile = "test_files" + File.separator + "noDataTypeJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadDataType(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadDataType(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadInterface_InvalidInterfaceElement
+ Body: {
+        String xmlFile = "test_files" + File.separator + "invalidInterfaceJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadInterface(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadInterface(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadClass_InvalidClassElement
+ Body: {
+        String xmlFile = "test_files" + File.separator + "invalidClassJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadClass(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadClass(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadInterface_NoInterfaceTag
+ Body: {
+        String xmlFile = "test_files" + File.separator + "noInterfaceJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadInterface(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadInterface(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadClass_EmptyClassAttr
+ Body: {
+        String xmlFile = "test_files" + File.separator + "emptyClassJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadClass(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadClass(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadEnumeration_NoEnumerationTag
+ Body: {
+        String xmlFile = "test_files" + File.separator + "noEnumerationJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        try {
+            loader.loadEnumeration(elt);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: loadEnumeration(oneMC) - Predicate: N/A - Scenario: elt(outer1)
+
+Project: mytcuml
+ Class: XMIHeaderTransformerAccuracyTest
+ Method: testTransformAccuracy
+ Body: {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        PrintStream print = new PrintStream(byteStream);
+        try {
+            transfer.transform(new Object(), print);
+            assertEquals("transform failed.", xml, deleteSpace(byteStream.toString()));
+        } catch (UnknownElementException e) {
+            fail("no UnknownElementException is expected");
+        } catch (ElementAlreadyExistsException e) {
+            fail("no ElementAlreadyExistsException is expected");
+        } catch (XMITransformException e) {
+            fail("no XMITransformException is expected");
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: transform(oneMC) - Predicate: N/A - Scenario: print(outer1)
+
+Project: mytcuml
+ Class: CutCommentGraphNodeActionFailureTest
+ Method: testCopyToClipboardIfNodeNull
+ Body: {
+        Uml1SemanticModelBridge semanticModelBridge = new Uml1SemanticModelBridge();
+        semanticModelBridge.setElement(new CommentImpl());
+        commentGraphNode.setSemanticModel(semanticModelBridge);
+        CutCommentGraphNodeActionImpl action = new CutCommentGraphNodeActionImpl(commentGraphNode, null);
+        try {
+            action.copyToClipboard(null, null);
+            fail("IllegalArgumentException is expected because node cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: copyToClipboard(unmatched) - Predicate: N/A - Scenario: action(matched - new object)
+
+Project: mytcuml
+ Class: JavaExceptionElementFormatterTests
+ Method: testFormat_EmptyPropertyValue
+ Body: {
+        TestHelper.loadSingleXMLConfig(NAMESPACE, "test_files" + File.separator
+            + "AbstractElementFormatterEmptyValue.xml");
+
+        try {
+            formatter.format(element);
+
+            fail("ProjectConfigurationException expected.");
+        } catch (ProjectConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: format(unmatched) - Predicate: N/A - Scenario: formatter(unmatched - actionReference)
+
+Project: mytcuml
+ Class: JavaExceptionElementFormatterTests
+ Method: testFormat_MissingProperty
+ Body: {
+        TestHelper.loadSingleXMLConfig(NAMESPACE, "test_files" + File.separator
+            + "AbstractElementFormatterNoValue.xml");
+
+        try {
+            formatter.format(element);
+
+            fail("ProjectConfigurationException expected.");
+        } catch (ProjectConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: format(unmatched) - Predicate: N/A - Scenario: formatter(unmatched - actionReference)
+
+Project: mytcuml
+ Class: UpdateNamespaceActionTests
+ Method: testExecute_CompartmentNotSupportedException
+ Body: {
+        System.setProperty("exception", "CompartmentNotSupportedException");
+
+        try {
+            action.execute();
+            fail("ActionExecutionException expected.");
+        } catch (ActionExecutionException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: execute(unmatched) - Predicate: N/A - Scenario: action(unmatched - actionReference)
+
+Project: mytcuml
+ Class: UpdateNamespaceActionTests
+ Method: testExecute_CompartmentMalformedException
+ Body: {
+        System.setProperty("exception", "CompartmentMalformedException");
+
+        try {
+            action.execute();
+            fail("ActionExecutionException expected.");
+        } catch (ActionExecutionException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: execute(unmatched) - Predicate: N/A - Scenario: action(unmatched - actionReference)
+
+Project: mytcuml
+ Class: UpdateNamespaceActionTests
+ Method: testExecute_CompartmentNotFoundException
+ Body: {
+        System.setProperty("exception", "CompartmentNotFoundException");
+
+        try {
+            action.execute();
+            fail("ActionExecutionException expected.");
+        } catch (ActionExecutionException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: execute(unmatched) - Predicate: N/A - Scenario: action(unmatched - actionReference)
+
+Project: mytcuml
+ Class: GraphNodeTransformerTest
+ Method: testTransformWithoutDimensionTransformer
+ Body: {
+        // remove Transformer for Dimension
+        transformers.remove(Dimension.class.getName());
+        try {
+            transformer.transform(element, document, d2XMITransformer);
+            fail("XMITransformException is expected.");
+        } catch (XMITransformException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: transform(unmatched) - Predicate: N/A - Scenario: transformer(unmatched - actionReference)
+
+Project: mytcuml
+ Class: BaseEdgeFailureTest
+ Method: testNotifyGraphEdgeChangeIfInvalidSemanticModelClass
+ Body: {
+        graphEdge.setSemanticModel(new CoreSemanticModelBridge());
+        try {
+            baseEdge = new BaseEdgeImpl(graphEdge, KEYWORD_METACLASS);
+            baseEdge.notifyGraphEdgeChange();
+            fail("IllegalGraphElementException is expected becasue semantic model is non-Uml1SemanticModelBridge.");
+        } catch (IllegalGraphElementException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: notifyGraphEdgeChange(unmatched) - Predicate: N/A - Scenario: baseEdge(unmatched - actionReference)
+target(matched - actionReference)
+
+Project: mytcuml
+ Class: LinkImplFailureTests
+ Method: testAddConnectionsCollection_NullElement
+ Body: {
+        Collection<LinkEnd> ends = new ArrayList<LinkEnd>();
+        ends.add(new LinkEndImpl());
+        ends.add(null);
+
+        try {
+            link.addConnections(ends);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("connections collection shouldn't be changed.",
+                    0, link.countConnections());
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: addConnections(unmatched) - Predicate: countConnections(inner) - Scenario: link(unmatched - new object)
+
+Project: mytcuml
+ Class: LinkImplFailureTests
+ Method: testAddStimuli_NullElement
+ Body: {
+        Collection<Stimulus> stimuli = new ArrayList<Stimulus>();
+        stimuli.add(new StimulusImpl());
+        stimuli.add(null);
+
+        try {
+            link.addStimuli(stimuli);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("stimuli collection shouldn't be changed.",
+                    0, link.countStimuli());
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: addStimuli(unmatched) - Predicate: countStimuli(inner) - Scenario: link(unmatched - new object)
+
+Project: mytcuml
+ Class: LinkImplFailureTests
+ Method: testAddConnectionsIntCollection_NullElement
+ Body: {
+        Collection<LinkEnd> ends = new ArrayList<LinkEnd>();
+        ends.add(new LinkEndImpl());
+        ends.add(null);
+
+        try {
+            link.addConnections(0, ends);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("connections collection shouldn't be changed.",
+                    0, link.countConnections());
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: addConnections(unmatched) - Predicate: countConnections(inner) - Scenario: link(unmatched - new object)
+
+Project: mytcuml
+ Class: LinkImplFailureTests
+ Method: testRemoveConnections_NullElement
+ Body: {
+        LinkEnd linkEnd = new LinkEndImpl();
+        link.addConnection(linkEnd);
+
+        Collection<LinkEnd> ends = new ArrayList<LinkEnd>();
+        ends.add(linkEnd);
+        ends.add(null);
+
+        try {
+            link.removeConnections(ends);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("connections collection shouldn't be changed.",
+                    1, link.countConnections());
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: removeConnections(unmatched) - Predicate: countConnections(inner) - Scenario: link(unmatched - new object)
+
+Project: mytcuml
+ Class: DefaultSectionHeaderUIFailureTest
+ Method: testInstallUIJComponentContractedIconNull
+ Body: {
+        UIManager.put("SectionHeader.contractedIcon", null);
+
+        try {
+            header.installUI(sectionHeader);
+            fail("SectionHeader.contractedIcon in UIManager is -1, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: installUI(unmatched) - Predicate: N/A - Scenario: header(unmatched - actionReference)
+
+Project: mytcuml
+ Class: DefaultSectionHeaderUIFailureTest
+ Method: testInstallUIJComponentContractedBgMidIconNull
+ Body: {
+        UIManager.put("SectionHeader.contractedBgMidIcon", null);
+
+        try {
+            header.installUI(sectionHeader);
+            fail("SectionHeader.contractedBgMidIcon in UIManager is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: installUI(unmatched) - Predicate: N/A - Scenario: header(unmatched - actionReference)

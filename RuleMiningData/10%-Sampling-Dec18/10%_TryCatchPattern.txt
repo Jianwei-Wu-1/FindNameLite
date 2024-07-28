@@ -1,0 +1,211 @@
+Project: wheels
+ Class: NoRemoveIteratorTest
+ Method: testRemove
+ Body: {
+        NoRemoveIterator<Integer> it = new NoRemoveIterator<Integer>() {
+            @Override
+            public boolean hasNext() {
+                return true;
+            }
+
+            @Override
+            public Integer next() {
+                return 0;
+            }
+        };
+        try {
+            it.remove();
+            Assert.fail();
+        } catch (UnsupportedOperationException ignored) {}
+    }
+ Pattern Name: TryCatchPattern - Action: remove - Predicate: N/A - Scenario: it
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testexistDirectoryStringFailureEmptyLocation
+ Body: {
+        String location = "  ";
+
+        try {
+            this.uut.existDirectory(location);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // OK
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: existDirectory - Predicate: N/A - Scenario: location
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyStateNode_InvalidSimpleState
+ Body: {
+        SimpleState simpleState = new SimpleStateImpl();
+        try {
+            ActivityObjectClipboardUtility.copyStateNode(simpleState, clipboard);
+            fail("ActionExecutionException expected.");
+        } catch (ActionExecutionException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: copyStateNode - Predicate: N/A - Scenario: simpleState
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyTransition_ActivityObjectCloneException
+ Body: {
+        MockTransition mockTransition = new MockTransition("Test");
+        try {
+            ActivityObjectClipboardUtility.copyTransition(mockTransition, clipboard);
+            fail("ActivityObjectCloneException expected.");
+        } catch (ActivityObjectCloneException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: copyTransition - Predicate: N/A - Scenario: mockTransition
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyStateNode_PseudostateKindNotSet
+ Body: {
+        Pseudostate pseudostate = new PseudostateImpl();
+        try {
+            ActivityObjectClipboardUtility.copyStateNode(pseudostate, clipboard);
+            fail("ActionExecutionException expected.");
+        } catch (ActionExecutionException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: copyStateNode - Predicate: N/A - Scenario: pseudostate
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyStateNode_UnknownStateVertex
+ Body: {
+        StateVertex stateVertex = new MockStateVertex();
+        try {
+            ActivityObjectClipboardUtility.copyStateNode(stateVertex, clipboard);
+            fail("ActionExecutionException expected.");
+        } catch (ActionExecutionException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: copyStateNode - Predicate: N/A - Scenario: stateVertex
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyStateNode_ActivityObjectCloneException
+ Body: {
+        MockObjectFlowState mockObjectFlowState = new MockObjectFlowState("Test");
+        try {
+            ActivityObjectClipboardUtility.copyStateNode((StateVertex) mockObjectFlowState, clipboard);
+            fail("ActivityObjectCloneException expected.");
+        } catch (ActivityObjectCloneException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: copyStateNode - Predicate: N/A - Scenario: mockObjectFlowState
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForFinalState_ActivityObjectCloneException
+ Body: {
+        MockFinalState state = new MockFinalState("Test");
+        try {
+            ActivityObjectCloneUtility.clone(state);
+            fail("ActivityObjectCloneException expected.");
+        } catch (ActivityObjectCloneException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: clone - Predicate: N/A - Scenario: state
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForTransition_ActivityObjectCloneException
+ Body: {
+        MockTransition state = new MockTransition("Test");
+        try {
+            ActivityObjectCloneUtility.clone(state);
+            fail("ActivityObjectCloneException expected.");
+        } catch (ActivityObjectCloneException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: clone - Predicate: N/A - Scenario: state
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForObjectFlowState_ActivityObjectCloneException
+ Body: {
+        MockObjectFlowState state = new MockObjectFlowState("Test");
+        try {
+            ActivityObjectCloneUtility.clone(state);
+            fail("ActivityObjectCloneException expected.");
+        } catch (ActivityObjectCloneException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: clone - Predicate: N/A - Scenario: state
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForActionState_ActivityObjectCloneException
+ Body: {
+        MockActionState state = new MockActionState("Test");
+        try {
+            ActivityObjectCloneUtility.clone(state);
+            fail("ActivityObjectCloneException expected.");
+        } catch (ActivityObjectCloneException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: clone - Predicate: N/A - Scenario: state
+
+Project: mytcuml
+ Class: ModelTransferFailureTests
+ Method: testGetTransferData_UnsupportedDataFlavor
+ Body: {
+        ModelTransfer modelTransfer = new ModelTransfer(new ActorImpl()) {
+            public boolean isDataFlavorSupported(java.awt.datatransfer.DataFlavor dataFlavor)
+                throws IllegalArgumentException {
+                return false;
+            };
+        };
+        try {
+            modelTransfer.getTransferData(ModelTransfer.ACTOR_FLAVOR);
+            fail("should throw UnsupportedFlavorException.");
+        } catch (UnsupportedFlavorException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: getTransferData - Predicate: N/A - Scenario: modelTransfer
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckCollection_EmptyCollection
+ Body: {
+        Collection<String> collection = new ArrayList<String>();
+        try {
+            Util.checkCollection(collection, "test");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: checkCollection - Predicate: N/A - Scenario: collection
+
+Project: mytcuml
+ Class: FontSizeSelectorTests
+ Method: testSetListFontSize_EmptyListFontSize
+ Body: {
+        List<Integer> listFontSize = new ArrayList<Integer>();
+        try {
+            selector.setListFontSize(listFontSize);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern - Action: setListFontSize - Predicate: N/A - Scenario: listFontSize
+
+

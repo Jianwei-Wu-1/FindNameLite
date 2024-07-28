@@ -1,0 +1,48 @@
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: HybridVerifier
+type3: NullVerifier
+Stereotypes for: testUserParserForError
+type1: NullVerifier
+type2: EqualityVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier
+Stereotypes for: testUserParserForError
+type1: EqualityVerifier
+type2: NullVerifier
+type3: HybridVerifier

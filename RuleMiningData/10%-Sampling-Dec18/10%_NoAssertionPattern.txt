@@ -1,0 +1,213 @@
+Project: xodus
+ Class: EntityIterableHandleMergeIdsTest
+ Method: testDuo
+ Body: {
+        final int[] data = {4, 5, 7, 8};
+        checkArrays(new int[]{1, 4}, data, new int[]{1, 4, 5, 7, 8});
+        checkArrays(new int[]{4, 5}, data, data);
+        checkArrays(new int[]{4, 7}, data, data);
+        checkArrays(new int[]{4, 8}, data, data);
+        checkArrays(new int[]{6, 7}, data, new int[]{4, 5, 6, 7, 8});
+        checkArrays(new int[]{6, 8}, data, new int[]{4, 5, 6, 7, 8});
+        checkArrays(new int[]{7, 9}, data, new int[]{4, 5, 7, 8, 9});
+        checkArrays(new int[]{8, 9}, data, new int[]{4, 5, 7, 8, 9});
+    }
+ Pattern Name: NoAssertionPattern - Action: checkArrays - Predicate: N/A - Scenario: data
+
+Project: xodus
+ Class: EntityIterableHandleMergeIdsTest
+ Method: testTri
+ Body: {
+        final int[] data = {4, 5, 7, 8};
+        checkArrays(new int[]{1, 5, 8}, data, new int[]{1, 4, 5, 7, 8});
+        checkArrays(new int[]{4, 7, 8}, data, data);
+        checkArrays(new int[]{6, 7, 8}, data, new int[]{4, 5, 6, 7, 8});
+        checkArrays(new int[]{4, 6, 8}, data, new int[]{4, 5, 6, 7, 8});
+        checkArrays(new int[]{5, 7, 9}, data, new int[]{4, 5, 7, 8, 9});
+        checkArrays(new int[]{4, 8, 9}, data, new int[]{4, 5, 7, 8, 9});
+    }
+ Pattern Name: NoAssertionPattern - Action: checkArrays - Predicate: N/A - Scenario: data
+
+Project: xodus
+ Class: GarbageCollectorTestPrefixingInMemory
+ Method: dummyCleanWholeLog
+ Body: {
+        getEnvDirectory();
+        GarbageCollector gc = env.getGC();
+        gc.cleanEntireLog();
+        gc.doCleanFile(env.getLog().getHighFileAddress());
+    }
+ Pattern Name: NoAssertionPattern - Action: getEnvDirectory - Predicate: N/A - Scenario: gc
+
+Project: xodus
+ Class: ComparableSetBindingTest
+ Method: mixingTypes
+ Body: {
+        final ComparableSet set = new ComparableSet<>();
+        set.addItem(0);
+        set.addItem("0");
+    }
+ Pattern Name: NoAssertionPattern - Action: addItem - Predicate: addItem - Scenario: set
+
+Project: wheels
+ Class: RandomProviderTest
+ Method: testExample
+ Body: {
+        RandomProvider rp = RandomProvider.example();
+        rp.validate();
+        aeq(rp, "RandomProvider[@-8800290164235921060, 32, 8, 2]");
+    }
+ Pattern Name: NoAssertionPattern - Action: validate - Predicate: aeq - Scenario: rp
+
+Project: wheels
+ Class: RandomProviderTest
+ Method: testConstructor
+ Body: {
+        RandomProvider rp = new RandomProvider();
+        rp.validate();
+        aeq(rp.getScale(), 32);
+        aeq(rp.getSecondaryScale(), 8);
+        aeq(rp.getTertiaryScale(), 2);
+    }
+ Pattern Name: NoAssertionPattern - Action: validate - Predicate: N/A - Scenario: rp
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testRandomProvidersDefaultSecondaryAndTertiaryScale
+ Body: {
+        Iterable<RandomProvider> rps = EP.randomProvidersDefaultSecondaryAndTertiaryScale();
+        take(TINY_LIMIT, rps).forEach(RandomProvider::validate);
+        simpleProviderHelper(rps, "ExhaustiveProvider_randomProviderDefaultSecondaryAndTertiaryScale");
+    }
+ Pattern Name: NoAssertionPattern - Action: forEach - Predicate: simpleProviderHelper - Scenario: rps
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testRandomProvidersDefault
+ Body: {
+        Iterable<RandomProvider> rps = EP.randomProvidersDefault();
+        take(TINY_LIMIT, rps).forEach(RandomProvider::validate);
+        simpleProviderHelper(rps, "ExhaustiveProvider_randomProvidersDefault");
+    }
+ Pattern Name: NoAssertionPattern - Action: forEach - Predicate: simpleProviderHelper - Scenario: rps
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testBytes
+ Body: {
+        Iterable<Byte> bs = EP.bytes();
+        aeq(length(bs), 256);
+        aeqitLimitLog(TINY_LIMIT, reverse(bs), "ExhaustiveProvider_bytes_i");
+        simpleProviderHelper(bs, "ExhaustiveProvider_bytes_ii");
+    }
+ Pattern Name: NoAssertionPattern - Action: aeq - Predicate: N/A - Scenario: bs
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testNonzeroBytes
+ Body: {
+        Iterable<Byte> bs = EP.nonzeroBytes();
+        aeq(length(bs), 255);
+        aeqitLimitLog(TINY_LIMIT, reverse(bs), "ExhaustiveProvider_nonzeroBytes_i");
+        simpleProviderHelper(bs, "ExhaustiveProvider_nonzeroBytes_ii");
+    }
+ Pattern Name: NoAssertionPattern - Action: aeq - Predicate: N/A - Scenario: bs
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testRandomProvidersDefaultTertiaryScale
+ Body: {
+        Iterable<RandomProvider> rps = EP.randomProvidersDefaultTertiaryScale();
+        take(TINY_LIMIT, rps).forEach(RandomProvider::validate);
+        simpleProviderHelper(rps, "ExhaustiveProvider_randomProvidersDefaultTertiaryScale");
+    }
+ Pattern Name: NoAssertionPattern - Action: forEach - Predicate: simpleProviderHelper - Scenario: rps
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testShorts
+ Body: {
+        Iterable<Short> ss = EP.shorts();
+        aeq(length(ss), 65536);
+        aeqitLimitLog(TINY_LIMIT, reverse(ss), "ExhaustiveProvider_shorts_i");
+        simpleProviderHelper(ss, "ExhaustiveProvider_shorts_ii");
+    }
+ Pattern Name: NoAssertionPattern - Action: aeq - Predicate: N/A - Scenario: ss
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testDependentPairsInfiniteSquareRootOrder
+ Body: {
+        dependentPairsInfiniteSquareRootOrder_helper(
+                EP.naturalBigIntegers(),
+                i -> EP.naturalBigIntegers(),
+                "ExhaustiveProvider_dependentPairsInfiniteSquareRootOrder_i"
+        );
+        Function<Integer, Iterable<String>> f = i -> {
+            switch (i) {
+                case 0: return repeat("beep");
+                case 1: return cycle(Arrays.asList("a", "b"));
+            }
+            throw new IllegalArgumentException();
+        };
+        dependentPairsInfiniteSquareRootOrder_helper(
+                cycle(Arrays.asList(1, 0)),
+                f,
+                "ExhaustiveProvider_dependentPairsInfiniteSquareRootOrder_ii"
+        );
+
+        dependentPairsInfiniteSquareRootOrder_fail_helper(cycle(Arrays.asList(1, 0)), i -> null);
+        dependentPairsInfiniteSquareRootOrder_fail_helper(Arrays.asList(0, 1), f);
+        dependentPairsInfiniteSquareRootOrder_fail_helper(
+                cycle(Arrays.asList(1, 0)),
+                i -> Collections.singletonList("a")
+        );
+    }
+ Pattern Name: NoAssertionPattern - Action: dependentPairsInfiniteSquareRootOrder_helper - Predicate: N/A - Scenario: f
+
+Project: wheels
+ Class: ExhaustiveProviderTest
+ Method: testDependentPairsInfinite
+ Body: {
+        dependentPairsInfinite_helper(
+                EP.naturalBigIntegers(),
+                i -> EP.naturalBigIntegers(),
+                "ExhaustiveProvider_dependentPairsInfinite_i"
+        );
+        Function<Integer, Iterable<String>> f = i -> {
+            switch (i) {
+                case 0: return repeat("beep");
+                case 1: return cycle(Arrays.asList("a", "b"));
+            }
+            throw new IllegalArgumentException();
+        };
+        dependentPairsInfinite_helper(cycle(Arrays.asList(1, 0)), f, "ExhaustiveProvider_dependentPairsInfinite_ii");
+
+        dependentPairsInfinite_fail_helper(cycle(Arrays.asList(1, 0)), i -> null);
+        dependentPairsInfinite_fail_helper(Arrays.asList(0, 1), f);
+        dependentPairsInfinite_fail_helper(cycle(Arrays.asList(1, 0)), i -> Collections.singletonList("a"));
+    }
+ Pattern Name: NoAssertionPattern - Action: dependentPairsInfinite_helper - Predicate: N/A - Scenario: f
+
+Project: mytcuml
+ Class: ActivityDiagramConversionFacadeAccuracyTests
+ Method: testConvertContainedElementsWithNullList
+ Body: {
+        Method method = ActivityDiagramConversionFacade.class.getDeclaredMethod("convertContainedElements",
+                List.class);
+        method.setAccessible(true);
+        method.invoke(null, (List) null);
+    }
+ Pattern Name: NoAssertionPattern - Action: setAccessible - Predicate: invoke - Scenario: method
+
+Project: mytcuml
+ Class: ActivityDiagramConversionFacadeAccuracyTests
+ Method: testConvertSemanticModelBridgeWithNullUml1SemanticModelBridge
+ Body: {
+        Method method = ActivityDiagramConversionFacade.class.getDeclaredMethod("convertSemanticModelBridge",
+                SemanticModelBridge.class);
+        method.setAccessible(true);
+        // nothing happen
+        method.invoke(null, (Uml1SemanticModelBridge) null);
+    }
+ Pattern Name: NoAssertionPattern - Action: setAccessible - Predicate: invoke - Scenario: method

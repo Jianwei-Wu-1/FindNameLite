@@ -1,0 +1,2500 @@
+Project: wheels
+ Class: IterableUtilsTest
+ Method: testToList_String
+ Body: {
+        List<Character> list = toList("hello");
+        assertEquals(list.size(), 5);
+        assertEquals(list.get(0), Character.valueOf('h'));
+        assertEquals(list.get(1), Character.valueOf('e'));
+        assertEquals(list.get(2), Character.valueOf('l'));
+        assertEquals(list.get(3), Character.valueOf('l'));
+        assertEquals(list.get(4), Character.valueOf('o'));
+
+        list = toList("");
+        assertTrue(list.isEmpty());
+    }
+ Pattern Name: FocalMethod_Match - Action: size - Predicate: N/A - Scenario: list
+
+Project: zxcvbn-java
+ Class: DictionariesTest
+ Method: testLoadFile
+ Body: {
+    System.out.println("Test of loadFile method, of class Dictionaries");
+    
+    HashMap<String, Integer> fixture = new HashMap<>();
+    fixture.put("password", 1);
+    fixture.put("27sfd83", null);
+    fixture.put("hunter", 25);
+    
+    // Test the fixture
+    for (Map.Entry<String, Integer> entry : fixture.entrySet()) {
+      String value = entry.getKey();
+      Integer expected = entry.getValue();
+      Integer computed = Dictionaries.passwords.get(value);
+      Assert.assertEquals(expected, computed);
+    }
+  }
+ Pattern Name: FocalMethod_Match - Action: entrySet - Predicate: N/A - Scenario: entry
+
+Project: xmlsoccer
+ Class: XmlSoccerServiceImplTest
+ Method: testGetAllOddsByFixtureMatchId
+ Body: {
+        List<GetAllOddsResultDto> test = xmlSoccerService.getAllOddsByFixtureMatchId(362894).
+                stream().
+                collect(Collectors.toList());
+
+        Assert.notNull(test);
+    }
+ Pattern Name: FocalMethod_Match - Action: notNull - Predicate: N/A - Scenario: test
+
+Project: xmlsoccer
+ Class: XmlSoccerServiceImplTest
+ Method: testGetAllTeams
+ Body: {
+        List<GetTeamResultDto> test = xmlSoccerService.getAllTeams().
+                stream().
+                collect(Collectors.toList());
+
+        Assert.notNull(test);
+    }
+ Pattern Name: FocalMethod_Match - Action: notNull - Predicate: N/A - Scenario: test
+
+Project: xmlsoccer
+ Class: XmlSoccerServiceImplTest
+ Method: testGetAllLeagues
+ Body: {
+        List<GetAllLeaguesResultDto> test = xmlSoccerService.getAllLeagues().
+                stream().
+                collect(Collectors.toList());
+
+        Assert.notNull(test);
+    }
+ Pattern Name: FocalMethod_Match - Action: notNull - Predicate: N/A - Scenario: test
+
+Project: TW-Travel-Jetpacked
+ Class: JavaAcessibilityTest
+ Method: testAccessingMethods
+ Body: {  
+    Object result = runScript(importClass + "PrivateAccessClass.staticPackagePrivateMethod()");
+    assertEquals(new Integer(0), result);
+    
+    result = runScript(importClass + "PrivateAccessClass.staticPrivateMethod()");
+    assertEquals(new Integer(1), result);    
+    
+    result = runScript(importClass + "PrivateAccessClass.staticProtectedMethod()");
+    assertEquals(new Integer(2), result);
+
+    result = runScript(importClass + "new PrivateAccessClass().packagePrivateMethod()");
+    assertEquals(new Integer(3), result);
+    
+    result = runScript(importClass + "new PrivateAccessClass().privateMethod()");
+    assertEquals(new Integer(4), result);    
+    
+    result = runScript(importClass + "new PrivateAccessClass().protectedMethod()");
+    assertEquals(new Integer(5), result);
+  }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: result
+
+Project: TW-Travel-Jetpacked
+ Class: JavaAcessibilityTest
+ Method: testAccessingJavaBeanProperty
+ Body: {
+      Object result = runScript(importClass +
+          "var x = new PrivateAccessClass(); x.javaBeanProperty + ' ' + x.getterCalled;");
+      assertEquals("6 true", result);
+
+      result = runScript(importClass +
+      "var x = new PrivateAccessClass(); x.javaBeanProperty = 4; x.javaBeanProperty + ' ' + x.setterCalled;");
+      assertEquals("4 true", result);
+  }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: result
+
+Project: WorkInProgress
+ Class: TradeItemTest
+ Method: testNarcotics
+ Body: {
+     
+         TradeItem narcotics = new TradeItem("Narcotics");
+         
+         assertEquals(5, narcotics.getMTLP());
+         assertEquals(0, narcotics.getMTLU());
+         assertEquals(5, narcotics.getTTP());
+         assertEquals(3500, narcotics.getBP());
+         assertEquals(-125, narcotics.getIPL());
+         assertEquals(150, narcotics.getVar());
+         assertEquals("BOREDOM", narcotics.getIE());
+         assertEquals("WEIRDMUSHROOMS", narcotics.getCR());
+         assertEquals("Never", narcotics.getER());
+         assertEquals(2000, narcotics.getMTL());
+         assertEquals(3000, narcotics.getMTH());
+     }
+ Pattern Name: FocalMethod_Match - Action: getMTLP - Predicate: N/A - Scenario: narcotics
+
+Project: WorkInProgress
+ Class: TradeItemTest
+ Method: testRobots
+ Body: {
+     
+         TradeItem robots = new TradeItem("Robots");
+         
+         assertEquals(6, robots.getMTLP());
+         assertEquals(4, robots.getMTLU());
+         assertEquals(7, robots.getTTP());
+         assertEquals(5000, robots.getBP());
+         assertEquals(-150, robots.getIPL());
+         assertEquals(100, robots.getVar());
+         assertEquals("LACKOFWORKERS", robots.getIE());
+         assertEquals("Never", robots.getCR());
+         assertEquals("Never", robots.getER());
+         assertEquals(3500, robots.getMTL());
+         assertEquals(5000, robots.getMTH());
+     }
+ Pattern Name: FocalMethod_Match - Action: getMTLP - Predicate: N/A - Scenario: robots
+
+Project: WorkInProgress
+ Class: TradeItemTest
+ Method: testFurs
+ Body: {
+     
+         TradeItem furs = new TradeItem("Furs");
+         
+         assertEquals(0, furs.getMTLP());
+         assertEquals(0, furs.getMTLU());
+         assertEquals(0, furs.getTTP());
+         assertEquals(250, furs.getBP());
+         assertEquals(10, furs.getIPL());
+         assertEquals(10, furs.getVar());
+         assertEquals("COLD", furs.getIE());
+         assertEquals("RICHFAUNA", furs.getCR());
+         assertEquals("LIFELESS", furs.getER());
+         assertEquals(230, furs.getMTL());
+         assertEquals(280, furs.getMTH());
+     }
+ Pattern Name: FocalMethod_Match - Action: getMTLP - Predicate: N/A - Scenario: furs
+
+Project: xodus
+ Class: HashSetTest
+ Method: iterator2
+ Body: {
+        final HashSet<Integer> tested = new HashSet<>();
+
+        for (int i = 0; i < 10000; ++i) {
+            tested.add(i);
+        }
+        Iterator<Integer> it = tested.iterator();
+        while (it.hasNext()) {
+            final int i = it.next();
+            if (i % 2 == 0) {
+                it.remove();
+            }
+        }
+
+        Assert.assertEquals(5000, tested.size());
+
+        it = tested.iterator();
+        for (int i = 9999; i > 0; i -= 2) {
+            Assert.assertTrue(it.hasNext());
+            Assert.assertTrue(it.next() % 2 != 0);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: HashSetTest
+ Method: nulls
+ Body: {
+        final Set<Integer> tested = new HashSet<>();
+        Assert.assertTrue(tested.add(null));
+        Assert.assertFalse(tested.add(null));
+        Assert.assertTrue(tested.contains(null));
+        Assert.assertEquals(1, tested.size());
+        Assert.assertTrue(tested.remove(null));
+        Assert.assertEquals(0, tested.size());
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: HashSetTest
+ Method: nulls2
+ Body: {
+        final Set<Integer> tested = new HashSet<>();
+        Assert.assertTrue(tested.add(null));
+        Assert.assertFalse(tested.add(null));
+        Assert.assertTrue(tested.contains(null));
+        Assert.assertEquals(1, tested.size());
+        Assert.assertTrue(tested.add(1));
+        Assert.assertFalse(tested.add(1));
+        Assert.assertEquals(2, tested.size());
+        boolean hasNull = false;
+        for (Integer integer : tested) {
+            if (integer == null) {
+                hasNull = true;
+                break;
+            }
+        }
+        Assert.assertTrue(hasNull);
+        Assert.assertTrue(tested.remove(null));
+        Assert.assertEquals(1, tested.size());
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: HashSetTest
+ Method: testAddContains
+ Body: {
+        final HashSet<Integer> tested = new HashSet<>();
+        for (int i = 0; i < 1000; ++i) {
+            tested.add(i);
+        }
+        Assert.assertEquals(1000, tested.size());
+        for (int i = 0; i < 1000; ++i) {
+            Assert.assertTrue(tested.contains(i));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: LogTests
+ Method: testRemoveFileInvalidAddress
+ Body: {
+        initLog(1);
+        getLog().beginWrite();
+        for (int j = 0; j < 1024 * 10; ++j) {
+            getLog().write(NullLoggable.create());
+        }
+        getLog().flush();
+        getLog().endWrite();
+        TestUtil.runWithExpectedException(new Runnable() {
+            @Override
+            public void run() {
+                getLog().removeFile(1111);
+            }
+        }, ExodusException.class);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: j
+
+Project: xodus
+ Class: LogTests
+ Method: testRemoveFileNonexistentAddress
+ Body: {
+        initLog(1);
+        getLog().beginWrite();
+        for (int j = 0; j < 1024 * 10; ++j) {
+            getLog().write(NullLoggable.create());
+        }
+        getLog().flush();
+        getLog().endWrite();
+        TestUtil.runWithExpectedException(new Runnable() {
+            @Override
+            public void run() {
+                getLog().removeFile(1024 * 10);
+            }
+        }, ExodusException.class);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: j
+
+Project: xodus
+ Class: LogTests
+ Method: testRemoveFile
+ Body: {
+        initLog(1);
+        getLog().beginWrite();
+        for (int j = 0; j < 1024 * 99; ++j) {
+            getLog().write(NullLoggable.create());
+        }
+        getLog().flush();
+        log.forgetFiles(new long[]{0, 1024, 8192, 32768});
+        getLog().endWrite();
+        getLog().removeFile(0);
+        getLog().removeFile(1024);
+        getLog().removeFile(8192);
+        getLog().removeFile(32768);
+        Assert.assertEquals(95, (int) getLog().getNumberOfFiles()); // null loggable should take only one byte
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: j
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteNulls
+ Body: {
+        initLog(1);
+        log.beginWrite();
+        for (int j = 0; j < 1024 * 99; ++j) {
+            getLog().write(NullLoggable.create());
+        }
+        log.endWrite();
+        Assert.assertEquals(99, (int) getLog().getNumberOfFiles()); // null loggable should take only one byte
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: j
+
+Project: xodus
+ Class: LogTests
+ Method: testAllRandomAccessLoggablesIterator
+ Body: {
+        initLog(4, 1024 * 4);
+        final int count = 10;
+        getLog().beginWrite();
+        for (int i = 0; i < count; ++i) {
+            writeData(CompressedUnsignedLongByteIterable.getIterable(i));
+        }
+        getLog().endWrite();
+        final Iterator<RandomAccessLoggable> it = getLog().getLoggableIterator(0);
+        int i = 0;
+        while (it.hasNext()) {
+            Loggable l = it.next();
+            Assert.assertEquals((long) (4 * i++), l.getAddress());
+            Assert.assertEquals(127, l.getType());
+            Assert.assertEquals(1, l.getDataLength());
+        }
+        Assert.assertEquals(count, i);
+    }
+ Pattern Name: FocalMethod_Match - Action: beginWrite - Predicate: N/A - Scenario: it
+
+Project: xodus
+ Class: LogTests
+ Method: testAllLoggablesIterator
+ Body: {
+        initLog(4, 1024 * 4);
+        final int count = 10;
+        getLog().beginWrite();
+        for (int i = 0; i < count; ++i) {
+            writeData(CompressedUnsignedLongByteIterable.getIterable(i));
+        }
+        getLog().flush();
+        getLog().endWrite();
+        final Iterator<RandomAccessLoggable> it = getLog().getLoggableIterator(0);
+        int i = 0;
+        while (it.hasNext()) {
+            Loggable l = it.next();
+            Assert.assertEquals((long) (4 * i++), l.getAddress());
+            Assert.assertEquals(127, l.getType());
+            Assert.assertEquals(1, l.getDataLength());
+        }
+        Assert.assertEquals(count, i);
+    }
+ Pattern Name: FocalMethod_Match - Action: beginWrite - Predicate: N/A - Scenario: it
+
+Project: xodus
+ Class: GarbageCollectorTestInMemory
+ Method: reopenDbAfterGcWithBackgroundCleanerCyclic
+ Body: {
+        for (int i = 0; i < 8; i++) {
+            reopenDbAfterGcWithBackgroundCleaner();
+            tearDown();
+            setUp();
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: i
+
+Project: xodus
+ Class: GarbageCollectorTestInMemory
+ Method: updateSameKeyDeleteWithoutDuplicates
+ Body: {
+        set1KbFileWithoutGC();
+        ByteIterable key = StringBinding.stringToEntry("key");
+        final Store store = openStoreAutoCommit("updateSameKey");
+        for (int i = 0; i < 1000; ++i) {
+            putAutoCommit(store, key, key);
+        }
+        deleteAutoCommit(store, key);
+        Assert.assertTrue(env.getLog().getNumberOfFiles() > 1);
+
+        env.getGC().cleanEntireLog();
+
+        Assert.assertEquals(1L, env.getLog().getNumberOfFiles());
+    }
+ Pattern Name: FocalMethod_Match - Action: stringToEntry - Predicate: N/A - Scenario: key
+
+Project: xodus
+ Class: GarbageCollectorTestInMemory
+ Method: updateSameKeyDeleteWithDuplicates
+ Body: {
+        set1KbFileWithoutGC();
+        ByteIterable key = StringBinding.stringToEntry("key");
+        final Store store = openStoreAutoCommit("updateSameKey", getStoreConfig(true));
+        for (int i = 0; i < 1000; ++i) {
+            putAutoCommit(store, key, key);
+        }
+        deleteAutoCommit(store, key);
+        Assert.assertTrue(env.getLog().getNumberOfFiles() > 1);
+
+        env.getGC().cleanEntireLog();
+
+        Assert.assertEquals(1L, env.getLog().getNumberOfFiles());
+    }
+ Pattern Name: FocalMethod_Match - Action: stringToEntry - Predicate: N/A - Scenario: key
+
+Project: xodus
+ Class: GarbageCollectorTestInMemory
+ Method: updateSameKeyWithoutDuplicates
+ Body: {
+        set1KbFileWithoutGC();
+        ByteIterable key = StringBinding.stringToEntry("key");
+        final Store store = openStoreAutoCommit("updateSameKey");
+        for (int i = 0; i < 1000; ++i) {
+            putAutoCommit(store, key, key);
+        }
+        Assert.assertTrue(env.getLog().getNumberOfFiles() > 1);
+
+        env.getGC().cleanEntireLog();
+
+        Assert.assertEquals(1L, env.getLog().getNumberOfFiles());
+    }
+ Pattern Name: FocalMethod_Match - Action: stringToEntry - Predicate: N/A - Scenario: key
+
+Project: xodus
+ Class: GarbageCollectorTestInMemory
+ Method: fillDuplicatesWithoutDuplicates
+ Body: {
+        set1KbFileWithoutGC();
+        Store dups = openStoreAutoCommit("duplicates", getStoreConfig(true));
+        putAutoCommit(dups, IntegerBinding.intToEntry(0), IntegerBinding.intToEntry(0));
+        putAutoCommit(dups, IntegerBinding.intToEntry(1), IntegerBinding.intToEntry(0));
+        putAutoCommit(dups, IntegerBinding.intToEntry(1), IntegerBinding.intToEntry(1));
+        Store nodups = openStoreAutoCommit("no duplicates");
+        for (int i = 0; i < 1000; ++i) {
+            putAutoCommit(nodups, IntegerBinding.intToEntry(0), IntegerBinding.intToEntry(i));
+        }
+
+        env.getGC().cleanEntireLog();
+
+        reopenEnvironment();
+
+        dups = openStoreAutoCommit("duplicates", getStoreConfig(true));
+        Assert.assertNotNull(getAutoCommit(dups, IntegerBinding.intToEntry(0)));
+        Assert.assertNotNull(getAutoCommit(dups, IntegerBinding.intToEntry(1)));
+        Assert.assertNull(getAutoCommit(dups, IntegerBinding.intToEntry(2)));
+    }
+ Pattern Name: FocalMethod_Match - Action: assertNotNull - Predicate: N/A - Scenario: dups
+
+Project: xodus
+ Class: GarbageCollectorTestInMemory
+ Method: updateSameKeyWithDuplicates
+ Body: {
+        set1KbFileWithoutGC();
+        ByteIterable key = StringBinding.stringToEntry("key");
+        final Store store = openStoreAutoCommit("updateSameKey", getStoreConfig(true));
+        for (int i = 0; i < 1000; ++i) {
+            putAutoCommit(store, key, key);
+        }
+        Assert.assertTrue(env.getLog().getNumberOfFiles() > 1);
+
+        env.getGC().cleanEntireLog();
+
+        Assert.assertEquals(1L, env.getLog().getNumberOfFiles());
+    }
+ Pattern Name: FocalMethod_Match - Action: stringToEntry - Predicate: N/A - Scenario: key
+
+Project: xodus
+ Class: EnvironmentTestInMemory
+ Method: testBreakSavingMetaTree
+ Body: {
+        final EnvironmentConfig ec = env.getEnvironmentConfig();
+        if (ec.getLogCachePageSize() > 1024) {
+            ec.setLogCachePageSize(1024);
+        }
+        ec.setTreeMaxPageSize(16);
+        Log.invalidateSharedCache();
+        reopenEnvironment();
+        env.executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull final Transaction txn) {
+                final StoreImpl store1 = env.openStore("store1", StoreConfig.WITHOUT_DUPLICATES, txn);
+                final StoreImpl store2 = env.openStore("store2", StoreConfig.WITHOUT_DUPLICATES, txn);
+                final StoreImpl store3 = env.openStore("store3", StoreConfig.WITHOUT_DUPLICATES, txn);
+                final StoreImpl store4 = env.openStore("store4", StoreConfig.WITHOUT_DUPLICATES, txn);
+                store4.put(txn, IntegerBinding.intToCompressedEntry(0), IntegerBinding.intToCompressedEntry(0));
+                for (int i = 0; i < 16; ++i) {
+                    store1.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                    store2.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                    store3.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                }
+            }
+        });
+        reopenEnvironment();
+        final LogTestConfig testConfig = new LogTestConfig();
+        testConfig.setMaxHighAddress(1024 * 10 + 3);
+        testConfig.setSettingHighAddressDenied(true);
+        env.getLog().setLogTestConfig(testConfig);
+        try {
+            for (int i = 0; i < 23; ++i) {
+                env.executeInTransaction(new TransactionalExecutable() {
+                    @Override
+                    public void execute(@NotNull final Transaction txn) {
+                        final StoreImpl store1 = env.openStore("store1", StoreConfig.WITHOUT_DUPLICATES, txn);
+                        final StoreImpl store2 = env.openStore("store2", StoreConfig.WITHOUT_DUPLICATES, txn);
+                        final StoreImpl store3 = env.openStore("store3", StoreConfig.WITHOUT_DUPLICATES, txn);
+                        for (int i = 0; i < 13; ++i) {
+                            store1.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                            store2.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                            store3.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                        }
+                    }
+                });
+            }
+            TestUtil.runWithExpectedException(new Runnable() {
+                @Override
+                public void run() {
+                    env.executeInTransaction(new TransactionalExecutable() {
+                        @Override
+                        public void execute(@NotNull final Transaction txn) {
+                            final StoreImpl store1 = env.openStore("store1", StoreConfig.WITHOUT_DUPLICATES, txn);
+                            final StoreImpl store2 = env.openStore("store2", StoreConfig.WITHOUT_DUPLICATES, txn);
+                            final StoreImpl store3 = env.openStore("store3", StoreConfig.WITHOUT_DUPLICATES, txn);
+                            for (int i = 0; i < 13; ++i) {
+                                store1.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                                store2.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                                store3.put(txn, IntegerBinding.intToCompressedEntry(i), IntegerBinding.intToCompressedEntry(i));
+                            }
+                        }
+                    });
+                }
+            }, ExodusException.class);
+            env.getLog().setLogTestConfig(null);
+            AbstractConfig.suppressConfigChangeListenersForThread();
+            try {
+                ec.setEnvIsReadonly(true);
+                reopenEnvironment();
+            } finally {
+                AbstractConfig.resumeConfigChangeListenersForThread();
+            }
+            env.executeInTransaction(new TransactionalExecutable() {
+                @Override
+                public void execute(@NotNull final Transaction txn) {
+                    env.getAllStoreNames(txn);
+                }
+            });
+        } finally {
+            env.getLog().setLogTestConfig(null);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setMaxHighAddress - Predicate: N/A - Scenario: testConfig
+
+Project: xodus
+ Class: EnvironmentTestInMemory
+ Method: testUseExistingConfig
+ Body: {
+        final StoreConfig expectedConfig = StoreConfig.WITHOUT_DUPLICATES;
+        final String name = "testDatabase";
+
+        Transaction txn = env.beginTransaction();
+        env.openStore(name, expectedConfig, txn);
+        txn.commit();
+
+        txn = env.beginTransaction();
+        final Store store = env.openStore(name, StoreConfig.USE_EXISTING, txn);
+        Assert.assertEquals(expectedConfig, store.getConfig());
+        txn.commit();
+    }
+ Pattern Name: FocalMethod_Match - Action: openStore - Predicate: N/A - Scenario: expectedConfig
+
+Project: xodus
+ Class: IntHashSetTest
+ Method: iterator2
+ Body: {
+        final Set<Integer> tested = new IntHashSet();
+        final Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < 10000; ++i) {
+            tested.add(i);
+            set.add(i);
+        }
+        Iterator<Integer> it = tested.iterator();
+        while (it.hasNext()) {
+            final int i = it.next();
+            if (i % 2 == 0) {
+                it.remove();
+                Assert.assertTrue(set.remove(i));
+            }
+        }
+
+        Assert.assertEquals(5000, tested.size());
+
+        it = tested.iterator();
+        for (int i = 9999; i > 0; i -= 2) {
+            Assert.assertTrue(it.hasNext());
+            Assert.assertTrue(it.next() % 2 != 0);
+            Assert.assertTrue(set.remove(i));
+        }
+        Assert.assertEquals(0, set.size());
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: IntHashSetTest
+ Method: testAddContainsRemove
+ Body: {
+        final Set<Integer> tested = new IntHashSet();
+        for (int i = 0; i < 1000; ++i) {
+            tested.add(i);
+        }
+        Assert.assertEquals(1000, tested.size());
+        for (int i = 0; i < 1000; i += 2) {
+            Assert.assertTrue(tested.remove(i));
+        }
+        Assert.assertEquals(500, tested.size());
+        for (int i = 0; i < 1000; ++i) {
+            if (i % 2 == 0) {
+                Assert.assertFalse(tested.contains(i));
+            } else {
+                Assert.assertTrue(tested.contains(i));
+            }
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: IntHashSetTest
+ Method: testAddContains
+ Body: {
+        final Set<Integer> tested = new IntHashSet();
+        for (int i = 0; i < 1000; ++i) {
+            tested.add(i);
+        }
+        Assert.assertEquals(1000, tested.size());
+        for (int i = 0; i < 1000; ++i) {
+            Assert.assertTrue(tested.contains(i));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: tested
+
+Project: xodus
+ Class: EntityLinksTests
+ Method: testInvalidationOfBinaryOperatorsWithFromLinks
+ Body: {
+        final PersistentStoreTransaction txn = getStoreTransaction();
+        PersistentEntity issue = txn.newEntity("Issue");
+        Entity owner = txn.newEntity("User");
+        issue.addLink("owner", owner);
+        owner.setProperty("admin", "admin");
+        txn.flush();
+        EntityIterable it;
+        for (int i = 0; i < 8; ++i) {
+            it = txn.find("User", "admin", "admin").intersect(issue.getLinks("owner"));
+            Assert.assertEquals(1, (int) it.size());
+            it = txn.find("User", "admin", "admin").union(issue.getLinks("owner"));
+            Assert.assertEquals(1, (int) it.size());
+            Thread.sleep(400);
+        }
+        owner = txn.newEntity("User");
+        owner.setProperty("admin", "admin");
+        issue.addLink("owner", owner);
+        txn.flush();
+        it = txn.find("User", "admin", "admin").intersect(issue.getLinks("owner"));
+        Assert.assertEquals(2, (int) it.size());
+        it = txn.find("User", "admin", "admin").union(issue.getLinks("owner"));
+        Assert.assertEquals(2, (int) it.size());
+        issue.deleteLink("owner", owner);
+        txn.flush();
+        it = txn.find("User", "admin", "admin").intersect(issue.getLinks("owner"));
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.find("User", "admin", "admin").union(issue.getLinks("owner"));
+        Assert.assertEquals(2, (int) it.size());
+        issue.addLink("owner", owner);
+        txn.flush();
+        it = txn.find("User", "admin", "admin").intersect(issue.getLinks("owner"));
+        Assert.assertEquals(2, (int) it.size());
+        it = txn.find("User", "admin", "admin").union(issue.getLinks("owner"));
+        Assert.assertEquals(2, (int) it.size());
+    }
+ Pattern Name: FocalMethod_Match - Action: addLink - Predicate: N/A - Scenario: owner
+
+Project: xodus
+ Class: EntityLinksTests
+ Method: testInvalidationOfBinaryOperatorsWithToLinksCyclic
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        Entity issue = txn.newEntity("Issue");
+        Entity owner = txn.newEntity("User");
+        issue.addLink("owner", owner);
+        issue.setProperty("summary", "test");
+        txn.flush();
+        EntityIterable it;
+        for (int i = 0; i < 1000; ++i) {
+            it = txn.find("Issue", "summary", "test").intersect(txn.findLinks("Issue", owner, "owner"));
+            Assert.assertEquals(1, (int) it.size());
+            it = txn.find("Issue", "summary", "test").union(txn.findLinks("Issue", owner, "owner"));
+            Assert.assertEquals(1, (int) it.size());
+            issue = txn.newEntity("Issue");
+            issue.addLink("owner", owner);
+            issue.setProperty("summary", "test");
+            txn.flush();
+            it = txn.find("Issue", "summary", "test").intersect(txn.findLinks("Issue", owner, "owner"));
+            Assert.assertEquals(2, (int) it.size());
+            it = txn.find("Issue", "summary", "test").union(txn.findLinks("Issue", owner, "owner"));
+            Assert.assertEquals(2, (int) it.size());
+            issue.delete();
+            txn.flush();
+            if ((i % 100) == 0) {
+                System.out.println("i = " + i);
+            }
+        }
+        it = txn.find("Issue", "summary", "test");
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.findLinks("Issue", owner, "owner");
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.find("Issue", "summary", "test").intersect(txn.findLinks("Issue", owner, "owner"));
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.find("Issue", "summary", "test").union(txn.findLinks("Issue", owner, "owner"));
+        Assert.assertEquals(1, (int) it.size());
+    }
+ Pattern Name: FocalMethod_Match - Action: addLink - Predicate: N/A - Scenario: owner
+
+Project: xodus
+ Class: EntityLinksTests
+ Method: testCreateFindLinks
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        Entity e = txn.newEntity("Issue");
+        Entity owner = txn.newEntity("User");
+        e.addLink("owner", owner);
+        txn.flush();
+        for (int i = 1; i < 1000; ++i) {
+            if (txn.findLinks("Issue", owner, "owner").indexOf(owner) < 0) {
+                e = txn.newEntity("Issue");
+                e.addLink("owner", owner);
+                txn.flush();
+            }
+            final EntityIterable it = txn.findLinks("Issue", owner, "owner");
+            if (it.indexOf(e) < 0) {
+                throw new RuntimeException("0: Iteration " + i + ", it " + it.toString());
+            }
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: addLink - Predicate: N/A - Scenario: owner
+
+Project: xodus
+ Class: EntityLinksTests
+ Method: testSingleLink
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        final Entity issue = txn.newEntity("Issue");
+        txn.flush();
+        Assert.assertNull(issue.getLink("comment"));
+        final Entity comment = txn.newEntity("Comment");
+        issue.addLink("comment", comment);
+        txn.flush();
+        Assert.assertEquals(comment, issue.getLink("comment"));
+        issue.addLink("comment", txn.newEntity("Comment"));
+        txn.flush();
+        final boolean[] wereExceptions = {false};
+        try {
+            issue.getLink("comment");
+        } catch (Exception e) {
+            wereExceptions[0] = true;
+        }
+        Assert.assertTrue(wereExceptions[0]);
+    }
+ Pattern Name: FocalMethod_Match - Action: assertTrue - Predicate: N/A - Scenario: wereExceptions
+
+Project: xodus
+ Class: EntityLinksTests
+ Method: testInvalidationOfBinaryOperatorsWithToLinks
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        Entity issue = txn.newEntity("Issue");
+        Entity owner = txn.newEntity("User");
+        issue.addLink("owner", owner);
+        issue.setProperty("summary", "test");
+        txn.flush();
+        EntityIterable it;
+        for (int i = 0; i < 8; ++i) {
+            it = txn.find("Issue", "summary", "test").intersect(txn.findLinks("Issue", owner, "owner"));
+            Assert.assertEquals(1, (int) it.size());
+            it = txn.find("Issue", "summary", "test").union(txn.findLinks("Issue", owner, "owner"));
+            Assert.assertEquals(1, (int) it.size());
+            Thread.sleep(400);
+        }
+        issue = txn.newEntity("Issue");
+        issue.addLink("owner", owner);
+        issue.setProperty("summary", "test");
+        txn.flush();
+        it = txn.find("Issue", "summary", "test").intersect(txn.findLinks("Issue", owner, "owner"));
+        Assert.assertEquals(2, (int) it.size());
+        it = txn.find("Issue", "summary", "test").union(txn.findLinks("Issue", owner, "owner"));
+        Assert.assertEquals(2, (int) it.size());
+        issue.delete();
+        txn.flush();
+        it = txn.find("Issue", "summary", "test");
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.findLinks("Issue", owner, "owner");
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.find("Issue", "summary", "test").intersect(txn.findLinks("Issue", owner, "owner"));
+        Assert.assertEquals(1, (int) it.size());
+        it = txn.find("Issue", "summary", "test").union(txn.findLinks("Issue", owner, "owner"));
+        Assert.assertEquals(1, (int) it.size());
+    }
+ Pattern Name: FocalMethod_Match - Action: addLink - Predicate: N/A - Scenario: owner
+
+Project: xodus
+ Class: BinaryOperatorsTests
+ Method: testIntersectDifferentTypes
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        for (int i = 0; i < 100; ++i) {
+            txn.newEntity("Issue");
+            txn.newEntity("Comment");
+        }
+        txn.flush();
+        Assert.assertEquals(0, (int) txn.getAll("Issue").intersect(txn.getAll("Comment")).size());
+        Assert.assertEquals(0, (int) txn.getAll("Issue").intersect(txn.getAll("User")).size());
+    }
+ Pattern Name: FocalMethod_Match - Action: newEntity - Predicate: N/A - Scenario: txn
+
+Project: xodus
+ Class: BinaryOperatorsTests
+ Method: testConcat2
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        txn.newEntity("Issue");
+        Assert.assertEquals(1, toList(txn.getAll("User").concat(txn.getAll("Issue"))).size());
+        Assert.assertTrue(txn.flush());
+        txn.newEntity("User");
+        Assert.assertTrue(txn.flush());
+        Assert.assertEquals(2, toList(txn.getAll("User").concat(txn.getAll("Issue"))).size());
+        txn.getAll("User").getFirst().delete();
+        Assert.assertTrue(txn.flush());
+        while (true) {
+            txn.revert();
+            final EntityIterableBase concat = (EntityIterableBase) txn.getAll("User").concat(txn.getAll("Issue"));
+            Assert.assertEquals(1, toList(concat).size());
+            if (concat.isCached()) break;
+            Thread.yield();
+        }
+        txn.revert();
+        txn.newEntity("User");
+        Assert.assertTrue(txn.flush());
+        final EntityIterableBase concat = (EntityIterableBase) txn.getAll("User").concat(txn.getAll("Issue"));
+        Assert.assertFalse(concat.isCached());
+        Assert.assertEquals(2, toList(concat).size());
+    }
+ Pattern Name: FocalMethod_Match - Action: newEntity - Predicate: N/A - Scenario: txn
+
+Project: xodus
+ Class: BinaryOperatorsTests
+ Method: testSingularUnion
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        for (int i = 0; i < 100; ++i) {
+            txn.newEntity("Issue");
+            txn.newEntity("Comment");
+        }
+        txn.flush();
+        Assert.assertEquals(0, (int) txn.getAll("Comment").intersect(txn.getAll("Issue")).size());
+        Assert.assertEquals(100, (int) txn.getAll("Issue").union(txn.getAll("Comment").intersect(txn.getAll("Issue"))).size());
+    }
+ Pattern Name: FocalMethod_Match - Action: newEntity - Predicate: N/A - Scenario: txn
+
+Project: xodus
+ Class: PersistentBitTreeLongMapTest
+ Method: testSize
+ Body: {
+        Random random = new Random(249578);
+        long[] p = genPermutation(random, ENTRIES_TO_ADD);
+        final PersistentLongMap<String> source = createMap();
+        PersistentLongMap.MutableMap<String> tree = null;
+        for (int i = 0; i < p.length; i++) {
+            if ((i & 15) == 0) {
+                if (i > 0) {
+                    tree.endWrite();
+                    Assert.assertEquals(i, source.beginRead().size());
+                }
+                tree = source.beginWrite();
+            }
+            Assert.assertEquals(i, tree.size());
+            tree.put(p[i], String.valueOf(p[i]));
+            Assert.assertEquals(i + 1, tree.size());
+            for (int j = 0; j < 3; j++) {
+                tree.put(p[random.nextInt(i + 1)], p[random.nextInt(i + 1)] + " " + i + " " + j);
+                Assert.assertEquals(i + 1, tree.size());
+            }
+        }
+        tree.endWrite();
+        Assert.assertEquals(p.length, source.beginRead().size());
+
+        p = genPermutation(random, p.length);
+        tree = null;
+        for (int i = 0; i < p.length; i++) {
+            if ((i & 15) == 0) {
+                if (i > 0) {
+                    tree.endWrite();
+                    Assert.assertEquals(p.length - i, source.beginRead().size());
+                }
+                tree = source.beginWrite();
+            }
+            Assert.assertEquals(p.length - i, tree.size());
+            tree.remove(p[i]);
+            Assert.assertEquals(p.length - i - 1, tree.size());
+            for (int j = 0; j < 3; j++) {
+                tree.remove(p[random.nextInt(i + 1)]);
+                Assert.assertEquals(p.length - i - 1, tree.size());
+            }
+        }
+        tree.endWrite();
+        Assert.assertEquals(0, source.beginRead().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: beginRead - Predicate: N/A - Scenario: source
+
+Project: xodus
+ Class: QueryTreeTest
+ Method: testPropertyStartsWith
+ Body: {
+        NodeBase node = getOptimizedTree(new PropertyStartsWith("s", ""));
+        Assert.assertEquals(NodeFactory.all(), node);
+        node = getOptimizedTree(new PropertyStartsWith("s", null));
+        Assert.assertEquals(NodeFactory.all(), node);
+        Assert.assertNotEquals(node, propertyEqual);
+        Assert.assertNotEquals(propertyEqual, node);
+    }
+ Pattern Name: FocalMethod_Match - Action: assertEquals - Predicate: N/A - Scenario: node
+
+Project: xodus
+ Class: QueryTreeTest
+ Method: testSortByLinkProperty
+ Body: {
+        SortByLinkProperty sortByLinkProperty = new SortByLinkProperty(concat, "MyEnum", "number", "myEnum", true);
+        Assert.assertEquals(sortByLinkProperty, sortByLinkProperty.getClone());
+        Assert.assertEquals(4, QueryUtil.getSize(instantiate(sortByLinkProperty)));
+        Assert.assertNotEquals(sortByLinkProperty, propertyEqual);
+        Assert.assertNotEquals(propertyEqual, sortByLinkProperty);
+    }
+ Pattern Name: FocalMethod_Match - Action: getClone - Predicate: N/A - Scenario: sortByLinkProperty
+
+Project: xodus
+ Class: QueryTreeTest
+ Method: testPropertyRange
+ Body: {
+        NodeBase node = getOptimizedTree(new And(new And(new PropertyRange("string", "aa", "pq"), new PropertyRange("string", "d", "pz")), new PropertyRange("1string", "1d", "1pz")));
+        Assert.assertEquals(new And(new PropertyRange("string", "d", "pq"), new PropertyRange("1string", "1d", "1pz")), node);
+        Assert.assertNotEquals(node, propertyEqual);
+        Assert.assertNotEquals(propertyEqual, node);
+    }
+ Pattern Name: FocalMethod_Match - Action: assertEquals - Predicate: N/A - Scenario: node
+
+Project: xodus
+ Class: QueryTreeTest
+ Method: testGenericSort
+ Body: {
+        ComparableGetterSort sortNode = new ComparableGetterSort(concat, new ComparableGetter() {
+            @Override
+            public Comparable select(Entity entity) {
+                return entity.getProperty("i");
+            }
+        }, true);
+        Assert.assertEquals(sortNode, sortNode.getClone());
+        Assert.assertEquals(4, QueryUtil.getSize(instantiate(sortNode)));
+        Assert.assertEquals(4, QueryUtil.getSize(instantiate(new And(sortNode, NodeFactory.all()))));
+        Assert.assertNotEquals(sortNode, propertyEqual);
+        Assert.assertNotEquals(propertyEqual, sortNode);
+    }
+ Pattern Name: FocalMethod_Match - Action: getClone - Predicate: N/A - Scenario: sortNode
+
+Project: xodus
+ Class: QueryTreeTest
+ Method: testSortByProperty
+ Body: {
+        SortByProperty sortByProperty = new SortByProperty(concat, "i", true);
+        Assert.assertEquals(sortByProperty, sortByProperty.getClone());
+        Assert.assertEquals(4, QueryUtil.getSize(instantiate(sortByProperty)));
+        Assert.assertNotEquals(sortByProperty, propertyEqual);
+        Assert.assertNotEquals(propertyEqual, sortByProperty);
+    }
+ Pattern Name: FocalMethod_Match - Action: getClone - Predicate: N/A - Scenario: sortByProperty
+
+Project: xodus
+ Class: PatriciaReclaimTest
+ Method: testSplitAndReplace
+ Body: {
+        tm = createMutableTree(false, 1);
+        tm.put(kv("aaa", "0"));
+        tm.put(kv("abbaa", "1"));
+        tm.put(kv("aca", "3")); // should be reclaimed
+        long a = saveTree();
+        t = openTree(a, false);
+        tm = t.getMutableCopy();
+        tm.delete(key("abbaa"));
+        tm.put(kv("abbab", "2"));
+        tm.put(kv("abbba", "5"));
+        assertMatches(tm, RM("a", N('a', "a", "0"), NM('b', "b", NM('a', "b", "2"), NM('b', "a", "5")), N('c', "a", "3")));
+        a = saveTree();
+        t = openTree(a, false);
+        tm = t.getMutableCopy();
+        final Iterator<RandomAccessLoggable> loggables = log.getLoggableIterator(0);
+        tm.reclaim(loggables.next(), loggables);
+        assertMatches(tm, RM("a", NM('a', "a", "0"), N('b', "b", N('a', "b", "2"), N('b', "a", "5")), NM('c', "a", "3")));
+    }
+ Pattern Name: FocalMethod_Match - Action: put - Predicate: N/A - Scenario: t
+
+Project: xodus
+ Class: PropertyCustomTypeTests
+ Method: testFind
+ Body: {
+        final PersistentEntityStoreImpl store = getEntityStore();
+        final PropertyTypes propertyTypes = store.getPropertyTypes();
+        final PersistentStoreTransaction txn = getStoreTransaction();
+
+        final ComparablePair<Integer, String> sample = new ComparablePair<>(0, "");
+        final ComparablePairBinding customBinding = new ComparablePairBinding(propertyTypes, sample);
+
+        // REGISTER CUSTOM TYPE HERE
+        store.registerCustomPropertyType(txn, sample.getClass(), customBinding);
+        Assert.assertTrue(txn.flush());
+
+        final PersistentEntity e = txn.newEntity("CustomType");
+        final int count = 100;
+        for (int i = 0; i < count; ++i) {
+            e.setProperty(Integer.toString(i), new ComparablePair(i, Integer.toString(i)));
+        }
+        Assert.assertTrue(txn.flush());
+        for (int i = 0; i < count; ++i) {
+            final EntityIterable it = txn.find("CustomType", Integer.toString(i), new ComparablePair(i, Integer.toString(i)));
+            Assert.assertFalse(it.isEmpty());
+            Assert.assertEquals(e, it.getFirst());
+            Assert.assertTrue(txn.find("CustomType", Integer.toString(i), new ComparablePair(i, Integer.toString(i + 1))).isEmpty());
+            Assert.assertTrue(txn.find("CustomType", Integer.toString(i), new ComparablePair(i + 1, Integer.toString(i))).isEmpty());
+            Assert.assertTrue(txn.find("CustomType", Integer.toString(i + 1), new ComparablePair(i, Integer.toString(i))).isEmpty());
+            Thread.sleep(1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getPropertyTypes - Predicate: N/A - Scenario: e
+
+Project: xodus
+ Class: PropertyCustomTypeTests
+ Method: testSetGet
+ Body: {
+        final PersistentEntityStoreImpl store = getEntityStore();
+        final PropertyTypes propertyTypes = store.getPropertyTypes();
+        final PersistentStoreTransaction txn = getStoreTransaction();
+
+        final ComparablePair<Integer, String> sample = new ComparablePair<>(0, "");
+        final ComparablePairBinding customBinding = new ComparablePairBinding(propertyTypes, sample);
+
+        // REGISTER CUSTOM TYPE HERE
+        store.registerCustomPropertyType(txn, sample.getClass(), customBinding);
+        Assert.assertTrue(txn.flush());
+
+        final PersistentEntity e = txn.newEntity("CustomType");
+        final int count = 1000;
+        for (int i = 0; i < count; ++i) {
+            e.setProperty(Integer.toString(i), new ComparablePair(i, Integer.toString(i)));
+        }
+        Assert.assertTrue(txn.flush());
+        for (int i = 0; i < count; ++i) {
+            final Comparable property = e.getProperty(Integer.toString(i));
+            Assert.assertNotNull(property);
+            Assert.assertEquals(property, new ComparablePair(i, Integer.toString(i)));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getPropertyTypes - Predicate: N/A - Scenario: e
+
+Project: xodus
+ Class: TransactionTest
+ Method: test_XD_478
+ Body: {
+        final EnvironmentImpl env = getEnvironment();
+        final Store store = env.computeInTransaction(new TransactionalComputable<Store>() {
+            @Override
+            public Store compute(@NotNull Transaction txn) {
+                return env.openStore("store", StoreConfig.WITHOUT_DUPLICATES, txn);
+            }
+        });
+        final TransactionBase txn = env.beginTransaction();
+        try {
+            Assert.assertFalse(store.exists(txn, StringBinding.stringToEntry("key"), StringBinding.stringToEntry("value")));
+            env.executeInTransaction(new TransactionalExecutable() {
+                @Override
+                public void execute(@NotNull Transaction tx) {
+                    store.put(tx, StringBinding.stringToEntry("key"), StringBinding.stringToEntry("value"));
+                }
+            });
+            txn.revert();
+            Assert.assertTrue(store.exists(txn, StringBinding.stringToEntry("key"), StringBinding.stringToEntry("value")));
+        } finally {
+            txn.abort();
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: computeInTransaction - Predicate: N/A - Scenario: env
+
+Project: xodus
+ Class: TransactionTest
+ Method: test_XD_401
+ Body: {
+        final Environment env = getEnvironment();
+        final Store store = env.computeInTransaction(new TransactionalComputable<Store>() {
+            @Override
+            public Store compute(@NotNull final Transaction txn) {
+                return env.openStore("store", StoreConfig.WITH_DUPLICATES, txn);
+            }
+        });
+        final Transaction txn = env.beginTransaction();
+        final long started = txn.getStartTime();
+        store.put(txn, StringBinding.stringToEntry("key"), StringBinding.stringToEntry("value"));
+        Thread.sleep(200);
+        try {
+            Assert.assertTrue(txn.flush());
+            Assert.assertTrue(txn.getStartTime() > started + 150);
+            store.put(txn, StringBinding.stringToEntry("key"), StringBinding.stringToEntry("new value"));
+            Thread.sleep(200);
+            txn.revert();
+            Assert.assertTrue(txn.getStartTime() > started + 350);
+        } finally {
+            txn.abort();
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: computeInTransaction - Predicate: N/A - Scenario: env
+
+Project: xodus
+ Class: EntitySnapshotTests
+ Method: testBlob
+ Body: {
+        final PersistentStoreTransaction txn = getStoreTransaction();
+        final PersistentEntity entity = txn.newEntity("Issue");
+        entity.setBlobString("name", "a");
+        txn.flush();
+        final PersistentStoreTransaction snap0 = txn.getSnapshot();
+        entity.setBlobString("name", "b");
+        txn.flush();
+        final PersistentStoreTransaction snap1 = txn.getSnapshot();
+        entity.setBlobString("name", "c");
+        txn.flush();
+        final ReadOnlyPersistentEntity v0 = entity.getSnapshot(snap0);
+        final ReadOnlyPersistentEntity v1 = entity.getSnapshot(snap1);
+        try {
+            assertEquals("a", v0.getBlobString("name"));
+            assertEquals("b", v1.getBlobString("name"));
+        } finally {
+            snap0.abort();
+            snap1.abort();
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getSnapshot - Predicate: N/A - Scenario: snap1
+
+Project: mytcuml
+ Class: RemoveFreeTextActionFailureTest
+ Method: testCtorITypeInfoInvalid
+ Body: {
+        try {
+            freeTextGraphNode.addContained(new TextElement());
+            SimpleSemanticModelElement semanticModelBridge = new SimpleSemanticModelElement();
+            semanticModelBridge.setTypeInfo("invalid_type_info");
+            freeTextGraphNode.setSemanticModel(semanticModelBridge);
+            new RemoveFreeTextAction(freeTextGraphNode);
+            fail("IllegalArgumentException is expected because semanticModel's typeInfo is not equal "
+                    + "to 'FreeText'.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setTypeInfo - Predicate: N/A - Scenario: semanticModelBridge
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testPasteDiagramElementAction
+ Body: {
+        pde = new PasteDiagramElementAction(ce, dg);
+        assertNotNull("Should not be null.", pde);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: pde
+
+Project: mytcuml
+ Class: ConfigHelperTest
+ Method: testGetArrayProperty
+ Body: {
+        String[] result = ConfigHelper.getArrayProperty("config_helper", "string_array");
+        String[] expected = {"value1", "value2", "value3", "" };
+
+        assertTrue("result should be equal with expected value", Arrays.equals(result, expected));
+
+        result = ConfigHelper.getArrayProperty("config_helper", "not_existent_string_array");
+        assertNull("property does not exist and result should be null", result);
+    }
+ Pattern Name: FocalMethod_Match - Action: equals - Predicate: N/A - Scenario: result
+
+Project: mytcuml
+ Class: CopyReturnMessageActionAccuracyTests
+ Method: testCtor_1_Accuracy
+ Body: {
+        action = new CopyReturnMessageAction(stimulus);
+
+        assertNotNull("object not successfully created.", action);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: CopyReturnMessageActionAccuracyTests
+ Method: testCtor_2_Accuracy
+ Body: {
+        action = new CopyReturnMessageAction(stimulus, Toolkit.getDefaultToolkit().getSystemClipboard());
+
+        assertNotNull("object not successfully created.", action);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: HelperUnitTests
+ Method: testChekCollection
+ Body: {
+        try {
+            Helper.chekCollection(new ArrayList(), "test");
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: chekCollection - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: HelperUnitTests
+ Method: testCheckNotNullWithUnNullArgument
+ Body: {
+        try {
+            Helper.checkNotNull(new Object(), "test");
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: checkNotNull - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DiagramElementStressTest
+ Method: testMethod_Reference
+ Body: {
+        List<Reference> references = new ArrayList<Reference>();
+
+        for (int i = 0; i < LOOPTIMES; i++) {
+            Reference reference = new Reference();
+            element.addReference(reference);
+            references.add(reference);
+
+            // check the control.
+            assertTrue("The containsReference method is incorrect.",
+                element.containsReference(reference));
+            assertEquals("The countReferences method is incorrect.", i + 1,
+                element.countReferences());
+
+            Collection<Reference> getReferences = element.getReferences();
+            assertEquals("The getReferences method is incorrect.", i + 1, getReferences.size());
+            assertTrue("The getReferences method is incorrect.",
+                references.containsAll(getReferences));
+        }
+
+        for (int i = 0; i < (LOOPTIMES / 2); i++) {
+            assertTrue("The removeReference method is incorrect.",
+                element.removeReference(references.get(i)));
+            assertEquals("The removeReference method is incorrect.", LOOPTIMES - i - 1,
+                element.countReferences());
+            assertFalse("The removeReference method is incorrect.",
+                element.containsReference(references.get(i)));
+        }
+
+        // clear all references and test it.
+        element.clearReferences();
+        assertEquals("The clearReferences method is incorrect.", 0, element.countReferences());
+    }
+ Pattern Name: FocalMethod_Match - Action: add - Predicate: N/A - Scenario: references
+
+Project: mytcuml
+ Class: DiagramElementStressTest
+ Method: testMethod_Property
+ Body: {
+        List< Property > properties = new ArrayList< Property >();
+
+        for (int i = 0; i < LOOPTIMES; i++) {
+            Property property = new Property();
+            element.addProperty(property);
+            properties.add(property);
+
+            // check the control.
+            assertTrue("The containsProperty method is incorrect.",
+                element.containsProperty(property));
+            assertEquals("The countProperties method is incorrect.", i + 1,
+                element.countProperties());
+
+            Collection<Property> getProperties = element.getProperties();
+            assertEquals("The getProperties method is incorrect.", i + 1, getProperties.size());
+            assertTrue("The getProperties method is incorrect.",
+                properties.containsAll(getProperties));
+        }
+
+        for (int i = 0; i < (LOOPTIMES / 2); i++) {
+            assertTrue("The removeProperty method is incorrect.",
+                element.removeProperty(properties.get(i)));
+            assertEquals("The removeProperty method is incorrect.", LOOPTIMES - i - 1,
+                element.countProperties());
+            assertFalse("The removeProperty method is incorrect.",
+                element.containsProperty(properties.get(i)));
+        }
+
+        // clear all properties and test it.
+        element.clearProperties();
+        assertEquals("The clearProperties method is incorrect.", 0, element.countProperties());
+    }
+ Pattern Name: FocalMethod_Match - Action: getProperties - Predicate: N/A - Scenario: getProperties
+
+Project: mytcuml
+ Class: RemoveCommentGraphNodeActionFailureTest
+ Method: testCtorISemanticModelAttributeNonCommentType
+ Body: {
+        try {
+            Uml1SemanticModelBridge semanticModelBridge = new Uml1SemanticModelBridge();
+            semanticModelBridge.setElement(new Element() {});
+            commentGraphNode.setSemanticModel(semanticModelBridge);
+            new RemoveCommentGraphNodeAction(commentGraphNode);
+            fail("IllegalArgumentException is expected because semanticModel's element attribute is "
+                    + " non-Comment.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setElement - Predicate: N/A - Scenario: semanticModelBridge
+
+Project: mytcuml
+ Class: ZoomPanelUnitTest
+ Method: testSetTransformAccuracy
+ Body: {
+        for (int i = 1; i < 10; i++) {
+            ZoomTransform zt = new AffineZoomTransform();
+            panel.setTransform(zt);
+            assertEquals("the two transformers should be the same", zt, panel.getTransform());
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setTransform - Predicate: N/A - Scenario: zt
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerFailureTests
+ Method: testSelectionCornerMouseListener
+ Body: {
+        try {
+            new SelectionCornerMouseListener(null);
+            fail("Did not throw IAE with null node argument.");
+        } catch (IllegalArgumentException e) {
+            // Expected case.
+            assertNotNull("Exception message must not be null.", e.getMessage());
+            assertNotSame("Exception message must not be empty string.", "", e.getMessage());
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: CutObjectActionAccuracyTests
+ Method: testCutObjectActionAccuracy2
+ Body: {
+        cutObjectAction = new CutObjectAction(new ObjectImpl(), Toolkit.getDefaultToolkit().getSystemClipboard());
+        assertNotNull(cutObjectAction);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: cutObjectAction
+
+Project: mytcuml
+ Class: CutObjectActionAccuracyTests
+ Method: testCutObjectActionAccuracy1
+ Body: {
+        cutObjectAction = new CutObjectAction(new ObjectImpl());
+        assertNotNull(cutObjectAction);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: cutObjectAction
+
+Project: mytcuml
+ Class: AbstractionUtilTest
+ Method: testAddElementToModel
+ Body: {
+        Namespace com = new ModelImpl();
+        com.setNamespace(namespace);
+        Namespace tc = new ModelImpl();
+        tc.setNamespace(com);
+
+        // supplier's namespace: namespace.com
+        ModelElement testSupplier = new InterfaceImpl();
+        testSupplier.setNamespace(com);
+
+        // client's namespace: namespace.com.tc
+        ModelElement testClient = new InterfaceImpl();
+        testClient.setNamespace(tc);
+
+        modelElement.setNamespace(namespace);
+        modelElement.addSupplier(testSupplier);
+        modelElement.addClient(testClient);
+
+        abstractionUtil = new AbstractionUtil();
+
+        abstractionUtil.addElementToModel(modelElement, namespace);
+
+        // modelElement's namespace should be namespace.com
+        assertTrue("Should be added to the Namespace com.", com.containsOwnedElement(modelElement));
+
+        for (ModelElement supplier : modelElement.getSuppliers()) {
+            assertTrue("Should add relationship.", supplier.containsSupplierDependency(modelElement));
+        }
+        for (ModelElement client : modelElement.getClients()) {
+            assertTrue("Should add relationship.", client.containsClientDependency(modelElement));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: containsSupplierDependency - Predicate: N/A - Scenario: supplier
+
+Project: mytcuml
+ Class: AbstractionUtilTest
+ Method: testAddElementToModelSimple
+ Body: {
+        modelElement.setNamespace(namespace);
+
+        abstractionUtil = new AbstractionUtil();
+
+        abstractionUtil.addElementToModel(modelElement, namespace);
+
+        assertTrue("Should be added to the namespace.", namespace.containsOwnedElement(modelElement));
+
+        for (ModelElement supplier : modelElement.getSuppliers()) {
+            assertTrue("Should add relationship.", supplier.containsSupplierDependency(modelElement));
+        }
+        for (ModelElement client : modelElement.getClients()) {
+            assertTrue("Should add relationship.", client.containsClientDependency(modelElement));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: containsSupplierDependency - Predicate: N/A - Scenario: supplier
+
+Project: mytcuml
+ Class: AbstractionUtilTest
+ Method: testRemoveElementFromModelSimple
+ Body: {
+        namespace.addOwnedElement(modelElement);
+        modelElement.setNamespace(namespace);
+
+        abstractionUtil = new AbstractionUtil();
+
+        abstractionUtil.removeElementFromModel(modelElement);
+
+        for (ModelElement supplier : modelElement.getSuppliers()) {
+            assertFalse("Should remove relationship.", supplier.containsSupplierDependency(modelElement));
+        }
+        for (ModelElement client : modelElement.getClients()) {
+            assertFalse("Should remove relationship.", client.containsClientDependency(modelElement));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: containsSupplierDependency - Predicate: N/A - Scenario: supplier
+
+Project: mytcuml
+ Class: AbstractionUtilTest
+ Method: testRemoveElementFromModel
+ Body: {
+        ModelElement testSupplier = new InterfaceImpl();
+        testSupplier.addSupplierDependency(modelElement);
+        ModelElement testClient = new InterfaceImpl();
+        testClient.addClientDependency(modelElement);
+
+        namespace.addOwnedElement(modelElement);
+        modelElement.setNamespace(namespace);
+        modelElement.addSupplier(testSupplier);
+        modelElement.addClient(testClient);
+
+        abstractionUtil = new AbstractionUtil();
+
+        abstractionUtil.removeElementFromModel(modelElement);
+
+        for (ModelElement supplier : modelElement.getSuppliers()) {
+            assertFalse("Should remove relationship.", supplier.containsSupplierDependency(modelElement));
+        }
+        for (ModelElement client : modelElement.getClients()) {
+            assertFalse("Should remove relationship.", client.containsClientDependency(modelElement));
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: containsSupplierDependency - Predicate: N/A - Scenario: supplier
+
+Project: mytcuml
+ Class: AbstractionUtilTest
+ Method: testCopyElement
+ Body: {
+        abstractionUtil = new AbstractionUtil();
+
+        Abstraction newModleElement = (Abstraction) abstractionUtil.copyElement(modelElement);
+
+        // the base attributes are test in ClassToolUtilTest
+        assertEquals("Copy failed.", modelElement.getMapping(), newModleElement.getMapping());
+    }
+ Pattern Name: FocalMethod_Match - Action: getMapping - Predicate: N/A - Scenario: newModleElement
+
+Project: mytcuml
+ Class: AssociationEdgeFailureTest
+ Method: testNotifyGraphEdgeChangeForException2
+ Body: {
+
+        Uml1SemanticModelBridge semanticModelBridge = new Uml1SemanticModelBridge();
+        graphEdge.setSemanticModel(null);
+        try {
+            edge.notifyGraphEdgeChange("graph edge has been changed.");
+            // should not be here
+            fail("IllegalGraphElementException expected.");
+        } catch (IllegalGraphElementException e) {
+            // should be here
+        }
+
+        graphEdge.setSemanticModel(semanticModelBridge);
+        try {
+            edge.notifyGraphEdgeChange("graph edge has been changed.");
+            // should not be here
+            fail("IllegalGraphElementException expected.");
+        } catch (IllegalGraphElementException e) {
+            // should be here
+        }
+
+
+        try {
+            semanticModelBridge.setElement(new BindingImpl());
+            graphEdge.setSemanticModel(semanticModelBridge);
+            edge.notifyGraphEdgeChange("graph edge has been changed.");
+            // should not be here
+            fail("IllegalGraphElementException expected.");
+        } catch (IllegalGraphElementException e) {
+            // should be here
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setSemanticModel - Predicate: N/A - Scenario: semanticModelBridge
+
+Project: mytcuml
+ Class: AssociationEdgeFailureTest
+ Method: testAssociationEdgeForException2
+ Body: {
+        Uml1SemanticModelBridge semanticModelBridge = new Uml1SemanticModelBridge();
+        graphEdge.setSemanticModel(null);
+        try {
+            new AssociationEdge(graphEdge);
+            // should not be here
+            fail("IllegalGraphElementException expected.");
+        } catch (IllegalGraphElementException e) {
+            // should be here
+        }
+
+        graphEdge.setSemanticModel(semanticModelBridge);
+        try {
+            new AssociationEdge(graphEdge);
+            // should not be here
+            fail("IllegalGraphElementException expected.");
+        } catch (IllegalGraphElementException e) {
+            // should be here
+        }
+
+
+        try {
+            semanticModelBridge.setElement(new BindingImpl());
+            edge.getGraphEdge().setSemanticModel(semanticModelBridge);
+            graphEdge.setSemanticModel(semanticModelBridge);
+            new AssociationEdge(graphEdge);
+            // should not be here
+            fail("IllegalGraphElementException expected.");
+        } catch (IllegalGraphElementException e) {
+            // should be here
+        }
+
+
+    }
+ Pattern Name: FocalMethod_Match - Action: setSemanticModel - Predicate: N/A - Scenario: semanticModelBridge
+
+Project: mytcuml
+ Class: CutObjectActionUnitTest
+ Method: test_failure_CutObjectAction2
+ Body: {
+        try {
+            new CutObjectAction(object, null);
+            fail("IllegalArgumentException Expected.");
+        } catch (IllegalArgumentException e) {
+            // Check for the expected error message
+            assertEquals("The Exception message for IllegalArgumentException is wrong", e.getMessage(),
+                "clipboard in CutObjectAction#CutObjectAction should not be null.");
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: CutObjectActionUnitTest
+ Method: test_accuracy_CutObjectAction1
+ Body: {
+        Clipboard clipboard = new Clipboard("test");
+        CutObjectAction cutObjectAction1 = new CutObjectAction(object, clipboard);
+        // check for null
+        assertNotNull("CutObjectAction creation failed", cutObjectAction1);
+        // check for the variable initialization.
+        assertEquals("CutObjectAction creation failed", object, cutObjectAction1.getObject());
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: clipboard
+
+Project: mytcuml
+ Class: AddAttributeActionUnitTests
+ Method: testAddAttributeAction
+ Body: {
+        UndoableAbstractAction action = new AddAttributeAction(classifier, attribute);
+        assertNotNull("Create AddAttributeAction incorrectly.", action);
+        assertEquals("Create AddAttributeAction incorrectly.", classifier,
+                UnitTestsHelper.getObjectFieldValue(action, "classifier"));
+        assertEquals("Create AddAttributeAction incorrectly.", attribute,
+                UnitTestsHelper.getObjectFieldValue(action, "attribute"));
+    }
+ Pattern Name: FocalMethod_Match - Action: getObjectFieldValue - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: RemoveDiagramElementHandlerTest
+ Method: testActionPerformed_Accuracy
+ Body: {
+        try {
+            action.execute();
+        } catch (ActionExecutionException e) {
+            fail(e.getMessage());
+        }
+        handler.actionPerformed(event, EventValidation.SUCCESSFUL);
+    }
+ Pattern Name: FocalMethod_Match - Action: execute - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: RemoveDiagramElementHandlerTest
+ Method: testUndoActionPerformed_Accuracy
+ Body: {
+        try {
+            action.execute();
+        } catch (ActionExecutionException e) {
+            fail(e.getMessage());
+        }
+        handler.actionPerformed(event, EventValidation.SUCCESSFUL);
+        action.undo();
+        handler.undoActionPerformed(undoEvent, action);
+    }
+ Pattern Name: FocalMethod_Match - Action: execute - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testIndexOfConnectionAccuracy
+ Body: {
+        link.addConnection(connection1);
+        link.addConnection(connection1);
+        connection1 = new LinkEndImpl();
+        link.addConnection(connection1);
+
+        assertEquals("index should be 2.", 2, link.indexOfConnection(connection1));
+    }
+ Pattern Name: FocalMethod_Match - Action: addConnection - Predicate: N/A - Scenario: connection1
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testSetConnectionAccuracy
+ Body: {
+        link.addConnection(connection1);
+        connection1 = new LinkEndImpl();
+        link.setConnection(0, connection1);
+
+        assertEquals("connection in index 0 have not been updated.", 0, link.indexOfConnection(connection1));
+    }
+ Pattern Name: FocalMethod_Match - Action: addConnection - Predicate: N/A - Scenario: connection1
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testConstructor
+ Body: {
+        JLabel label = new JLabel("just for the test!");
+        JScrollPane sp = new JScrollPane(label);
+        BirdsEyeView view = new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+        JComponent comp = view.getInputObject();
+        assertEquals("The inputObjectViewDimension should be equals with expected.",
+                sp.getViewport().getSize(), view.getInputObjectViewDimension());
+        assertEquals("The inputObjectViewPosition should be equals with expected.",
+                view.getViewPort().getLocation(), view.getInputObjectViewPosition());
+        assertEquals("The inputObject should be equals with expected.", sp, comp);
+        assertNotNull("The zoom panel should not be null.", view.getZoomPanel());
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: comp
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testGetViewPort
+ Body: {
+        JLabel label = new JLabel("just for the test!");
+        JScrollPane sp = new JScrollPane(label);
+        BirdsEyeView view = new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+        assertEquals("The inputObjectViewDimension should be equals with expected.",
+                sp.getViewport().getSize(), view.getInputObjectViewDimension());
+        assertNotNull("The view port should not be null.", view.getViewPort());
+    }
+ Pattern Name: FocalMethod_Match - Action: getViewport - Predicate: N/A - Scenario: sp
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString
+ Body: {
+        TestHelper.loadSingleXMLConfig(NAMESPACE, "test_files" + File.separator + "AbstractElementFormatter.xml");
+
+        try {
+            String value = Util.getString(NAMESPACE, "exceptionStereotypeName");
+
+            assertEquals("Failed to get correct property value from configuration manager.", "exception", value);
+
+        } finally {
+            TestHelper.clearConfigFile(NAMESPACE);
+        }
+
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: value
+
+Project: mytcuml
+ Class: PasteCommentRelationshipGraphEdgeActionTest
+ Method: testCtor_CommentGraphNodeWithIllegalSemanticModel2
+ Body: {
+        GraphEdge edge = new GraphEdge();
+        SimpleSemanticModelElement ssme = new SimpleSemanticModelElement();
+        edge.setSemanticModel(ssme);
+        try {
+            new PasteCommentRelationshipGraphEdgeAction(edge, this.diagram);
+            fail("IllegalArgumentException is expected!");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setSemanticModel - Predicate: N/A - Scenario: ssme
+
+Project: mytcuml
+ Class: ActivityGraphXMIHandlerAccuracyTests
+ Method: testGetModelElementFactoryAccuracy
+ Body: {
+        modelElementFactory = new ModelElementFactory();
+        activityGraphXMIHandler.setModelElementFactory(modelElementFactory);
+        assertSame("The ModelElementFactory instance is incorrect.", modelElementFactory, activityGraphXMIHandler
+            .getModelElementFactory());
+    }
+ Pattern Name: FocalMethod_Match - Action: setModelElementFactory - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ActivityGraphXMIHandlerAccuracyTests
+ Method: testGetUmlModelManagerAccuracy
+ Body: {
+        modelManager = new UMLModelManager();
+        activityGraphXMIHandler.setUmlModelManager(modelManager);
+        assertSame("The UMLModelManager instance is incorrect.", modelManager, activityGraphXMIHandler
+            .getUmlModelManager());
+    }
+ Pattern Name: FocalMethod_Match - Action: setUmlModelManager - Predicate: N/A - Scenario: modelManager
+
+Project: mytcuml
+ Class: ActivityGraphXMIHandlerAccuracyTests
+ Method: testSetModelElementFactoryAccuracy
+ Body: {
+        modelElementFactory = new ModelElementFactory();
+        activityGraphXMIHandler.setModelElementFactory(modelElementFactory);
+        assertSame("The ModelElementFactory instance is incorrect.", modelElementFactory, AccuracyTestHelper
+            .getPrivateField(ActivityGraphXMIHandler.class, activityGraphXMIHandler, "modelElementFactory"));
+    }
+ Pattern Name: FocalMethod_Match - Action: setModelElementFactory - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ActivityGraphXMIHandlerAccuracyTests
+ Method: testActivityGraphXMIHandlerAccuracy
+ Body: {
+        activityGraphXMIHandler = new ActivityGraphXMIHandler();
+        assertNull("The XMIReader should be null.", AccuracyTestHelper.getPrivateField(DefaultXMIHandler.class,
+            activityGraphXMIHandler, "reader"));
+        assertNotNull("The ModelElementFactory instance should not be null.", AccuracyTestHelper.getPrivateField(
+            ActivityGraphXMIHandler.class, activityGraphXMIHandler, "modelElementFactory"));
+        assertNotNull("The UMLModelManager instance should not be null.", AccuracyTestHelper.getPrivateField(
+            ActivityGraphXMIHandler.class, activityGraphXMIHandler, "modelManager"));
+    }
+ Pattern Name: FocalMethod_Match - Action: getPrivateField - Predicate: N/A - Scenario: activityGraphXMIHandler
+
+Project: mytcuml
+ Class: ActivityGraphXMIHandlerAccuracyTests
+ Method: testSetUmlModelManagerAccuracy
+ Body: {
+        modelManager = new UMLModelManager();
+        activityGraphXMIHandler.setUmlModelManager(modelManager);
+        assertSame("The UMLModelManager instance is incorrect.", modelManager, AccuracyTestHelper.getPrivateField(
+            ActivityGraphXMIHandler.class, activityGraphXMIHandler, "modelManager"));
+    }
+ Pattern Name: FocalMethod_Match - Action: setUmlModelManager - Predicate: N/A - Scenario: modelManager
+
+Project: mytcuml
+ Class: ChangeEntityNameHandlerTest
+ Method: testActionPerformed_Accuracy
+ Body: {
+        try {
+            action.execute();
+        } catch (ActionExecutionException e) {
+            fail(e.getMessage());
+        }
+        handler.actionPerformed(event, EventValidation.SUCCESSFUL);
+        assertEquals("The DocumentTree should display the new name.", DeployHelper.getDocumentTreeNode(
+            modelElement, MAINFRAME.getDocumentTree().getCurrentPanel().getCurrentView()).get(0).toString(),
+            newName);
+    }
+ Pattern Name: FocalMethod_Match - Action: execute - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForFinalState
+ Body: {
+        FinalState finalState = new FinalStateImpl();
+
+        FinalState content = ActivityObjectCloneUtility.clone(finalState);
+        assertNotNull("Failed to return the correct value.", content);
+        assertTrue("Expects the finalState is cloned", content != finalState);
+        assertNull("The state machine for the state should not be set.", content.getStateMachine());
+    }
+ Pattern Name: FocalMethod_Match - Action: getStateMachine - Predicate: N/A - Scenario: content
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForActionState
+ Body: {
+        ActionState actionState = new ActionStateImpl();
+
+        ActionState content = ActivityObjectCloneUtility.clone(actionState);
+        assertNotNull("Failed to return the correct value.", content);
+        assertTrue("Expects the actionState is cloned", content != actionState);
+        assertNull("The state machine for the state should not be set.", content.getStateMachine());
+    }
+ Pattern Name: FocalMethod_Match - Action: getStateMachine - Predicate: N/A - Scenario: content
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForVertex
+ Body: {
+        SimpleState state = createSimpleState();
+
+        SimpleState content = ActivityObjectCloneUtility.clone(state);
+
+        assertEquals("Failed to clone the StateVertex instance.", state.getName(), content.getName());
+        assertEquals("Failed to clone the StateVertex instance.", state.getVisibility(), content.getVisibility());
+        assertEquals("Failed to clone the StateVertex instance.", state.isSpecification(), content.isSpecification());
+
+        assertEquals("Failed to clone the StateVertex instance.", 1, content.getStereotypes().size());
+        assertSame("The stereotype should be set by reference.", state.getStereotypes().iterator().next(),
+            content.getStereotypes().iterator().next());
+
+        assertEquals("Failed to clone the StateVertex instance.", 1, content.getTaggedValues().size());
+        assertNotSame("The tagged value should be set by clone.", state.getTaggedValues().iterator().next(),
+            content.getTaggedValues().iterator().next());
+
+        assertSame("The namespace should be set by reference.", state.getNamespace(), content.getNamespace());
+        assertEquals("The parameter template should be set by reference.", state.getParameterTemplate(),
+            content.getParameterTemplate());
+
+        assertEquals("Failed to clone the StateVertex instance.", 1, content.getDefaultParameters().size());
+        assertSame("The default parameters should be set by reference.",
+            state.getDefaultParameters().iterator().next(), content.getDefaultParameters().iterator().next());
+
+        assertEquals("Failed to clone the StateVertex instance.", 1, content.getTemplateParameters().size());
+        assertNotSame("The template parameters should be set by clone.",
+            state.getTemplateParameters().iterator().next(), content.getTemplateParameters().iterator().next());
+
+        assertEquals("Failed to clone the StateVertex instance.", 1, content.getTemplateArguments().size());
+        assertSame("The template arguments should be set by reference.",
+            state.getTemplateArguments().iterator().next(), content.getTemplateArguments().iterator().next());
+
+        assertEquals("Failed to clone the StateVertex instance.", 1, content.getElementImports().size());
+        assertSame("The element imports should be set by reference.", state.getElementImports().iterator().next(),
+            content.getElementImports().iterator().next());
+    }
+ Pattern Name: FocalMethod_Match - Action: getName - Predicate: N/A - Scenario: content
+
+Project: mytcuml
+ Class: DecisionNodeTest
+ Method: testDecisionNode_Invalid_GraphNode
+ Body: {
+        try {
+            GraphNode node = TestUtil.createGraphNodeForActivityState(new ActionStateImpl());
+            new DecisionNode(node, properties, position, bound);
+            fail("IllegalGraphElementException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            fail(iae.getMessage());
+        } catch (IllegalGraphElementException e) {
+            // Success
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: iae
+
+Project: mytcuml
+ Class: AddActorActionTest
+ Method: testConstructor_ActorUMLModelManager_Success
+ Body: {
+        addActorAction = new AddActorAction(actor, manager);
+        assertNotNull(addActorAction);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: addActorAction
+
+Project: mytcuml
+ Class: AddActorActionTest
+ Method: testConstructor_ActorUMLModelNamespace_Success
+ Body: {
+        addActorAction = new AddActorAction(actor, manager, namespace);
+        assertNotNull(addActorAction);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: addActorAction
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadEnumeration
+ Body: {
+        String xmlFile = "test_files" + File.separator + "enumerationJavaFile.xml";
+        Element elt = TestHelper.parseDOMDocument(xmlFile);
+
+        Enumeration enumeration = loader.loadEnumeration(elt);
+
+        assertEquals("Failed to return the correct enumeration.", "Thread.State", enumeration.getName());
+    }
+ Pattern Name: FocalMethod_Match - Action: loadEnumeration - Predicate: N/A - Scenario: elt
+
+Project: mytcuml
+ Class: BaseNodeAccuracyTest
+ Method: testGetFontColorAccuracy
+ Body: {
+        assertNull("initial value should be null.", baseNode.getFontColor());
+        // set property
+        property.setKey("font_color");
+        property.setValue("0xFF00F0");
+        graphNode.addProperty(property);
+        // create node
+        baseNode = new CommentNode(graphNode, propertyMapping);
+        assertNotNull("color should not be null", baseNode.getFontColor());
+        assertEquals("color should be setted correctly.", 0xFF, baseNode.getFontColor().getRed());
+        assertEquals("color should be setted correctly.", 0x00, baseNode.getFontColor().getGreen());
+        assertEquals("color should be setted correctly.", 0xF0, baseNode.getFontColor().getBlue());
+    }
+ Pattern Name: FocalMethod_Match - Action: getFontColor - Predicate: N/A - Scenario: baseNode
+
+Project: mytcuml
+ Class: BaseNodeAccuracyTest
+ Method: testGetStrokeColorAccuracy
+ Body: {
+        assertNull("initial value should be null.", baseNode.getStrokeColor());
+        // set property
+        property.setKey("stroke_color");
+        property.setValue("0xFF0000");
+        graphNode.addProperty(property);
+        baseNode = new CommentNode(graphNode, propertyMapping);
+        // create node
+        assertNotNull("color should not be null", baseNode.getStrokeColor());
+        assertEquals("color should be setted correctly.", 0xFF, baseNode.getStrokeColor().getRed());
+        assertEquals("color should be setted correctly.", 0x00, baseNode.getStrokeColor().getGreen());
+        assertEquals("color should be setted correctly.", 0x00, baseNode.getStrokeColor().getBlue());
+    }
+ Pattern Name: FocalMethod_Match - Action: getStrokeColor - Predicate: N/A - Scenario: baseNode
+
+Project: mytcuml
+ Class: CutSynchronousMessageActionAccuracyTests
+ Method: testCtor_2_Accuracy
+ Body: {
+        action = new CutSynchronousMessageAction(stimulus, Toolkit.getDefaultToolkit().getSystemClipboard());
+
+        assertNotNull("object not successfully created.", action);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: CutSynchronousMessageActionAccuracyTests
+ Method: testGetPresentationNameAccuracy
+ Body: {
+        action = new CutSynchronousMessageAction(stimulus);
+
+        assertEquals("incorrect presentation name", "Cut Synchronous Message", action.getPresentationName());
+    }
+ Pattern Name: FocalMethod_Match - Action: getPresentationName - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: CutSynchronousMessageActionAccuracyTests
+ Method: testCtor_1_Accuracy
+ Body: {
+        action = new CutSynchronousMessageAction(stimulus);
+
+        assertNotNull("object not successfully created.", action);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: CreateClassDiagramActionAccuracyTests
+ Method: testCreateClassDiagramActionCtor_NullElement
+ Body: {
+        test = new CreateClassDiagramAction(null, "title");
+        // check for creating successful.
+        assertNotNull("Create failed.", test);
+
+        // check the number of the diagrams.
+        assertEquals("The list should be empty.", 0,
+            manager.getDiagrams().size());
+
+        test.execute();
+        // check the number of the diagrams.
+        assertEquals("The list should have 1 element.", 1,
+            manager.getDiagrams().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: execute - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: CSharpGeneratorAccuracyTests
+ Method: test_enum
+ Body: {
+        String results = test.createClassifierCode(testEnum);
+
+        int i = results.indexOf("///");
+        i = results.indexOf("public enum AccuracyTestEnum", i);
+        assertTrue("interface header generated incorrectly", i >= 0);
+        assertFalse("interface header generated incorrectly", results.contains(":"));
+        i = results.indexOf("{", i);
+        assertTrue("{ not generated", i >= 0);
+        i = results.indexOf("}", i);
+        assertTrue("} not generated", i >= 0);
+    }
+ Pattern Name: FocalMethod_Match - Action: indexOf - Predicate: N/A - Scenario: results
+
+Project: mytcuml
+ Class: CSharpGeneratorAccuracyTests
+ Method: test_interface
+ Body: {
+        String results = test.createClassifierCode(testInterface);
+
+        int i = results.indexOf("///");
+        i = results.indexOf("public interface AccuracyTestInterface", i);
+        assertTrue("interface header generated incorrectly", i >= 0);
+        assertFalse("interface header generated incorrectly", results.contains(":"));
+        i = results.indexOf("{", i);
+        assertTrue("{ not generated", i >= 0);
+        i = results.indexOf("}", i);
+        assertTrue("} not generated", i >= 0);
+    }
+ Pattern Name: FocalMethod_Match - Action: indexOf - Predicate: N/A - Scenario: results
+
+Project: mytcuml
+ Class: CSharpGeneratorAccuracyTests
+ Method: test_extend_implement
+ Body: {
+        String results = test.createClassifierCode(testChildClass);
+
+        int i = results.indexOf("///");
+        i = results.indexOf("class ChildClass : AccuracyTestClass, AccuracyTestInterface, SomeOtherInterface", i);
+        assertTrue("class definition not found", i >= 0);
+    }
+ Pattern Name: FocalMethod_Match - Action: indexOf - Predicate: N/A - Scenario: results
+
+Project: mytcuml
+ Class: CSharpGeneratorAccuracyTests
+ Method: test_struct
+ Body: {
+        Stereotype stereotype = new StereotypeImpl();
+        stereotype.setName("struct");
+        testInterface.addStereotype(stereotype);
+
+        String results = test.createClassifierCode(testInterface);
+        int i = results.indexOf("///");
+        i = results.indexOf("public struct AccuracyTestInterface", i);
+        assertTrue("struct definition not found", i >= 0);
+    }
+ Pattern Name: FocalMethod_Match - Action: indexOf - Predicate: N/A - Scenario: results
+
+Project: mytcuml
+ Class: CreateClassDiagramActionAccuracyTests
+ Method: testCreateClassDiagramActionCtor_NullElement
+ Body: {
+        test = new CreateClassDiagramAction(null, "title");
+        // check for creating successful.
+        assertNotNull("Create failed.", test);
+
+        // check the number of the diagrams.
+        assertEquals("The list should be empty.", 0,
+            manager.getDiagrams().size());
+
+        test.execute();
+        // check the number of the diagrams.
+        assertEquals("The list should have 1 element.", 1,
+            manager.getDiagrams().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: execute - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: InteractionImplTests
+ Method: test_Ctor
+ Body: {
+        Interaction intr = new InteractionImpl();
+        assertTrue("Interaction doesn't implement ModelElement", intr instanceof ModelElement);
+
+        assertNotNull("Messages collection wasn't initialized", intr.getMessages());
+        assertEquals("Interaction initially contains messages", 0, intr.getMessages().size());
+        assertNotNull("Lifelines collection wasn't initialized", intr.getLifelines());
+        assertEquals("Interaction initially contains lifelines", 0, intr.getLifelines().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessages - Predicate: N/A - Scenario: intr
+
+Project: mytcuml
+ Class: TextFieldAccuracyTests
+ Method: testCtor2
+ Body: {
+        textField = new TextField(node, AnchorType.Line);
+        assertNotNull("Should create the instance successfully.", textField);
+    }
+ Pattern Name: FocalMethod_Match - Action:  - Predicate: N/A - Scenario: textField
+
+Project: mytcuml
+ Class: ScrollDiagramViewActionAccuracyTests
+ Method: testScrollDiagramViewActionCtor_Times
+ Body: {
+        // creat some point.
+        Point point1 = new Point();
+        point1.setX(3.2);
+        point1.setY(5.4);
+
+        Point point2 = new Point();
+        point2.setX(5.7);
+        point2.setY(9.3);
+
+        Point[] points = new Point[] {point1, point2};
+
+        for (Point point : points) {
+            test = new ScrollDiagramViewAction(diagram, point);
+            // check for creating successful.
+            assertNotNull("Create failed.", test);
+            // adjust the diagram's viewpoint.
+            test.execute();
+            // check new viewpoint here.
+            assertEquals("Equal viewpoint expected.", point,
+                diagram.getViewport());
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: setX - Predicate: N/A - Scenario: point
+
+Project: mytcuml
+ Class: RemoveActivityDiagramActionAccuracyTests
+ Method: testRemoveActivityDiagramActionCtor_Basic
+ Body: {
+        //  get all the diagrams.
+        List<Diagram> diagrams = manager.getDiagrams();
+        // check the number of the diagrams.
+        assertEquals("The list should have 1 element.", 1, diagrams.size());
+
+        Diagram diagram = diagrams.get(0);
+        // check the number of the activityGraphs.
+        assertEquals("The list should have 1 element.", 1,
+            manager.getActivityGraphs().size());
+
+        // creat a RemoveActivityDiagramAction
+        test = new RemoveActivityDiagramAction(diagram);
+        // check for creating successful.
+        assertNotNull("Create failed.", test);
+
+        test.executeAction();
+        //  check the number of the diagrams.
+        assertEquals("The list should be empty.", 0,
+            manager.getDiagrams().size());
+        // check the number of the activityGraphs.
+        assertEquals("The list should be empty.", 0,
+            manager.getActivityGraphs().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: executeAction - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: RemoveActivityDiagramActionAccuracyTests
+ Method: testAction_Operation_Detail
+ Body: {
+        // get the diagram from the manager.
+        Diagram diagram = manager.getDiagrams().get(0);
+        // creat a RemoveActivityDiagramAction
+        test = new RemoveActivityDiagramAction(diagram);
+        // check for creating successful.
+        assertNotNull("Create failed.", test);
+
+        test.executeAction();
+        //  check the number of the diagrams.
+        assertEquals("The list should be empty.", 0,
+            manager.getDiagrams().size());
+        // check the number of the activityGraphs.
+        assertEquals("The list should be empty.", 0,
+            manager.getActivityGraphs().size());
+
+        test.undoAction();
+        // check the number of the diagrams.
+        assertEquals("The list should be empty.", 1,
+            manager.getDiagrams().size());
+        // check the number of the activityGraphs.
+        assertEquals("The list should be empty.", 1,
+            manager.getActivityGraphs().size());
+
+        test.redoAction();
+        // check the number of the diagrams.
+        assertEquals("The list should be empty.", 0,
+            manager.getDiagrams().size());
+        // check the number of the activityGraphs.
+        assertEquals("The list should be empty.", 0,
+            manager.getActivityGraphs().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: executeAction - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: RemoveActivityDiagramActionAccuracyTests
+ Method: testAction_Operation_Basic
+ Body: {
+        // get the diagram from the manager.
+        Diagram diagram = manager.getDiagrams().get(0);
+        // creat a RemoveActivityDiagramAction
+        test = new RemoveActivityDiagramAction(diagram);
+        // check for creating successful.
+        assertNotNull("Create failed.", test);
+
+        test.executeAction();
+        //  check the number of the diagrams.
+        assertEquals("The list should be empty.", 0,
+            manager.getDiagrams().size());
+        // check the number of the activityGraphs.
+        assertEquals("The list should be empty.", 0,
+            manager.getActivityGraphs().size());
+
+        test.undoAction();
+        // check the number of the diagrams.
+        assertEquals("The list should be empty.", 1,
+            manager.getDiagrams().size());
+        // check the number of the activityGraphs.
+        assertEquals("The list should be empty.", 1,
+            manager.getActivityGraphs().size());
+    }
+ Pattern Name: FocalMethod_Match - Action: executeAction - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: AddMessageActionUnitTest
+ Method: test_failure_AddMessageAction1
+ Body: {
+        try {
+            new MockAddMessageAction(stimulus, null, modelManager);
+            fail("IllegalArgumentException Expected.");
+        } catch (IllegalArgumentException e) {
+            // Check for the expected error message
+            assertEquals("The Exception message for IllegalArgumentException is wrong", e.getMessage(),
+                "collaboration in AddMessageAction#AddMessageAction should not be null.");
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: AddMessageActionUnitTest
+ Method: test_failure_AddMessageAction2
+ Body: {
+        try {
+            new MockAddMessageAction(stimulus, collaboration, null);
+        } catch (IllegalArgumentException e) {
+            // Check for the expected error message
+            assertEquals("The Exception message for IllegalArgumentException is wrong", e.getMessage(),
+                "manager in AddMessageAction#AddMessageAction should not be null.");
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetPropertyMap
+ Body: {
+        TestHelper.loadSingleXMLConfig(TestHelper.NAMESPACE, TestHelper.CONFIG_FILE);
+        try {
+            Map<String, String> map = Util.getPropertyMap(TestHelper.NAMESPACE, "fontSize");
+
+            assertEquals("Failed to return the correct value.", 4, map.size());
+            assertEquals("Failed to return the correct value.", "8", map.get("small"));
+            assertEquals("Failed to return the correct value.", "6", map.get("smaller"));
+            assertEquals("Failed to return the correct value.", "10", map.get("normal"));
+            assertEquals("Failed to return the correct value.", "10", map.get("default"));
+        } finally {
+            TestHelper.clearConfigFile(TestHelper.NAMESPACE);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: size - Predicate: N/A - Scenario: map
+
+Project: mytcuml
+ Class: ActivityObjectCloneExceptionAccuracyTests
+ Method: testActivityObjectCloneExceptionString
+ Body: {
+        test = new ActivityObjectCloneException("test");
+        assertNotNull("Fails to create exception.", test);
+        assertEquals("Wrong message.", "test", test.getMessage());
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: ActivityObjectCloneExceptionAccuracyTests
+ Method: testActivityObjectCloneExceptionStringThrowable
+ Body: {
+        test = new ActivityObjectCloneException("test", new IllegalArgumentException());
+        assertNotNull("Fails to create exception.", test);
+        assertEquals("Wrong message.", "test", test.getMessage().substring(0, 4));
+        assertEquals("Wrong cause.", IllegalArgumentException.class, test.getCause().getClass());
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: test
+
+Project: mytcuml
+ Class: ObjectUndoableActionAccuracyTests
+ Method: testObjectUndoableActionAccuracy2
+ Body: {
+        Object object = new ObjectImpl();
+        objectUndoableAction = new AccuracyObjectUndoableAction(new CollaborationTransfer(object));
+
+        assertNotNull("object not created successfully.", objectUndoableAction);
+        assertSame(object, objectUndoableAction.getObject());
+    }
+ Pattern Name: FocalMethod_Match - Action: getObject - Predicate: N/A - Scenario: objectUndoableAction
+
+Project: mytcuml
+ Class: ObjectUndoableActionAccuracyTests
+ Method: testObjectUndoableActionAccuracy1
+ Body: {
+        Object object = new ObjectImpl();
+        objectUndoableAction = new AccuracyObjectUndoableAction(object);
+
+        assertNotNull("object not created successfully.", objectUndoableAction);
+        assertSame(object, objectUndoableAction.getObject());
+    }
+ Pattern Name: FocalMethod_Match - Action: getObject - Predicate: N/A - Scenario: objectUndoableAction
+
+Project: mytcuml
+ Class: MessageImplStressTests
+ Method: testToTCUMLElement
+ Body: {
+        begin();
+        for (int i = 0; i < 100; i++) {
+            MessageImpl message = new MessageImpl();
+            Stereotype stereotype = new StereotypeImpl();
+            stereotype.addStereotype(new StereotypeImpl());
+            message.addStereotype(stereotype);
+            message.toTCUMLElement();
+        }
+        printResult("MessageImpl#toTCUMLElement", 100);
+    }
+ Pattern Name: FocalMethod_Match - Action: addStereotype - Predicate: N/A - Scenario: message
+
+Project: mytcuml
+ Class: MessageImplStressTests
+ Method: testToTCUMLStimulus
+ Body: {
+        begin();
+        for (int i = 0; i < 100; i++) {
+            MessageImpl message = new MessageImpl();
+            Stereotype stereotype = new StereotypeImpl();
+            stereotype.addStereotype(new StereotypeImpl());
+            message.addStereotype(stereotype);
+            message.setMessageSort("asynchCall");
+            message.toTCUMLStimulus();
+        }
+        printResult("MessageImpl#toTCUMLStimulus", 100);
+    }
+ Pattern Name: FocalMethod_Match - Action: addStereotype - Predicate: N/A - Scenario: message
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel6
+ Body: {
+        try {
+            new DocumentationPanel("docPanel_Invalid_4");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof IllegalReferenceException);
+            assertTrue(e.getMessage().indexOf(
+                    "Error occurs while getting ObjectFactory") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel12
+ Body: {
+        try {
+            new DocumentationPanel("docPanel_Invalid_8");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof InvalidClassSpecificationException);
+            assertTrue(e.getMessage().indexOf(
+                    "Error occurs while creating object through ObjectFactory") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel8
+ Body: {
+        try {
+            new DocumentationPanel("docPanel_Invalid_6");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof ClassCastException);
+            assertTrue(e.getMessage().indexOf(
+                    "Error occurs while creating editor through ObjectFactory") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel3
+ Body: {
+        try {
+            new DocumentationPanel("docPanel_Invalid_1");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof IllegalArgumentException);
+            assertTrue(e.getMessage().indexOf(
+                    "Error occurs while getting ObjectFactory or creating object") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel9
+ Body: {
+        try {
+            new DocumentationPanel(null, null);
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getMessage().indexOf(
+                    "Document editor should not be null.") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getMessage - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel2
+ Body: {
+        try {
+            new DocumentationPanel("unknown");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof UnknownNamespaceException);
+            assertTrue(e.getMessage().indexOf(
+                    "The given namespace is unknown") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel4
+ Body: {
+        try {
+            new DocumentationPanel("docPanel_Invalid_2");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof IllegalArgumentException);
+            assertTrue(e.getMessage().indexOf(
+                    "Error occurs while getting ObjectFactory or creating object") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+Project: mytcuml
+ Class: DocumentationPanelTestExp
+ Method: testDocumentationPanel5
+ Body: {
+        try {
+            new DocumentationPanel("docPanel_Invalid_3");
+            fail("DocumentationPanelConfigurationException is expected");
+        } catch (DocumentationPanelConfigurationException e) {
+            assertTrue(e.getCause() instanceof SpecificationConfigurationException);
+            assertTrue(e.getMessage().indexOf(
+                    "Error occurs while getting ObjectFactory") != -1);
+        }
+    }
+ Pattern Name: FocalMethod_Match - Action: getCause - Predicate: N/A - Scenario: e
+
+
+
+
+
+
+

@@ -1,0 +1,433 @@
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+testPut -> Regex Match: RegexMatch - Match Action: Put - Match Predicate: null - Match Scenario: null
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+
+matches: 5.0 total: 5.0
+Coverage: 100%testPut -> Regex Match: RegexMatch - Match Action: Put - Match Predicate: null - Match Scenario: null
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+
+matches: 5.0 total: 5.0
+Coverage: 100%testPut -> Regex Match: RegexMatch - Match Action: Put - Match Predicate: null - Match Scenario: null
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+
+matches: 5.0 total: 5.0
+Coverage: 100%testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testPut -> Regex Match: RegexMatch - Match Action: Put - Match Predicate: null - Match Scenario: null
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+
+matches: 5.0 total: 5.0
+Coverage: 100%testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+
+matches: 5.0 total: 5.0
+Coverage: 100%testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+
+matches: 5.0 total: 5.0
+Coverage: 100%testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+
+matches: 5.0 total: 5.0
+Coverage: 100%shouldHandleQueryStringSpaceEncodingProperly -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnTheCompleteUrl -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAllowAddingQuerystringParametersAfterCreation -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldGetQueryStringParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldSetBodyParamsAndAddContentLength -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldSetPayloadAndHeaders -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfResponseIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsNull
+shouldExtractTokenFromResponseWithExpiresParam -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromResponseWithExpiresAndRefreshParam -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+shouldThrowExceptionIfErrorResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ErrorResponse
+shouldExtractTokenFromOAuthStandardResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromResponseWithManyParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfResponseIsEmptyString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsEmptyString
+shouldFailForNullParameter -> Regex Match: RegexMatch - Match Action: NullParameter - Match Predicate: Fail - Match Scenario: null
+shouldCorrectlyDecodeAStream -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldFailWithBrokenStream -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldPercentEncodeAllSpecialCharacters -> NLP Match: VerbPhraseWithoutPre_test - Match Action: encode - Match Predicate: N/A - Match Scenario: percent
+shouldThrowExceptionIfStringToDecodeIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: StringToDecodeIsNull
+shouldThrowExceptionIfStringToEncodeIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: StringToEncodeIsNull
+shouldNotPercentEncodeReservedCharacters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldPercentEncodeCorrectlyTwitterCodingExamples -> NLP Match: VerbPhraseWithoutPre_test - Match Action: encode - Match Predicate: twitter - Match Scenario: percent
+shouldPercentEncodeString -> NLP Match: VerbPhraseWithoutPre_test - Match Action: encode - Match Predicate: N/A - Match Scenario: percent
+shouldFormURLDecodeString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+testNonValidIllegalSymbolCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidIllegalSymbolCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidEmptyCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidEmptyCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidNullCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidNullCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testValidCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testValidCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidLastWhiteSpaceCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidLastWhiteSpaceCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testParseBoundaryFromHeader -> Regex Match: RegexMatch_SingleEntity - Match Action: parseBoundaryFromHeader - Match Predicate: N/A - Match Scenario: N/A
+testNonValidTooLongCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidTooLongCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+shouldReturnTimestampInSeconds -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnNonce -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnSuccess -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnIOException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnCancel -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnFailure -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReportOAuthException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnSuccess -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReportOAuthException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnFailure -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnCancel -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnIOException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfApiSecretIsEmpty -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ApiSecretIsEmpty
+shouldReturnSignature -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfBaseStringIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: BaseStringIsNull
+shouldThrowExceptionIfApiSecretIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ApiSecretIsNull
+shouldReturnSignatureMethodString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfBaseStringIsEmpty -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: BaseStringIsEmpty
+testGeneratingPKCE -> NLP Match: VerbPhraseWithPre_test - Match Action: generating - Match Predicate: N/A - Match Scenario: p
+shouldProduceCorrectRequestSync -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProduceCorrectRequestAsync -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAddOAuthParamters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldNotSentHeaderTwice -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfParameterIsNotOAuth -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ParameterIsNotOAuth
+testCRLFMultipartPayload -> Regex Match: RegexMatch - Match Action: testCRLFMultipartPayload - Match Predicate: null - Match Scenario: null
+testFileByteArrayBodyPartPayloadMultipartPayload -> NLP Match: VerbPhraseWithPre_test - Match Action: file - Match Predicate: N/A - Match Scenario: byte
+testSimpleMultipartPayload -> Regex Match: RegexMatch - Match Action: testSimpleMultipartPayload - Match Predicate: null - Match Scenario: null
+testEmptyMultipartPayload -> Regex Match: RegexMatch - Match Action: testEmptyMultipartPayload - Match Predicate: null - Match Scenario: null
+testComplexMultipartPayload -> Regex Match: RegexMatch - Match Action: testComplexMultipartPayload - Match Predicate: null - Match Scenario: null
+shouldParseScopeFromResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfResponseIsError -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsError
+shouldParseResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfForNullParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ForNullParameters
+shouldThrowExceptionIfForEmptyStrings -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ForEmptyStrings
+testEscapedJsonInResponse -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: escaped - Match Predicate: in - Match Scenario: json
+shouldNotDependOnRawString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnUrlParam -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldTestEqualityBasedOnTokenAndSecret -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnSameHashCodeForEqualObjects -> Regex Match: RegexMatch - Match Action: EqualObjects - Match Predicate: ReturnSameHashCode - Match Scenario: null
+shouldNotBeEqualToNullOrOtherObjects -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionForEmptyStrings -> Regex Match: RegexMatch - Match Action: EmptyStrings - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionForNullObjects -> Regex Match: RegexMatch - Match Action: NullObjects - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionForSpacesOnlyStrings -> Regex Match: RegexMatch - Match Action: SpacesOnlyStrings - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionForNullStrings -> Regex Match: RegexMatch - Match Action: NullStrings - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionIfResponseIsError -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsError
+shouldExtractStandardHeader -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExceptionIfRequestIsNull -> NLP Match: VerbPhraseWithoutPre_test - Match Action: is - Match Predicate: N/A - Match Scenario: exception
+shouldExceptionIfRequestHasNoOAuthParams -> NLP Match: VerbPhraseWithoutPre_test - Match Action: has - Match Predicate: N/A - Match Scenario: exception
+shouldReportOAuthException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnSuccess -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnSignature -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnSignatureMethodString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+testSigGeneration -> NLP Match: VerbPhraseWithPre_test - Match Action: sig - Match Predicate: N/A - Match Scenario: generation
+shouldIncludePort8080 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractBaseStringFromOAuthRequest -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExcludePort443 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfRquestHasNoOAuthParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: RquestHasNoOAuthParameters
+shouldThrowExceptionIfRquestIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: RquestIsNull
+shouldExcludePort80v2 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExcludePort443v2 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExcludePort80 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProperlyEncodeSpaces -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+testErrorExtraction -> Regex Match: RegexMatch - Match Action: testErrorExtraction - Match Predicate: null - Match Scenario: null
+shouldAppendParametersToUrlWithQuerystring -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProperlySortParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAppendParametersToSimpleUrl -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAppendNothingToQuerystringIfGivenEmptyMap -> Regex Match: RegexMatch - Match Action: null - Match Predicate: AppendNothingToQuerystring - Match Scenario: GivenEmptyMap
+shouldProperlySortParametersWithTheSameName -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldNotModifyTheOriginalParameterList -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionWhenAppendingNullMapToQuerystring -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: AppendingNullMapToQuerystring
+shouldExtractTokenFromResponseWithCallbackConfirmed -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromInvertedOAuthStandardResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenWithEmptySecret -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfSecretIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: SecretIsAbsent
+shouldThrowExceptionIfResponseIsEmptyString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsEmptyString
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+shouldThrowExceptionIfResponseIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsNull
+shouldExtractTokenFromOAuthStandardResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+
+matches: 109.0 total: 109.0
+Coverage: 100%testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+
+matches: 5.0 total: 5.0
+Coverage: 100%testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+
+matches: 5.0 total: 5.0
+Coverage: 100%
+matches: 0.0 total: 0.0
+Coverage: �%shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+testGetSslProtocol -> NLP Match: VerbPhraseWithPre_test - Match Action: get - Match Predicate: N/A - Match Scenario: ssl
+testGet -> Regex Match: RegexMatch - Match Action: Get - Match Predicate: null - Match Scenario: null
+testEntries -> NLP Match: NounPhrase - Match Action: N/A - Match Predicate: N/A - Match Scenario: entries
+testExecute_ActionExecutionException -> NLP Match: VerbPhraseWithPre_test - Match Action: execute - Match Predicate: N/A - Match Scenario: action
+
+matches: 5.0 total: 5.0
+Coverage: 100%shouldCorrectlyDecodeAStream -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldFailWithBrokenStream -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldFailForNullParameter -> Regex Match: RegexMatch - Match Action: NullParameter - Match Predicate: Fail - Match Scenario: null
+shouldAddOAuthParamters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfParameterIsNotOAuth -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ParameterIsNotOAuth
+shouldNotSentHeaderTwice -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExceptionIfRequestIsNull -> NLP Match: VerbPhraseWithoutPre_test - Match Action: is - Match Predicate: N/A - Match Scenario: exception
+shouldExtractStandardHeader -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExceptionIfRequestHasNoOAuthParams -> NLP Match: VerbPhraseWithoutPre_test - Match Action: has - Match Predicate: N/A - Match Scenario: exception
+shouldReturnSignatureMethodString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfBaseStringIsEmpty -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: BaseStringIsEmpty
+shouldReturnSignature -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfApiSecretIsEmpty -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ApiSecretIsEmpty
+shouldThrowExceptionIfBaseStringIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: BaseStringIsNull
+shouldThrowExceptionIfApiSecretIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ApiSecretIsNull
+testErrorExtraction -> Regex Match: RegexMatch - Match Action: testErrorExtraction - Match Predicate: null - Match Scenario: null
+shouldProperlyEncodeSpaces -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExcludePort80 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfRquestHasNoOAuthParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: RquestHasNoOAuthParameters
+shouldExcludePort80v2 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExcludePort443v2 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldIncludePort8080 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExcludePort443 -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractBaseStringFromOAuthRequest -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfRquestIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: RquestIsNull
+testFileByteArrayBodyPartPayloadMultipartPayload -> NLP Match: VerbPhraseWithPre_test - Match Action: file - Match Predicate: N/A - Match Scenario: byte
+testEmptyMultipartPayload -> Regex Match: RegexMatch - Match Action: testEmptyMultipartPayload - Match Predicate: null - Match Scenario: null
+testCRLFMultipartPayload -> Regex Match: RegexMatch - Match Action: testCRLFMultipartPayload - Match Predicate: null - Match Scenario: null
+testComplexMultipartPayload -> Regex Match: RegexMatch - Match Action: testComplexMultipartPayload - Match Predicate: null - Match Scenario: null
+testSimpleMultipartPayload -> Regex Match: RegexMatch - Match Action: testSimpleMultipartPayload - Match Predicate: null - Match Scenario: null
+shouldReturnSignatureMethodString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnSignature -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnTheCompleteUrl -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldSetBodyParamsAndAddContentLength -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldSetPayloadAndHeaders -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldHandleQueryStringSpaceEncodingProperly -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldGetQueryStringParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAllowAddingQuerystringParametersAfterCreation -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+testSigGeneration -> NLP Match: VerbPhraseWithPre_test - Match Action: sig - Match Predicate: N/A - Match Scenario: generation
+testGeneratingPKCE -> NLP Match: VerbPhraseWithPre_test - Match Action: generating - Match Predicate: N/A - Match Scenario: p
+shouldExtractTokenWithEmptySecret -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfSecretIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: SecretIsAbsent
+shouldThrowExceptionIfResponseIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsNull
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+shouldExtractTokenFromInvertedOAuthStandardResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromOAuthStandardResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromResponseWithCallbackConfirmed -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfResponseIsEmptyString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsEmptyString
+shouldThrowExceptionIfResponseIsError -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsError
+testEscapedJsonInResponse -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: escaped - Match Predicate: in - Match Scenario: json
+shouldParseScopeFromResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfForNullParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ForNullParameters
+shouldThrowExceptionIfForEmptyStrings -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ForEmptyStrings
+shouldParseResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProduceCorrectRequestAsync -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProduceCorrectRequestSync -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProperlySortParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldProperlySortParametersWithTheSameName -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAppendNothingToQuerystringIfGivenEmptyMap -> Regex Match: RegexMatch - Match Action: null - Match Predicate: AppendNothingToQuerystring - Match Scenario: GivenEmptyMap
+shouldThrowExceptionWhenAppendingNullMapToQuerystring -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: AppendingNullMapToQuerystring
+shouldAppendParametersToUrlWithQuerystring -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldAppendParametersToSimpleUrl -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldNotModifyTheOriginalParameterList -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnSuccess -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReportOAuthException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfResponseIsError -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsError
+testValidCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testValidCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidIllegalSymbolCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidIllegalSymbolCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidNullCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidNullCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidTooLongCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidTooLongCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testNonValidEmptyCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidEmptyCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+testParseBoundaryFromHeader -> Regex Match: RegexMatch_SingleEntity - Match Action: parseBoundaryFromHeader - Match Predicate: N/A - Match Scenario: N/A
+testNonValidLastWhiteSpaceCheckBoundarySyntax -> Regex Match: RegexMatch - Match Action: testNonValidLastWhiteSpaceCheckBoundarySyntax - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfTokenIsAbsent -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: TokenIsAbsent
+shouldExtractTokenFromResponseWithExpiresAndRefreshParam -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromResponseWithManyParameters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldExtractTokenFromResponseWithExpiresParam -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfResponseIsEmptyString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsEmptyString
+shouldThrowExceptionIfResponseIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ResponseIsNull
+shouldExtractTokenFromOAuthStandardResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfErrorResponse -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: ErrorResponse
+shouldReturnTimestampInSeconds -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnNonce -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnIOException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReportOAuthException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnSuccess -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnCancel -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnFailure -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldNotBeEqualToNullOrOtherObjects -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReturnSameHashCodeForEqualObjects -> Regex Match: RegexMatch - Match Action: EqualObjects - Match Predicate: ReturnSameHashCode - Match Scenario: null
+shouldReturnUrlParam -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldTestEqualityBasedOnTokenAndSecret -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldNotDependOnRawString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldThrowExceptionIfStringToDecodeIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: StringToDecodeIsNull
+shouldPercentEncodeString -> NLP Match: VerbPhraseWithoutPre_test - Match Action: encode - Match Predicate: N/A - Match Scenario: percent
+shouldPercentEncodeCorrectlyTwitterCodingExamples -> NLP Match: VerbPhraseWithoutPre_test - Match Action: encode - Match Predicate: twitter - Match Scenario: percent
+shouldNotPercentEncodeReservedCharacters -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldFormURLDecodeString -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldPercentEncodeAllSpecialCharacters -> NLP Match: VerbPhraseWithoutPre_test - Match Action: encode - Match Predicate: N/A - Match Scenario: percent
+shouldThrowExceptionIfStringToEncodeIsNull -> Regex Match: RegexMatch - Match Action: null - Match Predicate: ThrowException - Match Scenario: StringToEncodeIsNull
+shouldThrowExceptionForSpacesOnlyStrings -> Regex Match: RegexMatch - Match Action: SpacesOnlyStrings - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionForNullObjects -> Regex Match: RegexMatch - Match Action: NullObjects - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionForEmptyStrings -> Regex Match: RegexMatch - Match Action: EmptyStrings - Match Predicate: ThrowException - Match Scenario: null
+shouldThrowExceptionForNullStrings -> Regex Match: RegexMatch - Match Action: NullStrings - Match Predicate: ThrowException - Match Scenario: null
+shouldReleaseLatchOnSuccess -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnIOException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnCancel -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReleaseLatchOnFailure -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+shouldReportOAuthException -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+
+matches: 109.0 total: 109.0
+Coverage: 100%testSubscriberClassHierarchy -> Regex Match: RegexMatch - Match Action: testSubscriberClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchyWithoutNewSubscriberMethod -> Regex Match: RegexMatch - Match Action: SubscriberClassHierarchy - Match Predicate: null - Match Scenario: NewSubscriberMethod
+testEventClassHierarchy -> Regex Match: RegexMatch - Match Action: testEventClassHierarchy - Match Predicate: null - Match Scenario: null
+testEventClassHierarchySticky -> Regex Match: RegexMatch - Match Action: testEventClassHierarchySticky - Match Predicate: null - Match Scenario: null
+testEventInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testEventSuperInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventSuperInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testPost04Threads -> NLP Match: VerbPhraseWithPre_test - Match Action: post04 - Match Predicate: N/A - Match Scenario: threads
+testPost40Threads -> NLP Match: VerbPhraseWithPre_test - Match Action: post40 - Match Predicate: N/A - Match Scenario: threads
+testPostMixedEventType04Threads -> Regex Match: RegexMatch - Match Action: null - Match Predicate: PostMix - Match Scenario: EventType04Threads
+testPost01Thread -> NLP Match: VerbPhraseWithPre_test - Match Action: post01 - Match Predicate: N/A - Match Scenario: thread
+testPostMixedEventType01Thread -> Regex Match: RegexMatch - Match Action: null - Match Predicate: PostMix - Match Scenario: EventType01Thread
+testPostMixedEventType40Threads -> Regex Match: RegexMatch - Match Action: null - Match Predicate: PostMix - Match Scenario: EventType40Threads
+testSubscriberLegal -> Regex Match: RegexMatch - Match Action: testSubscriberLegal - Match Predicate: null - Match Scenario: null
+testThrowSubscriberException -> NLP Match: VerbPhraseWithPre_test - Match Action: throw - Match Predicate: N/A - Match Scenario: subscriber
+testEventInheritance -> Regex Match: RegexMatch - Match Action: testEventInheritance - Match Predicate: null - Match Scenario: null
+testDoNotSendSubscriberExceptionEvent -> Regex Match: RegexMatch - Match Action: testDoNotSendSubscriberExceptionEvent - Match Predicate: null - Match Scenario: null
+testDoNotSendNoSubscriberEvent -> Regex Match: RegexMatch - Match Action: testDoNotSendNoSubscriberEvent - Match Predicate: null - Match Scenario: null
+testInstallDefaultEventBus -> Regex Match: RegexMatch - Match Action: testInstallDefaultEventBus - Match Predicate: null - Match Scenario: null
+testMultipleSubscribeMethodsForEvent -> Regex Match: RegexMatch - Match Action: testMultipleSubscribeMethodsForEvent - Match Predicate: null - Match Scenario: null
+testPostAfterUnregister -> Regex Match: RegexMatch - Match Action: Post - Match Predicate: null - Match Scenario: Unregister
+testUnregisterNotLeaking -> Regex Match: RegexMatch - Match Action: testUnregisterNotLeaking - Match Predicate: null - Match Scenario: null
+dummy -> Regex Match: RegexMatch - Match Action: null - Match Predicate: null - Match Scenario: null
+testPostWithTwoSubscriber -> Regex Match: RegexMatch - Match Action: Post - Match Predicate: null - Match Scenario: TwoSubscriber
+testPostInEventHandler -> Regex Match: RegexMatch - Match Action: testPostInEventHandler - Match Predicate: null - Match Scenario: null
+testRegisterTwice -> Regex Match: RegexMatch - Match Action: testRegisterTwice - Match Predicate: null - Match Scenario: null
+testPostMultipleTimes -> Regex Match: RegexMatch - Match Action: testPostMultipleTimes - Match Predicate: null - Match Scenario: null
+testPostOnDifferentEventBus -> Regex Match: RegexMatch - Match Action: testPostOnDifferentEventBus - Match Predicate: null - Match Scenario: null
+testUnregisterWithoutRegister -> Regex Match: RegexMatch - Match Action: Unregister - Match Predicate: null - Match Scenario: Register
+testHasSubscriberForEventImplementedInterface -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: has - Match Predicate: for - Match Scenario: subscriber
+testHasSubscriberForEventSuperclass -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: has - Match Predicate: for - Match Scenario: subscriber
+testRegisterUnregisterAndPostTwoTypes -> NLP Match: VerbPhraseWithPre_test - Match Action: register - Match Predicate: N/A - Match Scenario: unregister
+testRegisterAndPostTwoTypes -> Regex Match: RegexMatch - Match Action: testRegisterAndPostTwoTypes - Match Predicate: null - Match Scenario: null
+testPostWithoutSubscriber -> Regex Match: RegexMatch - Match Action: Post - Match Predicate: null - Match Scenario: Subscriber
+testIsRegistered -> Regex Match: RegexMatch - Match Action: null - Match Predicate: Registered - Match Scenario: null
+testHasSubscriberForEvent -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: has - Match Predicate: for - Match Scenario: subscriber
+testRegisterAndPost -> Regex Match: RegexMatch - Match Action: testRegisterAndPost - Match Predicate: null - Match Scenario: null
+testEventInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testEventClassHierarchy -> Regex Match: RegexMatch - Match Action: testEventClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchyWithoutNewSubscriberMethod -> Regex Match: RegexMatch - Match Action: SubscriberClassHierarchy - Match Predicate: null - Match Scenario: NewSubscriberMethod
+testEventClassHierarchySticky -> Regex Match: RegexMatch - Match Action: testEventClassHierarchySticky - Match Predicate: null - Match Scenario: null
+testEventSuperInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventSuperInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchy -> Regex Match: RegexMatch - Match Action: testSubscriberClassHierarchy - Match Predicate: null - Match Scenario: null
+testManualIndexWithoutAnnotation -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: manual - Match Predicate: without - Match Scenario: index
+testSubscriberInJar -> Regex Match: RegexMatch - Match Action: testSubscriberInJar - Match Predicate: null - Match Scenario: null
+testSubscriberExceptionEvent -> Regex Match: RegexMatch - Match Action: testSubscriberExceptionEvent - Match Predicate: null - Match Scenario: null
+testBadExceptionSubscriber -> Regex Match: RegexMatch - Match Action: testBadExceptionSubscriber - Match Predicate: null - Match Scenario: null
+testGenericEventAndSubscriber -> Regex Match: RegexMatch - Match Action: testGenericEventAndSubscriber - Match Predicate: null - Match Scenario: null
+testGenericEventAndSubscriber_Subclass -> Regex Match: RegexMatch - Match Action: GenericEventAndSubscriberSubclass - Match Predicate: null - Match Scenario: null
+testGenericEventAndSubscriber_TypeErasure -> Regex Match: RegexMatch - Match Action: GenericEventAndSubscriberTypeErasure - Match Predicate: null - Match Scenario: null
+testGenericEventAndSubscriber_BaseType -> Regex Match: RegexMatch - Match Action: GenericEventAndSubscriberBaseType - Match Predicate: null - Match Scenario: null
+testCancelOutsideEventHandler -> Regex Match: RegexMatch - Match Action: testCancelOutsideEventHandler - Match Predicate: null - Match Scenario: null
+testCancel -> Regex Match: RegexMatch_SingleEntity - Match Action: cancel - Match Predicate: N/A - Match Scenario: N/A
+testCancelWrongEvent -> Regex Match: RegexMatch - Match Action: testCancelWrongEvent - Match Predicate: null - Match Scenario: null
+testCancelInBetween -> Regex Match: RegexMatch - Match Action: testCancelInBetween - Match Predicate: null - Match Scenario: null
+testNoSubscriberEvent -> Regex Match: RegexMatch - Match Action: testNoSubscriberEvent - Match Predicate: null - Match Scenario: null
+testBadNoSubscriberSubscriber -> Regex Match: RegexMatch - Match Action: testBadNoSubscriberSubscriber - Match Predicate: null - Match Scenario: null
+testNoSubscriberEventAfterUnregister -> Regex Match: RegexMatch - Match Action: testNoSubscriberEventAfterUnregister - Match Predicate: null - Match Scenario: null
+testEventInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testEventClassHierarchy -> Regex Match: RegexMatch - Match Action: testEventClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchyWithoutNewSubscriberMethod -> Regex Match: RegexMatch - Match Action: SubscriberClassHierarchy - Match Predicate: null - Match Scenario: NewSubscriberMethod
+testEventClassHierarchySticky -> Regex Match: RegexMatch - Match Action: testEventClassHierarchySticky - Match Predicate: null - Match Scenario: null
+testEventSuperInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventSuperInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchy -> Regex Match: RegexMatch - Match Action: testSubscriberClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassWithPublicAndPrivateEvent -> Regex Match: RegexMatch - Match Action: SubscriberClass - Match Predicate: null - Match Scenario: PublicAndPrivateEvent
+testSubscriberExtendingClassWithPrivateEvent -> Regex Match: RegexMatch - Match Action: ClassWithPrivateEvent - Match Predicate: SubscriberExtend - Match Scenario: null
+testAnonymousSubscriberClassWithPublicSuperclass -> Regex Match: RegexMatch - Match Action: AnonymousSubscriberClass - Match Predicate: null - Match Scenario: PublicSuperclass
+testSubscriberClassWithPrivateEvent -> Regex Match: RegexMatch - Match Action: SubscriberClass - Match Predicate: null - Match Scenario: PrivateEvent
+testAnonymousSubscriberClass -> Regex Match: RegexMatch - Match Action: testAnonymousSubscriberClass - Match Predicate: null - Match Scenario: null
+testAnonymousSubscriberClassWithPrivateSuperclass -> Regex Match: RegexMatch - Match Action: AnonymousSubscriberClass - Match Predicate: null - Match Scenario: PrivateSuperclass
+testPostStickyThenPostNormal -> Regex Match: RegexMatch - Match Action: testPostStickyThenPostNormal - Match Predicate: null - Match Scenario: null
+testPostStickyTwice -> Regex Match: RegexMatch - Match Action: testPostStickyTwice - Match Predicate: null - Match Scenario: null
+testRemoveStickyEventInSubscriber -> Regex Match: RegexMatch - Match Action: testRemoveStickyEventInSubscriber - Match Predicate: null - Match Scenario: null
+testPostSticky -> Regex Match: RegexMatch - Match Action: testPostSticky - Match Predicate: null - Match Scenario: null
+testPostStickyTwoEvents -> Regex Match: RegexMatch - Match Action: testPostStickyTwoEvents - Match Predicate: null - Match Scenario: null
+testPostStickyRemoveEvent -> Regex Match: RegexMatch - Match Action: testPostStickyRemoveEvent - Match Predicate: null - Match Scenario: null
+testPostStickyRegisterNonSticky -> Regex Match: RegexMatch - Match Action: testPostStickyRegisterNonSticky - Match Predicate: null - Match Scenario: null
+testPostStickyTwoSubscribers -> Regex Match: RegexMatch - Match Action: testPostStickyTwoSubscribers - Match Predicate: null - Match Scenario: null
+testPostNonStickyRegisterSticky -> Regex Match: RegexMatch - Match Action: testPostNonStickyRegisterSticky - Match Predicate: null - Match Scenario: null
+testPostStickyWithRegisterAndUnregister -> Regex Match: RegexMatch - Match Action: PostSticky - Match Predicate: null - Match Scenario: RegisterAndUnregister
+testPostStickyRemoveClass -> Regex Match: RegexMatch - Match Action: testPostStickyRemoveClass - Match Predicate: null - Match Scenario: null
+testPostStickyRemoveAll -> Regex Match: RegexMatch - Match Action: testPostStickyRemoveAll - Match Predicate: null - Match Scenario: null
+testPostStickyAndGet -> Regex Match: RegexMatch - Match Action: testPostStickyAndGet - Match Predicate: null - Match Scenario: null
+testOrderedMainThreadSticky -> Regex Match: RegexMatch - Match Action: null - Match Predicate: Order - Match Scenario: MainThreadSticky
+testOrdered -> Regex Match: RegexMatch - Match Action: testOrdered - Match Predicate: null - Match Scenario: null
+testOrderedMainThread -> Regex Match: RegexMatch - Match Action: null - Match Predicate: Order - Match Scenario: MainThread
+testOrderedSticky -> Regex Match: RegexMatch - Match Action: null - Match Predicate: Order - Match Scenario: Sticky
+testOrderedBackgroundThread -> NLP Match: VerbPhraseWithPre_test - Match Action: ordered - Match Predicate: N/A - Match Scenario: background
+testOrderedBackgroundThreadSticky -> NLP Match: VerbPhraseWithPre_test - Match Action: ordered - Match Predicate: N/A - Match Scenario: background
+testEventInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testEventClassHierarchy -> Regex Match: RegexMatch - Match Action: testEventClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchyWithoutNewSubscriberMethod -> Regex Match: RegexMatch - Match Action: SubscriberClassHierarchy - Match Predicate: null - Match Scenario: NewSubscriberMethod
+testEventClassHierarchySticky -> Regex Match: RegexMatch - Match Action: testEventClassHierarchySticky - Match Predicate: null - Match Scenario: null
+testEventSuperInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventSuperInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchy -> Regex Match: RegexMatch - Match Action: testSubscriberClassHierarchy - Match Predicate: null - Match Scenario: null
+testRacingRegistrations -> NLP Match: VerbPhraseWithPre_test - Match Action: racing - Match Predicate: N/A - Match Scenario: registrations
+testSubscriberClassHierarchy -> Regex Match: RegexMatch - Match Action: testSubscriberClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchyWithoutNewSubscriberMethod -> Regex Match: RegexMatch - Match Action: SubscriberClassHierarchy - Match Predicate: null - Match Scenario: NewSubscriberMethod
+testEventClassHierarchy -> Regex Match: RegexMatch - Match Action: testEventClassHierarchy - Match Predicate: null - Match Scenario: null
+testEventClassHierarchySticky -> Regex Match: RegexMatch - Match Action: testEventClassHierarchySticky - Match Predicate: null - Match Scenario: null
+testEventInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testEventSuperInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventSuperInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testMultipleSubscribeMethodsForEvent -> Regex Match: RegexMatch - Match Action: testMultipleSubscribeMethodsForEvent - Match Predicate: null - Match Scenario: null
+testPostAfterUnregister -> Regex Match: RegexMatch - Match Action: Post - Match Predicate: null - Match Scenario: Unregister
+testUnregisterNotLeaking -> Regex Match: RegexMatch - Match Action: testUnregisterNotLeaking - Match Predicate: null - Match Scenario: null
+testPostWithTwoSubscriber -> Regex Match: RegexMatch - Match Action: Post - Match Predicate: null - Match Scenario: TwoSubscriber
+testPostInEventHandler -> Regex Match: RegexMatch - Match Action: testPostInEventHandler - Match Predicate: null - Match Scenario: null
+testRegisterTwice -> Regex Match: RegexMatch - Match Action: testRegisterTwice - Match Predicate: null - Match Scenario: null
+testPostMultipleTimes -> Regex Match: RegexMatch - Match Action: testPostMultipleTimes - Match Predicate: null - Match Scenario: null
+testPostOnDifferentEventBus -> Regex Match: RegexMatch - Match Action: testPostOnDifferentEventBus - Match Predicate: null - Match Scenario: null
+testUnregisterWithoutRegister -> Regex Match: RegexMatch - Match Action: Unregister - Match Predicate: null - Match Scenario: Register
+testHasSubscriberForEventImplementedInterface -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: has - Match Predicate: for - Match Scenario: subscriber
+testHasSubscriberForEventSuperclass -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: has - Match Predicate: for - Match Scenario: subscriber
+testRegisterUnregisterAndPostTwoTypes -> NLP Match: VerbPhraseWithPre_test - Match Action: register - Match Predicate: N/A - Match Scenario: unregister
+testRegisterAndPostTwoTypes -> Regex Match: RegexMatch - Match Action: testRegisterAndPostTwoTypes - Match Predicate: null - Match Scenario: null
+testPostWithoutSubscriber -> Regex Match: RegexMatch - Match Action: Post - Match Predicate: null - Match Scenario: Subscriber
+testIsRegistered -> Regex Match: RegexMatch - Match Action: null - Match Predicate: Registered - Match Scenario: null
+testHasSubscriberForEvent -> NLP Match: VerbPhraseWithPre_test_Preposition - Match Action: has - Match Predicate: for - Match Scenario: subscriber
+testRegisterAndPost -> Regex Match: RegexMatch - Match Action: testRegisterAndPost - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchy -> Regex Match: RegexMatch - Match Action: testSubscriberClassHierarchy - Match Predicate: null - Match Scenario: null
+testSubscriberClassHierarchyWithoutNewSubscriberMethod -> Regex Match: RegexMatch - Match Action: SubscriberClassHierarchy - Match Predicate: null - Match Scenario: NewSubscriberMethod
+testEventClassHierarchy -> Regex Match: RegexMatch - Match Action: testEventClassHierarchy - Match Predicate: null - Match Scenario: null
+testEventClassHierarchySticky -> Regex Match: RegexMatch - Match Action: testEventClassHierarchySticky - Match Predicate: null - Match Scenario: null
+testEventInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+testEventSuperInterfaceHierarchy -> Regex Match: RegexMatch - Match Action: testEventSuperInterfaceHierarchy - Match Predicate: null - Match Scenario: null
+
+matches: 124.0 total: 124.0
+Coverage: 100%test3 -> Regex Match: RegexMatch - Match Action: 3 - Match Predicate: null - Match Scenario: null
+test2 -> Regex Match: RegexMatch - Match Action: 2 - Match Predicate: null - Match Scenario: null
+test4 -> Regex Match: RegexMatch - Match Action: 4 - Match Predicate: null - Match Scenario: null
+test1 -> Regex Match: RegexMatch - Match Action: 1 - Match Predicate: null - Match Scenario: null
+
+matches: 4.0 total: 4.0
+Coverage: 100%test1 -> Regex Match: RegexMatch - Match Action: 1 - Match Predicate: null - Match Scenario: null
+test2 -> Regex Match: RegexMatch - Match Action: 2 - Match Predicate: null - Match Scenario: null
+test3 -> Regex Match: RegexMatch - Match Action: 3 - Match Predicate: null - Match Scenario: null
+test4 -> Regex Match: RegexMatch - Match Action: 4 - Match Predicate: null - Match Scenario: null
+
+matches: 4.0 total: 4.0
+Coverage: 100%

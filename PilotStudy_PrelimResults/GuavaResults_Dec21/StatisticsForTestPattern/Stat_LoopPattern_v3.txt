@@ -1,0 +1,3558 @@
+Project: guava
+ Class: LocalCacheTest
+ Method: testSegmentPut_expand
+ Body: {
+    LocalCache<Object, Object> map =
+        makeLocalCache(createCacheBuilder().concurrencyLevel(1).initialCapacity(1));
+    Segment<Object, Object> segment = map.segments[0];
+    assertEquals(1, segment.table.length());
+
+    int count = 1024;
+    for (int i = 0; i < count; i++) {
+      Object key = new Object();
+      Object value = new Object();
+      int hash = map.hash(key);
+      assertNull(segment.put(key, hash, value, false));
+      assertTrue(segment.table.length() > i);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: put - Scenario: count(matched)
+
+Project: guava
+ Class: LocalCacheTest
+ Method: testNewEntry
+ Body: {
+    for (CacheBuilder<Object, Object> builder : allEntryTypeMakers()) {
+      LocalCache<Object, Object> map = makeLocalCache(builder);
+
+      Object keyOne = new Object();
+      Object valueOne = new Object();
+      int hashOne = map.hash(keyOne);
+      ReferenceEntry<Object, Object> entryOne = map.newEntry(keyOne, hashOne, null);
+      ValueReference<Object, Object> valueRefOne = map.newValueReference(entryOne, valueOne, 1);
+      assertSame(valueOne, valueRefOne.get());
+      entryOne.setValueReference(valueRefOne);
+
+      assertSame(keyOne, entryOne.getKey());
+      assertEquals(hashOne, entryOne.getHash());
+      assertNull(entryOne.getNext());
+      assertSame(valueRefOne, entryOne.getValueReference());
+
+      Object keyTwo = new Object();
+      Object valueTwo = new Object();
+      int hashTwo = map.hash(keyTwo);
+      ReferenceEntry<Object, Object> entryTwo = map.newEntry(keyTwo, hashTwo, entryOne);
+      ValueReference<Object, Object> valueRefTwo = map.newValueReference(entryTwo, valueTwo, 1);
+      assertSame(valueTwo, valueRefTwo.get());
+      entryTwo.setValueReference(valueRefTwo);
+
+      assertSame(keyTwo, entryTwo.getKey());
+      assertEquals(hashTwo, entryTwo.getHash());
+      assertSame(entryOne, entryTwo.getNext());
+      assertSame(valueRefTwo, entryTwo.getValueReference());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: setValueReference - Predicate: get - Scenario: builder
+
+Project: guava
+ Class: SetsTest
+ Method: testPowerSetContents
+ Body: {
+    ImmutableSet<Integer> elements = ImmutableSet.of(1, 2, 3);
+    Set<Set<Integer>> powerSet = powerSet(elements);
+    assertEquals(8, powerSet.size());
+    assertEquals(4 * 1 + 4 * 2 + 4 * 3, powerSet.hashCode());
+
+    Set<Set<Integer>> expected = newHashSet();
+    expected.add(ImmutableSet.<Integer>of());
+    expected.add(ImmutableSet.of(1));
+    expected.add(ImmutableSet.of(2));
+    expected.add(ImmutableSet.of(3));
+    expected.add(ImmutableSet.of(1, 2));
+    expected.add(ImmutableSet.of(1, 3));
+    expected.add(ImmutableSet.of(2, 3));
+    expected.add(ImmutableSet.of(1, 2, 3));
+
+    Set<Set<Integer>> almostPowerSet = newHashSet(expected);
+    almostPowerSet.remove(ImmutableSet.of(1, 2, 3));
+    almostPowerSet.add(ImmutableSet.of(1, 2, 4));
+
+    new EqualsTester()
+        .addEqualityGroup(expected, powerSet)
+        .addEqualityGroup(ImmutableSet.of(1, 2, 3))
+        .addEqualityGroup(almostPowerSet)
+        .testEquals();
+
+    for (Set<Integer> subset : expected) {
+      assertTrue(powerSet.contains(subset));
+    }
+    assertFalse(powerSet.contains(ImmutableSet.of(1, 2, 4)));
+    assertFalse(powerSet.contains(singleton(null)));
+    assertFalse(powerSet.contains(null));
+    assertFalse(powerSet.contains((Object) "notASet"));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: contains - Scenario: subset(unmatched with outside)
+
+Project: guava
+ Class: NullPointerTesterTest
+ Method: testPrivateClass
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    for (Constructor<?> constructor :
+        PrivateClassWithPrivateConstructor.class.getDeclaredConstructors()) {
+      tester.testConstructor(constructor);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testConstructor - Predicate: N/A - Scenario: constructor(unmatched with outside)
+
+Project: guava
+ Class: SetMultimapPutTester
+ Method: testPutDuplicateValue
+ Body: {
+    List<Entry<K, V>> entries = copyToList(multimap().entries());
+
+    for (Entry<K, V> entry : entries) {
+      resetContainer();
+      K k = entry.getKey();
+      V v = entry.getValue();
+
+      Set<V> values = multimap().get(k);
+      Set<V> expectedValues = copyToSet(values);
+
+      assertFalse(multimap().put(k, v));
+      assertEquals(expectedValues, values);
+      assertGet(k, expectedValues);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: resetContainer - Predicate: put - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: CollectionIteratorTester
+ Method: testIterator
+ Body: {
+    List<E> iteratorElements = new ArrayList<E>();
+    for (E element : collection) { // uses iterator()
+      iteratorElements.add(element);
+    }
+    Helpers.assertEqualIgnoringOrder(Arrays.asList(createSamplesArray()), iteratorElements);
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: element(unmatched with outside)
+
+Project: guava
+ Class: CollectionIteratorTester
+ Method: testIterationOrdering
+ Body: {
+    List<E> iteratorElements = new ArrayList<E>();
+    for (E element : collection) { // uses iterator()
+      iteratorElements.add(element);
+    }
+    List<E> expected = Helpers.copyToList(getOrderedElements());
+    assertEquals("Different ordered iteration", expected, iteratorElements);
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: element(unmatched with outside)
+
+Project: guava
+ Class: TestLogHandlerTest
+ Method: testConcurrentModification
+ Body: {
+    // Tests for the absence of a bug where logging while iterating over the
+    // stored log records causes a ConcurrentModificationException
+    assertTrue(handler.getStoredLogRecords().isEmpty());
+    ExampleClassUnderTest.foo();
+    ExampleClassUnderTest.foo();
+    for (LogRecord unused : handler.getStoredLogRecords()) {
+      ExampleClassUnderTest.foo();
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: foo(matched) - Predicate: N/A - Scenario: unused
+
+Project: guava
+ Class: TreeRangeSetTest
+ Method: testAllSingleRangesEnclosing
+ Body: {
+    for (Range<Integer> range : QUERY_RANGES) {
+      TreeRangeSet<Integer> rangeSet = TreeRangeSet.create();
+      rangeSet.add(range);
+      testEnclosing(rangeSet);
+      testEnclosing(rangeSet.complement());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: range
+
+Project: guava
+ Class: TreeRangeSetTest
+ Method: testAllSingleRangesComplementAgainstRemove
+ Body: {
+    for (Range<Integer> range : QUERY_RANGES) {
+      TreeRangeSet<Integer> rangeSet = TreeRangeSet.create();
+      rangeSet.add(range);
+
+      TreeRangeSet<Integer> complement = TreeRangeSet.create();
+      complement.add(Range.<Integer>all());
+      complement.remove(range);
+
+      assertEquals(complement, rangeSet.complement());
+      assertThat(rangeSet.complement().asRanges())
+          .containsExactlyElementsIn(complement.asRanges())
+          .inOrder();
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: complement - Scenario: range
+
+Project: guava
+ Class: TreeRangeSetTest
+ Method: testAllSingleRangesIntersecting
+ Body: {
+    for (Range<Integer> range : QUERY_RANGES) {
+      TreeRangeSet<Integer> rangeSet = TreeRangeSet.create();
+      rangeSet.add(range);
+      testIntersects(rangeSet);
+      testIntersects(rangeSet.complement());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: range
+
+Project: guava
+ Class: MultimapKeySetTester
+ Method: testKeySet
+ Body: {
+    for (Entry<K, V> entry : getSampleElements()) {
+      assertTrue(multimap().keySet().contains(entry.getKey()));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: contains - Scenario: entry
+
+Project: guava
+ Class: ImmutableRangeMapTest
+ Method: testSpanSingleRange
+ Body: {
+    for (Range<Integer> range : RANGES) {
+      RangeMap<Integer, Integer> rangemap =
+          ImmutableRangeMap.<Integer, Integer>builder().put(range, 1).build();
+      assertEquals(range, rangemap.span());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: span - Scenario: range
+
+Project: guava
+ Class: FakeTickerTest
+ Method: testAutoIncrementStep_resetToZero
+ Body: {
+    FakeTicker ticker = new FakeTicker().setAutoIncrementStep(10, TimeUnit.NANOSECONDS);
+    assertEquals(0, ticker.read());
+    assertEquals(10, ticker.read());
+    assertEquals(20, ticker.read());
+
+    for (TimeUnit timeUnit : EnumSet.allOf(TimeUnit.class)) {
+      ticker.setAutoIncrementStep(0, timeUnit);
+      assertEquals(
+          "Expected no auto-increment when setting autoIncrementStep to 0 " + timeUnit,
+          30,
+          ticker.read());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: setAutoIncrementStep(unmatched with outside) - Predicate: read - Scenario: timeUnit(unmatched with outside)
+
+Project: guava
+ Class: TreeRangeMapTest
+ Method: testAllRangesAlone
+ Body: {
+    for (Range<Integer> range : RANGES) {
+      Map<Integer, Integer> model = Maps.newHashMap();
+      putModel(model, range, 1);
+      RangeMap<Integer, Integer> test = TreeRangeMap.create();
+      test.put(range, 1);
+      verify(model, test);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: putModel - Predicate: N/A - Scenario: range
+
+Project: guava
+ Class: StandardSystemPropertyTest
+ Method: testGetKeyMatchesString
+ Body: {
+    for (StandardSystemProperty property : StandardSystemProperty.values()) {
+      String fieldName = property.name();
+      String expected = Ascii.toLowerCase(fieldName).replaceAll("_", ".");
+      assertEquals(expected, property.key());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: key - Scenario: property
+
+Project: guava
+ Class: StandardSystemPropertyTest
+ Method: testToString
+ Body: {
+    for (StandardSystemProperty property : StandardSystemProperty.values()) {
+      assertEquals(property.key() + "=" + property.value(), property.toString());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: property
+
+Project: guava
+ Class: StandardSystemPropertyTest
+ Method: testGetValue
+ Body: {
+    for (StandardSystemProperty property : StandardSystemProperty.values()) {
+      assertEquals(System.getProperty(property.key()), property.value());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: getProperty - Scenario: property
+
+Project: guava
+ Class: PopulatedCachesTest
+ Method: testSize_populated
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      // don't let the entries get GCed
+      List<Entry<Object, Object>> warmed = warmUp(cache);
+      assertEquals(WARMUP_SIZE, cache.size());
+      assertMapSize(cache.asMap(), WARMUP_SIZE);
+      checkValidState(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkValidState - Predicate: size - Scenario: cache
+
+Project: guava
+ Class: PopulatedCachesTest
+ Method: testPutAll_populated
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      // don't let the entries get GCed
+      List<Entry<Object, Object>> warmed = warmUp(cache);
+      Object newKey = new Object();
+      Object newValue = new Object();
+      cache.asMap().putAll(ImmutableMap.of(newKey, newValue));
+      // this getUnchecked() call shouldn't be a cache miss; verified below
+      assertEquals(newValue, cache.getUnchecked(newKey));
+      assertEquals(WARMUP_SIZE, cache.stats().missCount());
+      checkValidState(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: putAll - Predicate: getUnchecked - Scenario: cache
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testConstructor
+ Body: {
+    for (double x : VALUES) {
+      AtomicDouble a = new AtomicDouble(x);
+      assertBitEquals(x, a.get());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: get - Scenario: x
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testGetSet
+ Body: {
+    AtomicDouble at = new AtomicDouble(1.0);
+    assertBitEquals(1.0, at.get());
+    for (double x : VALUES) {
+      at.set(x);
+      assertBitEquals(x, at.get());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set(unmatched with outside) - Predicate: get - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testFloatValue
+ Body: {
+    AtomicDouble at = new AtomicDouble();
+    assertEquals(0.0f, at.floatValue());
+    for (double x : VALUES) {
+      at.set(x);
+      assertEquals((float) x, at.floatValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set(unmatched with outside) - Predicate: floatValue - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testIntValue
+ Body: {
+    AtomicDouble at = new AtomicDouble();
+    assertEquals(0, at.intValue());
+    for (double x : VALUES) {
+      at.set(x);
+      assertEquals((int) x, at.intValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set(unmatched with outside) - Predicate: intValue - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testLongValue
+ Body: {
+    AtomicDouble at = new AtomicDouble();
+    assertEquals(0L, at.longValue());
+    for (double x : VALUES) {
+      at.set(x);
+      assertEquals((long) x, at.longValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set(unmatched with outside) - Predicate: longValue - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testDoubleValue
+ Body: {
+    AtomicDouble at = new AtomicDouble();
+    assertEquals(0.0d, at.doubleValue());
+    for (double x : VALUES) {
+      at.set(x);
+      assertBitEquals(x, at.doubleValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set(unmatched with outside) - Predicate: doubleValue - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testSerialization
+ Body: {
+    AtomicDouble a = new AtomicDouble();
+    AtomicDouble b = serialClone(a);
+    assertNotSame(a, b);
+    a.set(-22.0);
+    AtomicDouble c = serialClone(a);
+    assertNotSame(b, c);
+    assertBitEquals(-22.0, a.get());
+    assertBitEquals(0.0, b.get());
+    assertBitEquals(-22.0, c.get());
+    for (double x : VALUES) {
+      AtomicDouble d = new AtomicDouble(x);
+      assertBitEquals(serialClone(d).get(), d.get());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: get - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testGetLazySet
+ Body: {
+    AtomicDouble at = new AtomicDouble(1.0);
+    assertBitEquals(1.0, at.get());
+    for (double x : VALUES) {
+      at.lazySet(x);
+      assertBitEquals(x, at.get());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: lazySet(unmatched with outside) - Predicate: get - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleTest
+ Method: testToString
+ Body: {
+    AtomicDouble at = new AtomicDouble();
+    assertEquals("0.0", at.toString());
+    for (double x : VALUES) {
+      at.set(x);
+      assertEquals(Double.toString(x), at.toString());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set(unmatched with outside) - Predicate: toString - Scenario: x(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleArrayTest
+ Method: testCountingInMultipleThreads
+ Body: {
+    final AtomicDoubleArray aa = new AtomicDoubleArray(SIZE);
+    for (int i = 0; i < SIZE; i++) {
+      aa.set(i, (double) COUNTDOWN);
+    }
+    Counter c1 = new Counter(aa);
+    Counter c2 = new Counter(aa);
+    Thread t1 = newStartedThread(c1);
+    Thread t2 = newStartedThread(c2);
+    awaitTermination(t1);
+    awaitTermination(t2);
+    assertEquals(SIZE * COUNTDOWN, c1.counts + c2.counts);
+  }
+ Pattern Name: LoopPattern_v3 - Action: set - Predicate: N/A - Scenario: SIZE(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleArrayTest
+ Method: testConstructor
+ Body: {
+    AtomicDoubleArray aa = new AtomicDoubleArray(SIZE);
+    for (int i = 0; i < SIZE; i++) {
+      assertBitEquals(0.0, aa.get(i));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: get - Scenario: SIZE(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleArrayTest
+ Method: testConstructor2
+ Body: {
+    AtomicDoubleArray aa = new AtomicDoubleArray(VALUES);
+    assertEquals(VALUES.length, aa.length());
+    for (int i = 0; i < VALUES.length; i++) {
+      assertBitEquals(VALUES[i], aa.get(i));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: get - Scenario: VALUES.length(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleArrayTest
+ Method: testGetSet
+ Body: {
+    AtomicDoubleArray aa = new AtomicDoubleArray(VALUES.length);
+    for (int i = 0; i < VALUES.length; i++) {
+      assertBitEquals(0.0, aa.get(i));
+      aa.set(i, VALUES[i]);
+      assertBitEquals(VALUES[i], aa.get(i));
+      aa.set(i, -3.0);
+      assertBitEquals(-3.0, aa.get(i));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: set - Predicate: get - Scenario: VALUES.length(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleArrayTest
+ Method: testDistinctZeros
+ Body: {
+    AtomicDoubleArray aa = new AtomicDoubleArray(SIZE);
+    for (int i : new int[] {0, SIZE - 1}) {
+      assertFalse(aa.compareAndSet(i, -0.0, 7.0));
+      assertFalse(aa.weakCompareAndSet(i, -0.0, 7.0));
+      assertBitEquals(+0.0, aa.get(i));
+      assertTrue(aa.compareAndSet(i, +0.0, -0.0));
+      assertBitEquals(-0.0, aa.get(i));
+      assertFalse(aa.compareAndSet(i, +0.0, 7.0));
+      assertFalse(aa.weakCompareAndSet(i, +0.0, 7.0));
+      assertBitEquals(-0.0, aa.get(i));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: compareAndSet - Scenario: i(unmatched with outside)
+
+Project: guava
+ Class: AtomicDoubleArrayTest
+ Method: testGetLazySet
+ Body: {
+    AtomicDoubleArray aa = new AtomicDoubleArray(VALUES.length);
+    for (int i = 0; i < VALUES.length; i++) {
+      assertBitEquals(0.0, aa.get(i));
+      aa.lazySet(i, VALUES[i]);
+      assertBitEquals(VALUES[i], aa.get(i));
+      aa.lazySet(i, -3.0);
+      assertBitEquals(-3.0, aa.get(i));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: lazySet - Predicate: get - Scenario: VALUES.length(unmatched with outside)
+
+Project: guava
+ Class: BytesTest
+ Method: testHashCode
+ Body: {
+    for (byte value : VALUES) {
+      assertEquals(((Byte) value).hashCode(), Bytes.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: BloomFilterTest
+ Method: testNoRaceConditions
+ Body: {
+    final BloomFilter<Integer> bloomFilter =
+        BloomFilter.create(Funnels.integerFunnel(), 15_000_000, 0.01);
+
+    // This check has to be BEFORE the loop because the random insertions can
+    // flip GOLDEN_PRESENT_KEY to true even if it wasn't explicitly inserted
+    // (false positive).
+    assertThat(bloomFilter.mightContain(GOLDEN_PRESENT_KEY)).isFalse();
+    for (int i = 0; i < NUM_PUTS; i++) {
+      bloomFilter.put(getNonGoldenRandomKey());
+    }
+    bloomFilter.put(GOLDEN_PRESENT_KEY);
+
+    int numThreads = 12;
+    final double safetyFalsePositiveRate = 0.1;
+    final Stopwatch stopwatch = Stopwatch.createStarted();
+
+    Runnable task =
+        new Runnable() {
+          @Override
+          public void run() {
+            do {
+              // We can't have a GOLDEN_NOT_PRESENT_KEY because false positives are
+              // possible! It's false negatives that can't happen.
+              assertThat(bloomFilter.mightContain(GOLDEN_PRESENT_KEY)).isTrue();
+
+              int key = getNonGoldenRandomKey();
+              // We can't check that the key is mightContain() == false before the
+              // put() because the key could have already been generated *or* the
+              // bloom filter might say true even when it's not there (false
+              // positive).
+              bloomFilter.put(key);
+              // False negative should *never* happen.
+              assertThat(bloomFilter.mightContain(key)).isTrue();
+
+              // If this check ever fails, that means we need to either bump the
+              // number of expected insertions or don't run the test for so long.
+              // Don't forget, the bloom filter slowly saturates over time and the
+              // expected false positive probability goes up!
+              assertThat(bloomFilter.expectedFpp()).isLessThan(safetyFalsePositiveRate);
+            } while (stopwatch.elapsed(TimeUnit.SECONDS) < 1);
+          }
+        };
+
+    List<Throwable> exceptions = runThreadsAndReturnExceptions(numThreads, task);
+
+    assertThat(exceptions).isEmpty();
+  }
+ Pattern Name: LoopPattern_v3 - Action: put(unmatched with outside) - Predicate: N/A - Scenario: NUM_PUTS(unmatched with outside)
+
+Project: guava
+ Class: BloomFilterTest
+ Method: testApproximateElementCount
+ Body: {
+    int numInsertions = 1000;
+    BloomFilter<Integer> bf = BloomFilter.create(Funnels.integerFunnel(), numInsertions);
+    bf.put(-1);
+    for (int i = 0; i < numInsertions; i++) {
+      bf.put(i);
+    }
+    assertApproximateElementCountGuess(bf, numInsertions);
+  }
+ Pattern Name: LoopPattern_v3 - Action: put(matched) - Predicate: N/A - Scenario: numInsertions(unmatched with outside)
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testEmptyMultisetNearby
+ Body: {
+    for (BoundType type : BoundType.values()) {
+      assertNull(sortedMultiset.headMultiset(e0(), type).lastEntry());
+      assertNull(sortedMultiset.tailMultiset(e0(), type).firstEntry());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: lastEntry - Scenario: type
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testEntrySet_clear
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      warmUp(cache, 0, 100);
+
+      Set<Entry<Object, Object>> entrySet = cache.asMap().entrySet();
+      entrySet.clear();
+      checkEmpty(entrySet);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: warmUp - Predicate: N/A - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testValues_clear
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      warmUp(cache, 0, 100);
+
+      Collection<Object> values = cache.asMap().values();
+      values.clear();
+      checkEmpty(values);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: warmUp - Predicate: N/A - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testEqualsAndHashCode_different
+ Body: {
+    for (CacheBuilder<Object, Object> builder : cacheFactory().buildAllPermutations()) {
+      // all caches should be different: instance equality
+      new EqualsTester()
+          .addEqualityGroup(builder.build(identityLoader()))
+          .addEqualityGroup(builder.build(identityLoader()))
+          .addEqualityGroup(builder.build(identityLoader()))
+          .testEquals();
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testEquals - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testKeySet_remove
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      cache.getUnchecked(1);
+      cache.getUnchecked(2);
+
+      Set<Object> keys = cache.asMap().keySet();
+      // We don't know whether these are still in the cache, so we can't assert on the return
+      // values of these removes, but the cache should be empty after the removes, regardless.
+      keys.remove(1);
+      keys.remove(2);
+      assertFalse(keys.remove(null));
+      assertFalse(keys.remove(6));
+      assertFalse(keys.remove(-6));
+      assertFalse(keys.removeAll(asList(null, 0, 15, 1500)));
+      assertFalse(keys.retainAll(asList(null, 0, 15, 1500)));
+      checkEmpty(keys);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: getUnchecked - Predicate: remove - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testValues_remove
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      cache.getUnchecked(1);
+      cache.getUnchecked(2);
+
+      Collection<Object> values = cache.asMap().keySet();
+      // We don't know whether these are still in the cache, so we can't assert on the return
+      // values of these removes, but the cache should be empty after the removes, regardless.
+      values.remove(1);
+      values.remove(2);
+      assertFalse(values.remove(null));
+      assertFalse(values.remove(6));
+      assertFalse(values.remove(-6));
+      assertFalse(values.removeAll(asList(null, 0, 15, 1500)));
+      assertFalse(values.retainAll(asList(null, 0, 15, 1500)));
+      checkEmpty(values);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: getUnchecked - Predicate: remove - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testKeySet_clear
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      warmUp(cache, 0, 100);
+
+      Set<Object> keys = cache.asMap().keySet();
+      keys.clear();
+      checkEmpty(keys);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: warmUp - Predicate: N/A - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testInvalidateAll_empty
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      cache.getUnchecked("a");
+      cache.getUnchecked("b");
+      cache.getUnchecked("c");
+      cache.invalidateAll();
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: getUnchecked - Predicate: N/A - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testEquals_null
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      assertFalse(cache.equals(null));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: equals - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testEmpty
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkEmpty - Predicate: N/A - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testValues_empty_remove
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      Collection<Object> values = cache.asMap().values();
+      assertFalse(values.remove(null));
+      assertFalse(values.remove(6));
+      assertFalse(values.remove(-6));
+      assertFalse(values.removeAll(asList(null, 0, 15, 1500)));
+      assertFalse(values.retainAll(asList(null, 0, 15, 1500)));
+      checkEmpty(values);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkEmpty - Predicate: remove - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testEntrySet_remove
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      cache.getUnchecked(1);
+      cache.getUnchecked(2);
+
+      Set<Entry<Object, Object>> entrySet = cache.asMap().entrySet();
+      // We don't know whether these are still in the cache, so we can't assert on the return
+      // values of these removes, but the cache should be empty after the removes, regardless.
+      entrySet.remove(entryOf(1, 1));
+      entrySet.remove(entryOf(2, 2));
+      assertFalse(entrySet.remove(null));
+      assertFalse(entrySet.remove(entryOf(1, 1)));
+      assertFalse(entrySet.remove(entryOf(6, 6)));
+      assertFalse(entrySet.removeAll(asList(null, entryOf(1, 1), entryOf(15, 15))));
+      assertFalse(entrySet.retainAll(asList(null, entryOf(1, 1), entryOf(15, 15))));
+      checkEmpty(entrySet);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: getUnchecked - Predicate: remove - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testInvalidate_empty
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      cache.getUnchecked("a");
+      cache.getUnchecked("b");
+      cache.invalidate("a");
+      cache.invalidate("b");
+      cache.invalidate(0);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: getUnchecked - Predicate: N/A - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testKeySet_empty_remove
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      Set<Object> keys = cache.asMap().keySet();
+      assertFalse(keys.remove(null));
+      assertFalse(keys.remove(6));
+      assertFalse(keys.remove(-6));
+      assertFalse(keys.removeAll(asList(null, 0, 15, 1500)));
+      assertFalse(keys.retainAll(asList(null, 0, 15, 1500)));
+      checkEmpty(keys);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkEmpty - Predicate: remove - Scenario: cache
+
+Project: guava
+ Class: EmptyCachesTest
+ Method: testEntrySet_empty_remove
+ Body: {
+    for (LoadingCache<Object, Object> cache : caches()) {
+      Set<Entry<Object, Object>> entrySet = cache.asMap().entrySet();
+      assertFalse(entrySet.remove(null));
+      assertFalse(entrySet.remove(entryOf(6, 6)));
+      assertFalse(entrySet.remove(entryOf(-6, -6)));
+      assertFalse(entrySet.removeAll(asList(null, entryOf(0, 0), entryOf(15, 15))));
+      assertFalse(entrySet.retainAll(asList(null, entryOf(0, 0), entryOf(15, 15))));
+      checkEmpty(entrySet);
+      checkEmpty(cache);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkEmpty - Predicate: remove - Scenario: cache
+
+Project: guava
+ Class: ThreadFactoryBuilderTest
+ Method: testPriority_custom
+ Body: {
+    for (int i = Thread.MIN_PRIORITY; i <= Thread.MAX_PRIORITY; i++) {
+      ThreadFactory factory = builder.setPriority(i).build();
+      Thread thread = factory.newThread(monitoredRunnable);
+      assertEquals(i, thread.getPriority());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: getPriority - Scenario: Thread.MAX_PRIORITY
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testAsUnsignedBigIntegerValue
+ Body: {
+    for (long value : TEST_LONGS) {
+      BigInteger expected =
+          (value >= 0)
+              ? BigInteger.valueOf(value)
+              : BigInteger.valueOf(value).add(BigInteger.ZERO.setBit(64));
+      assertEquals(
+          UnsignedLongs.toString(value),
+          expected,
+          UnsignedLong.fromLongBits(value).bigIntegerValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: value
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testIntValue
+ Body: {
+    for (long a : TEST_LONGS) {
+      UnsignedLong aUnsigned = UnsignedLong.fromLongBits(a);
+      int intValue = aUnsigned.bigIntegerValue().intValue();
+      assertEquals(intValue, aUnsigned.intValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: intValue - Scenario: a
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testDoubleValue
+ Body: {
+    for (long value : TEST_LONGS) {
+      UnsignedLong unsignedValue = UnsignedLong.fromLongBits(value);
+      assertEquals(unsignedValue.bigIntegerValue().doubleValue(), unsignedValue.doubleValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: doubleValue - Scenario: value
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testFloatValue
+ Body: {
+    for (long value : TEST_LONGS) {
+      UnsignedLong unsignedValue = UnsignedLong.fromLongBits(value);
+      assertEquals(unsignedValue.bigIntegerValue().floatValue(), unsignedValue.floatValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: floatValue - Scenario: value
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testEquals
+ Body: {
+    EqualsTester equalsTester = new EqualsTester();
+    for (long a : TEST_LONGS) {
+      BigInteger big =
+          (a >= 0) ? BigInteger.valueOf(a) : BigInteger.valueOf(a).add(BigInteger.ZERO.setBit(64));
+      equalsTester.addEqualityGroup(
+          UnsignedLong.fromLongBits(a),
+          UnsignedLong.valueOf(big),
+          UnsignedLong.valueOf(big.toString()),
+          UnsignedLong.valueOf(big.toString(16), 16));
+    }
+    equalsTester.testEquals();
+  }
+ Pattern Name: LoopPattern_v3 - Action: addEqualityGroup - Predicate: N/A - Scenario: a(unmatched with outside)
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testToString
+ Body: {
+    for (long value : TEST_LONGS) {
+      UnsignedLong unsignedValue = UnsignedLong.fromLongBits(value);
+      assertEquals(unsignedValue.bigIntegerValue().toString(), unsignedValue.toString());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: value
+
+Project: guava
+ Class: UnsignedLongTest
+ Method: testAsUnsignedAndLongValueAreInverses
+ Body: {
+    for (long value : TEST_LONGS) {
+      assertEquals(
+          UnsignedLongs.toString(value), value, UnsignedLong.fromLongBits(value).longValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: value
+
+Project: guava
+ Class: CacheReferencesTest
+ Method: testKeySetEntrySetValues
+ Body: {
+    for (LoadingCache<Key, String> cache : caches()) {
+      Key key1 = new Key(1);
+      String value1 = key1.toString();
+      Key key2 = new Key(2);
+      String value2 = key2.toString();
+      assertSame(value1, cache.getUnchecked(key1));
+      assertSame(value2, cache.getUnchecked(key2));
+      assertEquals(ImmutableSet.of(key1, key2), cache.asMap().keySet());
+      assertThat(cache.asMap().values()).containsExactly(value1, value2);
+      assertEquals(
+          ImmutableSet.of(immutableEntry(key1, value1), immutableEntry(key2, value2)),
+          cache.asMap().entrySet());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: getUnchecked - Scenario: cache
+
+Project: guava
+ Class: CacheReferencesTest
+ Method: testClear
+ Body: {
+    for (LoadingCache<Key, String> cache : caches()) {
+      Key key = new Key(1);
+      String value = key.toString();
+      assertSame(value, cache.getUnchecked(key));
+      assertFalse(cache.asMap().isEmpty());
+      cache.invalidateAll();
+      assertEquals(0, cache.size());
+      assertTrue(cache.asMap().isEmpty());
+      assertFalse(cache.asMap().containsKey(key));
+      assertFalse(cache.asMap().containsValue(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: invalidateAll - Predicate: getUnchecked - Scenario: cache
+
+Project: guava
+ Class: CacheReferencesTest
+ Method: testInvalidate
+ Body: {
+    for (LoadingCache<Key, String> cache : caches()) {
+      Key key1 = new Key(1);
+      String value1 = key1.toString();
+      Key key2 = new Key(2);
+      String value2 = key2.toString();
+      assertSame(value1, cache.getUnchecked(key1));
+      assertSame(value2, cache.getUnchecked(key2));
+      cache.invalidate(key1);
+      assertFalse(cache.asMap().containsKey(key1));
+      assertTrue(cache.asMap().containsKey(key2));
+      assertEquals(1, cache.size());
+      assertEquals(ImmutableSet.of(key2), cache.asMap().keySet());
+      assertThat(cache.asMap().values()).contains(value2);
+      assertEquals(ImmutableSet.of(immutableEntry(key2, value2)), cache.asMap().entrySet());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: invalidate - Predicate: getUnchecked - Scenario: cache
+
+Project: guava
+ Class: CacheReferencesTest
+ Method: testContainsKeyAndValue
+ Body: {
+    for (LoadingCache<Key, String> cache : caches()) {
+      // maintain strong refs so these won't be collected, regardless of cache's key/value strength
+      Key key = new Key(1);
+      String value = key.toString();
+      assertSame(value, cache.getUnchecked(key));
+      assertTrue(cache.asMap().containsKey(key));
+      assertTrue(cache.asMap().containsValue(value));
+      assertEquals(1, cache.size());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: getUnchecked - Scenario: cache
+
+Project: guava
+ Class: GraphsTest
+ Method: transpose_directedGraph
+ Body: {
+    MutableGraph<Integer> directedGraph = GraphBuilder.directed().allowsSelfLoops(true).build();
+    directedGraph.putEdge(N1, N3);
+    directedGraph.putEdge(N3, N1);
+    directedGraph.putEdge(N1, N2);
+    directedGraph.putEdge(N1, N1);
+    directedGraph.putEdge(N3, N4);
+
+    MutableGraph<Integer> expectedTranspose = GraphBuilder.directed().allowsSelfLoops(true).build();
+    expectedTranspose.putEdge(N3, N1);
+    expectedTranspose.putEdge(N1, N3);
+    expectedTranspose.putEdge(N2, N1);
+    expectedTranspose.putEdge(N1, N1);
+    expectedTranspose.putEdge(N4, N3);
+
+    Graph<Integer> transpose = transpose(directedGraph);
+    assertThat(transpose).isEqualTo(expectedTranspose);
+    assertThat(transpose(transpose)).isSameAs(directedGraph);
+    AbstractGraphTest.validateGraph(transpose);
+
+    for (Integer node : directedGraph.nodes()) {
+      assertThat(directedGraph.inDegree(node)).isSameAs(transpose.outDegree(node));
+      assertThat(directedGraph.outDegree(node)).isSameAs(transpose.inDegree(node));
+    }
+
+    assertThat(transpose.successors(N1)).doesNotContain(N2);
+    directedGraph.putEdge(N2, N1);
+    // View should be updated.
+    assertThat(transpose.successors(N1)).contains(N2);
+    AbstractGraphTest.validateGraph(transpose);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: outDegree - Scenario: node(unmatched with outside)
+
+Project: guava
+ Class: GraphsTest
+ Method: transpose_directedValueGraph
+ Body: {
+    MutableValueGraph<Integer, String> directedGraph =
+        ValueGraphBuilder.directed().allowsSelfLoops(true).build();
+    directedGraph.putEdgeValue(N1, N3, E13);
+    directedGraph.putEdgeValue(N3, N1, E31);
+    directedGraph.putEdgeValue(N1, N2, E12);
+    directedGraph.putEdgeValue(N1, N1, E11);
+    directedGraph.putEdgeValue(N3, N4, E34);
+
+    MutableValueGraph<Integer, String> expectedTranspose =
+        ValueGraphBuilder.directed().allowsSelfLoops(true).build();
+    expectedTranspose.putEdgeValue(N3, N1, E13);
+    expectedTranspose.putEdgeValue(N1, N3, E31);
+    expectedTranspose.putEdgeValue(N2, N1, E12);
+    expectedTranspose.putEdgeValue(N1, N1, E11);
+    expectedTranspose.putEdgeValue(N4, N3, E34);
+
+    ValueGraph<Integer, String> transpose = transpose(directedGraph);
+    assertThat(transpose).isEqualTo(expectedTranspose);
+    assertThat(transpose(transpose)).isSameAs(directedGraph);
+    AbstractGraphTest.validateGraph(transpose.asGraph());
+
+    assertThat(transpose.edgeValueOrDefault(N1, N2, null)).isNull();
+    for (Integer node : directedGraph.nodes()) {
+      assertThat(directedGraph.inDegree(node)).isSameAs(transpose.outDegree(node));
+      assertThat(directedGraph.outDegree(node)).isSameAs(transpose.inDegree(node));
+    }
+
+    directedGraph.putEdgeValue(N2, N1, E21);
+    // View should be updated.
+    assertThat(transpose.edgeValueOrDefault(N1, N2, null)).isEqualTo(E21);
+    AbstractGraphTest.validateGraph(transpose.asGraph());
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: outDegree - Scenario: node(unmatched with outside)
+
+Project: guava
+ Class: GraphsTest
+ Method: transpose_directedNetwork
+ Body: {
+    MutableNetwork<Integer, String> directedGraph =
+        NetworkBuilder.directed().allowsParallelEdges(true).allowsSelfLoops(true).build();
+    directedGraph.addEdge(N1, N3, E13);
+    directedGraph.addEdge(N3, N1, E31);
+    directedGraph.addEdge(N1, N2, E12);
+    directedGraph.addEdge(N1, N2, E12_A);
+    directedGraph.addEdge(N1, N1, E11);
+    directedGraph.addEdge(N3, N4, E34);
+
+    MutableNetwork<Integer, String> expectedTranspose =
+        NetworkBuilder.directed().allowsParallelEdges(true).allowsSelfLoops(true).build();
+    expectedTranspose.addEdge(N3, N1, E13);
+    expectedTranspose.addEdge(N1, N3, E31);
+    expectedTranspose.addEdge(N2, N1, E12);
+    expectedTranspose.addEdge(N2, N1, E12_A);
+    expectedTranspose.addEdge(N1, N1, E11);
+    expectedTranspose.addEdge(N4, N3, E34);
+
+    Network<Integer, String> transpose = transpose(directedGraph);
+    assertThat(transpose).isEqualTo(expectedTranspose);
+    assertThat(transpose(transpose)).isSameAs(directedGraph);
+    AbstractNetworkTest.validateNetwork(transpose);
+
+    assertThat(transpose.edgesConnecting(N1, N2)).isEmpty();
+    assertThat(transpose.edgeConnecting(N1, N2).isPresent()).isFalse();
+    assertThat(transpose.edgeConnectingOrNull(N1, N2)).isNull();
+
+    for (Integer node : directedGraph.nodes()) {
+      assertThat(directedGraph.inDegree(node)).isSameAs(transpose.outDegree(node));
+      assertThat(directedGraph.outDegree(node)).isSameAs(transpose.inDegree(node));
+    }
+
+    directedGraph.addEdge(N2, N1, E21);
+    // View should be updated.
+    assertThat(transpose.edgesConnecting(N1, N2)).containsExactly(E21);
+    assertThat(transpose.edgeConnecting(N1, N2).get()).isEqualTo(E21);
+    assertThat(transpose.edgeConnectingOrNull(N1, N2)).isEqualTo(E21);
+    AbstractNetworkTest.validateNetwork(transpose);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: outDegree - Scenario: node(unmatched with outside)
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testValid
+ Body: {
+    for (String name : VALID_NAME) {
+      InternetDomainName.from(name);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: from - Predicate: N/A - Scenario: name
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testUnderPublicSuffix
+ Body: {
+    for (String name : SOMEWHERE_UNDER_PS) {
+      final InternetDomainName domain = InternetDomainName.from(name);
+      assertFalse(name, domain.isPublicSuffix());
+      assertTrue(name, domain.hasPublicSuffix());
+      assertTrue(name, domain.isUnderPublicSuffix());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPublicSuffix - Scenario: name
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testUnderRegistrySuffix
+ Body: {
+    for (String name : SOMEWHERE_UNDER_RS) {
+      final InternetDomainName domain = InternetDomainName.from(name);
+      assertFalse(name, domain.isRegistrySuffix());
+      assertTrue(name, domain.hasRegistrySuffix());
+      assertTrue(name, domain.isUnderRegistrySuffix());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isRegistrySuffix - Scenario: name
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testTopPrivateDomain
+ Body: {
+    for (String name : TOP_PRIVATE_DOMAIN) {
+      final InternetDomainName domain = InternetDomainName.from(name);
+      assertFalse(name, domain.isPublicSuffix());
+      assertTrue(name, domain.hasPublicSuffix());
+      assertTrue(name, domain.isUnderPublicSuffix());
+      assertTrue(name, domain.isTopPrivateDomain());
+      assertEquals(domain.parent(), domain.publicSuffix());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPublicSuffix - Scenario: name
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testUnderPrivateDomain
+ Body: {
+    for (String name : UNDER_PRIVATE_DOMAIN) {
+      final InternetDomainName domain = InternetDomainName.from(name);
+      assertFalse(name, domain.isPublicSuffix());
+      assertTrue(name, domain.hasPublicSuffix());
+      assertTrue(name, domain.isUnderPublicSuffix());
+      assertFalse(name, domain.isTopPrivateDomain());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPublicSuffix - Scenario: name
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testUnderTopDomainUnderRegistrySuffix
+ Body: {
+    for (String name : UNDER_TOP_UNDER_REGISTRY_SUFFIX) {
+      final InternetDomainName domain = InternetDomainName.from(name);
+      assertFalse(name, domain.isRegistrySuffix());
+      assertTrue(name, domain.hasRegistrySuffix());
+      assertTrue(name, domain.isUnderRegistrySuffix());
+      assertFalse(name, domain.isTopDomainUnderRegistrySuffix());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isRegistrySuffix - Scenario: name
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testTopDomainUnderRegistrySuffix
+ Body: {
+    for (String name : TOP_UNDER_REGISTRY_SUFFIX) {
+      final InternetDomainName domain = InternetDomainName.from(name);
+      assertFalse(name, domain.isRegistrySuffix());
+      assertTrue(name, domain.hasRegistrySuffix());
+      assertTrue(name, domain.isUnderRegistrySuffix());
+      assertTrue(name, domain.isTopDomainUnderRegistrySuffix());
+      assertEquals(domain.parent(), domain.registrySuffix());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isRegistrySuffix - Scenario: name
+
+Project: guava
+ Class: FloatsTest
+ Method: testTryParseFailures
+ Body: {
+    for (String badInput : BAD_TRY_PARSE_INPUTS) {
+      assertEquals(referenceTryParse(badInput), Floats.tryParse(badInput));
+      assertNull(Floats.tryParse(badInput));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: referenceTryParse - Scenario: badInput
+
+Project: guava
+ Class: FloatsTest
+ Method: testHashCode
+ Body: {
+    for (float value : VALUES) {
+      assertEquals(((Float) value).hashCode(), Floats.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: FloatsTest
+ Method: testTryParseOfToStringIsOriginal
+ Body: {
+    for (float f : NUMBERS) {
+      checkTryParse(f, Float.toString(f));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkTryParse - Predicate: N/A - Scenario: f
+
+Project: guava
+ Class: FloatsTest
+ Method: testLastIndexOf
+ Body: {
+    assertEquals(-1, Floats.lastIndexOf(EMPTY, (float) 1));
+    assertEquals(-1, Floats.lastIndexOf(ARRAY1, (float) 2));
+    assertEquals(-1, Floats.lastIndexOf(ARRAY234, (float) 1));
+    assertEquals(0, Floats.lastIndexOf(new float[] {(float) -1}, (float) -1));
+    assertEquals(0, Floats.lastIndexOf(ARRAY234, (float) 2));
+    assertEquals(1, Floats.lastIndexOf(ARRAY234, (float) 3));
+    assertEquals(2, Floats.lastIndexOf(ARRAY234, (float) 4));
+    assertEquals(
+        3, Floats.lastIndexOf(new float[] {(float) 2, (float) 3, (float) 2, (float) 3}, (float) 3));
+
+    for (float value : NUMBERS) {
+      assertEquals("" + value, 0, Floats.lastIndexOf(new float[] {value, 5f}, value));
+    }
+    assertEquals(-1, Floats.lastIndexOf(new float[] {NaN, 5f}, NaN));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: lastIndexOf - Scenario: value
+
+Project: guava
+ Class: FloatsTest
+ Method: testTryParseAllCodePoints
+ Body: {
+    // Exercise non-ASCII digit test cases and the like.
+    char[] tmp = new char[2];
+    for (int i = Character.MIN_CODE_POINT; i < Character.MAX_CODE_POINT; i++) {
+      Character.toChars(i, tmp, 0);
+      checkTryParse(String.copyValueOf(tmp, 0, Character.charCount(i)));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: toChars - Predicate: N/A - Scenario: Character.MAX_CODE_POINT(unmatched with outside)
+
+Project: guava
+ Class: FloatsTest
+ Method: testIndexOf
+ Body: {
+    assertEquals(-1, Floats.indexOf(EMPTY, (float) 1));
+    assertEquals(-1, Floats.indexOf(ARRAY1, (float) 2));
+    assertEquals(-1, Floats.indexOf(ARRAY234, (float) 1));
+    assertEquals(0, Floats.indexOf(new float[] {(float) -1}, (float) -1));
+    assertEquals(0, Floats.indexOf(ARRAY234, (float) 2));
+    assertEquals(1, Floats.indexOf(ARRAY234, (float) 3));
+    assertEquals(2, Floats.indexOf(ARRAY234, (float) 4));
+    assertEquals(
+        1, Floats.indexOf(new float[] {(float) 2, (float) 3, (float) 2, (float) 3}, (float) 3));
+
+    for (float value : NUMBERS) {
+      assertEquals("" + value, 1, Floats.indexOf(new float[] {5f, value}, value));
+    }
+    assertEquals(-1, Floats.indexOf(new float[] {5f, NaN}, NaN));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: indexOf - Scenario: value
+
+Project: guava
+ Class: FloatsTest
+ Method: testIndexOf_arrayTarget
+ Body: {
+    assertEquals(0, Floats.indexOf(EMPTY, EMPTY));
+    assertEquals(0, Floats.indexOf(ARRAY234, EMPTY));
+    assertEquals(-1, Floats.indexOf(EMPTY, ARRAY234));
+    assertEquals(-1, Floats.indexOf(ARRAY234, ARRAY1));
+    assertEquals(-1, Floats.indexOf(ARRAY1, ARRAY234));
+    assertEquals(0, Floats.indexOf(ARRAY1, ARRAY1));
+    assertEquals(0, Floats.indexOf(ARRAY234, ARRAY234));
+    assertEquals(0, Floats.indexOf(ARRAY234, new float[] {(float) 2, (float) 3}));
+    assertEquals(1, Floats.indexOf(ARRAY234, new float[] {(float) 3, (float) 4}));
+    assertEquals(1, Floats.indexOf(ARRAY234, new float[] {(float) 3}));
+    assertEquals(2, Floats.indexOf(ARRAY234, new float[] {(float) 4}));
+    assertEquals(
+        1,
+        Floats.indexOf(
+            new float[] {(float) 2, (float) 3, (float) 3, (float) 3, (float) 3},
+            new float[] {(float) 3}));
+    assertEquals(
+        2,
+        Floats.indexOf(
+            new float[] {
+              (float) 2, (float) 3, (float) 2, (float) 3, (float) 4, (float) 2, (float) 3
+            },
+            new float[] {(float) 2, (float) 3, (float) 4}));
+    assertEquals(
+        1,
+        Floats.indexOf(
+            new float[] {
+              (float) 2, (float) 2, (float) 3, (float) 4, (float) 2, (float) 3, (float) 4
+            },
+            new float[] {(float) 2, (float) 3, (float) 4}));
+    assertEquals(
+        -1,
+        Floats.indexOf(
+            new float[] {(float) 4, (float) 3, (float) 2},
+            new float[] {(float) 2, (float) 3, (float) 4}));
+
+    for (float value : NUMBERS) {
+      assertEquals(
+          "" + value,
+          1,
+          Floats.indexOf(new float[] {5f, value, value, 5f}, new float[] {value, value}));
+    }
+    assertEquals(-1, Floats.indexOf(new float[] {5f, NaN, NaN, 5f}, new float[] {NaN, NaN}));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: indexOf - Scenario: value
+
+Project: guava
+ Class: FloatsTest
+ Method: testIsFinite
+ Body: {
+    for (float value : NUMBERS) {
+      assertEquals(!(Float.isInfinite(value) || Float.isNaN(value)), Floats.isFinite(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isFinite - Scenario: value
+
+Project: guava
+ Class: FloatsTest
+ Method: testContains
+ Body: {
+    assertFalse(Floats.contains(EMPTY, (float) 1));
+    assertFalse(Floats.contains(ARRAY1, (float) 2));
+    assertFalse(Floats.contains(ARRAY234, (float) 1));
+    assertTrue(Floats.contains(new float[] {(float) -1}, (float) -1));
+    assertTrue(Floats.contains(ARRAY234, (float) 2));
+    assertTrue(Floats.contains(ARRAY234, (float) 3));
+    assertTrue(Floats.contains(ARRAY234, (float) 4));
+
+    for (float value : NUMBERS) {
+      assertTrue("" + value, Floats.contains(new float[] {5f, value}, value));
+    }
+    assertFalse(Floats.contains(new float[] {5f, NaN}, NaN));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: contains - Scenario: value
+
+Project: guava
+ Class: FloatsTest
+ Method: testTryParseOfToHexStringIsOriginal
+ Body: {
+    for (float f : NUMBERS) {
+      checkTryParse(f, Float.toHexString(f));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkTryParse - Predicate: N/A - Scenario: f
+
+Project: guava
+ Class: StatsTest
+ Method: testEquivalentStreams
+ Body: {
+    // For datasets of many double values created from an array, we test many combinations of finite
+    // and non-finite values:
+    for (ManyValues values : ALL_MANY_VALUES) {
+      double[] array = values.asArray();
+      Stats stats = Stats.of(array);
+      // instance methods on Stats vs on instance methods on DoubleStream
+      assertThat(stats.count()).isEqualTo(stream(array).count());
+      assertEquivalent(stats.mean(), stream(array).average().getAsDouble());
+      assertEquivalent(stats.sum(), stream(array).sum());
+      assertEquivalent(stats.max(), stream(array).max().getAsDouble());
+      assertEquivalent(stats.min(), stream(array).min().getAsDouble());
+      // static method on Stats vs on instance method on DoubleStream
+      assertEquivalent(Stats.meanOf(array), stream(array).average().getAsDouble());
+      // instance methods on Stats vs instance methods on DoubleSummaryStatistics
+      DoubleSummaryStatistics streamStats = stream(array).summaryStatistics();
+      assertThat(stats.count()).isEqualTo(streamStats.getCount());
+      assertEquivalent(stats.mean(), streamStats.getAverage());
+      assertEquivalent(stats.sum(), streamStats.getSum());
+      assertEquivalent(stats.max(), streamStats.getMax());
+      assertEquivalent(stats.min(), streamStats.getMin());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: count - Scenario: values
+
+Project: guava
+ Class: TopKSelectorTest
+ Method: testWorstCase
+ Body: {
+    int n = 2000000;
+    int k = 200000;
+    final long[] compareCalls = {0};
+    Comparator<Integer> cmp =
+        new Comparator<Integer>() {
+          @Override
+          public int compare(Integer o1, Integer o2) {
+            compareCalls[0]++;
+            return o1.compareTo(o2);
+          }
+        };
+    TopKSelector<Integer> top = TopKSelector.least(k, cmp);
+    top.offer(1);
+    for (int i = 1; i < n; i++) {
+      top.offer(0);
+    }
+    assertThat(top.topK()).containsExactlyElementsIn(Collections.nCopies(k, 0));
+    assertThat(compareCalls[0]).isAtMost(10L * n * IntMath.log2(k, RoundingMode.CEILING));
+  }
+ Pattern Name: LoopPattern_v3 - Action: offer(matched) - Predicate: N/A - Scenario: n(unmatched with outside)
+
+Project: guava
+ Class: CaseFormatTest
+ Method: testNullArguments
+ Body: {
+    NullPointerTester tester = new NullPointerTester();
+    tester.testAllPublicStaticMethods(CaseFormat.class);
+    for (CaseFormat format : CaseFormat.values()) {
+      tester.testAllPublicInstanceMethods(format);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testAllPublicInstanceMethods(unmatched with outside) - Predicate: N/A - Scenario: format(unmatched with outside)
+
+Project: guava
+ Class: ListMultimapPutAllTester
+ Method: testPutAllAddsAtEndInOrder
+ Body: {
+    @SuppressWarnings("unchecked")
+    List<V> values = Arrays.asList(v3(), v1(), v4());
+
+    for (K k : sampleKeys()) {
+      resetContainer();
+
+      List<V> expectedValues = copyToList(multimap().get(k));
+
+      assertTrue(multimap().putAll(k, values));
+      expectedValues.addAll(values);
+
+      assertGet(k, expectedValues);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: resetContainer - Predicate: putAll - Scenario: k(unmatched with outside)
+
+Project: guava
+ Class: ShortsTest
+ Method: testHashCode
+ Body: {
+    for (short value : VALUES) {
+      assertEquals(((Short) value).hashCode(), Shorts.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: ShortsTest
+ Method: testCheckedCast
+ Body: {
+    for (short value : VALUES) {
+      assertEquals(value, Shorts.checkedCast((long) value));
+    }
+    assertCastFails(GREATEST + 1L);
+    assertCastFails(LEAST - 1L);
+    assertCastFails(Long.MAX_VALUE);
+    assertCastFails(Long.MIN_VALUE);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: checkedCast - Scenario: value
+
+Project: guava
+ Class: ShortsTest
+ Method: testSaturatedCast
+ Body: {
+    for (short value : VALUES) {
+      assertEquals(value, Shorts.saturatedCast((long) value));
+    }
+    assertEquals(GREATEST, Shorts.saturatedCast(GREATEST + 1L));
+    assertEquals(LEAST, Shorts.saturatedCast(LEAST - 1L));
+    assertEquals(GREATEST, Shorts.saturatedCast(Long.MAX_VALUE));
+    assertEquals(LEAST, Shorts.saturatedCast(Long.MIN_VALUE));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: saturatedCast - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testLastIndexOf
+ Body: {
+    assertEquals(-1, Doubles.lastIndexOf(EMPTY, (double) 1));
+    assertEquals(-1, Doubles.lastIndexOf(ARRAY1, (double) 2));
+    assertEquals(-1, Doubles.lastIndexOf(ARRAY234, (double) 1));
+    assertEquals(0, Doubles.lastIndexOf(new double[] {(double) -1}, (double) -1));
+    assertEquals(0, Doubles.lastIndexOf(ARRAY234, (double) 2));
+    assertEquals(1, Doubles.lastIndexOf(ARRAY234, (double) 3));
+    assertEquals(2, Doubles.lastIndexOf(ARRAY234, (double) 4));
+    assertEquals(
+        3,
+        Doubles.lastIndexOf(
+            new double[] {(double) 2, (double) 3, (double) 2, (double) 3}, (double) 3));
+
+    for (double value : NUMBERS) {
+      assertEquals("" + value, 0, Doubles.lastIndexOf(new double[] {value, 5.0}, value));
+    }
+    assertEquals(-1, Doubles.lastIndexOf(new double[] {NaN, 5.0}, NaN));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: lastIndexOf - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testIndexOf_arrayTarget
+ Body: {
+    assertEquals(0, Doubles.indexOf(EMPTY, EMPTY));
+    assertEquals(0, Doubles.indexOf(ARRAY234, EMPTY));
+    assertEquals(-1, Doubles.indexOf(EMPTY, ARRAY234));
+    assertEquals(-1, Doubles.indexOf(ARRAY234, ARRAY1));
+    assertEquals(-1, Doubles.indexOf(ARRAY1, ARRAY234));
+    assertEquals(0, Doubles.indexOf(ARRAY1, ARRAY1));
+    assertEquals(0, Doubles.indexOf(ARRAY234, ARRAY234));
+    assertEquals(0, Doubles.indexOf(ARRAY234, new double[] {(double) 2, (double) 3}));
+    assertEquals(1, Doubles.indexOf(ARRAY234, new double[] {(double) 3, (double) 4}));
+    assertEquals(1, Doubles.indexOf(ARRAY234, new double[] {(double) 3}));
+    assertEquals(2, Doubles.indexOf(ARRAY234, new double[] {(double) 4}));
+    assertEquals(
+        1,
+        Doubles.indexOf(
+            new double[] {(double) 2, (double) 3, (double) 3, (double) 3, (double) 3},
+            new double[] {(double) 3}));
+    assertEquals(
+        2,
+        Doubles.indexOf(
+            new double[] {
+              (double) 2, (double) 3, (double) 2, (double) 3, (double) 4, (double) 2, (double) 3
+            },
+            new double[] {(double) 2, (double) 3, (double) 4}));
+    assertEquals(
+        1,
+        Doubles.indexOf(
+            new double[] {
+              (double) 2, (double) 2, (double) 3, (double) 4, (double) 2, (double) 3, (double) 4
+            },
+            new double[] {(double) 2, (double) 3, (double) 4}));
+    assertEquals(
+        -1,
+        Doubles.indexOf(
+            new double[] {(double) 4, (double) 3, (double) 2},
+            new double[] {(double) 2, (double) 3, (double) 4}));
+
+    for (double value : NUMBERS) {
+      assertEquals(
+          "" + value,
+          1,
+          Doubles.indexOf(new double[] {5.0, value, value, 5.0}, new double[] {value, value}));
+    }
+    assertEquals(-1, Doubles.indexOf(new double[] {5.0, NaN, NaN, 5.0}, new double[] {NaN, NaN}));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: indexOf - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testTryParseFailures
+ Body: {
+    for (String badInput : BAD_TRY_PARSE_INPUTS) {
+      assertThat(badInput)
+          .doesNotMatch(
+              Pattern.compile(
+                  Doubles.FLOATING_POINT_PATTERN.pattern(),
+                  Doubles.FLOATING_POINT_PATTERN.flags()));
+      assertEquals(referenceTryParse(badInput), Doubles.tryParse(badInput));
+      assertNull(Doubles.tryParse(badInput));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: compile - Scenario: badInput
+
+Project: guava
+ Class: DoublesTest
+ Method: testTryParseOfToStringIsOriginal
+ Body: {
+    for (double d : NUMBERS) {
+      checkTryParse(d, Double.toString(d));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkTryParse - Predicate: N/A - Scenario: d
+
+Project: guava
+ Class: DoublesTest
+ Method: testTryParseOfToHexStringIsOriginal
+ Body: {
+    for (double d : NUMBERS) {
+      checkTryParse(d, Double.toHexString(d));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: checkTryParse - Predicate: N/A - Scenario: d
+
+Project: guava
+ Class: DoublesTest
+ Method: testHashCode
+ Body: {
+    for (double value : VALUES) {
+      assertEquals(((Double) value).hashCode(), Doubles.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testContains
+ Body: {
+    assertFalse(Doubles.contains(EMPTY, (double) 1));
+    assertFalse(Doubles.contains(ARRAY1, (double) 2));
+    assertFalse(Doubles.contains(ARRAY234, (double) 1));
+    assertTrue(Doubles.contains(new double[] {(double) -1}, (double) -1));
+    assertTrue(Doubles.contains(ARRAY234, (double) 2));
+    assertTrue(Doubles.contains(ARRAY234, (double) 3));
+    assertTrue(Doubles.contains(ARRAY234, (double) 4));
+
+    for (double value : NUMBERS) {
+      assertTrue("" + value, Doubles.contains(new double[] {5.0, value}, value));
+    }
+    assertFalse(Doubles.contains(new double[] {5.0, NaN}, NaN));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: contains - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testIndexOf
+ Body: {
+    assertEquals(-1, Doubles.indexOf(EMPTY, (double) 1));
+    assertEquals(-1, Doubles.indexOf(ARRAY1, (double) 2));
+    assertEquals(-1, Doubles.indexOf(ARRAY234, (double) 1));
+    assertEquals(0, Doubles.indexOf(new double[] {(double) -1}, (double) -1));
+    assertEquals(0, Doubles.indexOf(ARRAY234, (double) 2));
+    assertEquals(1, Doubles.indexOf(ARRAY234, (double) 3));
+    assertEquals(2, Doubles.indexOf(ARRAY234, (double) 4));
+    assertEquals(
+        1,
+        Doubles.indexOf(new double[] {(double) 2, (double) 3, (double) 2, (double) 3}, (double) 3));
+
+    for (double value : NUMBERS) {
+      assertEquals("" + value, 1, Doubles.indexOf(new double[] {5.0, value}, value));
+    }
+    assertEquals(-1, Doubles.indexOf(new double[] {5.0, NaN}, NaN));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: indexOf - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testIsFinite
+ Body: {
+    for (double value : NUMBERS) {
+      assertEquals(!(Double.isNaN(value) || Double.isInfinite(value)), Doubles.isFinite(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isFinite - Scenario: value
+
+Project: guava
+ Class: DoublesTest
+ Method: testTryParseAllCodePoints
+ Body: {
+    // Exercise non-ASCII digit test cases and the like.
+    char[] tmp = new char[2];
+    for (int i = Character.MIN_CODE_POINT; i < Character.MAX_CODE_POINT; i++) {
+      Character.toChars(i, tmp, 0);
+      checkTryParse(String.copyValueOf(tmp, 0, Character.charCount(i)));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: toChars - Predicate: N/A - Scenario: Character.MAX_CODE_POINT(unmatched with outside)
+
+Project: guava
+ Class: FarmHashFingerprint64Test
+ Method: testStringsConsistency
+ Body: {
+    for (String s : Arrays.asList("", "some", "test", "strings", "to", "try")) {
+      assertEquals(HASH_FN.newHasher().putUnencodedChars(s).hash(), HASH_FN.hashUnencodedChars(s));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hash - Scenario: s
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testAssignableGenericArrayToClass
+ Body: {
+    assertTrue(TypeToken.of(Object[].class.getSuperclass()).isSupertypeOf(new TypeToken<T[]>() {}));
+    for (Class<?> interfaceType : Object[].class.getInterfaces()) {
+      assertTrue(TypeToken.of(interfaceType).isSupertypeOf(new TypeToken<T[]>() {}));
+    }
+    assertTrue(TypeToken.of(Object.class).isSupertypeOf(new TypeToken<T[]>() {}));
+    assertFalse(TypeToken.of(String.class).isSupertypeOf(new TypeToken<T[]>() {}));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: isSupertypeOf - Scenario: interfaceType
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetGenericInterfaces_withInterfaces
+ Body: {
+    Map<Class<?>, Type> interfaceMap = Maps.newHashMap();
+    for (TypeToken<?> interfaceType :
+        new TypeToken<Implementation<Integer, String>>() {}.getGenericInterfaces()) {
+      interfaceMap.put(interfaceType.getRawType(), interfaceType.getType());
+    }
+    assertEquals(
+        ImmutableMap.of(
+            Iterable.class, new TypeToken<Iterable<String>>() {}.getType(),
+            Map.class, new TypeToken<Map<Integer, String>>() {}.getType()),
+        interfaceMap);
+  }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: interfaceType(unmatched with outside)
+
+Project: guava
+ Class: CharsTest
+ Method: testCheckedCast
+ Body: {
+    for (char value : VALUES) {
+      assertEquals(value, Chars.checkedCast((long) value));
+    }
+    assertCastFails(GREATEST + 1L);
+    assertCastFails(LEAST - 1L);
+    assertCastFails(Long.MAX_VALUE);
+    assertCastFails(Long.MIN_VALUE);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: checkedCast - Scenario: value
+
+Project: guava
+ Class: CharsTest
+ Method: testHashCode
+ Body: {
+    for (char value : VALUES) {
+      assertEquals(((Character) value).hashCode(), Chars.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: CharsTest
+ Method: testSaturatedCast
+ Body: {
+    for (char value : VALUES) {
+      assertEquals(value, Chars.saturatedCast((long) value));
+    }
+    assertEquals(GREATEST, Chars.saturatedCast(GREATEST + 1L));
+    assertEquals(LEAST, Chars.saturatedCast(LEAST - 1L));
+    assertEquals(GREATEST, Chars.saturatedCast(Long.MAX_VALUE));
+    assertEquals(LEAST, Chars.saturatedCast(Long.MIN_VALUE));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: saturatedCast - Scenario: value
+
+Project: guava
+ Class: MultimapContainsKeyTester
+ Method: testContainsKeyAgreesWithGet
+ Body: {
+    for (K k : sampleKeys()) {
+      assertEquals(!multimap().get(k).isEmpty(), multimap().containsKey(k));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsKey - Scenario: k
+
+Project: guava
+ Class: MultimapContainsKeyTester
+ Method: testContainsKeyAgreesWithAsMap
+ Body: {
+    for (K k : sampleKeys()) {
+      assertEquals(multimap().containsKey(k), multimap().asMap().containsKey(k));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsKey - Scenario: k
+
+Project: guava
+ Class: MultimapContainsKeyTester
+ Method: testContainsKeyAgreesWithKeySet
+ Body: {
+    for (K k : sampleKeys()) {
+      assertEquals(multimap().containsKey(k), multimap().keySet().contains(k));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsKey - Scenario: k
+
+Project: guava
+ Class: MultimapContainsKeyTester
+ Method: testContainsKeysFromKeySet
+ Body: {
+    for (K k : multimap().keySet()) {
+      assertTrue(multimap().containsKey(k));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsKey - Scenario: k
+
+Project: guava
+ Class: WellBehavedMapTest
+ Method: testEntry_setValue
+ Body: {
+    WellBehavedMap<Foo, Integer> map = WellBehavedMap.wrap(new EnumMap<Foo, Integer>(Foo.class));
+    map.putAll(ImmutableMap.of(Foo.X, 1, Foo.Y, 2, Foo.Z, 3));
+
+    for (Entry<Foo, Integer> entry : map.entrySet()) {
+      entry.setValue(entry.getValue() + 5);
+    }
+
+    assertEquals(ImmutableMap.of(Foo.X, 6, Foo.Y, 7, Foo.Z, 8), map);
+  }
+ Pattern Name: LoopPattern_v3 - Action: setValue(unmatched with outside) - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: SortedSetMultimapAsMapTester
+ Method: testAsMapGetImplementsSortedSet
+ Body: {
+    for (K key : multimap().keySet()) {
+      SortedSet<V> valueSet = (SortedSet<V>) multimap().asMap().get(key);
+      assertEquals(multimap().valueComparator(), valueSet.comparator());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: valueComparator - Scenario: key
+
+Project: guava
+ Class: SortedSetMultimapAsMapTester
+ Method: testAsMapValuesImplementSortedSet
+ Body: {
+    for (Collection<V> valueCollection : multimap().asMap().values()) {
+      SortedSet<V> valueSet = (SortedSet<V>) valueCollection;
+      assertEquals(multimap().valueComparator(), valueSet.comparator());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: valueComparator - Scenario: valueCollection
+
+Project: guava
+ Class: SortedSetMultimapAsMapTester
+ Method: testAsMapRemoveImplementsSortedSet
+ Body: {
+    List<K> keys = new ArrayList<K>(multimap().keySet());
+    for (K key : keys) {
+      resetCollection();
+      SortedSet<V> valueSet = (SortedSet<V>) multimap().asMap().remove(key);
+      assertEquals(multimap().valueComparator(), valueSet.comparator());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: resetCollection - Predicate: valueComparator - Scenario: key(unmatched with outside)
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testIntValue
+ Body: {
+    for (int a : TEST_INTS) {
+      UnsignedInteger aUnsigned = UnsignedInteger.fromIntBits(a);
+      int intValue = aUnsigned.bigIntegerValue().intValue();
+      assertEquals(intValue, aUnsigned.intValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: intValue - Scenario: a
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testToString
+ Body: {
+    for (int value : TEST_INTS) {
+      UnsignedInteger unsignedValue = UnsignedInteger.fromIntBits(value);
+      assertEquals(unsignedValue.bigIntegerValue().toString(), unsignedValue.toString());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: value
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testDoubleValue
+ Body: {
+    for (int value : TEST_INTS) {
+      UnsignedInteger unsignedValue = UnsignedInteger.fromIntBits(value);
+      assertEquals(unsignedValue.bigIntegerValue().doubleValue(), unsignedValue.doubleValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: doubleValue - Scenario: value
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testFromIntBitsLongValue
+ Body: {
+    for (int value : TEST_INTS) {
+      long expected = value & 0xffffffffL;
+      assertEquals(
+          UnsignedInts.toString(value), expected, UnsignedInteger.fromIntBits(value).longValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: value
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testEquals
+ Body: {
+    EqualsTester equalsTester = new EqualsTester();
+    for (int a : TEST_INTS) {
+      long value = a & 0xffffffffL;
+      equalsTester.addEqualityGroup(
+          UnsignedInteger.fromIntBits(a),
+          UnsignedInteger.valueOf(value),
+          UnsignedInteger.valueOf(Long.toString(value)),
+          UnsignedInteger.valueOf(Long.toString(value, 16), 16));
+    }
+    equalsTester.testEquals();
+  }
+ Pattern Name: LoopPattern_v3 - Action: addEqualityGroup - Predicate: N/A - Scenario: a(unmatched with outside)
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testFromIntBitsAndIntValueAreInverses
+ Body: {
+    for (int value : TEST_INTS) {
+      assertEquals(
+          UnsignedInts.toString(value), value, UnsignedInteger.fromIntBits(value).intValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toString - Scenario: value
+
+Project: guava
+ Class: UnsignedIntegerTest
+ Method: testFloatValue
+ Body: {
+    for (int value : TEST_INTS) {
+      UnsignedInteger unsignedValue = UnsignedInteger.fromIntBits(value);
+      assertEquals(unsignedValue.bigIntegerValue().floatValue(), unsignedValue.floatValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: floatValue - Scenario: value
+
+Project: guava
+ Class: CacheLoadingTest
+ Method: testBulkLoad_clobber
+ Body: {
+    final Object extraKey = new Object();
+    final Object extraValue = new Object();
+    CacheLoader<Object, Object> loader =
+        new CacheLoader<Object, Object>() {
+          @Override
+          public Object load(Object key) throws Exception {
+            throw new AssertionError();
+          }
+
+          @Override
+          public Map<Object, Object> loadAll(Iterable<?> keys) throws Exception {
+            Map<Object, Object> result = Maps.newHashMap();
+            for (Object key : keys) {
+              Object value = new Object();
+              result.put(key, value);
+            }
+            result.put(extraKey, extraValue);
+            return result;
+          }
+        };
+    LoadingCache<Object, Object> cache = CacheBuilder.newBuilder().build(loader);
+    cache.asMap().put(extraKey, extraKey);
+    assertSame(extraKey, cache.asMap().get(extraKey));
+
+    Object[] lookupKeys = new Object[] {new Object(), new Object(), new Object()};
+    Map<Object, Object> result = cache.getAll(asList(lookupKeys));
+    assertThat(result.keySet()).containsExactlyElementsIn(asList(lookupKeys));
+    for (Entry<Object, Object> entry : result.entrySet()) {
+      Object key = entry.getKey();
+      Object value = entry.getValue();
+      assertSame(value, result.get(key));
+      assertSame(value, cache.asMap().get(key));
+    }
+    assertNull(result.get(extraKey));
+    assertSame(extraValue, cache.asMap().get(extraKey));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: get - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: CacheLoadingTest
+ Method: testBulkLoad_extra
+ Body: {
+    CacheLoader<Object, Object> loader =
+        new CacheLoader<Object, Object>() {
+          @Override
+          public Object load(Object key) throws Exception {
+            return new Object();
+          }
+
+          @Override
+          public Map<Object, Object> loadAll(Iterable<?> keys) throws Exception {
+            Map<Object, Object> result = Maps.newHashMap();
+            for (Object key : keys) {
+              Object value = new Object();
+              result.put(key, value);
+              // add extra entries
+              result.put(value, key);
+            }
+            return result;
+          }
+        };
+    LoadingCache<Object, Object> cache = CacheBuilder.newBuilder().build(loader);
+
+    Object[] lookupKeys = new Object[] {new Object(), new Object(), new Object()};
+    Map<Object, Object> result = cache.getAll(asList(lookupKeys));
+    assertThat(result.keySet()).containsExactlyElementsIn(asList(lookupKeys));
+    for (Entry<Object, Object> entry : result.entrySet()) {
+      Object key = entry.getKey();
+      Object value = entry.getValue();
+      assertSame(value, result.get(key));
+      assertNull(result.get(value));
+      assertSame(value, cache.asMap().get(key));
+      assertSame(key, cache.asMap().get(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: get - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: UnsignedBytesTest
+ Method: testSaturatedCast
+ Body: {
+    for (byte value : VALUES) {
+      assertEquals(value, UnsignedBytes.saturatedCast(UnsignedBytes.toInt(value)));
+    }
+    assertEquals(GREATEST, UnsignedBytes.saturatedCast(256L));
+    assertEquals(LEAST, UnsignedBytes.saturatedCast(-1L));
+    assertEquals(GREATEST, UnsignedBytes.saturatedCast(Long.MAX_VALUE));
+    assertEquals(LEAST, UnsignedBytes.saturatedCast(Long.MIN_VALUE));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: saturatedCast - Scenario: value
+
+Project: guava
+ Class: UnsignedBytesTest
+ Method: testCheckedCast
+ Body: {
+    for (byte value : VALUES) {
+      assertEquals(value, UnsignedBytes.checkedCast(UnsignedBytes.toInt(value)));
+    }
+    assertCastFails(256L);
+    assertCastFails(-1L);
+    assertCastFails(Long.MAX_VALUE);
+    assertCastFails(Long.MIN_VALUE);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: checkedCast - Scenario: value
+
+Project: guava
+ Class: ListMultimapPutTester
+ Method: testPutDuplicateValue
+ Body: {
+    List<Entry<K, V>> entries = copyToList(multimap().entries());
+
+    for (Entry<K, V> entry : entries) {
+      resetContainer();
+
+      K k = entry.getKey();
+      V v = entry.getValue();
+
+      List<V> values = multimap().get(k);
+      List<V> expectedValues = copyToList(values);
+
+      assertTrue(multimap().put(k, v));
+      expectedValues.add(v);
+      assertGet(k, expectedValues);
+      assertEquals(v, values.get(values.size() - 1));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: resetContainer - Predicate: put - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: MultimapValuesTester
+ Method: testValuesInOrder
+ Body: {
+    List<V> expected = Lists.newArrayList();
+    for (Entry<K, V> entry : getOrderedElements()) {
+      expected.add(entry.getValue());
+    }
+    assertEqualInOrder(expected, multimap().values());
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: MultimapValuesTester
+ Method: testValues
+ Body: {
+    List<V> expected = Lists.newArrayList();
+    for (Entry<K, V> entry : getSampleElements()) {
+      expected.add(entry.getValue());
+    }
+    assertEqualIgnoringOrder(expected, multimap().values());
+  }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: HashingTest
+ Method: testConsistentHash_linearCongruentialGeneratorCompatibility
+ Body: {
+    int[] golden100 = {
+      0, 55, 62, 8, 45, 59, 86, 97, 82, 59,
+      73, 37, 17, 56, 86, 21, 90, 37, 38, 83
+    };
+    for (int i = 0; i < golden100.length; i++) {
+      assertEquals(golden100[i], Hashing.consistentHash(i, 100));
+    }
+    assertEquals(6, Hashing.consistentHash(10863919174838991L, 11));
+    assertEquals(3, Hashing.consistentHash(2016238256797177309L, 11));
+    assertEquals(5, Hashing.consistentHash(1673758223894951030L, 11));
+    assertEquals(80343, Hashing.consistentHash(2, 100001));
+    assertEquals(22152, Hashing.consistentHash(2201, 100001));
+    assertEquals(15018, Hashing.consistentHash(2202, 100001));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: consistentHash - Scenario: golden100.length(unmatched with outside)
+
+Project: guava
+ Class: HashingTest
+ Method: testKnownUtf8Hashing
+ Body: {
+    for (Cell<HashFunction, String, String> cell : KNOWN_HASHES.cellSet()) {
+      HashFunction func = cell.getRowKey();
+      String input = cell.getColumnKey();
+      String expected = cell.getValue();
+      assertEquals(
+          String.format(Locale.ROOT, "Known hash for hash(%s, UTF_8) failed", input),
+          expected,
+          func.hashString(input, UTF_8).toString());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: format - Scenario: cell
+
+Project: guava
+ Class: DoubleUtilsTest
+ Method: testNextDown
+ Body: {
+    Method jdkNextDown = getJdkNextDown();
+    for (double d : FINITE_DOUBLE_CANDIDATES) {
+      assertEquals(jdkNextDown.invoke(null, d), DoubleUtils.nextDown(d));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: invoke - Scenario: d(unmatched with outside)
+
+Project: guava
+ Class: SetMultimapReplaceValuesTester
+ Method: testReplaceValuesHandlesDuplicates
+ Body: {
+    @SuppressWarnings("unchecked")
+    List<V> values = Arrays.asList(v0(), v1(), v0());
+
+    for (K k : sampleKeys()) {
+      resetContainer();
+      multimap().replaceValues(k, values);
+      assertGet(k, v0(), v1());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: resetContainer - Predicate: v0 - Scenario: k(unmatched with outside)
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testCreate_useConstants
+ Body: {
+    for (MediaType constant : getConstants()) {
+      assertSame(
+          constant,
+          MediaType.create(constant.type(), constant.subtype())
+              .withParameters(constant.parameters()));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: withParameters - Scenario: constant
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testParse_useConstants
+ Body: {
+    for (MediaType constant : getConstants()) {
+      assertSame(constant, MediaType.parse(constant.toString()));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: parse - Scenario: constant
+
+Project: guava
+ Class: QueuesTest
+ Method: testEmpty
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testEmpty(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testEmpty - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: QueuesTest
+ Method: testZeroElements
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testZeroElements(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testZeroElements - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: QueuesTest
+ Method: testMultipleProducers
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testMultipleProducers(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testMultipleProducers - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: QueuesTest
+ Method: testDrainTimesOut
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testDrainTimesOut(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testDrainTimesOut - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: QueuesTest
+ Method: testNegativeMaxElements
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testNegativeMaxElements(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testNegativeMaxElements - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: QueuesTest
+ Method: testDrainUninterruptibly_doesNotThrow
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testDrainUninterruptibly_doesNotThrow(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testDrainUninterruptibly_doesNotThrow - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: QueuesTest
+ Method: testDrain_throws
+ Body: {
+    for (BlockingQueue<Object> q : blockingQueues()) {
+      testDrain_throws(q);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testDrain_throws - Predicate: N/A - Scenario: q
+
+Project: guava
+ Class: LongsTest
+ Method: testHashCode
+ Body: {
+    for (long value : VALUES) {
+      assertEquals("hashCode for " + value, ((Long) value).hashCode(), Longs.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: CharMatcherTest
+ Method: testJavaIsoControl
+ Body: {
+    for (int c = 0; c <= Character.MAX_VALUE; c++) {
+      assertEquals(
+          "" + c, Character.isISOControl(c), CharMatcher.javaIsoControl().matches((char) c));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isISOControl - Scenario: Character.MAX_VALUE
+
+Project: guava
+ Class: FunnelsTest
+ Method: testForStringsCharset
+ Body: {
+    for (Charset charset : Charset.availableCharsets().values()) {
+      PrimitiveSink primitiveSink = mock(PrimitiveSink.class);
+      Funnels.stringFunnel(charset).funnel("test", primitiveSink);
+      verify(primitiveSink).putString("test", charset);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: funnel - Predicate: N/A - Scenario: charset
+
+Project: guava
+ Class: FunnelsTest
+ Method: testForStringsCharset_null
+ Body: {
+    for (Charset charset : Charset.availableCharsets().values()) {
+      assertNullsThrowException(Funnels.stringFunnel(charset));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: stringFunnel - Scenario: charset
+
+Project: guava
+ Class: LongMathTest
+ Method: testConstantsHalfPowersOf10
+ Body: {
+    for (int i = 0; i < LongMath.halfPowersOf10.length; i++) {
+      assertEquals(
+          BigIntegerMath.sqrt(BigInteger.TEN.pow(2 * i + 1), FLOOR),
+          BigInteger.valueOf(LongMath.halfPowersOf10[i]));
+    }
+    BigInteger nextBigger =
+        BigIntegerMath.sqrt(BigInteger.TEN.pow(2 * LongMath.halfPowersOf10.length + 1), FLOOR);
+    assertTrue(nextBigger.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: sqrt - Scenario: LongMath.halfPowersOf10.length
+
+Project: guava
+ Class: LongMathTest
+ Method: testIsPrimeManyConstants
+ Body: {
+    // Test the thorough test inputs, which also includes special constants in the Miller-Rabin
+    // tests.
+    for (long l : POSITIVE_LONG_CANDIDATES) {
+      assertEquals(BigInteger.valueOf(l).isProbablePrime(100), LongMath.isPrime(l));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isProbablePrime - Scenario: l
+
+Project: guava
+ Class: LongMathTest
+ Method: testGCDZero
+ Body: {
+    for (long a : POSITIVE_LONG_CANDIDATES) {
+      assertEquals(a, LongMath.gcd(a, 0));
+      assertEquals(a, LongMath.gcd(0, a));
+    }
+    assertEquals(0, LongMath.gcd(0, 0));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: gcd - Scenario: a
+
+Project: guava
+ Class: LongMathTest
+ Method: testIsPowerOfTwo
+ Body: {
+    for (long x : ALL_LONG_CANDIDATES) {
+      // Checks for a single bit set.
+      BigInteger bigX = BigInteger.valueOf(x);
+      boolean expected = (bigX.signum() > 0) && (bigX.bitCount() == 1);
+      assertEquals(expected, LongMath.isPowerOfTwo(x));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPowerOfTwo - Scenario: x
+
+Project: guava
+ Class: LongMathTest
+ Method: testConstantsBiggestBinomials
+ Body: {
+    for (int k = 0; k < LongMath.biggestBinomials.length; k++) {
+      assertTrue(fitsInLong(BigIntegerMath.binomial(LongMath.biggestBinomials[k], k)));
+      assertTrue(
+          LongMath.biggestBinomials[k] == Integer.MAX_VALUE
+              || !fitsInLong(BigIntegerMath.binomial(LongMath.biggestBinomials[k] + 1, k)));
+      // In the first case, any long is valid; in the second, we want to test that the next-bigger
+      // long overflows.
+    }
+    int k = LongMath.biggestBinomials.length;
+    assertFalse(fitsInLong(BigIntegerMath.binomial(2 * k, k)));
+    // 2 * k is the smallest value for which we don't replace k with (n-k).
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: fitsInLong - Scenario: LongMath.biggestBinomials.length
+
+Project: guava
+ Class: LongMathTest
+ Method: testFloorPowerOfTwo
+ Body: {
+    for (long x : POSITIVE_LONG_CANDIDATES) {
+      BigInteger expectedResult = BigIntegerMath.floorPowerOfTwo(BigInteger.valueOf(x));
+      assertEquals(expectedResult.longValue(), LongMath.floorPowerOfTwo(x));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: longValue - Scenario: x
+
+Project: guava
+ Class: LongMathTest
+ Method: testMaxLog10ForLeadingZeros
+ Body: {
+    for (int i = 0; i < Long.SIZE; i++) {
+      assertEquals(
+          BigIntegerMath.log10(BigInteger.ONE.shiftLeft(Long.SIZE - i), FLOOR),
+          LongMath.maxLog10ForLeadingZeros[i]);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log10 - Scenario: Long.SIZE
+
+Project: guava
+ Class: LongMathTest
+ Method: testLog10TrivialOnPowerOf10
+ Body: {
+    long x = 1000000000000L;
+    for (RoundingMode mode : ALL_ROUNDING_MODES) {
+      assertEquals(12, LongMath.log10(x, mode));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log10 - Scenario: mode(unmatched with outside)
+
+Project: guava
+ Class: MapsTest
+ Method: testAsConverter_nominal
+ Body: {
+    ImmutableBiMap<String, Integer> biMap =
+        ImmutableBiMap.of(
+            "one", 1,
+            "two", 2);
+    Converter<String, Integer> converter = Maps.asConverter(biMap);
+    for (Entry<String, Integer> entry : biMap.entrySet()) {
+      assertSame(entry.getValue(), converter.convert(entry.getKey()));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: getValue - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: MapsTest
+ Method: testAsConverter_inverse
+ Body: {
+    ImmutableBiMap<String, Integer> biMap =
+        ImmutableBiMap.of(
+            "one", 1,
+            "two", 2);
+    Converter<String, Integer> converter = Maps.asConverter(biMap);
+    for (Entry<String, Integer> entry : biMap.entrySet()) {
+      assertSame(entry.getKey(), converter.reverse().convert(entry.getValue()));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: getKey - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: AtomicLongMapTest
+ Method: testRemoveValue
+ Body: {
+    AtomicLongMap<String> map = AtomicLongMap.create();
+    String key = "key";
+    assertEquals(0, map.size());
+    assertTrue(map.isEmpty());
+    assertFalse(map.remove(key, 0L));
+
+    long newValue = random.nextInt(MAX_ADDEND);
+    for (int i = 0; i < ITERATIONS; i++) {
+      map.put(key, newValue);
+      assertTrue(map.containsKey(key));
+
+      long before = map.get(key);
+      assertFalse(map.remove(key, newValue + 1));
+      assertFalse(map.remove(key, newValue - 1));
+      assertTrue(map.remove(key, newValue));
+      long after = map.get(key);
+      assertFalse(map.containsKey(key));
+      assertEquals(0L, after);
+      newValue += newValue;
+    }
+    assertEquals(0, map.size());
+    assertTrue(map.isEmpty());
+  }
+ Pattern Name: LoopPattern_v3 - Action: put(unmatched with outside) - Predicate: containsKey - Scenario: ITERATIONS(unmatched with outside)
+
+Project: guava
+ Class: AtomicLongMapTest
+ Method: testSum
+ Body: {
+    AtomicLongMap<Object> map = AtomicLongMap.create();
+    long sum = 0;
+    for (int i = 0; i < ITERATIONS; i++) {
+      map.put(new Object(), i);
+      sum += i;
+    }
+    assertEquals(ITERATIONS, map.size());
+    assertEquals(sum, map.sum());
+  }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: ITERATIONS(unmatched with outside)
+
+Project: guava
+ Class: AtomicLongMapTest
+ Method: testRemove
+ Body: {
+    AtomicLongMap<String> map = AtomicLongMap.create();
+    String key = "key";
+    assertEquals(0, map.size());
+    assertTrue(map.isEmpty());
+    assertEquals(0L, map.remove(key));
+
+    long newValue = random.nextInt(MAX_ADDEND);
+    for (int i = 0; i < ITERATIONS; i++) {
+      map.put(key, newValue);
+      assertTrue(map.containsKey(key));
+
+      long before = map.get(key);
+      long result = map.remove(key);
+      long after = map.get(key);
+      assertFalse(map.containsKey(key));
+      assertEquals(before, result);
+      assertEquals(0L, after);
+      newValue += newValue;
+    }
+    assertEquals(0, map.size());
+    assertTrue(map.isEmpty());
+  }
+ Pattern Name: LoopPattern_v3 - Action: put(unmatched with outside) - Predicate: containsKey - Scenario: ITERATIONS(unmatched with outside)
+
+Project: guava
+ Class: AtomicLongMapTest
+ Method: testClear
+ Body: {
+    AtomicLongMap<Object> map = AtomicLongMap.create();
+    for (int i = 0; i < ITERATIONS; i++) {
+      map.put(new Object(), i);
+    }
+    assertEquals(ITERATIONS, map.size());
+
+    map.clear();
+    assertEquals(0, map.size());
+    assertTrue(map.isEmpty());
+  }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: ITERATIONS(unmatched with outside)
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_selfLoopEdge
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 1);
+    }
+    assertThat(hasCycle(directedGraph)).isTrue();
+    assertThat(hasCycle(undirectedGraph)).isTrue();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_threeAcyclicEdges
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+      graph.putEdge(2, 3);
+      graph.putEdge(1, 3);
+    }
+    assertThat(hasCycle(directedGraph)).isFalse();
+    assertThat(hasCycle(undirectedGraph)).isTrue(); // cyclic in undirected case
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_multipleCycles
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+      graph.putEdge(2, 1);
+      graph.putEdge(2, 3);
+      graph.putEdge(3, 1);
+    }
+    assertThat(hasCycle(directedGraph)).isTrue();
+    assertThat(hasCycle(undirectedGraph)).isTrue();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_isolatedNodes
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.addNode(1);
+      graph.addNode(2);
+    }
+    assertThat(hasCycle(directedGraph)).isFalse();
+    assertThat(hasCycle(undirectedGraph)).isFalse();
+  }
+ Pattern Name: LoopPattern_v3 - Action: addNode - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_disconnectedCyclicGraph
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+      graph.putEdge(2, 1); // no-op in undirected case
+      graph.addNode(3);
+    }
+    assertThat(hasCycle(directedGraph)).isTrue();
+    assertThat(hasCycle(undirectedGraph)).isFalse();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_threeCyclicEdges
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+      graph.putEdge(2, 3);
+      graph.putEdge(3, 1);
+    }
+    assertThat(hasCycle(directedGraph)).isTrue();
+    assertThat(hasCycle(undirectedGraph)).isTrue();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_twoCyclicEdges
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+      graph.putEdge(2, 1); // no-op in undirected case
+    }
+    assertThat(hasCycle(directedGraph)).isTrue();
+    assertThat(hasCycle(undirectedGraph)).isFalse();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_cyclicMultigraph
+ Body: {
+    for (MutableNetwork<Integer, String> network : networksToTest) {
+      network.addEdge(1, 2, "1-2a");
+      network.addEdge(1, 2, "1-2b");
+      network.addEdge(2, 3, "2-3");
+      network.addEdge(3, 1, "3-1");
+    }
+    assertThat(hasCycle(directedNetwork)).isTrue();
+    assertThat(hasCycle(undirectedNetwork)).isTrue();
+  }
+ Pattern Name: LoopPattern_v3 - Action: addEdge - Predicate: N/A - Scenario: network
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_twoAcyclicEdges
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+      graph.putEdge(1, 3);
+    }
+    assertThat(hasCycle(directedGraph)).isFalse();
+    assertThat(hasCycle(undirectedGraph)).isFalse();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_twoParallelEdges
+ Body: {
+    for (MutableNetwork<Integer, String> network : networksToTest) {
+      network.addEdge(1, 2, "1-2a");
+      network.addEdge(1, 2, "1-2b");
+    }
+    assertThat(hasCycle(directedNetwork)).isFalse();
+    assertThat(hasCycle(undirectedNetwork)).isTrue(); // cyclic in undirected case
+  }
+ Pattern Name: LoopPattern_v3 - Action: addEdge - Predicate: N/A - Scenario: network
+
+Project: guava
+ Class: GraphPropertiesTest
+ Method: hasCycle_oneEdge
+ Body: {
+    for (MutableGraph<Integer> graph : graphsToTest) {
+      graph.putEdge(1, 2);
+    }
+    assertThat(hasCycle(directedGraph)).isFalse();
+    assertThat(hasCycle(undirectedGraph)).isFalse();
+  }
+ Pattern Name: LoopPattern_v3 - Action: putEdge - Predicate: N/A - Scenario: graph
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testCeilingPowerOfTwo
+ Body: {
+    for (BigInteger x : POSITIVE_BIGINTEGER_CANDIDATES) {
+      BigInteger result = BigIntegerMath.ceilingPowerOfTwo(x);
+      assertTrue(BigIntegerMath.isPowerOfTwo(result));
+      assertTrue(result.compareTo(x) >= 0);
+      assertTrue(result.compareTo(x.add(x)) < 0);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPowerOfTwo - Scenario: x
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testIsPowerOfTwo
+ Body: {
+    for (BigInteger x : ALL_BIGINTEGER_CANDIDATES) {
+      // Checks for a single bit set.
+      boolean expected = x.signum() > 0 & x.and(x.subtract(ONE)).equals(ZERO);
+      assertEquals(expected, BigIntegerMath.isPowerOfTwo(x));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPowerOfTwo - Scenario: x
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testLog2HalfEven
+ Body: {
+    for (BigInteger x : POSITIVE_BIGINTEGER_CANDIDATES) {
+      int halfEven = BigIntegerMath.log2(x, HALF_EVEN);
+      // Now figure out what rounding mode we should behave like (it depends if FLOOR was
+      // odd/even).
+      boolean floorWasEven = (BigIntegerMath.log2(x, FLOOR) & 1) == 0;
+      assertEquals(BigIntegerMath.log2(x, floorWasEven ? HALF_DOWN : HALF_UP), halfEven);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log2 - Scenario: x
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testLog10HalfEven
+ Body: {
+    for (BigInteger x : POSITIVE_BIGINTEGER_CANDIDATES) {
+      int halfEven = BigIntegerMath.log10(x, HALF_EVEN);
+      // Now figure out what rounding mode we should behave like (it depends if FLOOR was
+      // odd/even).
+      boolean floorWasEven = (BigIntegerMath.log10(x, FLOOR) & 1) == 0;
+      assertEquals(BigIntegerMath.log10(x, floorWasEven ? HALF_DOWN : HALF_UP), halfEven);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log10 - Scenario: x
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testFloorPowerOfTwo
+ Body: {
+    for (BigInteger x : POSITIVE_BIGINTEGER_CANDIDATES) {
+      BigInteger result = BigIntegerMath.floorPowerOfTwo(x);
+      assertTrue(BigIntegerMath.isPowerOfTwo(result));
+      assertTrue(result.compareTo(x) <= 0);
+      assertTrue(result.add(result).compareTo(x) > 0);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPowerOfTwo - Scenario: x
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testLog10TrivialOnPowerOf10
+ Body: {
+    BigInteger x = BigInteger.TEN.pow(100);
+    for (RoundingMode mode : ALL_ROUNDING_MODES) {
+      assertEquals(100, BigIntegerMath.log10(x, mode));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log10 - Scenario: mode(unmatched with outside)
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testSqrtHalfEven
+ Body: {
+    for (BigInteger x : POSITIVE_BIGINTEGER_CANDIDATES) {
+      BigInteger halfEven = BigIntegerMath.sqrt(x, HALF_EVEN);
+      // Now figure out what rounding mode we should behave like (it depends if FLOOR was
+      // odd/even).
+      boolean floorWasOdd = BigIntegerMath.sqrt(x, FLOOR).testBit(0);
+      assertEquals(BigIntegerMath.sqrt(x, floorWasOdd ? HALF_UP : HALF_DOWN), halfEven);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: sqrt - Scenario: x
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testSqrtZeroAlwaysZero
+ Body: {
+    for (RoundingMode mode : ALL_ROUNDING_MODES) {
+      assertEquals(ZERO, BigIntegerMath.sqrt(ZERO, mode));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: sqrt - Scenario: mode
+
+Project: guava
+ Class: StripedTest
+ Method: testStrongImplementations
+ Body: {
+    for (Striped<?> striped : strongImplementations()) {
+      WeakReference<Object> weakRef = new WeakReference<>(striped.get(new Object()));
+      WeakReference<Object> garbage = new WeakReference<>(new Object());
+      GcFinalization.awaitClear(garbage);
+      assertNotNull(weakRef.get());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: awaitClear - Predicate: get - Scenario: striped
+
+Project: guava
+ Class: StripedTest
+ Method: testNull
+ Body: {
+    for (Striped<?> striped : allImplementations()) {
+      new NullPointerTester().testAllPublicInstanceMethods(striped);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: testAllPublicInstanceMethods - Predicate: N/A - Scenario: striped
+
+Project: guava
+ Class: StripedTest
+ Method: testWeakImplementations
+ Body: {
+    for (Striped<?> striped : weakImplementations()) {
+      WeakReference<Object> weakRef = new WeakReference<>(striped.get(new Object()));
+      GcFinalization.awaitClear(weakRef);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: awaitClear - Predicate: N/A - Scenario: striped
+
+Project: guava
+ Class: IntsTest
+ Method: testSaturatedCast
+ Body: {
+    for (int value : VALUES) {
+      assertEquals(value, Ints.saturatedCast((long) value));
+    }
+    assertEquals(GREATEST, Ints.saturatedCast(GREATEST + 1L));
+    assertEquals(LEAST, Ints.saturatedCast(LEAST - 1L));
+    assertEquals(GREATEST, Ints.saturatedCast(Long.MAX_VALUE));
+    assertEquals(LEAST, Ints.saturatedCast(Long.MIN_VALUE));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: saturatedCast - Scenario: value
+
+Project: guava
+ Class: IntsTest
+ Method: testHashCode
+ Body: {
+    for (int value : VALUES) {
+      assertEquals(((Integer) value).hashCode(), Ints.hashCode(value));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: hashCode - Scenario: value
+
+Project: guava
+ Class: IntsTest
+ Method: testCheckedCast
+ Body: {
+    for (int value : VALUES) {
+      assertEquals(value, Ints.checkedCast((long) value));
+    }
+    assertCastFails(GREATEST + 1L);
+    assertCastFails(LEAST - 1L);
+    assertCastFails(Long.MAX_VALUE);
+    assertCastFails(Long.MIN_VALUE);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: checkedCast - Scenario: value
+
+Project: guava
+ Class: UnsignedIntsTest
+ Method: testCheckedCast
+ Body: {
+    for (long value : UNSIGNED_INTS) {
+      assertEquals(value, UnsignedInts.toLong(UnsignedInts.checkedCast(value)));
+    }
+    assertCastFails(1L << 32);
+    assertCastFails(-1L);
+    assertCastFails(Long.MAX_VALUE);
+    assertCastFails(Long.MIN_VALUE);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toLong - Scenario: value
+
+Project: guava
+ Class: UnsignedIntsTest
+ Method: testParseInt
+ Body: {
+    for (long a : UNSIGNED_INTS) {
+      assertEquals((int) a, UnsignedInts.parseUnsignedInt(Long.toString(a)));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: parseUnsignedInt - Scenario: a
+
+Project: guava
+ Class: UnsignedIntsTest
+ Method: testSaturatedCast
+ Body: {
+    for (long value : UNSIGNED_INTS) {
+      assertEquals(value, UnsignedInts.toLong(UnsignedInts.saturatedCast(value)));
+    }
+    assertEquals(GREATEST, UnsignedInts.saturatedCast(1L << 32));
+    assertEquals(LEAST, UnsignedInts.saturatedCast(-1L));
+    assertEquals(GREATEST, UnsignedInts.saturatedCast(Long.MAX_VALUE));
+    assertEquals(LEAST, UnsignedInts.saturatedCast(Long.MIN_VALUE));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toLong - Scenario: value
+
+Project: guava
+ Class: UnsignedIntsTest
+ Method: testToLong
+ Body: {
+    for (long a : UNSIGNED_INTS) {
+      assertEquals(a, UnsignedInts.toLong((int) a));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toLong - Scenario: a
+
+Project: guava
+ Class: IntMathTest
+ Method: testGCDZero
+ Body: {
+    for (int a : POSITIVE_INTEGER_CANDIDATES) {
+      assertEquals(a, IntMath.gcd(a, 0));
+      assertEquals(a, IntMath.gcd(0, a));
+    }
+    assertEquals(0, IntMath.gcd(0, 0));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: gcd - Scenario: a
+
+Project: guava
+ Class: IntMathTest
+ Method: testFloorPowerOfTwo
+ Body: {
+    for (int x : POSITIVE_INTEGER_CANDIDATES) {
+      BigInteger expectedResult = BigIntegerMath.floorPowerOfTwo(BigInteger.valueOf(x));
+      assertEquals(expectedResult.intValue(), IntMath.floorPowerOfTwo(x));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: intValue - Scenario: x
+
+Project: guava
+ Class: IntMathTest
+ Method: testMaxLog10ForLeadingZeros
+ Body: {
+    for (int i = 0; i < Integer.SIZE; i++) {
+      assertEquals(
+          BigIntegerMath.log10(BigInteger.ONE.shiftLeft(Integer.SIZE - i), FLOOR),
+          IntMath.maxLog10ForLeadingZeros[i]);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log10 - Scenario: Integer.SIZE
+
+Project: guava
+ Class: IntMathTest
+ Method: testConstantsBiggestBinomials
+ Body: {
+    for (int k = 0; k < IntMath.biggestBinomials.length; k++) {
+      assertTrue(fitsInInt(BigIntegerMath.binomial(IntMath.biggestBinomials[k], k)));
+      assertTrue(
+          IntMath.biggestBinomials[k] == Integer.MAX_VALUE
+              || !fitsInInt(BigIntegerMath.binomial(IntMath.biggestBinomials[k] + 1, k)));
+      // In the first case, any int is valid; in the second, we want to test that the next-bigger
+      // int overflows.
+    }
+    assertFalse(
+        fitsInInt(
+            BigIntegerMath.binomial(
+                2 * IntMath.biggestBinomials.length, IntMath.biggestBinomials.length)));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: fitsInInt - Scenario: IntMath.biggestBinomials.length
+
+Project: guava
+ Class: IntMathTest
+ Method: testIsPowerOfTwo
+ Body: {
+    for (int x : ALL_INTEGER_CANDIDATES) {
+      // Checks for a single bit set.
+      BigInteger bigX = BigInteger.valueOf(x);
+      boolean expected = (bigX.signum() > 0) && (bigX.bitCount() == 1);
+      assertEquals(expected, IntMath.isPowerOfTwo(x));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPowerOfTwo - Scenario: x
+
+Project: guava
+ Class: IntMathTest
+ Method: testLog10TrivialOnPowerOfTen
+ Body: {
+    int x = 1000000;
+    for (RoundingMode mode : ALL_ROUNDING_MODES) {
+      assertEquals(6, IntMath.log10(x, mode));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: log10 - Scenario: mode(unmatched with outside)
+
+Project: guava
+ Class: IntMathTest
+ Method: testSqrtZeroAlwaysZero
+ Body: {
+    for (RoundingMode mode : ALL_ROUNDING_MODES) {
+      assertEquals(0, IntMath.sqrt(0, mode));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: sqrt - Scenario: mode
+
+Project: guava
+ Class: GeneralRangeTest
+ Method: testFromRangeOneEnd
+ Body: {
+    for (BoundType endpointType : BoundType.values()) {
+      assertEquals(
+          GeneralRange.upTo(Ordering.natural(), 3, endpointType),
+          GeneralRange.from(Range.upTo(3, endpointType)));
+
+      assertEquals(
+          GeneralRange.downTo(Ordering.natural(), 3, endpointType),
+          GeneralRange.from(Range.downTo(3, endpointType)));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: upTo - Scenario: endpointType
+
+Project: guava
+ Class: GeneralRangeTest
+ Method: testSingletonRange
+ Body: {
+    GeneralRange<Integer> range = GeneralRange.range(ORDERING, 3, CLOSED, 3, CLOSED);
+    for (Integer i : IN_ORDER_VALUES) {
+      assertEquals(ORDERING.compare(i, 3) == 0, range.contains(i));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: contains - Scenario: i(unmatched with outside)
+
+Project: guava
+ Class: MapMakerInternalMapTest
+ Method: testNewEntry
+ Body: {
+    for (MapMaker maker : allWeakValueStrengthMakers()) {
+      MapMakerInternalMap<Object, Object, ?, ?> map = makeMap(maker);
+      Segment<Object, Object, ?, ?> segment = map.segments[0];
+
+      Object keyOne = new Object();
+      Object valueOne = new Object();
+      int hashOne = map.hash(keyOne);
+      InternalEntry<Object, Object, ?> entryOne = segment.newEntryForTesting(keyOne, hashOne, null);
+      WeakValueReference<Object, Object, ?> valueRefOne =
+          segment.newWeakValueReferenceForTesting(entryOne, valueOne);
+      assertSame(valueOne, valueRefOne.get());
+      segment.setWeakValueReferenceForTesting(entryOne, valueRefOne);
+
+      assertSame(keyOne, entryOne.getKey());
+      assertEquals(hashOne, entryOne.getHash());
+      assertNull(entryOne.getNext());
+      assertSame(valueRefOne, segment.getWeakValueReferenceForTesting(entryOne));
+
+      Object keyTwo = new Object();
+      Object valueTwo = new Object();
+      int hashTwo = map.hash(keyTwo);
+
+      InternalEntry<Object, Object, ?> entryTwo =
+          segment.newEntryForTesting(keyTwo, hashTwo, entryOne);
+      WeakValueReference<Object, Object, ?> valueRefTwo =
+          segment.newWeakValueReferenceForTesting(entryTwo, valueTwo);
+      assertSame(valueTwo, valueRefTwo.get());
+      segment.setWeakValueReferenceForTesting(entryTwo, valueRefTwo);
+
+      assertSame(keyTwo, entryTwo.getKey());
+      assertEquals(hashTwo, entryTwo.getHash());
+      assertSame(entryOne, entryTwo.getNext());
+      assertSame(valueRefTwo, segment.getWeakValueReferenceForTesting(entryTwo));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: setWeakValueReferenceForTesting - Predicate: get - Scenario: maker
+
+Project: guava
+ Class: MapMakerInternalMapTest
+ Method: testSegmentPut_expand
+ Body: {
+    MapMakerInternalMap<Object, Object, ?, ?> map =
+        makeMap(createMapMaker().concurrencyLevel(1).initialCapacity(1));
+    Segment<Object, Object, ?, ?> segment = map.segments[0];
+    assertEquals(1, segment.table.length());
+
+    int count = 1024;
+    for (int i = 0; i < count; i++) {
+      Object key = new Object();
+      Object value = new Object();
+      int hash = map.hash(key);
+      assertNull(segment.put(key, hash, value, false));
+      assertTrue(segment.table.length() > i);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: put - Scenario: count(matched)
+
+Project: guava
+ Class: MapMakerInternalMapTest
+ Method: testCopyEntry
+ Body: {
+    for (MapMaker maker : allWeakValueStrengthMakers()) {
+      MapMakerInternalMap<Object, Object, ?, ?> map = makeMap(maker);
+      Segment<Object, Object, ?, ?> segment = map.segments[0];
+
+      Object keyOne = new Object();
+      Object valueOne = new Object();
+      int hashOne = map.hash(keyOne);
+      InternalEntry<Object, Object, ?> entryOne = segment.newEntryForTesting(keyOne, hashOne, null);
+      segment.setValueForTesting(entryOne, valueOne);
+
+      Object keyTwo = new Object();
+      Object valueTwo = new Object();
+      int hashTwo = map.hash(keyTwo);
+      InternalEntry<Object, Object, ?> entryTwo = segment.newEntryForTesting(keyTwo, hashTwo, null);
+      segment.setValueForTesting(entryTwo, valueTwo);
+
+      InternalEntry<Object, Object, ?> copyOne = segment.copyForTesting(entryOne, null);
+      assertSame(keyOne, entryOne.getKey());
+      assertEquals(hashOne, entryOne.getHash());
+      assertNull(entryOne.getNext());
+      assertSame(valueOne, copyOne.getValue());
+
+      InternalEntry<Object, Object, ?> copyTwo = segment.copyForTesting(entryTwo, copyOne);
+      assertSame(keyTwo, copyTwo.getKey());
+      assertEquals(hashTwo, copyTwo.getHash());
+      assertSame(copyOne, copyTwo.getNext());
+      assertSame(valueTwo, copyTwo.getValue());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: setValueForTesting - Predicate: getKey - Scenario: maker
+
+Project: guava
+ Class: InetAddressesTest
+ Method: testConvertDottedQuadToHex
+ Body: {
+    String[] ipStrings = {
+      "7::0.128.0.127", "7::0.128.0.128", "7::128.128.0.127", "7::0.128.128.127"
+    };
+
+    for (String ipString : ipStrings) {
+      // Shouldn't hit DNS, because it's an IP string literal.
+      InetAddress ipv6Addr = InetAddress.getByName(ipString);
+      assertEquals(ipv6Addr, InetAddresses.forString(ipString));
+      assertTrue(InetAddresses.isInetAddress(ipString));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: forString - Scenario: ipString(unmatched with outside)
+
+Project: guava
+ Class: LinkedHashMultimapTest
+ Method: testEntriesSpliterator
+ Body: {
+    List<Entry<String, Integer>> expectedEntries =
+        asList(
+            Maps.immutableEntry("foo", 2),
+            Maps.immutableEntry("foo", 3),
+            Maps.immutableEntry("bar", 4),
+            Maps.immutableEntry("bar", 5),
+            Maps.immutableEntry("foo", 6));
+    Multimap<String, Integer> multimap = LinkedHashMultimap.create();
+    for (Entry<String, Integer> entry : expectedEntries) {
+      multimap.put(entry.getKey(), entry.getValue());
+    }
+    List<Entry<String, Integer>> actualEntries = new ArrayList<>();
+    multimap.entries().spliterator().forEachRemaining(actualEntries::add);
+    assertThat(actualEntries).containsExactlyElementsIn(expectedEntries).inOrder();
+  }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: LinkedHashMultimapTest
+ Method: testValuesSpliterator
+ Body: {
+    List<Entry<String, Integer>> expectedEntries =
+        asList(
+            Maps.immutableEntry("foo", 2),
+            Maps.immutableEntry("foo", 3),
+            Maps.immutableEntry("bar", 4),
+            Maps.immutableEntry("bar", 5),
+            Maps.immutableEntry("foo", 6));
+    Multimap<String, Integer> multimap = LinkedHashMultimap.create();
+    for (Entry<String, Integer> entry : expectedEntries) {
+      multimap.put(entry.getKey(), entry.getValue());
+    }
+    List<Integer> actualValues = new ArrayList<>();
+    multimap.values().spliterator().forEachRemaining(actualValues::add);
+    assertThat(actualValues)
+        .containsExactlyElementsIn(Lists.transform(expectedEntries, Entry::getValue))
+        .inOrder();
+  }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: LinkedHashMultimapTest
+ Method: testKeysSpliterator
+ Body: {
+    List<Entry<String, Integer>> expectedEntries =
+        asList(
+            Maps.immutableEntry("foo", 2),
+            Maps.immutableEntry("foo", 3),
+            Maps.immutableEntry("bar", 4),
+            Maps.immutableEntry("bar", 5),
+            Maps.immutableEntry("foo", 6));
+    Multimap<String, Integer> multimap = LinkedHashMultimap.create();
+    for (Entry<String, Integer> entry : expectedEntries) {
+      multimap.put(entry.getKey(), entry.getValue());
+    }
+    List<String> actualKeys = new ArrayList<>();
+    multimap.keys().spliterator().forEachRemaining(actualKeys::add);
+    assertThat(actualKeys)
+        .containsExactlyElementsIn(Lists.transform(expectedEntries, Entry::getKey))
+        .inOrder();
+  }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testFuzzyEqualsTwoNaNs
+ Body: {
+    for (double tolerance : TOLERANCE_CANDIDATES) {
+      assertTrue(DoubleMath.fuzzyEquals(Double.NaN, Double.NaN, tolerance));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: fuzzyEquals - Scenario: tolerance
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testLog2Negative
+ Body: {
+    for (double d : POSITIVE_FINITE_DOUBLE_CANDIDATES) {
+      assertTrue(Double.isNaN(DoubleMath.log2(-d)));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isNaN - Scenario: d
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testIsMathematicalIntegerIntegral
+ Body: {
+    for (double d : INTEGRAL_DOUBLE_CANDIDATES) {
+      assertTrue(DoubleMath.isMathematicalInteger(d));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isMathematicalInteger - Scenario: d
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testRoundExactIntegralDoubleToBigInteger
+ Body: {
+    for (double d : INTEGRAL_DOUBLE_CANDIDATES) {
+      BigDecimal expected = new BigDecimal(d).setScale(0, UNNECESSARY);
+      assertEquals(expected.toBigInteger(), DoubleMath.roundToBigInteger(d, UNNECESSARY));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: toBigInteger - Scenario: d
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testConstantsEverySixteenthFactorial
+ Body: {
+    for (int i = 0, n = 0; n <= DoubleMath.MAX_FACTORIAL; i++, n += 16) {
+      assertEquals(
+          BigIntegerMath.factorial(n).doubleValue(), DoubleMath.everySixteenthFactorial[i]);
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: doubleValue - Scenario: DoubleMath.MAX_FACTORIAL
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testFactorial
+ Body: {
+    for (int i = 0; i <= DoubleMath.MAX_FACTORIAL; i++) {
+      double actual = BigIntegerMath.factorial(i).doubleValue();
+      double result = DoubleMath.factorial(i);
+      assertEquals(actual, result, Math.ulp(actual));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: ulp - Scenario: DoubleMath.MAX_FACTORIAL
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testIsPowerOfTwo
+ Body: {
+    for (double x : ALL_DOUBLE_CANDIDATES) {
+      boolean expected =
+          x > 0
+              && !Double.isInfinite(x)
+              && !Double.isNaN(x)
+              && StrictMath.pow(2.0, DoubleMath.log2(x, FLOOR)) == x;
+      assertEquals(expected, DoubleMath.isPowerOfTwo(x));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isPowerOfTwo - Scenario: x
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testIsMathematicalIntegerNotFinite
+ Body: {
+    for (double d : Arrays.asList(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NaN)) {
+      assertFalse(DoubleMath.isMathematicalInteger(d));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isMathematicalInteger - Scenario: d
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testIsMathematicalIntegerFractional
+ Body: {
+    for (double d : FRACTIONAL_DOUBLE_CANDIDATES) {
+      assertFalse(DoubleMath.isMathematicalInteger(d));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isMathematicalInteger - Scenario: d
+
+Project: guava
+ Class: SignedBytesTest
+ Method: testSaturatedCast
+ Body: {
+    for (byte value : VALUES) {
+      assertEquals(value, SignedBytes.saturatedCast((long) value));
+    }
+    assertEquals(GREATEST, SignedBytes.saturatedCast(GREATEST + 1L));
+    assertEquals(LEAST, SignedBytes.saturatedCast(LEAST - 1L));
+    assertEquals(GREATEST, SignedBytes.saturatedCast(Long.MAX_VALUE));
+    assertEquals(LEAST, SignedBytes.saturatedCast(Long.MIN_VALUE));
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: saturatedCast - Scenario: value
+
+Project: guava
+ Class: SignedBytesTest
+ Method: testCheckedCast
+ Body: {
+    for (byte value : VALUES) {
+      assertEquals(value, SignedBytes.checkedCast((long) value));
+    }
+    assertCastFails(GREATEST + 1L);
+    assertCastFails(LEAST - 1L);
+    assertCastFails(Long.MAX_VALUE);
+    assertCastFails(Long.MIN_VALUE);
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: checkedCast - Scenario: value
+
+Project: guava
+ Class: MapReplaceAllTester
+ Method: testReplaceAllRotate
+ Body: {
+    getMap()
+        .replaceAll(
+            (K k, V v) -> {
+              int index = keys().asList().indexOf(k);
+              return values().asList().get(index + 1);
+            });
+    List<Entry<K, V>> expectedEntries = new ArrayList<>();
+    for (Entry<K, V> entry : getSampleEntries()) {
+      int index = keys().asList().indexOf(entry.getKey());
+      expectedEntries.add(Helpers.mapEntry(entry.getKey(), values().asList().get(index + 1)));
+    }
+    expectContents(expectedEntries);
+  }
+ Pattern Name: LoopPattern_v3 - Action: add(unmatched with outside) - Predicate: N/A - Scenario: entry(unmatched with outside)
+
+Project: guava
+ Class: ListSubListTester
+ Method: testSubList_isEmpty
+ Body: {
+    List<E> list = getList();
+    int size = getNumElements();
+    for (List<E> subList :
+        Arrays.asList(
+            list.subList(0, size),
+            list.subList(0, size - 1),
+            list.subList(1, size),
+            list.subList(0, 0),
+            list.subList(size, size))) {
+      assertEquals(subList.size() == 0, subList.isEmpty());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isEmpty - Scenario: subList(unmatched with outside)
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testRowMap
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(
+          ImmutableMap.of('a', ImmutableMap.of(1, "foo", 2, "baz"), 'b', ImmutableMap.of(1, "bar")),
+          testInstance.rowMap());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: of - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testSize
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(3, testInstance.size());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: size - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testCellSet
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(CELLS, testInstance.cellSet());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: cellSet - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testColumnKeySet
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(ImmutableSet.of(1, 2), testInstance.columnKeySet());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: of - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testContainsColumn
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertTrue(testInstance.containsColumn(1));
+      assertTrue(testInstance.containsColumn(2));
+      assertFalse(testInstance.containsColumn(3));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsColumn - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testColumnMap
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(
+          ImmutableMap.of(
+              1, ImmutableMap.of('a', "foo", 'b', "bar"), 2, ImmutableMap.of('a', "baz")),
+          testInstance.columnMap());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: of - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testContainsRow
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertTrue(testInstance.containsRow('a'));
+      assertTrue(testInstance.containsRow('b'));
+      assertFalse(testInstance.containsRow('c'));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsRow - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testGet
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals("foo", testInstance.get('a', 1));
+      assertEquals("bar", testInstance.get('b', 1));
+      assertEquals("baz", testInstance.get('a', 2));
+      assertNull(testInstance.get('b', 2));
+      assertNull(testInstance.get('c', 3));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: get - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testRow
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(ImmutableMap.of(1, "foo", 2, "baz"), testInstance.row('a'));
+      assertEquals(ImmutableMap.of(1, "bar"), testInstance.row('b'));
+      assertEquals(ImmutableMap.of(), testInstance.row('c'));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: of - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testColumn
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(ImmutableMap.of('a', "foo", 'b', "bar"), testInstance.column(1));
+      assertEquals(ImmutableMap.of('a', "baz"), testInstance.column(2));
+      assertEquals(ImmutableMap.of(), testInstance.column(3));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: of - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testIsEmpty
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertFalse(testInstance.isEmpty());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: isEmpty - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testContainsValue
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertTrue(testInstance.containsValue("foo"));
+      assertTrue(testInstance.containsValue("bar"));
+      assertTrue(testInstance.containsValue("baz"));
+      assertFalse(testInstance.containsValue("blah"));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: containsValue - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testContains
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertTrue(testInstance.contains('a', 1));
+      assertTrue(testInstance.contains('b', 1));
+      assertTrue(testInstance.contains('a', 2));
+      assertFalse(testInstance.contains('b', 2));
+      assertFalse(testInstance.contains('c', 3));
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: contains - Scenario: testInstance
+
+Project: guava
+ Class: RegularImmutableTableTest
+ Method: testRowKeySet
+ Body: {
+    for (ImmutableTable<Character, Integer, String> testInstance : getTestInstances()) {
+      assertEquals(ImmutableSet.of('a', 'b'), testInstance.rowKeySet());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: N/A - Predicate: of - Scenario: testInstance
+

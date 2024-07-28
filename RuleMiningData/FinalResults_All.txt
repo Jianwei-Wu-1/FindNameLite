@@ -1,0 +1,287 @@
+{no_assertion_no_controlFlow}
+start{ * declaration * declaration * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 1
+start{ * assignment * }end * NumberOfMatches: 1
+start{ * declaration * assignment * assignment * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * methodCall * declaration * methodCall * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * declaration * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * methodCall * declaration * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * declaration * declaration * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * assignment * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * methodCall * declaration * methodCall * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * methodCall * methodCall * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * declaration * methodCall * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * declaration * declaration * declaration * }end * NumberOfMatches: 2
+start{ * declaration * assignment * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * declaration * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * declaration * declaration * methodCall * methodCall * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * declaration * methodCall * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 4
+start{ * methodCall * declaration * methodCall * methodCall * methodCall * }end * NumberOfMatches: 4
+start{ * declaration * declaration * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 4
+start{ * declaration * declaration * declaration * declaration * declaration * declaration * declaration * methodCall * }end * NumberOfMatches: 4
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 4
+start{ * declaration * declaration * declaration * }end * NumberOfMatches: 5
+start{ * declaration * declaration * methodCall * methodCall * }end * NumberOfMatches: 5
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 5
+start{ * declaration * }end * NumberOfMatches: 6
+start{ * declaration * methodCall * declaration * methodCall * }end * NumberOfMatches: 6
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 6
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 7
+start{ * declaration * declaration * }end * NumberOfMatches: 7
+start{ * declaration * declaration * declaration * methodCall * }end * NumberOfMatches: 7
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 8
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 10
+start{ * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 10
+start{ * declaration * methodCall * methodCall * methodCall * }end * NumberOfMatches: 11
+start{ * }end * NumberOfMatches: 11
+start{ * declaration * declaration * declaration * declaration * methodCall * }end * NumberOfMatches: 12
+start{ * methodCall * methodCall * methodCall * }end * NumberOfMatches: 21
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 22
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end * NumberOfMatches: 26
+start{ * methodCall * methodCall * }end * NumberOfMatches: 77
+start{ * declaration * declaration * methodCall * }end * NumberOfMatches: 82
+start{ * declaration * methodCall * methodCall * }end * NumberOfMatches: 395
+start{ * methodCall * }end * NumberOfMatches: 505
+start{ * declaration * methodCall * }end * NumberOfMatches: 5573
+
+{with_assertion_no_controlFlow}
+start{ * declaration * declaration * methodCall * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * assertFalse * assertTrue * assertTrue * }end * NumberOfMatches: 1
+start{ * methodCall * assertThat * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * methodCall * assertThat * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * declaration * assertTrue * assertFalse * }end * NumberOfMatches: 1
+start{ * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * methodCall * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * assertEquals * methodCall * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * methodCall * assertFalse * }end * NumberOfMatches: 1
+start{ * declaration * declaration * methodCall * assertTrue * }end * NumberOfMatches: 1
+start{ * methodCall * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * assertTrue * assertTrue * assertTrue * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * assertTrue * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * methodCall * assertSame * }end * NumberOfMatches: 1
+start{ * methodCall * methodCall * assertTrue * }end * NumberOfMatches: 1
+start{ * assertEquals * methodCall * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * assertFalse * assertTrue * }end * NumberOfMatches: 1
+start{ * declaration * declaration * methodCall * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * assertEquals * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * declaration * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * methodCall * assertFalse * }end * NumberOfMatches: 1
+start{ * declaration * assertEquals * assertFalse * }end * NumberOfMatches: 1
+start{ * declaration * assertEquals * assertTrue * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * methodCall * methodCall * methodCall * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * declaration * declaration * declaration * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * assertEquals * assertEquals * assertEquals * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * methodCall * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 1
+start{ * assertEquals * assertTrue * assertTrue * }end * NumberOfMatches: 1
+start{ * methodCall * methodCall * declaration * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * assertFalse * assertEquals * }end * NumberOfMatches: 1
+start{ * declaration * declaration * declaration * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 2
+start{ * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 2
+start{ * methodCall * declaration * assertEquals * }end * NumberOfMatches: 2
+start{ * declaration * assertSame * assertSame * }end * NumberOfMatches: 2
+start{ * assertTrue * assertTrue * assertFalse * }end * NumberOfMatches: 2
+start{ * methodCall * assertFalse * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * assertEquals * methodCall * }end * NumberOfMatches: 2
+start{ * assertionNotJUnit * assertEquals * }end * NumberOfMatches: 2
+start{ * methodCall * assertEquals * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * methodCall * methodCall * assertThat * }end * NumberOfMatches: 2
+start{ * declaration * assertEquals * methodCall * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * assertTrue * assertEquals * }end * NumberOfMatches: 2
+start{ * declaration * assertEquals * assertEquals * methodCall * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * declaration * declaration * assertEquals * assertEquals * }end * NumberOfMatches: 2
+start{ * declaration * assertTrue * assertEquals * assertEquals * }end * NumberOfMatches: 2
+start{ * declaration * declaration * assertThat * assertThat * }end * NumberOfMatches: 2
+start{ * declaration * declaration * assertFalse * assertTrue * }end * NumberOfMatches: 2
+start{ * declaration * declaration * declaration * declaration * assertEquals * methodCall * }end * NumberOfMatches: 2
+start{ * assertFalse * assertEquals * }end * NumberOfMatches: 2
+start{ * declaration * methodCall * assertThat * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * declaration * methodCall * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 2
+start{ * assertTrue * assertTrue * assertTrue * }end * NumberOfMatches: 2
+start{ * methodCall * methodCall * methodCall * methodCall * assertThat * }end * NumberOfMatches: 2
+start{ * declaration * declaration * declaration * assertFalse * }end * NumberOfMatches: 2
+start{ * declaration * methodCall * methodCall * declaration * assertEquals * }end * NumberOfMatches: 2
+start{ * declaration * assertTrue * assertEquals * }end * NumberOfMatches: 2
+start{ * methodCall * methodCall * assertionNotJUnit * }end * NumberOfMatches: 2
+start{ * methodCall * methodCall * assertThat * assertThat * }end * NumberOfMatches: 2
+start{ * declaration * declaration * assertEquals * methodCall * }end * NumberOfMatches: 2
+start{ * declaration * methodCall * methodCall * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 2
+start{ * assertFalse * assertTrue * }end * NumberOfMatches: 3
+start{ * declaration * assertFalse * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * assertFalse * assertFalse * }end * NumberOfMatches: 3
+start{ * declaration * declaration * methodCall * methodCall * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * methodCall * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * declaration * declaration * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * declaration * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * assertEquals * assertTrue * }end * NumberOfMatches: 3
+start{ * declaration * declaration * methodCall * assertionNotJUnit * }end * NumberOfMatches: 3
+start{ * declaration * declaration * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * methodCall * declaration * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * assertThat * methodCall * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * assertSame * }end * NumberOfMatches: 3
+start{ * assertThat * assertThat * assertThat * assertThat * }end * NumberOfMatches: 3
+start{ * declaration * assertEquals * assertEquals * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * methodCall * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * declaration * declaration * declaration * methodCall * assertEquals * }end * NumberOfMatches: 3
+start{ * assertTrue * assertTrue * }end * NumberOfMatches: 3
+start{ * declaration * declaration * methodCall * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 3
+start{ * declaration * declaration * assertEquals * assertTrue * }end * NumberOfMatches: 3
+start{ * declaration * assertTrue * assertFalse * assertFalse * }end * NumberOfMatches: 3
+start{ * declaration * declaration * assertTrue * assertTrue * assertTrue * }end * NumberOfMatches: 3
+start{ * assertTrue * assertTrue * assertTrue * assertTrue * }end * NumberOfMatches: 3
+start{ * methodCall * methodCall * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 4
+start{ * declaration * assertThat * methodCall * methodCall * }end * NumberOfMatches: 4
+start{ * declaration * declaration * declaration * assertTrue * assertTrue * }end * NumberOfMatches: 4
+start{ * declaration * declaration * assertEquals * assertEquals * methodCall * }end * NumberOfMatches: 4
+start{ * declaration * declaration * declaration * assertionNotJUnit * }end * NumberOfMatches: 4
+start{ * declaration * methodCall * declaration * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 4
+start{ * methodCall * assertSame * }end * NumberOfMatches: 4
+start{ * declaration * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 4
+start{ * declaration * declaration * declaration * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 4
+start{ * assertThat * methodCall * assertThat * }end * NumberOfMatches: 4
+start{ * declaration * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 4
+start{ * declaration * assertEquals * methodCall * assertEquals * }end * NumberOfMatches: 4
+start{ * declaration * methodCall * methodCall * methodCall * assertEquals * assertEquals * }end * NumberOfMatches: 4
+start{ * declaration * declaration * assertFalse * }end * NumberOfMatches: 5
+start{ * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 5
+start{ * declaration * assertThat * assertThat * assertThat * }end * NumberOfMatches: 5
+start{ * declaration * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 5
+start{ * declaration * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 5
+start{ * declaration * methodCall * declaration * assertThat * }end * NumberOfMatches: 5
+start{ * declaration * methodCall * methodCall * methodCall * assertThat * }end * NumberOfMatches: 5
+start{ * methodCall * assertFalse * }end * NumberOfMatches: 5
+start{ * declaration * declaration * assertEquals * assertFalse * }end * NumberOfMatches: 6
+start{ * methodCall * assertThat * assertThat * assertThat * }end * NumberOfMatches: 6
+start{ * methodCall * assertThat * assertThat * }end * NumberOfMatches: 6
+start{ * declaration * declaration * methodCall * methodCall * assertThat * }end * NumberOfMatches: 6
+start{ * declaration * methodCall * methodCall * assertTrue * }end * NumberOfMatches: 6
+start{ * declaration * methodCall * assertFalse * }end * NumberOfMatches: 6
+start{ * declaration * methodCall * assertTrue * assertTrue * }end * NumberOfMatches: 6
+start{ * declaration * methodCall * methodCall * methodCall * declaration * assertEquals * }end * NumberOfMatches: 7
+start{ * declaration * assertTrue * assertFalse * }end * NumberOfMatches: 7
+start{ * declaration * assertTrue * methodCall * }end * NumberOfMatches: 7
+start{ * declaration * declaration * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 7
+start{ * declaration * methodCall * declaration * assertEquals * }end * NumberOfMatches: 7
+start{ * assertEquals * assertTrue * }end * NumberOfMatches: 7
+start{ * assertThat * methodCall * }end * NumberOfMatches: 8
+start{ * declaration * assertEquals * declaration * assertEquals * }end * NumberOfMatches: 8
+start{ * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 8
+start{ * declaration * declaration * declaration * assertEquals * assertEquals * }end * NumberOfMatches: 9
+start{ * declaration * assertNull * }end * NumberOfMatches: 9
+start{ * declaration * declaration * assertThat * methodCall * }end * NumberOfMatches: 9
+start{ * assertionNotJUnit * assertionNotJUnit * assertionNotJUnit * }end * NumberOfMatches: 9
+start{ * declaration * assertionNotJUnit * assertEquals * }end * NumberOfMatches: 9
+start{ * declaration * declaration * declaration * assertThat * }end * NumberOfMatches: 9
+start{ * declaration * declaration * declaration * methodCall * assertEquals * }end * NumberOfMatches: 9
+start{ * methodCall * declaration * methodCall * assertThat * }end * NumberOfMatches: 9
+start{ * declaration * declaration * methodCall * assertEquals * }end * NumberOfMatches: 10
+start{ * declaration * methodCall * assertTrue * }end * NumberOfMatches: 10
+start{ * declaration * declaration * declaration * assertTrue * }end * NumberOfMatches: 10
+start{ * declaration * methodCall * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 10
+start{ * methodCall * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 10
+start{ * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 10
+start{ * declaration * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 11
+start{ * assertThat * assertThat * assertThat * }end * NumberOfMatches: 12
+start{ * declaration * assertTrue * assertTrue * }end * NumberOfMatches: 12
+start{ * assertTrue * assertFalse * }end * NumberOfMatches: 12
+start{ * declaration * declaration * assertTrue * assertTrue * }end * NumberOfMatches: 12
+start{ * declaration * assertionNotJUnit * assertionNotJUnit * }end * NumberOfMatches: 12
+start{ * methodCall * assertTrue * }end * NumberOfMatches: 12
+start{ * assignment * assertEquals * }end * NumberOfMatches: 13
+start{ * declaration * methodCall * methodCall * assertEquals * }end * NumberOfMatches: 13
+start{ * declaration * assertThat * methodCall * }end * NumberOfMatches: 13
+start{ * declaration * declaration * declaration * declaration * assertEquals * }end * NumberOfMatches: 14
+start{ * declaration * declaration * assertSame * }end * NumberOfMatches: 14
+start{ * declaration * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 15
+start{ * methodCall * assertThat * }end * NumberOfMatches: 15
+start{ * declaration * declaration * methodCall * assertThat * }end * NumberOfMatches: 15
+start{ * methodCall * methodCall * assertThat * }end * NumberOfMatches: 15
+start{ * methodCall * assertEquals * }end * NumberOfMatches: 15
+start{ * assertThat * assertThat * }end * NumberOfMatches: 16
+start{ * declaration * assertThat * assertThat * }end * NumberOfMatches: 16
+start{ * declaration * methodCall * assertThat * }end * NumberOfMatches: 18
+start{ * declaration * methodCall * methodCall * assertionNotJUnit * }end * NumberOfMatches: 19
+start{ * assertSame * }end * NumberOfMatches: 20
+start{ * assertEquals * methodCall * }end * NumberOfMatches: 21
+start{ * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 22
+start{ * declaration * assertionNotJUnit * assertionNotJUnit * assertionNotJUnit * }end * NumberOfMatches: 22
+start{ * assertionNotJUnit * assertionNotJUnit * }end * NumberOfMatches: 22
+start{ * declaration * assertFalse * }end * NumberOfMatches: 23
+start{ * declaration * declaration * assertTrue * }end * NumberOfMatches: 24
+start{ * assertEquals * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 24
+start{ * declaration * declaration * assertionNotJUnit * }end * NumberOfMatches: 25
+start{ * methodCall * assertionNotJUnit * }end * NumberOfMatches: 25
+start{ * assertTrue * methodCall * }end * NumberOfMatches: 27
+start{ * declaration * declaration * assertEquals * assertEquals * }end * NumberOfMatches: 28
+start{ * assertNull * }end * NumberOfMatches: 28
+start{ * declaration * methodCall * assertEquals * }end * NumberOfMatches: 28
+start{ * assertFalse * methodCall * }end * NumberOfMatches: 29
+start{ * declaration * assertEquals * assertEquals * }end * NumberOfMatches: 31
+start{ * declaration * assertTrue * }end * NumberOfMatches: 33
+start{ * declaration * declaration * declaration * assertEquals * }end * NumberOfMatches: 33
+start{ * declaration * methodCall * assertionNotJUnit * }end * NumberOfMatches: 37
+start{ * assertTrue * }end * NumberOfMatches: 37
+start{ * methodCall * assertThat * methodCall * assertThat * }end * NumberOfMatches: 40
+start{ * assertFalse * }end * NumberOfMatches: 42
+start{ * assertEquals * assertEquals * assertEquals * }end * NumberOfMatches: 52
+start{ * declaration * assertSame * }end * NumberOfMatches: 52
+start{ * declaration * assertionNotJUnit * }end * NumberOfMatches: 79
+start{ * assertEquals * assertEquals * }end * NumberOfMatches: 81
+start{ * declaration * assertThat * }end * NumberOfMatches: 83
+start{ * declaration * declaration * assertThat * }end * NumberOfMatches: 102
+start{ * declaration * declaration * assertEquals * }end * NumberOfMatches: 107
+start{ * assertionNotJUnit * }end * NumberOfMatches: 111
+start{ * assertThat * }end * NumberOfMatches: 112
+start{ * assertEquals * }end * NumberOfMatches: 185
+start{ * declaration * assertEquals * }end * NumberOfMatches: 234
+
+{controlFlow_no_assertion}
+start{ * try{ * methodCall * fail * catch{ * }catch * catch{ * }catch * }try * }end * NumberOfMatches: 1
+start{ * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * for{ * declaration * methodCall * }for * }end * NumberOfMatches: 1
+start{ * declaration * try{ * fail * catch{ * }catch * }try * }end * NumberOfMatches: 1
+start{ * try{ * methodCall * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 1
+start{ * try{ * methodCall * methodCall * catch{ * }catch * }try * methodCall * }end * NumberOfMatches: 1
+start{ * declaration * try{ * methodCall * fail * catch{ * }catch * catch{ * }catch * }try * }end * NumberOfMatches: 1
+start{ * methodCall * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 1
+start{ * try{ * methodCall * catch{ * }catch * }try * methodCall * methodCall * }end * NumberOfMatches: 2
+start{ * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 2
+start{ * declaration * try{ * methodCall * fail * catch{ * }catch * methodCall * }try * }end * NumberOfMatches: 2
+start{ * declaration * methodCall * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 3
+start{ * declaration * try{ * methodCall * fail * catch{ * }catch * }try * methodCall * }end * NumberOfMatches: 3
+start{ * declaration * declaration * declaration * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 3
+start{ * try{ * fail * catch{ * }catch * }try * }end * NumberOfMatches: 6
+start{ * declaration * declaration * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 7
+start{ * try{ * methodCall * fail * catch{ * methodCall * }catch * }try * }end * NumberOfMatches: 8
+start{ * declaration * try{ * methodCall * fail * catch{ * }catch * }try * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 10
+start{ * declaration * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 13
+start{ * try{ * methodCall * catch{ * }catch * }try * fail * }end * NumberOfMatches: 16
+start{ * try{ * methodCall * catch{ * }catch * }try * methodCall * }end * NumberOfMatches: 16
+start{ * declaration * declaration * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 21
+start{ * try{ * methodCall * fail * catch{ * }catch * }try * methodCall * methodCall * }end * NumberOfMatches: 24
+start{ * try{ * methodCall * fail * catch{ * }catch * }try * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 26
+start{ * try{ * methodCall * fail * catch{ * }catch * }try * methodCall * }end * NumberOfMatches: 34
+start{ * try{ * methodCall * catch{ * }catch * }try * }end * NumberOfMatches: 54
+start{ * declaration * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 209
+start{ * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 284
+
+{controlFlow_with_assertion}
+start{ * declaration * try{ * fail * catch{ * assertThat * }catch * }try * }end * NumberOfMatches: 1
+start{ * for{ * declaration * assertEquals * }for * }end * NumberOfMatches: 6
+start{ * declaration * assertEquals * try{ * methodCall * fail * catch{ * }catch * }try * }end * NumberOfMatches: 12
+start{ * declaration * try{ * methodCall * fail * catch{ * assertThat * }catch * }try * }end * NumberOfMatches: 19
+start{ * try{ * methodCall * fail * catch{ * assertThat * }catch * }try * }end * NumberOfMatches: 47
+
+{others}
+

@@ -1,0 +1,1788 @@
+Project: ytapi
+ Class: CurrentAPITest
+ Method: doesNotSignInWhenCredentialsAreInvalid
+ Body: {
+    createCurrentAPI().signIn("invalidLogin", "invalidPassword");
+  }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: signIn (Alternative Action: signIn=1 ) - Predicate: N/A - Scenario: createCurrentAPI() (Alternative Scenario:  )
+
+Project: TW-Travel-Jetpacked
+ Class: JavaAcessibilityTest
+ Method: testAccessingConstructors
+ Body: {
+    runScript(importClass + "new PrivateAccessClass(\"foo\")");
+    runScript(importClass + "new PrivateAccessClass(5)");
+    runScript(importClass + "new PrivateAccessClass(5, \"foo\")");
+  }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: runScript (Alternative Action: runScript=3 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: TW-Travel-Jetpacked
+ Class: ObserveInstructionCountTest
+ Method: testCompiled
+ Body: {
+        baseCase(1); // compiled mode
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: baseCase (Alternative Action: baseCase=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: TW-Travel-Jetpacked
+ Class: ObserveInstructionCountTest
+ Method: testInterpreted
+ Body: {
+        baseCase(-1); // interpreted mode
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: baseCase (Alternative Action: baseCase=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogRecoveryTest
+ Method: testLastLoggableIncomplete6
+ Body: {
+        cutAndCheckLastLoggableIncomplete(6, a);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogRecoveryTest
+ Method: testLastLoggableIncomplete1
+ Body: {
+        cutAndCheckLastLoggableIncomplete(1, a);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogRecoveryTest
+ Method: testLastLoggableIncomplete8
+ Body: {
+        cutAndCheckLastLoggableIncomplete(8, b);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EntityTests
+ Method: testSetPhantomLink
+ Body: {
+        setOrAddPhantomLink(false);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setOrAddPhantomLink (Alternative Action: setOrAddPhantomLink=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EntityTests
+ Method: testAddPhantomLink
+ Body: {
+        setOrAddPhantomLink(true);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setOrAddPhantomLink (Alternative Action: setOrAddPhantomLink=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete5
+ Body: {
+        cutAndCheckLastLoggableIncomplete(56, A);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete1
+ Body: {
+        cutAndCheckLastLoggableIncomplete(99, A);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete4
+ Body: {
+        cutAndCheckLastLoggableIncomplete(61, A);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete12
+ Body: {
+        cutAndCheckLastLoggableIncomplete(0, B); // recovery should create same empty environment
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete8
+ Body: {
+        cutAndCheckLastLoggableIncomplete(23, B);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete10
+ Body: {
+        cutAndCheckLastLoggableIncomplete(12, B);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete11
+ Body: {
+        cutAndCheckLastLoggableIncomplete(5, B); // recovery should create same empty environment
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete6
+ Body: {
+        cutAndCheckLastLoggableIncomplete(49, B);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete7
+ Body: {
+        cutAndCheckLastLoggableIncomplete(41, B);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete0
+ Body: {
+        cutAndCheckLastLoggableIncomplete(106, SEQ.length);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete9
+ Body: {
+        cutAndCheckLastLoggableIncomplete(17, B);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete2
+ Body: {
+        cutAndCheckLastLoggableIncomplete(89, A);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentRecoveryTest
+ Method: testLastLoggableIncomplete3
+ Body: {
+        cutAndCheckLastLoggableIncomplete(67, A);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cutAndCheckLastLoggableIncomplete (Alternative Action: cutAndCheckLastLoggableIncomplete=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: ReentrantTransactionDispatcherTest
+ Method: cantReleaseMorePermits
+ Body: {
+        dispatcher.acquireTransaction(Thread.currentThread());
+        dispatcher.releaseTransaction(Thread.currentThread(), 2);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: acquireTransaction (Alternative Action: currentThread=2 ) - Predicate: N/A - Scenario: dispatcher (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentConfigMBeanTest
+ Method: readOnly_XD_448
+ Body: {
+        beanIsAccessible();
+        platformMBeanServer.setAttribute(envConfigName, new Attribute(READ_ONLY_ATTR, true));
+        platformMBeanServer.setAttribute(envConfigName, new Attribute(READ_ONLY_ATTR, true));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setAttribute (Alternative Action: setAttribute=2 ) - Predicate: N/A - Scenario: platformMBeanServer (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeReadExponentialStrategy
+ Body: {
+        testWriteReadWithStrategy(ClusteringStrategy.EXPONENTIAL);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteReadWithStrategy (Alternative Action: testWriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeReadQuadraticStrategy
+ Body: {
+        testWriteReadWithStrategy(ClusteringStrategy.QUADRATIC);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteReadWithStrategy (Alternative Action: testWriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeOverwriteReadExponentialStrategy
+ Body: {
+        testWriteOverwriteReadWithStrategy(ClusteringStrategy.EXPONENTIAL);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteOverwriteReadWithStrategy (Alternative Action: testWriteOverwriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeReadLinearStrategy
+ Body: {
+        testWriteReadWithStrategy(ClusteringStrategy.LINEAR);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteReadWithStrategy (Alternative Action: testWriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeOverwriteReadQuadraticStrategy
+ Body: {
+        testWriteOverwriteReadWithStrategy(ClusteringStrategy.QUADRATIC);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteOverwriteReadWithStrategy (Alternative Action: testWriteOverwriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeOverwriteReadLinearStrategy
+ Body: {
+        testWriteOverwriteReadWithStrategy(ClusteringStrategy.LINEAR);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteOverwriteReadWithStrategy (Alternative Action: testWriteOverwriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: VfsStreamsTests
+ Method: writeReadLinearStrategy2
+ Body: {
+        testWriteReadWithStrategy(new ClusteringStrategy.LinearClusteringStrategy(16));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteReadWithStrategy (Alternative Action: testWriteReadWithStrategy=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteRandomRead2
+ Body: {
+        testWriteRandomRead(4, 1024 * 4);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteRandomRead (Alternative Action: testWriteRandomRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteRandomRead
+ Body: {
+        testWriteRandomRead(1, 1024);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteRandomRead (Alternative Action: testWriteRandomRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteImmediateRead2
+ Body: {
+        testWriteImmediateRead(4, 1024 * 4);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteImmediateRead (Alternative Action: testWriteImmediateRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testAutoAlignment2
+ Body: {
+        initLog(1);
+        // one kb loggable can't be placed in a single file of one kb size
+        TestUtil.runWithExpectedException(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    log.beginWrite();
+                    getLog().write(ONE_KB_LOGGABLE);
+                } catch (Throwable t) {
+                    getLog().abortWrite();
+                    throw t;
+                }
+            }
+        }, TooBigLoggableException.class);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: runWithExpectedException (Alternative Action: getLog=2 ) - Predicate: N/A - Scenario: TestUtil (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteImmediateRead3
+ Body: {
+        testWriteImmediateRead(16, 1024 * 16);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteImmediateRead (Alternative Action: testWriteImmediateRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteSequentialRead3
+ Body: {
+        testWriteSequentialRead(16, 1024 * 16);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteSequentialRead (Alternative Action: testWriteSequentialRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteRandomRead3
+ Body: {
+        testWriteRandomRead(16, 1024 * 16);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteRandomRead (Alternative Action: testWriteRandomRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testWriteRandomRead4
+ Body: {
+        testWriteRandomRead(2, 1024);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: testWriteRandomRead (Alternative Action: testWriteRandomRead=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: xodus
+ Class: LogTests
+ Method: testReadUnknownLoggableType
+ Body: {
+        getLog().beginWrite();
+        getLog().write(DUMMY_LOGGABLE);
+        getLog().endWrite();
+        getLog().read(0);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: read (Alternative Action: getLog=4 ) - Predicate: N/A - Scenario: getLog() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ActorNodeAccuracyTest
+ Method: testGetPreferredGraphNodeSize
+ Body: {
+        actorNode.getPreferredGraphNodeSize();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: getPreferredGraphNodeSize (Alternative Action: getPreferredGraphNodeSize=1 ) - Predicate: N/A - Scenario: actorNode (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckString
+ Body: {
+        Util.checkString("test", "test");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: checkString (Alternative Action: checkString=1 ) - Predicate: N/A - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckNull
+ Body: {
+        Util.checkNull("", "test");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: checkNull (Alternative Action: checkNull=1 ) - Predicate: N/A - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AggregationBiDirectionalUnitTests
+ Method: testPaintComponent_NullGraphics
+ Body: {
+        edgeEnding.paintComponent(null);
+        //return directly
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: paintComponent (Alternative Action: paintComponent=1 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testMarkDockGesture
+ Body: {
+        container.markDockGesture(dock, new Point(10, 10));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: markDockGesture (Alternative Action: markDockGesture=1 ) - Predicate: N/A - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testClearDockGesture
+ Body: {
+        container.clearDockGesture();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: clearDockGesture (Alternative Action: clearDockGesture=1 ) - Predicate: N/A - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddActorActionTest
+ Method: testExecute_Success
+ Body: {
+        addActorAction.execute();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: execute (Alternative Action: execute=1 ) - Predicate: N/A - Scenario: addActorAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddActorActionTest
+ Method: testRedo_Success
+ Body: {
+        addActorAction.redo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: redo (Alternative Action: redo=1 ) - Predicate: N/A - Scenario: addActorAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddActorActionTest
+ Method: testUndo_Success
+ Body: {
+        addActorAction.undo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: addActorAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckString
+ Body: {
+        Util.checkString("test", "test");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: checkString (Alternative Action: checkString=1 ) - Predicate: N/A - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckNull
+ Body: {
+        Util.checkNull(" ", "test");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: checkNull (Alternative Action: checkNull=1 ) - Predicate: N/A - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testFloatTo_1
+ Body: {
+        dock.setFloatable(false);
+        
+        dock.floatTo(new Point(10, 100));
+        // nothing happended.
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: floatTo (Alternative Action: floatTo=1 ) - Predicate: N/A - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutExtendActionTest
+ Method: testExecute_Success
+ Body: {
+        //add the element to model
+        cutExtendAction.redo();
+        cutExtendAction.undo();
+        //execute the cut action
+        cutExtendAction.execute();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: cutExtendAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutExtendActionTest
+ Method: testUndo_Success
+ Body: {
+        cutExtendAction.undo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: cutExtendAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutExtendActionTest
+ Method: testRedo_Success
+ Body: {
+        cutExtendAction.redo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: redo (Alternative Action: redo=1 ) - Predicate: N/A - Scenario: cutExtendAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteStateNodeAbstractActionAccuracyTests
+ Method: testUndo2
+ Body: {
+        test.execute();
+        activityGraph.setTop(AccuracyTestHelper.createActionState());
+        test.undo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setTop (Alternative Action: setTop=1 ) - Predicate: N/A - Scenario: activityGraph (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PopupMenuTriggerFailureTest
+ Method: testMouseClickedForIngoreNullMouseEvent
+ Body: {
+        new PopupMenuTrigger().mouseClicked(null);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: new PopupMenuTrigger() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: XMIConverterHandlerAccuracyTest
+ Method: testSetDocumentLocator_Accuracy
+ Body: {
+        handler.setDocumentLocator(new LocatorImpl());
+        // should succeed
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setDocumentLocator (Alternative Action: setDocumentLocator=1 ) - Predicate: N/A - Scenario: handler (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: XMIConverterHandlerAccuracyTest
+ Method: testSetXMIReader_Accuracy
+ Body: {
+        handler.setXMIReader(new XMIReader());
+        // should be succeed
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setXMIReader (Alternative Action: setXMIReader=1 ) - Predicate: N/A - Scenario: handler (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CloseTabActionAccuracyTests
+ Method: testActionPerformedAccuracy
+ Body: {
+        cta.actionPerformed(null);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: actionPerformed (Alternative Action: actionPerformed=1 ) - Predicate: N/A - Scenario: cta (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: Demo
+ Method: testConfigureBackground
+ Body: {
+        // create UI
+        UnitTestHelper.createUI(demoController, zoomPanel);
+
+        zoomPanel.setZoomBackground(Color.BLUE);
+
+        // dispose the UI
+        UnitTestHelper.disposeUI();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: createUI (Alternative Action: createUI=1 ) - Predicate: N/A - Scenario: UnitTestHelper (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: Demo
+ Method: testManipulateScrollbars
+ Body: {
+        // create UI
+        UnitTestHelper.createUI(demoController, zoomPanel);
+
+        // use the API of JScrollPane
+        zoomPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        zoomPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        // Access the JScrollBar indirectly
+        zoomPanel.getVerticalScrollBar().setUnitIncrement(3);
+        zoomPanel.getVerticalScrollBar().setBlockIncrement(25);
+
+        // dispose the UI
+        UnitTestHelper.disposeUI();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: createUI (Alternative Action: getVerticalScrollBar=2 ) - Predicate: N/A - Scenario: UnitTestHelper (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveSubsystemActionTest
+ Method: testUndo_Success
+ Body: {
+        removeSubsystemAction.undo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: removeSubsystemAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveSubsystemActionTest
+ Method: testRedo_Success
+ Body: {
+        removeSubsystemAction.redo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: redo (Alternative Action: redo=1 ) - Predicate: N/A - Scenario: removeSubsystemAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveSubsystemActionTest
+ Method: testExecute_Success
+ Body: {
+        removeSubsystemAction.redo();
+        removeSubsystemAction.undo();
+        removeSubsystemAction.execute();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: removeSubsystemAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ConcurrencyPropertyPanelTests
+ Method: testExecute
+ Body: {
+        panel.execute();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: execute (Alternative Action: execute=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutSubsystemActionTest
+ Method: testExecute_Success
+ Body: {
+        //add the element to model
+        cutSubsystemAction.redo();
+        cutSubsystemAction.undo();
+        //execute the cut action
+        cutSubsystemAction.execute();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: cutSubsystemAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutSubsystemActionTest
+ Method: testUndo_Success
+ Body: {
+        cutSubsystemAction.undo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: cutSubsystemAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutSubsystemActionTest
+ Method: testRedo_Success
+ Body: {
+        cutSubsystemAction.redo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: redo (Alternative Action: redo=1 ) - Predicate: N/A - Scenario: cutSubsystemAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CreateDiagramActionTest
+ Method: testRedoAction
+ Body: {
+        action.redoAction();
+        // check the diagram created.
+        validateDiagram();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: validateDiagram (Alternative Action: validateDiagram=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CreateDiagramActionTest
+ Method: testExecuteAction
+ Body: {
+        action.executeAction();
+        // check the diagram created.
+        validateDiagram();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: validateDiagram (Alternative Action: validateDiagram=1 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetFontSizeStyleIntAccuracy
+ Body: {
+        panel.setFontSizeStyle(6);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setFontSizeStyle (Alternative Action: setFontSizeStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetStyleObjectStyleObjectAccuracy2
+ Body: {
+        panel.setStyleObject(styleObjectList.get(2));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setStyleObject (Alternative Action: get=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testAddStyleListenerStyleListenerAccuracy
+ Body: {
+        panel.addStyleListener(styleListener);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: addStyleListener (Alternative Action: addStyleListener=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetStyleObjectStyleObjectAccuracy0
+ Body: {
+        panel.setStyleObject(styleObjectList.get(0));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setStyleObject (Alternative Action: get=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetFontFamilyStyleStringAccuracy
+ Body: {
+        panel.setFontFamilyStyle("Arial");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setFontFamilyStyle (Alternative Action: setFontFamilyStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetOutlineColorStyleColorAccuracy
+ Body: {
+        panel.setOutlineColorStyle(Color.YELLOW);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setOutlineColorStyle (Alternative Action: setOutlineColorStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetStyleObjectStyleObjectAccuracy1
+ Body: {
+        panel.setStyleObject(styleObjectList.get(1));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setStyleObject (Alternative Action: get=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetFontFontAccuracy
+ Body: {
+        panel.setFont(new Font("System", 2, 14));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setFont (Alternative Action: setFont=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetSizeStyleDimensionAccuracy
+ Body: {
+        panel.setSizeStyle(new Dimension(300, 600));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setSizeStyle (Alternative Action: setSizeStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetFillColorStyleColorAccuracy
+ Body: {
+        panel.setFillColorStyle(Color.GREEN);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setFillColorStyle (Alternative Action: setFillColorStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetPositionStylePointAccuracy
+ Body: {
+        panel.setPositionStyle(new Point(30, 20));
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setPositionStyle (Alternative Action: setPositionStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetTextColorStyleColorAccuracy
+ Body: {
+        panel.setTextColorStyle(Color.BLUE);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: setTextColorStyle (Alternative Action: setTextColorStyle=1 ) - Predicate: N/A - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutUseCaseActionTest
+ Method: testRedo_Success
+ Body: {
+        cutUseCaseAction.redo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: redo (Alternative Action: redo=1 ) - Predicate: N/A - Scenario: cutUseCaseAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutUseCaseActionTest
+ Method: testUndo_Success
+ Body: {
+        cutUseCaseAction.undo();
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: undo (Alternative Action: undo=1 ) - Predicate: N/A - Scenario: cutUseCaseAction (Alternative Scenario:  )
+
+Project: wheels
+ Class: TripleTest
+ Method: testConstructor
+ Body: {
+        constructor_helper("hi", 3, true, "(hi, 3, true)");
+        constructor_helper("hi", 3, null, "(hi, 3, null)");
+        constructor_helper(null, 3, true, "(null, 3, true)");
+        constructor_helper(null, null, null, "(null, null, null)");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: constructor_helper (Alternative Action: constructor_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: TripleTest
+ Method: testReadStrict
+ Body: {
+        readStrict_helper("(hi, 3, true)", "Optional[(hi, 3, true)]");
+        readStrict_helper("(hi, 3, null)", "Optional[(hi, 3, null)]");
+        readStrict_helper("(null, 3, true)", "Optional[(null, 3, true)]");
+        readStrict_helper("(null, null, null)", "Optional[(null, null, null)]");
+
+        readStrict_helper("hi, 3, true", "Optional.empty");
+        readStrict_helper("(hi, 3, True)", "Optional.empty");
+        readStrict_helper("(hi, 3, true", "Optional.empty");
+        readStrict_helper("hi, 3, true)", "Optional.empty");
+        readStrict_helper("(hi,3,true)", "Optional.empty");
+        readStrict_helper("null", "Optional.empty");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: readStrict_helper (Alternative Action: readStrict_helper=10 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: TripleTest
+ Method: testEquals
+ Body: {
+        equals_helper("hi", 3, true, "hi", 3, true, true);
+        equals_helper("hi", 3, true, "hi", 4, true, false);
+        equals_helper("hi", 3, true, "bye", 3, true, false);
+        equals_helper("hi", 3, true, "hi", 3, null, false);
+        equals_helper("hi", 3, true, null, 3, true, false);
+        equals_helper("hi", 3, true, null, null, null, false);
+        equals_helper("hi", 3, null, "hi", 3, true, false);
+        equals_helper("hi", 3, null, "hi", 3, null, true);
+        equals_helper("hi", 3, null, "bye", 3, null, false);
+        equals_helper("hi", 3, null, null, 3, true, false);
+        equals_helper("hi", 3, null, null, null, null, false);
+        equals_helper(null, 3, true, "hi", 3, true, false);
+        equals_helper(null, 3, true, "hi", 3, null, false);
+        equals_helper(null, 3, true, null, 3, true, true);
+        equals_helper(null, 3, true, null, 4, true, false);
+        equals_helper(null, 3, true, null, null, null, false);
+        equals_helper(null, null, null, "hi", 3, true, false);
+        equals_helper(null, null, null, "hi", 3, null, false);
+        equals_helper(null, null, null, null, 3, true, false);
+        equals_helper(null, null, null, null, null, null, true);
+
+        equals_helper("hi", 3, true, null, false);
+        equals_helper("hi", 3, true, 0.5, false);
+        equals_helper("hi", 3, null, null, false);
+        equals_helper("hi", 3, null, 0.5, false);
+        equals_helper(null, 3, true, null, false);
+        equals_helper(null, 3, true, 0.5, false);
+        equals_helper(null, null, null, null, false);
+        equals_helper(null, null, null, 0.5, false);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: equals_helper (Alternative Action: equals_helper=28 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: TripleTest
+ Method: testHashCode
+ Body: {
+        hashCode_helper("hi", 3, true, 3200493);
+        hashCode_helper("hi", 3, null, 3199262);
+        hashCode_helper(null, 3, true, 1324);
+        hashCode_helper(null, null, null, 0);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: hashCode_helper (Alternative Action: hashCode_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: TripleTest
+ Method: testToList
+ Body: {
+        toList_helper(1, 2, 3, "[1, 2, 3]");
+        toList_helper("hi", "bye", "hey", "[hi, bye, hey]");
+        toList_helper(1, null, null, "[1, null, null]");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: toList_helper (Alternative Action: toList_helper=3 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: BigDecimalUtilsTest
+ Method: testSuccessor
+ Body: {
+        successor_helper("3.14159", "3.14160");
+        successor_helper("1200", "1201");
+        successor_helper("1.2E+3", "1.3E+3");
+        successor_helper("-9", "-8");
+        successor_helper("0.99", "1.00");
+        successor_helper("0.999", "1.000");
+        successor_helper("-0.99", "-0.98");
+        successor_helper("-0.999", "-0.998");
+        successor_helper("0", "1");
+        successor_helper("0E+1", "1E+1");
+        successor_helper("0.0", "0.1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: successor_helper (Alternative Action: successor_helper=11 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: BigDecimalUtilsTest
+ Method: testCeilingLog10
+ Body: {
+        ceilingLog10_helper("1", 0);
+        ceilingLog10_helper("2", 1);
+        ceilingLog10_helper("9", 1);
+        ceilingLog10_helper("10", 1);
+        ceilingLog10_helper("11", 2);
+        ceilingLog10_helper("99", 2);
+        ceilingLog10_helper("100", 2);
+        ceilingLog10_helper("101", 3);
+        ceilingLog10_helper("1234567", 7);
+        ceilingLog10_helper("0.09", -1);
+        ceilingLog10_helper("0.1", -1);
+        ceilingLog10_helper("0.11", 0);
+        ceilingLog10_helper("9E-12", -11);
+        ceilingLog10_helper("1E-11", -11);
+        ceilingLog10_helper("1.1E-11", -10);
+
+        ceilingLog10_fail_helper("0");
+        ceilingLog10_fail_helper("-1");
+        ceilingLog10_fail_helper("-0.001");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: ceilingLog10_helper (Alternative Action: ceilingLog10_helper=15 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: BigDecimalUtilsTest
+ Method: testCanonicalize
+ Body: {
+        canonicalize_helper("1E+1", "10");
+        canonicalize_helper("10", "10");
+        canonicalize_helper("10.0", "10");
+        canonicalize_helper("10.00", "10");
+        canonicalize_helper("1.1", "1.1");
+        canonicalize_helper("1.10", "1.1");
+        canonicalize_helper("1.100", "1.1");
+        canonicalize_helper("3.14159", "3.14159");
+        canonicalize_helper("1200", "1200");
+        canonicalize_helper("1.2E+3", "1200");
+        canonicalize_helper("-9", "-9");
+        canonicalize_helper("0.99", "0.99");
+        canonicalize_helper("0.999", "0.999");
+        canonicalize_helper("-0.99", "-0.99");
+        canonicalize_helper("-0.999", "-0.999");
+        canonicalize_helper("0", "0");
+        canonicalize_helper("0E+1", "0");
+        canonicalize_helper("0.0", "0");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: canonicalize_helper (Alternative Action: canonicalize_helper=18 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: BigDecimalUtilsTest
+ Method: testPredecessor
+ Body: {
+        predecessor_helper("3.14159", "3.14158");
+        predecessor_helper("1200", "1199");
+        predecessor_helper("1.2E+3", "1.1E+3");
+        predecessor_helper("-9", "-10");
+        predecessor_helper("0.99", "0.98");
+        predecessor_helper("0.999", "0.998");
+        predecessor_helper("-0.99", "-1.00");
+        predecessor_helper("-0.999", "-1.000");
+        predecessor_helper("0", "-1");
+        predecessor_helper("0E+1", "-1E+1");
+        predecessor_helper("0.0", "-0.1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: predecessor_helper (Alternative Action: predecessor_helper=11 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: BigDecimalUtilsTest
+ Method: testConstants
+ Body: {
+        aeq(NEGATIVE_ONE, "-1");
+        aeq(TWO, "2");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: aeq (Alternative Action: aeq=2 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: BigDecimalUtilsTest
+ Method: testIsCanonical
+ Body: {
+        isCanonical_helper("1E+1", false);
+        isCanonical_helper("10", true);
+        isCanonical_helper("10.0", false);
+        isCanonical_helper("10.00", false);
+        isCanonical_helper("1.1", true);
+        isCanonical_helper("1.10", false);
+        isCanonical_helper("1.100", false);
+        isCanonical_helper("3.14159", true);
+        isCanonical_helper("1200", true);
+        isCanonical_helper("1.2E+3", false);
+        isCanonical_helper("-9", true);
+        isCanonical_helper("0.99", true);
+        isCanonical_helper("0.999", true);
+        isCanonical_helper("-0.99", true);
+        isCanonical_helper("-0.999", true);
+        isCanonical_helper("0", true);
+        isCanonical_helper("0E+1", false);
+        isCanonical_helper("0.0", false);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: isCanonical_helper (Alternative Action: isCanonical_helper=18 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testFactorial_BigInteger
+ Body: {
+        factorial_BigInteger_helper("0", "1");
+        factorial_BigInteger_helper("1", "1");
+        factorial_BigInteger_helper("2", "2");
+        factorial_BigInteger_helper("3", "6");
+        factorial_BigInteger_helper("4", "24");
+        factorial_BigInteger_helper("5", "120");
+        factorial_BigInteger_helper("6", "720");
+        factorial_BigInteger_helper("10", "3628800");
+        factorial_BigInteger_helper("100",
+                "933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182" +
+                "86253697920827223758251185210916864000000000000000000000000");
+
+        factorial_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: factorial_BigInteger_fail_helper (Alternative Action: factorial_BigInteger_helper=9 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testInverseTotient
+ Body: {
+        inverseTotient_helper("1", "[1, 2]");
+        inverseTotient_helper("2", "[3, 4, 6]");
+        inverseTotient_helper("3", "[]");
+        inverseTotient_helper("4", "[5, 8, 10, 12]");
+        inverseTotient_helper("5", "[]");
+        inverseTotient_helper("6", "[7, 9, 14, 18]");
+        inverseTotient_helper("7", "[]");
+        inverseTotient_helper("8", "[15, 16, 20, 24, 30]");
+        inverseTotient_helper("9", "[]");
+        inverseTotient_helper("10", "[11, 22]");
+        inverseTotient_helper("1656",
+                "[1657, 1739, 1807, 1939, 2487, 2493, 2679, 2919, 2961, 3314, 3316, 3478, 3572, 3614, 3878, 3892," +
+                " 4974, 4986, 5004, 5076, 5358, 5838, 5922]");
+        inverseTotient_helper("6221670", "[6221671, 12443342]");
+        inverseTotient_helper("59640",
+                "[60563, 61799, 65533, 69587, 89469, 105861, 121126, 123598, 131066, 139174, 141148, 178938, 181476," +
+                " 211722]");
+        inverseTotient_helper("2147483646", "[2147483647, 4294967294]");
+        inverseTotient_helper("1431655760",
+                "[1820425825, 2147483643, 2159969529, 2189665761, 2402962089, 2863311524, 2879959372, 2919554348," +
+                " 3203949452, 3640851650, 4294967286, 4319939058, 4379331522, 4805924178]");
+        inverseTotient_helper("2146685284", "[2147483641, 4294967282]");
+        inverseTotient_helper("1431655764",
+                "[1431772649, 1433755649, 1465742849, 1670265107, 2147483649, 2863311532, 2863545298, 2867511298," +
+                " 2931485698, 3340530214, 4294967298]");
+        inverseTotient_helper("2147483658", "[2147483659, 4294967318]");
+        inverseTotient_helper("1000000000038", "[1000000000039, 2000000000078]");
+        inverseTotient_helper("1000000000000036", "[1000000000000037, 2000000000000074]");
+
+        inverseTotient_fail_helper("0");
+        inverseTotient_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: inverseTotient_helper (Alternative Action: inverseTotient_helper=20 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testSubsetCount
+ Body: {
+        subsetCount_helper(0, 0, "1");
+        subsetCount_helper(1, 0, "0");
+        subsetCount_helper(2, 0, "0");
+        subsetCount_helper(0, 1, "2");
+        subsetCount_helper(1, 1, "1");
+        subsetCount_helper(2, 1, "0");
+        subsetCount_helper(0, 10, "1024");
+        subsetCount_helper(1, 10, "1023");
+        subsetCount_helper(2, 10, "1013");
+        subsetCount_helper(20, 100, "1267650600056921474829227703650");
+
+        subsetCount_fail_helper(-1, 0);
+        subsetCount_fail_helper(0, -1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: subsetCount_helper (Alternative Action: subsetCount_helper=10 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testCbrt
+ Body: {
+        cbrt_helper("0", "Optional[0]");
+        cbrt_helper("1", "Optional[1]");
+        cbrt_helper("2", "Optional.empty");
+        cbrt_helper("-1", "Optional[-1]");
+        cbrt_helper("-2", "Optional.empty");
+
+        cbrt_helper("1000000", "Optional[100]");
+        cbrt_helper("-125", "Optional[-5]");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: cbrt_helper (Alternative Action: cbrt_helper=7 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testCeilingLog
+ Body: {
+        ceilingLog_helper("2", "1", "0");
+        ceilingLog_helper("2", "2", "1");
+        ceilingLog_helper("2", "3", "2");
+        ceilingLog_helper("2", "4", "2");
+        ceilingLog_helper("2", "5", "3");
+        ceilingLog_helper("2", "6", "3");
+        ceilingLog_helper("2", "7", "3");
+        ceilingLog_helper("2", "8", "3");
+
+        ceilingLog_helper("3", "1", "0");
+        ceilingLog_helper("3", "2", "1");
+        ceilingLog_helper("3", "3", "1");
+        ceilingLog_helper("3", "4", "2");
+        ceilingLog_helper("3", "8", "2");
+        ceilingLog_helper("3", "9", "2");
+        ceilingLog_helper("3", "10", "3");
+
+        ceilingLog_helper("100", "1", "0");
+        ceilingLog_helper("100", "9999", "2");
+        ceilingLog_helper("100", "10000", "2");
+        ceilingLog_helper("100", "10001", "3");
+
+        ceilingLog_fail_helper("1", "1");
+        ceilingLog_fail_helper("0", "1");
+        ceilingLog_fail_helper("-1", "1");
+        ceilingLog_fail_helper("2", "0");
+        ceilingLog_fail_helper("2", "-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: ceilingLog_fail_helper (Alternative Action: ceilingLog_helper=19 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testPrimeFactors_BigInteger
+ Body: {
+        primeFactors_BigInteger_helper("1", "[]");
+        primeFactors_BigInteger_helper("2", "[2]");
+        primeFactors_BigInteger_helper("3", "[3]");
+        primeFactors_BigInteger_helper("4", "[2, 2]");
+        primeFactors_BigInteger_helper("5", "[5]");
+        primeFactors_BigInteger_helper("6", "[2, 3]");
+        primeFactors_BigInteger_helper("7", "[7]");
+        primeFactors_BigInteger_helper("8", "[2, 2, 2]");
+        primeFactors_BigInteger_helper("9", "[3, 3]");
+        primeFactors_BigInteger_helper("10", "[2, 5]");
+        primeFactors_BigInteger_helper("1807", "[13, 139]");
+        primeFactors_BigInteger_helper("6221671", "[6221671]");
+        primeFactors_BigInteger_helper("65533", "[13, 71, 71]");
+        primeFactors_BigInteger_helper("2147483647", "[2147483647]");
+        primeFactors_BigInteger_helper("2147483643", "[3, 715827881]");
+        primeFactors_BigInteger_helper("2147483641", "[2699, 795659]");
+        primeFactors_BigInteger_helper("2147483649", "[3, 715827883]");
+        primeFactors_BigInteger_helper("2147483659", "[2147483659]");
+        primeFactors_BigInteger_helper("1000000000039", "[1000000000039]");
+        primeFactors_BigInteger_helper("1000000000000037", "[1000000000000037]");
+        primeFactors_BigInteger_helper("1000000000000039", "[17, 29, 686669, 2953967]");
+
+        primeFactors_BigInteger_fail_helper("0");
+        primeFactors_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: primeFactors_BigInteger_helper (Alternative Action: primeFactors_BigInteger_helper=21 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testIsPrime_BigInteger
+ Body: {
+        isPrime_BigInteger_helper("1", false);
+        isPrime_BigInteger_helper("2", true);
+        isPrime_BigInteger_helper("3", true);
+        isPrime_BigInteger_helper("4", false);
+        isPrime_BigInteger_helper("5", true);
+        isPrime_BigInteger_helper("6", false);
+        isPrime_BigInteger_helper("7", true);
+        isPrime_BigInteger_helper("8", false);
+        isPrime_BigInteger_helper("9", false);
+        isPrime_BigInteger_helper("10", false);
+        isPrime_BigInteger_helper("1807", false);
+        isPrime_BigInteger_helper("6221671", true);
+        isPrime_BigInteger_helper("65533", false);
+        isPrime_BigInteger_helper("2147483647", true);
+        isPrime_BigInteger_helper("2147483643", false);
+        isPrime_BigInteger_helper("2147483641", false);
+        isPrime_BigInteger_helper("2147483649", false);
+        isPrime_BigInteger_helper("2147483659", true);
+        isPrime_BigInteger_helper("1000000000039", true);
+        isPrime_BigInteger_helper("1000000000000037", true);
+        isPrime_BigInteger_helper("1000000000000039", false);
+
+        isPrime_BigInteger_fail_helper("0");
+        isPrime_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: isPrime_BigInteger_fail_helper (Alternative Action: isPrime_BigInteger_helper=21 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testIsPrime_int
+ Body: {
+        isPrime_int_helper(1, false);
+        isPrime_int_helper(2, true);
+        isPrime_int_helper(3, true);
+        isPrime_int_helper(4, false);
+        isPrime_int_helper(5, true);
+        isPrime_int_helper(6, false);
+        isPrime_int_helper(7, true);
+        isPrime_int_helper(8, false);
+        isPrime_int_helper(9, false);
+        isPrime_int_helper(10, false);
+        isPrime_int_helper(1807, false);
+        isPrime_int_helper(6221671, true);
+        isPrime_int_helper(65533, false);
+        isPrime_int_helper(2147483647, true);
+        isPrime_int_helper(2147483643, false);
+        isPrime_int_helper(2147483641, false);
+
+        isPrime_int_fail_helper(0);
+        isPrime_int_fail_helper(-1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: isPrime_int_helper (Alternative Action: isPrime_int_helper=16 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testCeilingInverse
+ Body: {
+        //noinspection Convert2MethodRef
+        ceilingInverse_helper(Function.identity(), "0", "10", "3", 3);
+        ceilingInverse_helper(MathUtils::factorial, "0", "20", "1000000", 10);
+        ceilingInverse_helper(i -> i.pow(2), "0", "10", "50", 8);
+
+        ceilingInverse_fail_helper(i -> { throw new IllegalArgumentException(); }, "0", "1", "1");
+        ceilingInverse_fail_helper(i -> null, "0", "1", "1");
+        ceilingInverse_fail_helper(i -> i.pow(2), "-10", "0", "10");
+        ceilingInverse_fail_helper(MathUtils::factorial, "0", "10", "1000000000");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: ceilingInverse_helper (Alternative Action: ceilingInverse_fail_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testFastGrowingCeilingInverse
+ Body: {
+        //noinspection Convert2MethodRef
+        fastGrowingCeilingInverse_helper(i -> BigInteger.valueOf(i), 0, 10, "3", 3);
+        fastGrowingCeilingInverse_helper(MathUtils::factorial, 0, 20, "1000000", 10);
+        fastGrowingCeilingInverse_helper(i -> BigInteger.valueOf(i).pow(2), 0, 10, "50", 8);
+
+        fastGrowingCeilingInverse_fail_helper(i -> { throw new IllegalArgumentException(); }, 0, 1, "1");
+        fastGrowingCeilingInverse_fail_helper(i -> null, 0, 1, "1");
+        fastGrowingCeilingInverse_fail_helper(i -> BigInteger.valueOf(i).pow(2), -2, 0, "10");
+        fastGrowingCeilingInverse_fail_helper(MathUtils::factorial, 0, 10, "1000000000");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: fastGrowingCeilingInverse_helper (Alternative Action: fastGrowingCeilingInverse_fail_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testSqrt
+ Body: {
+        sqrt_helper("0", "Optional[0]");
+        sqrt_helper("1", "Optional[1]");
+        sqrt_helper("2", "Optional.empty");
+
+        sqrt_helper("1000000", "Optional[1000]");
+
+        sqrt_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: sqrt_fail_helper (Alternative Action: sqrt_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testLcm_List_BigInteger
+ Body: {
+        lcm_List_BigInteger_helper("[1]", "1");
+        lcm_List_BigInteger_helper("[5]", "5");
+        lcm_List_BigInteger_helper("[35, 210]", "210");
+        lcm_List_BigInteger_helper("[2, 4, 6]", "12");
+        lcm_List_BigInteger_helper("[20, 40, 60]", "120");
+        lcm_List_BigInteger_helper("[20, 40, 1]", "40");
+
+        lcm_List_BigInteger_fail_helper("[]");
+        lcm_List_BigInteger_fail_helper("[0]");
+        lcm_List_BigInteger_fail_helper("[-5]");
+        lcm_List_BigInteger_fail_helper("[0, 0, 0]");
+        lcm_List_BigInteger_fail_helper("[1, 0, 2]");
+        lcm_List_BigInteger_fail_helper("[1, -3, 2]");
+        lcm_List_BigInteger_fail_helper("[1, 2, null]");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: lcm_List_BigInteger_helper (Alternative Action: lcm_List_BigInteger_fail_helper=7 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testFactors_int
+ Body: {
+        factors_int_helper(1, "[1]");
+        factors_int_helper(2, "[1, 2]");
+        factors_int_helper(3, "[1, 3]");
+        factors_int_helper(4, "[1, 2, 4]");
+        factors_int_helper(5, "[1, 5]");
+        factors_int_helper(6, "[1, 2, 3, 6]");
+        factors_int_helper(7, "[1, 7]");
+        factors_int_helper(8, "[1, 2, 4, 8]");
+        factors_int_helper(9, "[1, 3, 9]");
+        factors_int_helper(10, "[1, 2, 5, 10]");
+        factors_int_helper(1807, "[1, 13, 139, 1807]");
+        factors_int_helper(6221671, "[1, 6221671]");
+        factors_int_helper(65533, "[1, 13, 71, 923, 5041, 65533]");
+        factors_int_helper(2147483647, "[1, 2147483647]");
+        factors_int_helper(2147483643, "[1, 3, 715827881, 2147483643]");
+        factors_int_helper(2147483641, "[1, 2699, 795659, 2147483641]");
+
+        factors_int_fail_helper(0);
+        factors_int_fail_helper(-1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: factors_int_fail_helper (Alternative Action: factors_int_helper=16 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testMultisetCoefficient
+ Body: {
+        multisetCoefficient_helper("0", 0, "1");
+        multisetCoefficient_helper("0", 1, "0");
+        multisetCoefficient_helper("0", 2, "0");
+        multisetCoefficient_helper("1", 0, "1");
+        multisetCoefficient_helper("1", 1, "1");
+        multisetCoefficient_helper("1", 2, "1");
+        multisetCoefficient_helper("10", 0, "1");
+        multisetCoefficient_helper("10", 1, "10");
+        multisetCoefficient_helper("10", 2, "55");
+        multisetCoefficient_helper("10", 3, "220");
+        multisetCoefficient_helper("10", 4, "715");
+        multisetCoefficient_helper("10", 5, "2002");
+        multisetCoefficient_helper("100", 20, "24551856075980529765105");
+
+        multisetCoefficient_fail_helper("-1", 0);
+        multisetCoefficient_fail_helper("0", -1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: multisetCoefficient_helper (Alternative Action: multisetCoefficient_helper=13 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testGcd_List_BigInteger
+ Body: {
+        gcd_List_BigInteger_helper("[]", "0");
+        gcd_List_BigInteger_helper("[0]", "0");
+        gcd_List_BigInteger_helper("[1]", "1");
+        gcd_List_BigInteger_helper("[5]", "5");
+        gcd_List_BigInteger_helper("[-5]", "5");
+        gcd_List_BigInteger_helper("[35, 210]", "35");
+        gcd_List_BigInteger_helper("[2, 4, 6]", "2");
+        gcd_List_BigInteger_helper("[20, 40, 60]", "20");
+        gcd_List_BigInteger_helper("[20, 40, -60]", "20");
+        gcd_List_BigInteger_helper("[20, 40, 1]", "1");
+        gcd_List_BigInteger_helper("[20, 40, 0]", "20");
+        gcd_List_BigInteger_helper("[0, 0, 0]", "0");
+
+        gcd_List_BigInteger_fail_helper("[1, 2, null]");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: gcd_List_BigInteger_helper (Alternative Action: gcd_List_BigInteger_helper=12 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testTotient_BigInteger
+ Body: {
+        totient_BigInteger_helper("1", "1");
+        totient_BigInteger_helper("2", "1");
+        totient_BigInteger_helper("3", "2");
+        totient_BigInteger_helper("4", "2");
+        totient_BigInteger_helper("5", "4");
+        totient_BigInteger_helper("6", "2");
+        totient_BigInteger_helper("7", "6");
+        totient_BigInteger_helper("8", "4");
+        totient_BigInteger_helper("9", "6");
+        totient_BigInteger_helper("10", "4");
+        totient_BigInteger_helper("1807", "1656");
+        totient_BigInteger_helper("6221671", "6221670");
+        totient_BigInteger_helper("65533", "59640");
+        totient_BigInteger_helper("2147483647", "2147483646");
+        totient_BigInteger_helper("2147483643", "1431655760");
+        totient_BigInteger_helper("2147483641", "2146685284");
+        totient_BigInteger_helper("2147483649", "1431655764");
+        totient_BigInteger_helper("2147483659", "2147483658");
+        totient_BigInteger_helper("1000000000039", "1000000000038");
+        totient_BigInteger_helper("1000000000000037", "1000000000000036");
+        totient_BigInteger_helper("1000000000000039", "908720478529024");
+
+        totient_BigInteger_fail_helper("0");
+        totient_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: totient_BigInteger_helper (Alternative Action: totient_BigInteger_helper=21 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testRoot
+ Body: {
+        root_helper("0", 1, "Optional[0]");
+        root_helper("0", 2, "Optional[0]");
+        root_helper("0", 3, "Optional[0]");
+        root_helper("0", 4, "Optional[0]");
+
+        root_helper("1", 1, "Optional[1]");
+        root_helper("1", 2, "Optional[1]");
+        root_helper("1", 3, "Optional[1]");
+        root_helper("1", 4, "Optional[1]");
+
+        root_helper("2", 1, "Optional[2]");
+        root_helper("2", 2, "Optional.empty");
+        root_helper("2", 3, "Optional.empty");
+        root_helper("2", 4, "Optional.empty");
+
+        root_helper("-1", 1, "Optional[-1]");
+        root_helper("-1", 3, "Optional[-1]");
+
+        root_helper("-2", 1, "Optional[-2]");
+        root_helper("-2", 3, "Optional.empty");
+
+        root_helper("1000000", 6, "Optional[10]");
+        root_helper("-125", 3, "Optional[-5]");
+
+        root_fail_helper("-1", 2);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: root_helper (Alternative Action: root_helper=18 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testNumberOfArrangementsOfASet_int
+ Body: {
+        numberOfArrangementsOfASet_int_helper(0, "1");
+        numberOfArrangementsOfASet_int_helper(1, "2");
+        numberOfArrangementsOfASet_int_helper(2, "5");
+        numberOfArrangementsOfASet_int_helper(3, "16");
+        numberOfArrangementsOfASet_int_helper(4, "65");
+        numberOfArrangementsOfASet_int_helper(5, "326");
+        numberOfArrangementsOfASet_int_helper(6, "1957");
+        numberOfArrangementsOfASet_int_helper(10, "9864101");
+        numberOfArrangementsOfASet_int_helper(100,
+                "253686955560127297415270748212280220445147578566298142232775185987449253908386446518940485425152049" +
+                "793267407732328003493609513499849694176709764490323163992001");
+
+        numberOfArrangementsOfASet_int_fail_helper(-1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: numberOfArrangementsOfASet_int_helper (Alternative Action: numberOfArrangementsOfASet_int_helper=9 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testLargestPerfectPowerFactor_int_int
+ Body: {
+        largestPerfectPowerFactor_int_int_helper(1, 1, "1");
+        largestPerfectPowerFactor_int_int_helper(1, 2, "2");
+        largestPerfectPowerFactor_int_int_helper(1, 3, "3");
+        largestPerfectPowerFactor_int_int_helper(1, 4, "4");
+        largestPerfectPowerFactor_int_int_helper(1, 100, "100");
+
+        largestPerfectPowerFactor_int_int_helper(2, 1, "1");
+        largestPerfectPowerFactor_int_int_helper(2, 2, "1");
+        largestPerfectPowerFactor_int_int_helper(2, 3, "1");
+        largestPerfectPowerFactor_int_int_helper(2, 4, "2");
+        largestPerfectPowerFactor_int_int_helper(2, 12, "2");
+        largestPerfectPowerFactor_int_int_helper(2, 75, "5");
+        largestPerfectPowerFactor_int_int_helper(2, 100, "10");
+
+        largestPerfectPowerFactor_int_int_helper(10, 1024, "2");
+        largestPerfectPowerFactor_int_int_helper(10, 10240, "2");
+
+        largestPerfectPowerFactor_int_int_fail_helper(0, 1);
+        largestPerfectPowerFactor_int_int_fail_helper(-1, 1);
+        largestPerfectPowerFactor_int_int_fail_helper(1, 0);
+        largestPerfectPowerFactor_int_int_fail_helper(1, -1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: largestPerfectPowerFactor_int_int_helper (Alternative Action: largestPerfectPowerFactor_int_int_helper=14 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testLcm_BigInteger_BigInteger
+ Body: {
+        lcm_BigInteger_BigInteger_helper("12", "15", "60");
+        lcm_BigInteger_BigInteger_helper("35", "210", "210");
+        lcm_BigInteger_BigInteger_helper("17", "20", "340");
+        lcm_BigInteger_BigInteger_helper("1", "5", "5");
+
+        lcm_BigInteger_BigInteger_fail_helper("-12", "15");
+        lcm_BigInteger_BigInteger_fail_helper("12", "-15");
+        lcm_BigInteger_BigInteger_fail_helper("-12", "-15");
+        lcm_BigInteger_BigInteger_fail_helper("6", "0");
+        lcm_BigInteger_BigInteger_fail_helper("0", "6");
+        lcm_BigInteger_BigInteger_fail_helper("0", "0");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: lcm_BigInteger_BigInteger_fail_helper (Alternative Action: lcm_BigInteger_BigInteger_fail_helper=6 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testFallingFactorial
+ Body: {
+        fallingFactorial_helper("0", 0, "1");
+        fallingFactorial_helper("0", 1, "0");
+        fallingFactorial_helper("0", 2, "0");
+        fallingFactorial_helper("1", 0, "1");
+        fallingFactorial_helper("1", 1, "1");
+        fallingFactorial_helper("1", 2, "0");
+        fallingFactorial_helper("10", 0, "1");
+        fallingFactorial_helper("10", 1, "10");
+        fallingFactorial_helper("10", 2, "90");
+        fallingFactorial_helper("100", 20, "1303995018204712451095685346159820800000");
+
+        fallingFactorial_fail_helper("-1", 0);
+        fallingFactorial_fail_helper("0", -1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: fallingFactorial_fail_helper (Alternative Action: fallingFactorial_helper=10 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testCompactPrimeFactors_int
+ Body: {
+        compactPrimeFactors_int_helper(1, "[]");
+        compactPrimeFactors_int_helper(2, "[(2, 1)]");
+        compactPrimeFactors_int_helper(3, "[(3, 1)]");
+        compactPrimeFactors_int_helper(4, "[(2, 2)]");
+        compactPrimeFactors_int_helper(5, "[(5, 1)]");
+        compactPrimeFactors_int_helper(6, "[(2, 1), (3, 1)]");
+        compactPrimeFactors_int_helper(7, "[(7, 1)]");
+        compactPrimeFactors_int_helper(8, "[(2, 3)]");
+        compactPrimeFactors_int_helper(9, "[(3, 2)]");
+        compactPrimeFactors_int_helper(10, "[(2, 1), (5, 1)]");
+        compactPrimeFactors_int_helper(1807, "[(13, 1), (139, 1)]");
+        compactPrimeFactors_int_helper(6221671, "[(6221671, 1)]");
+        compactPrimeFactors_int_helper(65533, "[(13, 1), (71, 2)]");
+        compactPrimeFactors_int_helper(2147483647, "[(2147483647, 1)]");
+        compactPrimeFactors_int_helper(2147483643, "[(3, 1), (715827881, 1)]");
+        compactPrimeFactors_int_helper(2147483641, "[(2699, 1), (795659, 1)]");
+
+        compactPrimeFactors_int_fail_helper(0);
+        compactPrimeFactors_int_fail_helper(-1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: compactPrimeFactors_int_helper (Alternative Action: compactPrimeFactors_int_helper=16 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testFactors_BigInteger
+ Body: {
+        factors_BigInteger_helper("1", "[1]");
+        factors_BigInteger_helper("2", "[1, 2]");
+        factors_BigInteger_helper("3", "[1, 3]");
+        factors_BigInteger_helper("4", "[1, 2, 4]");
+        factors_BigInteger_helper("5", "[1, 5]");
+        factors_BigInteger_helper("6", "[1, 2, 3, 6]");
+        factors_BigInteger_helper("7", "[1, 7]");
+        factors_BigInteger_helper("8", "[1, 2, 4, 8]");
+        factors_BigInteger_helper("9", "[1, 3, 9]");
+        factors_BigInteger_helper("10", "[1, 2, 5, 10]");
+        factors_BigInteger_helper("1807", "[1, 13, 139, 1807]");
+        factors_BigInteger_helper("6221671", "[1, 6221671]");
+        factors_BigInteger_helper("65533", "[1, 13, 71, 923, 5041, 65533]");
+        factors_BigInteger_helper("2147483647", "[1, 2147483647]");
+        factors_BigInteger_helper("2147483643", "[1, 3, 715827881, 2147483643]");
+        factors_BigInteger_helper("2147483641", "[1, 2699, 795659, 2147483641]");
+        factors_BigInteger_helper("2147483649", "[1, 3, 715827883, 2147483649]");
+        factors_BigInteger_helper("2147483659", "[1, 2147483659]");
+        factors_BigInteger_helper("1000000000039", "[1, 1000000000039]");
+        factors_BigInteger_helper("1000000000000037", "[1, 1000000000000037]");
+        factors_BigInteger_helper("1000000000000039",
+                "[1, 17, 29, 493, 686669, 2953967, 11673373, 19913401, 50217439, 85665043, 338527817, 1456305731," +
+                " 2028397565923, 34482758620691, 58823529411767, 1000000000000039]");
+
+        factors_BigInteger_fail_helper("0");
+        factors_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: factors_BigInteger_helper (Alternative Action: factors_BigInteger_helper=21 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testConstants
+ Body: {
+        Testing.aeqitLimit(SMALL_LIMIT, INT_PRIMES,
+                "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97," +
+                " 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193," +
+                " 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307," +
+                " 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421," +
+                " 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, ...]");
+        testNoRemove(SMALL_LIMIT, INT_PRIMES);
+        Testing.aeqitLimit(SMALL_LIMIT, PRIMES,
+                "[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97," +
+                " 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193," +
+                " 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307," +
+                " 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421," +
+                " 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, ...]");
+        testNoRemove(SMALL_LIMIT, PRIMES);
+
+        aeq(charsToString(map(b -> b ? '1' : '0', take(SMALL_LIMIT, THUE_MORSE))),
+            "0110100110010110100101100110100110010110011010010110100110010110100101100110100101101001100101100110");
+        testNoRemove(SMALL_LIMIT, THUE_MORSE);
+
+        aeq(charsToString(map(IntegerUtils::toDigit, take(SMALL_LIMIT, KOLAKOSKI))),
+            "1221121221221121122121121221121121221221121221211211221221121221221121121221211221221121221221121122");
+        testNoRemove(SMALL_LIMIT, KOLAKOSKI);
+
+        aeqitLimit(TINY_LIMIT / 2, map(is -> IntegerUtils.fromBigEndianDigits(10, is), LOOK_AND_SAY),
+                "[1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211, 31131211131221, 13211311123113112211, ...]");
+        testNoRemove(TINY_LIMIT, LOOK_AND_SAY);
+
+        aeqitLimit(TINY_LIMIT / 2, SYLVESTER,
+                "[2, 3, 7, 43, 1807, 3263443, 10650056950807, 113423713055421844361000443," +
+                " 12864938683278671740537145998360961546653259485195807," +
+                " 16550664732451996419846819544443918001751315270637749784185138876653586863957240680891198813173764" +
+                "5185443, ...]");
+        testNoRemove(TINY_LIMIT, SYLVESTER);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: aeqitLimit (Alternative Action: testNoRemove=6 ) - Predicate: N/A - Scenario: Testing (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testTotient_int
+ Body: {
+        totient_int_helper(1, 1);
+        totient_int_helper(2, 1);
+        totient_int_helper(3, 2);
+        totient_int_helper(4, 2);
+        totient_int_helper(5, 4);
+        totient_int_helper(6, 2);
+        totient_int_helper(7, 6);
+        totient_int_helper(8, 4);
+        totient_int_helper(9, 6);
+        totient_int_helper(10, 4);
+        totient_int_helper(1807, 1656);
+        totient_int_helper(6221671, 6221670);
+        totient_int_helper(65533, 59640);
+        totient_int_helper(2147483647, 2147483646);
+        totient_int_helper(2147483643, 1431655760);
+        totient_int_helper(2147483641, 2146685284);
+
+        totient_int_fail_helper(0);
+        totient_int_fail_helper(-1);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: totient_int_fail_helper (Alternative Action: totient_int_helper=16 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testLargestPerfectPowerFactor_int_BigInteger
+ Body: {
+        largestPerfectPowerFactor_int_BigInteger_helper(1, "1", "1");
+        largestPerfectPowerFactor_int_BigInteger_helper(1, "2", "2");
+        largestPerfectPowerFactor_int_BigInteger_helper(1, "3", "3");
+        largestPerfectPowerFactor_int_BigInteger_helper(1, "4", "4");
+        largestPerfectPowerFactor_int_BigInteger_helper(1, "100", "100");
+
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "1", "1");
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "2", "1");
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "3", "1");
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "4", "2");
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "12", "2");
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "75", "5");
+        largestPerfectPowerFactor_int_BigInteger_helper(2, "100", "10");
+
+        largestPerfectPowerFactor_int_BigInteger_helper(10, "1024", "2");
+        largestPerfectPowerFactor_int_BigInteger_helper(10, "10240", "2");
+        largestPerfectPowerFactor_int_BigInteger_helper(10, "10000000000", "10");
+
+        largestPerfectPowerFactor_int_BigInteger_fail_helper(0, "1");
+        largestPerfectPowerFactor_int_BigInteger_fail_helper(-1, "1");
+        largestPerfectPowerFactor_int_BigInteger_fail_helper(1, "0");
+        largestPerfectPowerFactor_int_BigInteger_fail_helper(1, "-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: largestPerfectPowerFactor_int_BigInteger_fail_helper (Alternative Action: largestPerfectPowerFactor_int_BigInteger_helper=15 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testGcd_int_int
+ Body: {
+        gcd_int_int_helper(0, 0, 0);
+        gcd_int_int_helper(6, 0, 6);
+        gcd_int_int_helper(-6, 0, 6);
+        gcd_int_int_helper(0, 6, 6);
+        gcd_int_int_helper(0, -6, 6);
+        gcd_int_int_helper(12, 15, 3);
+        gcd_int_int_helper(35, 210, 35);
+        gcd_int_int_helper(17, 20, 1);
+        gcd_int_int_helper(1, 5, 1);
+        gcd_int_int_helper(-12, 15, 3);
+        gcd_int_int_helper(12, -15, 3);
+        gcd_int_int_helper(-12, -15, 3);
+
+        gcd_int_int_helper(Integer.MIN_VALUE, 1024, 1024);
+        gcd_int_int_helper(1024, Integer.MIN_VALUE, 1024);
+        gcd_int_int_helper(Integer.MIN_VALUE, 1023, 1);
+        gcd_int_int_helper(1023, Integer.MIN_VALUE, 1);
+        gcd_int_int_helper(Integer.MIN_VALUE, -1024, 1024);
+        gcd_int_int_helper(-1024, Integer.MIN_VALUE, 1024);
+        gcd_int_int_helper(Integer.MIN_VALUE, -1023, 1);
+        gcd_int_int_helper(-1023, Integer.MIN_VALUE, 1);
+
+        gcd_int_int_fail_helper(0, Integer.MIN_VALUE);
+        gcd_int_int_fail_helper(Integer.MIN_VALUE, 0);
+        gcd_int_int_fail_helper(Integer.MIN_VALUE, Integer.MIN_VALUE);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: gcd_int_int_helper (Alternative Action: gcd_int_int_helper=20 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testPermutationCount
+ Body: {
+        permutationCount_helper("[]", "1");
+        permutationCount_helper("[1]", "1");
+        permutationCount_helper("[1, 2, 3]", "6");
+        permutationCount_helper("[1, 1, 1]", "1");
+        permutationCount_helper("[1, 2, 3, 4, 5, 6, 7, 8, 9]", "362880");
+        permutationCount_helper("[0, 1, 2, 2, 1, 2, 2, 1, 3, 3, 1]", "34650");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: permutationCount_helper (Alternative Action: permutationCount_helper=6 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testExpressAsPower
+ Body: {
+        expressAsPower_helper("2", "(2, 1)");
+        expressAsPower_helper("3", "(3, 1)");
+        expressAsPower_helper("4", "(2, 2)");
+        expressAsPower_helper("5", "(5, 1)");
+        expressAsPower_helper("6", "(6, 1)");
+        expressAsPower_helper("7", "(7, 1)");
+        expressAsPower_helper("8", "(2, 3)");
+        expressAsPower_helper("9", "(3, 2)");
+        expressAsPower_helper("10", "(10, 1)");
+        expressAsPower_helper("64", "(2, 6)");
+        expressAsPower_helper("1000000", "(10, 6)");
+        expressAsPower_helper("1000000000039", "(1000000000039, 1)");
+        expressAsPower_helper(
+                "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" +
+                "00",
+                "(10, 100)"
+        );
+
+        expressAsPower_fail_helper("1");
+        expressAsPower_fail_helper("0");
+        expressAsPower_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: expressAsPower_helper (Alternative Action: expressAsPower_helper=13 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testSmallestPrimeFactor_BigInteger
+ Body: {
+        smallestPrimeFactor_BigInteger_helper("2", "2");
+        smallestPrimeFactor_BigInteger_helper("3", "3");
+        smallestPrimeFactor_BigInteger_helper("4", "2");
+        smallestPrimeFactor_BigInteger_helper("5", "5");
+        smallestPrimeFactor_BigInteger_helper("6", "2");
+        smallestPrimeFactor_BigInteger_helper("7", "7");
+        smallestPrimeFactor_BigInteger_helper("8", "2");
+        smallestPrimeFactor_BigInteger_helper("9", "3");
+        smallestPrimeFactor_BigInteger_helper("10", "2");
+        smallestPrimeFactor_BigInteger_helper("1807", "13");
+        smallestPrimeFactor_BigInteger_helper("6221671", "6221671");
+        smallestPrimeFactor_BigInteger_helper("65533", "13");
+        smallestPrimeFactor_BigInteger_helper("2147483647", "2147483647");
+        smallestPrimeFactor_BigInteger_helper("2147483643", "3");
+        smallestPrimeFactor_BigInteger_helper("2147483641", "2699");
+        smallestPrimeFactor_BigInteger_helper("2147483649", "3");
+        smallestPrimeFactor_BigInteger_helper("2147483659", "2147483659");
+        smallestPrimeFactor_BigInteger_helper("1000000000039", "1000000000039");
+        smallestPrimeFactor_BigInteger_helper("1000000000000037", "1000000000000037");
+        smallestPrimeFactor_BigInteger_helper("1000000000000039", "17");
+
+        smallestPrimeFactor_BigInteger_fail_helper("1");
+        smallestPrimeFactor_BigInteger_fail_helper("0");
+        smallestPrimeFactor_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: smallestPrimeFactor_BigInteger_helper (Alternative Action: smallestPrimeFactor_BigInteger_helper=20 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: MathUtilsTest
+ Method: testSubfactorial_BigInteger
+ Body: {
+        subfactorial_BigInteger_helper("0", "1");
+        subfactorial_BigInteger_helper("1", "0");
+        subfactorial_BigInteger_helper("2", "1");
+        subfactorial_BigInteger_helper("3", "2");
+        subfactorial_BigInteger_helper("4", "9");
+        subfactorial_BigInteger_helper("5", "44");
+        subfactorial_BigInteger_helper("6", "265");
+        subfactorial_BigInteger_helper("10", "1334961");
+        subfactorial_BigInteger_helper("100",
+                "343327959841638047651959775267761420323657838053757849835434002826851807933276324327913964298509889" +
+                "90237345920155783984828001486412574060553756854137069878601");
+
+        subfactorial_BigInteger_fail_helper("-1");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: subfactorial_BigInteger_fail_helper (Alternative Action: subfactorial_BigInteger_helper=9 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: SextupleTest
+ Method: testConstructor
+ Body: {
+        constructor_helper("hi", 3, true, 'a', GT, 0.5, "(hi, 3, true, a, >, 0.5)");
+        constructor_helper("hi", 3, true, 'a', GT, null, "(hi, 3, true, a, >, null)");
+        constructor_helper(null, 3, true, 'a', GT, 0.5, "(null, 3, true, a, >, 0.5)");
+        constructor_helper(null, null, null, null, null, null, "(null, null, null, null, null, null)");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: constructor_helper (Alternative Action: constructor_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: SextupleTest
+ Method: testFromList
+ Body: {
+        fromList_helper("[1, 2, 3, 4, 5, 6]", "(1, 2, 3, 4, 5, 6)");
+        fromList_helper("[1, null, null, null, null, null]", "(1, null, null, null, null, null)");
+
+        fromList_fail_helper("[]");
+        fromList_fail_helper("[1, 2, 3, 4, 5]");
+        fromList_fail_helper("[1, 2, 3, 4, 5, 6, 7]");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: fromList_helper (Alternative Action: fromList_fail_helper=3 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: SextupleTest
+ Method: testToList
+ Body: {
+        toList_helper(1, 2, 3, 4, 5, 6, "[1, 2, 3, 4, 5, 6]");
+        toList_helper("hi", "bye", "hey", "yo", "ayy", "hello", "[hi, bye, hey, yo, ayy, hello]");
+        toList_helper(1, null, null, null, null, null, "[1, null, null, null, null, null]");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: toList_helper (Alternative Action: toList_helper=3 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: SextupleTest
+ Method: testHashCode
+ Body: {
+        hashCode_helper("hi", 3, true, 'a', "1E+1", 0.5, 1928345270);
+        hashCode_helper("hi", 3, true, 'a', "1E+1", null, 856700598);
+        hashCode_helper(null, 3, true, 'a', "1E+1", 0.5, 1111182103);
+        hashCode_helper(null, null, null, null, "null", null, 0);
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: hashCode_helper (Alternative Action: hashCode_helper=4 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )
+
+Project: wheels
+ Class: SextupleTest
+ Method: testReadStrict
+ Body: {
+        readStrict_helper("(hi, 3, true, a, >, 0.5)", "Optional[(hi, 3, true, a, >, 0.5)]");
+        readStrict_helper("(hi, 3, true, a, >, null)", "Optional[(hi, 3, true, a, >, null)]");
+        readStrict_helper("(null, 3, true, a, >, 0.5)", "Optional[(null, 3, true, a, >, 0.5)]");
+        readStrict_helper("(null, null, null, null, null, null)", "Optional[(null, null, null, null, null, null)]");
+
+        readStrict_helper("hi, 3, true, a, >, 0.5", "Optional.empty");
+        readStrict_helper("(hi, 3, true, a, >, 0.50)", "Optional.empty");
+        readStrict_helper("(hi, 3, true, a, >, 0.5", "Optional.empty");
+        readStrict_helper("hi, 3, true, a, >, 0.5)", "Optional.empty");
+        readStrict_helper("(hi,3,true,a,>,0.5)", "Optional.empty");
+        readStrict_helper("null", "Optional.empty");
+    }
+ Pattern Name: AllDecs_AllMCs_Pattern(AllMethodCalls) - Action: readStrict_helper (Alternative Action: readStrict_helper=10 ) - Predicate: N/A - Scenario: (N/A)-1 (Alternative Scenario:  )

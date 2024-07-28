@@ -1,0 +1,13 @@
+Project: bank-application
+ Class: DepositAccountTest
+ Method: test3
+ Body: {
+        foo.getFile();
+        try {
+            foo.getResponse(response);
+            fail();
+        } catch (ActionExecutionException e) {
+        }
+    }
+ Pattern Name: TryCatchPattern_AnyLOC_EmbeddedAssert - Action: getResponse(unmatched) - Predicate: N/A - Scenario: foo(matched - actionReference)
+

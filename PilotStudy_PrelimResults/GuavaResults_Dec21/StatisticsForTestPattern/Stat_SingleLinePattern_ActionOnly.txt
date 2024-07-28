@@ -1,0 +1,575 @@
+Project: guava
+ Class: TreeRangeSetTest
+ Method: testInvariantsEmpty
+ Body: {
+    testInvariants(TreeRangeSet.create());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testInvariants - Predicate: create - Scenario: N/A
+
+Project: guava
+ Class: ListSetTester
+ Method: testSet
+ Body: {
+    doTestSet(e3());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: doTestSet - Predicate: e3 - Scenario: N/A
+
+Project: guava
+ Class: GraphMutationTest
+ Method: directedGraph
+ Body: {
+    testGraphMutation(GraphBuilder.directed());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGraphMutation - Predicate: directed - Scenario: N/A
+
+Project: guava
+ Class: GraphMutationTest
+ Method: undirectedGraph
+ Body: {
+    testGraphMutation(GraphBuilder.undirected());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGraphMutation - Predicate: undirected - Scenario: N/A
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testAddOutOfTailBoundsOne
+ Body: {
+    expectAddFailure(sortedMultiset.tailMultiset(a.getElement(), OPEN), a);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectAddFailure - Predicate: tailMultiset - Scenario: N/A
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testSetCountOutOfTailBoundsOne
+ Body: {
+    expectSetCountFailure(sortedMultiset.tailMultiset(a.getElement(), OPEN), a);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectSetCountFailure - Predicate: tailMultiset - Scenario: N/A
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testRemoveOutOfTailBoundsOne
+ Body: {
+    expectRemoveZero(sortedMultiset.tailMultiset(a.getElement(), OPEN), a);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectRemoveZero - Predicate: tailMultiset - Scenario: N/A
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testAddOutOfHeadBoundsOne
+ Body: {
+    expectAddFailure(sortedMultiset.headMultiset(a.getElement(), OPEN), a);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectAddFailure - Predicate: headMultiset - Scenario: N/A
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testRemoveOutOfHeadBoundsOne
+ Body: {
+    expectRemoveZero(sortedMultiset.headMultiset(a.getElement(), OPEN), a);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectRemoveZero - Predicate: headMultiset - Scenario: N/A
+
+Project: guava
+ Class: MultisetNavigationTester
+ Method: testSetCountOutOfHeadBoundsOne
+ Body: {
+    expectSetCountFailure(sortedMultiset.headMultiset(a.getElement(), OPEN), a);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectSetCountFailure - Predicate: headMultiset - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_longStream_closeIsPropagated_sized
+ Body: {
+    testMapWithIndex_longStream_closeIsPropagated(LongStream.of(1, 2, 3));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_longStream_closeIsPropagated - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_intStream_closeIsPropagated_sized
+ Body: {
+    testMapWithIndex_intStream_closeIsPropagated(IntStream.of(1, 2, 3));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_intStream_closeIsPropagated - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_closeIsPropagated_sizedSource
+ Body: {
+    testMapWithIndex_closeIsPropagated(Stream.of("a", "b", "c"));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_closeIsPropagated - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_closeIsPropagated_unsizedSource
+ Body: {
+    testMapWithIndex_closeIsPropagated(
+        Stream.of((Object) null).flatMap(unused -> Stream.of("a", "b", "c")));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_closeIsPropagated - Predicate: flatMap - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_longStream_closeIsPropagated_unsized
+ Body: {
+    testMapWithIndex_longStream_closeIsPropagated(
+        LongStream.of(0).flatMap(unused -> LongStream.of(1, 2, 3)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_longStream_closeIsPropagated - Predicate: flatMap - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_doubleStream_closeIsPropagated_sized
+ Body: {
+    testMapWithIndex_doubleStream_closeIsPropagated(DoubleStream.of(1, 2, 3));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_doubleStream_closeIsPropagated - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_intStream_closeIsPropagated_unsized
+ Body: {
+    testMapWithIndex_intStream_closeIsPropagated(
+        IntStream.of(0).flatMap(unused -> IntStream.of(1, 2, 3)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_intStream_closeIsPropagated - Predicate: flatMap - Scenario: N/A
+
+Project: guava
+ Class: StreamsTest
+ Method: testMapWithIndex_doubleStream_closeIsPropagated_unsized
+ Body: {
+    testMapWithIndex_doubleStream_closeIsPropagated(
+        DoubleStream.of(0).flatMap(unused -> DoubleStream.of(1, 2, 3)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testMapWithIndex_doubleStream_closeIsPropagated - Predicate: flatMap - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testForMapWithoutDefaultSerializable
+ Body: {
+    checkCanReserialize(Functions.forMap(ImmutableMap.of(1, 2)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserialize - Predicate: forMap - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testToStringFunctionSerializable
+ Body: {
+    checkCanReserializeSingleton(Functions.toStringFunction());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserializeSingleton - Predicate: toStringFunction - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testForPredicateSerializable
+ Body: {
+    checkCanReserialize(Functions.forPredicate(Predicates.equalTo(5)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserialize - Predicate: forPredicate - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testConstantSerializable
+ Body: {
+    checkCanReserialize(Functions.constant(5));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserialize - Predicate: constant - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testIdentitySerializable
+ Body: {
+    checkCanReserializeSingleton(Functions.identity());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserializeSingleton - Predicate: identity - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testForMapWithDefaultSerializable
+ Body: {
+    checkCanReserialize(Functions.forMap(ImmutableMap.of(1, 2), 3));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserialize - Predicate: forMap - Scenario: N/A
+
+Project: guava
+ Class: FunctionsTest
+ Method: testForSupplierSerializable
+ Body: {
+    checkCanReserialize(Functions.forSupplier(new CountingSupplier()));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkCanReserialize - Predicate: forSupplier - Scenario: N/A
+
+Project: guava
+ Class: IterablesTest
+ Method: testGet_emptyList
+ Body: {
+    testGetOnEmpty(Collections.<String>emptyList());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGetOnEmpty - Predicate: emptyList - Scenario: N/A
+
+Project: guava
+ Class: IterablesTest
+ Method: testGet_sortedSet
+ Body: {
+    testGetOnAbc(ImmutableSortedSet.of("b", "c", "a"));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGetOnAbc - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: IterablesTest
+ Method: testGet_list
+ Body: {
+    testGetOnAbc(newArrayList("a", "b", "c"));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGetOnAbc - Predicate: newArrayList - Scenario: N/A
+
+Project: guava
+ Class: IterablesTest
+ Method: testGet_emptyIterable
+ Body: {
+    testGetOnEmpty(Sets.<String>newHashSet());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGetOnEmpty - Predicate: newHashSet - Scenario: N/A
+
+Project: guava
+ Class: IterablesTest
+ Method: testGet_emptySortedSet
+ Body: {
+    testGetOnEmpty(ImmutableSortedSet.<String>of());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGetOnEmpty - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: IterablesTest
+ Method: testGet_iterable
+ Body: {
+    testGetOnAbc(ImmutableSet.of("a", "b", "c"));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testGetOnAbc - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: PeekingIteratorTest
+ Method: testPeekingIteratorBehavesLikeIteratorOnEmptyIterable
+ Body: {
+    actsLikeIteratorHelper(Collections.emptyList());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: actsLikeIteratorHelper - Predicate: emptyList - Scenario: N/A
+
+Project: guava
+ Class: PeekingIteratorTest
+ Method: testPeekingIteratorBehavesLikeIteratorOnThreeElementIterable
+ Body: {
+    actsLikeIteratorHelper(Lists.newArrayList("A", "B", "C"));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: actsLikeIteratorHelper - Predicate: newArrayList - Scenario: N/A
+
+Project: guava
+ Class: PeekingIteratorTest
+ Method: testPeekingIteratorBehavesLikeIteratorOnSingletonIterable
+ Body: {
+    actsLikeIteratorHelper(Collections.singletonList(new Object()));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: actsLikeIteratorHelper - Predicate: singletonList - Scenario: N/A
+
+Project: guava
+ Class: PeekingIteratorTest
+ Method: testPeekingIteratorAcceptsNullElements
+ Body: {
+    actsLikeIteratorHelper(Lists.newArrayList(null, "A", null));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: actsLikeIteratorHelper - Predicate: newArrayList - Scenario: N/A
+
+Project: guava
+ Class: CacheLoadingTest
+ Method: testConcurrentLoading
+ Body: {
+    testConcurrentLoading(CacheBuilder.newBuilder());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testConcurrentLoading - Predicate: newBuilder - Scenario: N/A
+
+Project: guava
+ Class: CacheLoadingTest
+ Method: testConcurrentExpirationLoading
+ Body: {
+    testConcurrentLoading(CacheBuilder.newBuilder().expireAfterWrite(10, TimeUnit.SECONDS));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testConcurrentLoading - Predicate: expireAfterWrite - Scenario: N/A
+
+Project: guava
+ Class: MinMaxPriorityQueueTest
+ Method: testIteratorTesterLarger
+ Body: {
+    runIterator(Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 5);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: runIterator - Predicate: newArrayList - Scenario: N/A
+
+Project: guava
+ Class: MultimapsTest
+ Method: testUnmodifiableHashMultimap
+ Body: {
+    checkUnmodifiableMultimap(HashMultimap.<String, Integer>create(), false);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkUnmodifiableMultimap - Predicate: create - Scenario: N/A
+
+Project: guava
+ Class: MultimapsTest
+ Method: testUnmodifiableSynchronizedHashMultimap
+ Body: {
+    checkUnmodifiableMultimap(
+        Multimaps.synchronizedSetMultimap(HashMultimap.<String, Integer>create()), false);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkUnmodifiableMultimap - Predicate: synchronizedSetMultimap - Scenario: N/A
+
+Project: guava
+ Class: MultimapsTest
+ Method: testUnmodifiableSynchronizedArrayListMultimap
+ Body: {
+    checkUnmodifiableMultimap(
+        Multimaps.synchronizedListMultimap(ArrayListMultimap.<String, Integer>create()), true);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkUnmodifiableMultimap - Predicate: synchronizedListMultimap - Scenario: N/A
+
+Project: guava
+ Class: MultimapsTest
+ Method: testUnmodifiableArrayListMultimap
+ Body: {
+    checkUnmodifiableMultimap(ArrayListMultimap.<String, Integer>create(), true);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkUnmodifiableMultimap - Predicate: create - Scenario: N/A
+
+Project: guava
+ Class: MultimapsTest
+ Method: testUnmodifiableTreeMultimap
+ Body: {
+    checkUnmodifiableMultimap(TreeMultimap.<String, Integer>create(), false, "null", 42);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkUnmodifiableMultimap - Predicate: create - Scenario: N/A
+
+Project: guava
+ Class: OrderingTest
+ Method: testCombinationsExhaustively_startingFromFromComparator
+ Body: {
+    testExhaustively(Ordering.from(String.CASE_INSENSITIVE_ORDER), "A", "b", "C", "d");
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testExhaustively - Predicate: from - Scenario: N/A
+
+Project: guava
+ Class: OrderingTest
+ Method: testCombinationsExhaustively_startingFromExplicit
+ Body: {
+    testExhaustively(Ordering.explicit("a", "b", "c", "d"), "a", "b", "d");
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testExhaustively - Predicate: explicit - Scenario: N/A
+
+Project: guava
+ Class: OrderingTest
+ Method: testCombinationsExhaustively_startingFromUsingToString
+ Body: {
+    testExhaustively(Ordering.usingToString(), 1, 12, 2);
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testExhaustively - Predicate: usingToString - Scenario: N/A
+
+Project: guava
+ Class: OrderingTest
+ Method: testCombinationsExhaustively_startingFromNatural
+ Body: {
+    testExhaustively(Ordering.<String>natural(), "a", "b", "d");
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testExhaustively - Predicate: natural - Scenario: N/A
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testSerialization_empty
+ Body: {
+    validateReserialization(ImmutableTable.of());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: validateReserialization - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testSerialization_singleElement
+ Body: {
+    validateReserialization(ImmutableTable.of('a', 2, "foo"));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: validateReserialization - Predicate: of - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_serializationOneArg
+ Body: {
+    checkSerialization(Predicates.or(isOdd()));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: or - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_serializationNoArgs
+ Body: {
+    checkSerialization(Predicates.or());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: or - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_serializationTernary
+ Body: {
+    checkSerialization(Predicates.or(FALSE, isOdd(), TRUE));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: or - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testNot_serialization
+ Body: {
+    checkSerialization(Predicates.not(isOdd()));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: not - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsEqualToNull_serialization
+ Body: {
+    checkSerialization(Predicates.equalTo(null));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: equalTo - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsEqualTo_serialization
+ Body: {
+    checkSerialization(Predicates.equalTo(1));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: equalTo - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_serializationBinary
+ Body: {
+    checkSerialization(Predicates.and(TRUE, isOdd()));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: and - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAlwaysTrue_serialization
+ Body: {
+    checkSerialization(Predicates.alwaysTrue());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: alwaysTrue - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_serializationIterable
+ Body: {
+    checkSerialization(Predicates.and(Arrays.asList(TRUE, FALSE)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: and - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_serializationOneArg
+ Body: {
+    checkSerialization(Predicates.and(isOdd()));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: and - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_serializationBinary
+ Body: {
+    checkSerialization(Predicates.or(isOdd(), TRUE));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: or - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_serializationNoArgs
+ Body: {
+    checkSerialization(Predicates.and());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: and - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testNotNull_serialization
+ Body: {
+    checkSerialization(Predicates.notNull());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: notNull - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_serializationTernary
+ Body: {
+    checkSerialization(Predicates.and(TRUE, isOdd(), FALSE));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: and - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIn_serialization
+ Body: {
+    checkSerialization(Predicates.in(Arrays.asList(1, 2, 3, null)));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: in - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsInstanceOf_serialization
+ Body: {
+    checkSerialization(Predicates.instanceOf(Integer.class));
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: instanceOf - Scenario: N/A
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAlwaysFalse_serialization
+ Body: {
+    checkSerialization(Predicates.alwaysFalse());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: checkSerialization - Predicate: alwaysFalse - Scenario: N/A
+
+Project: guava
+ Class: NetworkMutationTest
+ Method: directedNetwork
+ Body: {
+    testNetworkMutation(NetworkBuilder.directed());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testNetworkMutation - Predicate: directed - Scenario: N/A
+
+Project: guava
+ Class: NetworkMutationTest
+ Method: undirectedNetwork
+ Body: {
+    testNetworkMutation(NetworkBuilder.undirected());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: testNetworkMutation - Predicate: undirected - Scenario: N/A
+
+Project: guava
+ Class: ListGetTester
+ Method: testGet_valid
+ Body: {
+    // This calls get() on each index and checks the result:
+    expectContents(createOrderedArray());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectContents - Predicate: createOrderedArray - Scenario: N/A
+
+Project: guava
+ Class: MapCreationTester
+ Method: testCreateWithDuplicates_nonNullDuplicatesNotRejected
+ Body: {
+    expectFirstRemoved(getEntriesMultipleNonNullKeys());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectFirstRemoved - Predicate: getEntriesMultipleNonNullKeys - Scenario: N/A
+
+Project: guava
+ Class: MapCreationTester
+ Method: testCreateWithDuplicates_nullDuplicatesNotRejected
+ Body: {
+    expectFirstRemoved(getEntriesMultipleNullKeys());
+  }
+ Pattern Name: SingleLinePattern_ActionOnly - Action: expectFirstRemoved - Predicate: getEntriesMultipleNullKeys - Scenario: N/A
+

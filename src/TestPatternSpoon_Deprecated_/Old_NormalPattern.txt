@@ -1,0 +1,191 @@
+//        if (pureAssertStatementList.size() == 0) {
+//
+//                PsiExpressionStatement assertion_line = expressionStatementListForAssert.get(0);
+//
+//                List<PsiMethodCallExpression> methodCallExpressionsForAssert = Arrays.stream(assertion_line.getChildren())
+//        .filter(psiElement -> psiElement instanceof PsiMethodCallExpression)
+//        .map(PsiMethodCallExpression.class::cast)
+//        .collect(Collectors.toList());
+//
+//        if (methodCallExpressionsForAssert.size() == 0) return null;
+//
+//        PsiMethodCallExpression first_methodCalls_forAssertion = methodCallExpressionsForAssert.get(0);
+//
+//        //Start: Three different cases for four different kinds of assertion
+//
+//        List<PsiMethodCallExpression> sub_methodCalls_forAssertion = Arrays.stream(first_methodCalls_forAssertion.getArgumentList().getExpressions())
+//        .filter(psiExpression -> psiExpression instanceof PsiMethodCallExpression)
+//        .map(PsiMethodCallExpression.class::cast)
+//        .collect(Collectors.toList());
+//
+//        if (sub_methodCalls_forAssertion.size() == 0) {
+//
+//        PsiMethodCallExpression methodCallExpression_s1 =
+//        new AssertionHandler_v2().getFirstEmbeddedMethodCall(assertion_line);
+//
+//        if (methodCallExpression_s1 != null) {
+//
+//        predicate = methodCallExpression_s1.getMethodExpression().getReferenceName();
+//        } else {
+//
+//        predicate = "N/A";
+//        }
+//        } else {
+//        if (first_methodCalls_forAssertion.getText().contains("Assert")
+//        && first_methodCalls_forAssertion.getText().contains("assert")) {
+//
+//        predicate = sub_methodCalls_forAssertion.get(0).getMethodExpression().getReferenceName();
+//
+//        } else if (first_methodCalls_forAssertion.getText().contains("Assert")
+//        && !first_methodCalls_forAssertion.getText().contains("assert")) {
+//
+//        predicate = first_methodCalls_forAssertion.getMethodExpression().getReferenceName();
+//
+//        } else if (first_methodCalls_forAssertion.getText().contains("assert")
+//        && !first_methodCalls_forAssertion.getText().contains("Assert")) {
+//
+//        predicate = sub_methodCalls_forAssertion.get(0).getMethodExpression().getReferenceName();
+//
+//        //"first_methodCalls_forAssertion.getArgumentList().getExpressions()"
+//        // -> Get Sub Method Calls -> expressions
+//        }
+//        }
+//        }
+//        else {
+//
+//        predicate = new AssertionHandler_v2().getFromPsiAssert(pureAssertStatementList.get(0));
+//        }
+//    int first_assertion = 0;
+//
+//    List<PsiStatement> all_statement = Arrays.asList(test.getBody().getStatements());
+//
+//        for (int i = 0; i < all_statement.size(); i++) {
+//
+//        if (!(all_statement.get(i) instanceof PsiExpressionStatement)
+//        && !(all_statement.get(i) instanceof PsiAssertStatement)) continue;
+//
+//        if (!(all_statement.get(i).getText().contains("assert"))
+//        && !(all_statement.get(i).getText().contains("Assert"))) continue;
+//
+//        first_assertion = i;
+//
+//        if (first_assertion != 0) break;
+//        }
+//
+//        //Pinpoint the first assertion
+//
+//        PsiExpressionStatement action_statement = null;
+//
+//        PsiDeclarationStatement scenario_statement = null;
+//
+//        for (int i = first_assertion - 1; i >= 0; i--){
+//
+//        if (!(all_statement.get(i) instanceof PsiDeclarationStatement)
+//        && !(all_statement.get(i) instanceof PsiExpressionStatement)) continue;
+//
+//        if (all_statement.get(i) instanceof PsiDeclarationStatement) {
+//        scenario_statement = (PsiDeclarationStatement) all_statement.get(i);
+//        }
+//
+//        if ((all_statement.get(i) instanceof PsiExpressionStatement)
+//        && (!all_statement.get(i).getText().contains("assert"))
+//        && (!all_statement.get(i).getText().contains("Assert"))) {
+//
+//        action_statement = (PsiExpressionStatement) all_statement.get(i);
+//        }
+//
+//        if (scenario_statement != null && action_statement != null) break;
+//        }
+//
+//        if (action_statement == null ) {
+//
+//        for (PsiStatement anAll_statement : all_statement) {
+//
+//        if (!(anAll_statement instanceof PsiDeclarationStatement)
+//        && !(anAll_statement instanceof PsiExpressionStatement)) continue;
+//
+//        if ((anAll_statement instanceof PsiExpressionStatement)
+//        && (!anAll_statement.getText().contains("assert"))
+//        && (!anAll_statement.getText().contains("Assert"))){
+//
+//        action_statement = (PsiExpressionStatement) anAll_statement;
+//        }
+//
+//        if (action_statement != null) break;
+//        }
+//        }
+//
+//        if (scenario_statement == null ) {
+//
+//        for (PsiStatement anAll_statement : all_statement) {
+//
+//        if (!(anAll_statement instanceof PsiDeclarationStatement)
+//        && !(anAll_statement instanceof PsiExpressionStatement)) continue;
+//
+//        if (anAll_statement instanceof PsiDeclarationStatement){
+//        scenario_statement = (PsiDeclarationStatement) anAll_statement;
+//        }
+//
+//        if (scenario_statement != null) break;
+//        }
+//        }
+//
+//        if (action_statement == null || scenario_statement == null) return null;
+//
+//        //Get the action statement and scenario statement
+//
+//        List<PsiMethodCallExpression> action_methodCalls = Arrays.stream(action_statement.getChildren())
+//        .filter(psiElement -> psiElement instanceof PsiMethodCallExpression)
+//        .map(PsiMethodCallExpression.class::cast)
+//        .collect(Collectors.toList());
+//
+//        //Retrieve all sub elements from action statement and scenario statement
+//
+//        if (action_methodCalls.size() == 0) return null;
+//
+//        PsiMethodCallExpression finalAction_statement = action_methodCalls.get(0);
+//
+//        action = finalAction_statement.getMethodExpression().getReferenceName();
+//
+////Finalize everything
+
+
+//                ICombinatoricsVector<String> result_set = createVector(results);
+//
+//                Generator<String> generator = createSubSetGenerator(result_set, true);
+//
+//                for (ICombinatoricsVector<String> subSet : generator){
+//
+//                    try {
+//                        writeToFile("SubSet: " + ArrayUtils.toString(subSet.getVector()));
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+
+
+//                String whole_list = results.toString().replaceAll(",", "");
+//
+//                char[] middle_chars = whole_list.substring(1, whole_list.length()-1).replaceAll(" ", "").toCharArray();
+//
+//                List<char[]> sequences = GetSubSequences(middle_chars);
+//
+//                sequences.forEach(a -> {
+//                    try {
+//                        if (a.length != 1 && a.length != middle_chars.length) {
+//                            for (char anA : a) {
+//                                writeToFile(String.valueOf(anA) + " ");
+//                            }
+//                            writeToFile("-1 ");
+//                        }
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                });
+//
+//                try {
+//                    writeToFile("-2");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                //Note: Write to files for all sequences

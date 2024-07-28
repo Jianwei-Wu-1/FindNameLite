@@ -1,0 +1,80 @@
+start{ * declaration * declaration * assertThat * }end *   526
+start{ * declaration * methodCall * declaration * methodCall * methodCall * }end *   409
+start{ * declaration * declaration * assertFalse * }end *   387
+start{ * declaration * declaration * declaration * declaration * assertEquals * }end *   372
+start{ * try{ * methodCall * fail * catch{ * }catch * }try * methodCall * }end *   353
+start{ * declaration * declaration * assertEquals * methodCall * }end *   344
+start{ * declaration * declaration * declaration * assertTrue * }end *   344
+start{ * declaration * methodCall * methodCall * assertThat * }end *   338
+start{ * declaration * declaration * methodCall * methodCall * methodCall * methodCall * }end *   336
+start{ * assertEquals * assertEquals * assertEquals * assertEquals * assertEquals * }end *   335
+start{ * declaration * methodCall * declaration * assertEquals * }end *   333
+start{ * declaration * declaration * methodCall * methodCall * assertEquals * }end *   333
+start{ * declaration * declaration * declaration * methodCall * assertEquals * }end *   330
+start{ * declaration * declaration * declaration * assertEquals * assertEquals * }end *   330
+start{ * declaration * assertTrue * assertEquals * }end *   325
+start{ * declaration * assertTrue * assertFalse * }end *   316
+start{ * try{ * methodCall * fail * catch{ * methodCall * }catch * }try * }end *   314
+start{ * declaration * declaration * declaration * methodCall * methodCall * methodCall * }end *   314
+start{ * declaration * declaration * try{ * methodCall * fail * catch{ * }catch * }try * }end *   311
+start{ * declaration * declaration * methodCall * try{ * methodCall * catch{ * }catch * }try * }end *   310
+start{ * declaration * methodCall * methodCall * assertEquals * assertEquals * }end *   310
+start{ * declaration * assertEquals * methodCall * assertEquals * }end *   309
+start{ * declaration * methodCall * try{ * methodCall * fail * catch{ * }catch * }try * }end *   303
+start{ * declaration * assertThat * assertThat * }end *   299
+start{ * declaration * assertThat * methodCall * }end *   298
+start{ * declaration * declaration * methodCall * assertEquals * assertEquals * }end *   297
+start{ * assertionNotJUnit * assertionNotJUnit * }end *   295
+start{ * declaration * declaration * assertionNotJUnit * }end *   295
+start{ * declaration * methodCall * methodCall * try{ * methodCall * catch{ * }catch * }try * }end *   290
+start{ * methodCall * methodCall * methodCall * assertThat * }end *   286
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end *   286
+start{ * methodCall * assertThat * assertThat * }end *   279
+start{ * declaration * declaration * declaration * declaration * declaration * declaration * }end *   278
+start{ * declaration * methodCall * declaration * declaration * }end *   274
+start{ * declaration * methodCall * assertFalse * }end *   273
+start{ * declaration * methodCall * assertEquals * methodCall * }end *   272
+start{ * declaration * declaration * methodCall * assertTrue * }end *   272
+start{ * declaration * methodCall * assertionNotJUnit * }end *   271
+start{ * declaration * methodCall * methodCall * methodCall * declaration * }end *   270
+start{ * assertNull * }end *   269
+start{ * declaration * assertEquals * assertEquals * methodCall * }end *   268
+start{ * assertFalse * methodCall * }end *   266
+start{ * declaration * for{ * declaration * }for * }end *   266
+start{ * declaration * assertEquals * assertTrue * }end *   265
+start{ * declaration * declaration * assertTrue * assertTrue * }end *   265
+start{ * if{ * }if * }end *   265
+start{ * assertTrue * assertTrue * assertTrue * }end *   264
+start{ * declaration * declaration * methodCall * declaration * methodCall * }end *   263
+start{ * declaration * methodCall * assertEquals * assertEquals * assertEquals * }end *   263
+start{ * assertFalse * assertTrue * }end *   262
+start{ * methodCall * assertThat * methodCall * }end *   262
+start{ * declaration * methodCall * methodCall * declaration * methodCall * }end *   262
+start{ * methodCall * methodCall * assertTrue * }end *   261
+start{ * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * methodCall * }end *   260
+start{ * methodCall * declaration * try{ * methodCall * catch{ * }catch * }try * }end *   260
+start{ * declaration * declaration * methodCall * assignment * }end *   259
+start{ * try{ * methodCall * catch{ * }catch * }try * fail * }end *   259
+start{ * declaration * try{ * methodCall * catch{ * }catch * }try * try{ * methodCall * catch{ * }catch * }try * }end *   257
+start{ * methodCall * declaration * assertThat * }end *   255
+start{ * declaration * assertFalse * assertFalse * }end *   248
+start{ * assertEquals * assertFalse * }end *   248
+start{ * try{ * methodCall * methodCall * fail * catch{ * }catch * }try * }end *   246
+start{ * declaration * assertEquals * methodCall * methodCall * }end *   245
+start{ * declaration * declaration * assertSame * }end *   241
+start{ * declaration * declaration * declaration * methodCall * declaration * }end *   240
+start{ * assertEquals * declaration * }end *   240
+start{ * assertThat * assertThat * assertThat * }end *   240
+start{ * declaration * declaration * declaration * declaration * declaration * methodCall * methodCall * }end *   239
+start{ * declaration * assignment * assignment * }end *   238
+start{ * methodCall * methodCall * declaration * assertEquals * }end *   236
+start{ * declaration * methodCall * methodCall * methodCall * methodCall * assertEquals * }end *   236
+start{ * declaration * assertTrue * methodCall * }end *   236
+start{ * methodCall * assertEquals * methodCall * assertEquals * }end *   235
+start{ * methodCall * declaration * declaration * methodCall * }end *   234
+start{ * methodCall * try{ * methodCall * catch{ * }catch * }try * try{ * methodCall * }try * }end *   234
+start{ * declaration * declaration * assignment * methodCall * }end *   234
+start{ * methodCall * methodCall * assertEquals * methodCall * }end *   233
+start{ * declaration * declaration * assertEquals * assertEquals * assertEquals * assertEquals * }end *   233
+start{ * methodCall * try{ * methodCall * catch{ * }catch * }try * try{ * catch{ * }catch * }try * }end *   233
+start{ * try{ * fail * catch{ * }catch * methodCall * }try * }end *   232

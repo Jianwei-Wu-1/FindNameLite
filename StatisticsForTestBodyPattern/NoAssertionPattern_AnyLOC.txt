@@ -1,0 +1,9 @@
+Project: bank-application
+ Class: DepositAccountTest
+ Method: test4
+ Body: {
+        String response = "ABC";
+        foo.getResponse(response);
+    }
+ Pattern Name: NoAssertionPattern(AnyLOC) - Action: getResponse (Alternative Action: getResponse=1 ) - Predicate: N/A - Scenario: response (Alternative Scenario: response=1 )
+

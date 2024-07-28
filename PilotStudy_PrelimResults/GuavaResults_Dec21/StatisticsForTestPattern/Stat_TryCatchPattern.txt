@@ -1,0 +1,3752 @@
+Project: guava
+ Class: SetsTest
+ Method: testComplementOfEmptySetWithoutTypeDoesntWork
+ Body: {
+    Set<SomeEnum> set = Collections.emptySet();
+    try {
+      Sets.complementOf(set);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: complementOf - Predicate: N/A - Scenario: set
+
+Project: guava
+ Class: SetsTest
+ Method: testCartesianProductTooBig
+ Body: {
+    Set<Integer> set = ContiguousSet.create(Range.closed(0, 10000), DiscreteDomain.integers());
+    try {
+      Sets.cartesianProduct(set, set, set, set, set);
+      fail("Expected IAE");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: cartesianProduct - Predicate: N/A - Scenario: set
+
+Project: guava
+ Class: FakeTimeLimiterTest
+ Method: testCallWithTimeout_wrapsCheckedException
+ Body: {
+    Exception exception = new SampleCheckedException();
+    try {
+      timeLimiter.callWithTimeout(callableThrowing(exception), DELAY_MS, TimeUnit.MILLISECONDS);
+      fail("Expected ExecutionException");
+    } catch (ExecutionException e) {
+      assertThat(e.getCause()).isEqualTo(exception);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: callWithTimeout - Predicate: isEqualTo - Scenario: exception
+
+Project: guava
+ Class: FakeTimeLimiterTest
+ Method: testRunUninterruptiblyWithTimeout_wrapsUncheckedException
+ Body: {
+    RuntimeException exception = new RuntimeException("test");
+    try {
+      timeLimiter.runUninterruptiblyWithTimeout(
+          runnableThrowing(exception), DELAY_MS, TimeUnit.MILLISECONDS);
+      fail("Expected UncheckedExecutionException");
+    } catch (UncheckedExecutionException e) {
+      assertThat(e.getCause()).isEqualTo(exception);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: runUninterruptiblyWithTimeout - Predicate: isEqualTo - Scenario: exception
+
+Project: guava
+ Class: FakeTimeLimiterTest
+ Method: testCallWithTimeout_wrapsUncheckedException
+ Body: {
+    Exception exception = new RuntimeException("test");
+    try {
+      timeLimiter.callWithTimeout(callableThrowing(exception), DELAY_MS, TimeUnit.MILLISECONDS);
+      fail("Expected UncheckedExecutionException");
+    } catch (UncheckedExecutionException e) {
+      assertThat(e.getCause()).isEqualTo(exception);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: callWithTimeout - Predicate: isEqualTo - Scenario: exception
+
+Project: guava
+ Class: FakeTimeLimiterTest
+ Method: testRunWithTimeout_wrapsUncheckedException
+ Body: {
+    RuntimeException exception = new RuntimeException("test");
+    try {
+      timeLimiter.runWithTimeout(runnableThrowing(exception), DELAY_MS, TimeUnit.MILLISECONDS);
+      fail("Expected UncheckedExecutionException");
+    } catch (UncheckedExecutionException e) {
+      assertThat(e.getCause()).isEqualTo(exception);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: runWithTimeout - Predicate: isEqualTo - Scenario: exception
+
+Project: guava
+ Class: ToStringHelperTest
+ Method: testToString_addWithNullName
+ Body: {
+    MoreObjects.ToStringHelper helper = MoreObjects.toStringHelper(new TestClass());
+    try {
+      helper.add(null, "Hello");
+      fail("No exception was thrown.");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: helper
+
+Project: guava
+ Class: MultimapAsMapGetTester
+ Method: testAddNullValueUnsupported
+ Body: {
+    Collection<V> result = multimap().asMap().get(k0());
+    try {
+      result.add(null);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: result
+
+Project: guava
+ Class: MoreExecutorsTest
+ Method: testInvokeAnyImpl_emptyTasks
+ Body: {
+    ListeningExecutorService e = newDirectExecutorService();
+    try {
+      invokeAnyImpl(e, new ArrayList<Callable<String>>(), false, 0, TimeUnit.NANOSECONDS);
+      fail();
+    } catch (IllegalArgumentException success) {
+    } finally {
+      joinPool(e);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: invokeAnyImpl - Predicate: N/A - Scenario: e
+
+Project: guava
+ Class: MoreExecutorsTest
+ Method: testInvokeAnyImpl_nullTasks
+ Body: {
+    ListeningExecutorService e = newDirectExecutorService();
+    try {
+      invokeAnyImpl(e, null, false, 0, TimeUnit.NANOSECONDS);
+      fail();
+    } catch (NullPointerException success) {
+    } finally {
+      joinPool(e);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: invokeAnyImpl - Predicate: N/A - Scenario: e
+
+Project: guava
+ Class: AbstractExecutionThreadServiceTest
+ Method: testTimeout
+ Body: {
+    // Create a service whose executor will never run its commands
+    Service service =
+        new AbstractExecutionThreadService() {
+          @Override
+          protected void run() throws Exception {}
+
+          @Override
+          protected ScheduledExecutorService executor() {
+            return TestingExecutors.noOpScheduledExecutor();
+          }
+
+          @Override
+          protected String serviceName() {
+            return "Foo";
+          }
+        };
+    try {
+      service.startAsync().awaitRunning(1, TimeUnit.MILLISECONDS);
+      fail("Expected timeout");
+    } catch (TimeoutException e) {
+      assertThat(e).hasMessage("Timed out waiting for Foo [STARTING] to reach the RUNNING state.");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: awaitRunning - Predicate: hasMessage - Scenario: service
+
+Project: guava
+ Class: AbstractExecutionThreadServiceTest
+ Method: testServiceTimeoutOnStartUp
+ Body: {
+    TimeoutOnStartUp service = new TimeoutOnStartUp();
+
+    try {
+      service.startAsync().awaitRunning(1, TimeUnit.MILLISECONDS);
+      fail();
+    } catch (TimeoutException e) {
+      assertThat(e.getMessage()).contains(Service.State.STARTING.toString());
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: awaitRunning - Predicate: contains - Scenario: service
+
+Project: guava
+ Class: BiMapSpecificTests
+ Method: testForcePut
+ Body: {
+      BiMap<String, Integer> bimap = ImmutableBiMap.copyOf(ImmutableMap.of("one", 1, "two", 2));
+      try {
+        bimap.forcePut("three", 3);
+        fail();
+      } catch (UnsupportedOperationException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: forcePut - Predicate: N/A - Scenario: bimap
+
+Project: guava
+ Class: JoinerTest
+ Method: test_skipNulls_onMap
+ Body: {
+    Joiner j = Joiner.on(",").skipNulls();
+    try {
+      j.withKeyValueSeparator("/");
+      fail();
+    } catch (UnsupportedOperationException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: withKeyValueSeparator - Predicate: N/A - Scenario: j
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_compute_longVarargs_empty
+ Body: {
+    Quantiles.ScaleAndIndex intermediate = Quantiles.scale(10).index(3);
+    try {
+      intermediate.compute(new long[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_compute_doubleCollection_empty
+ Body: {
+    Quantiles.ScaleAndIndexes intermediate = Quantiles.scale(10).indexes(1, 3, 5);
+    try {
+      intermediate.compute(EMPTY_DATASET);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_collection_tooHigh
+ Body: {
+    Quantiles.Scale intermediate = Quantiles.scale(10);
+    try {
+      intermediate.indexes(ImmutableList.of(1, 11, 3));
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: indexes - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_compute_doubleVarargs_empty
+ Body: {
+    Quantiles.ScaleAndIndexes intermediate = Quantiles.scale(10).indexes(1, 3, 5);
+    try {
+      intermediate.compute(new double[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_tooHigh
+ Body: {
+    Quantiles.Scale intermediate = Quantiles.scale(10);
+    try {
+      intermediate.index(11);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: index - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_compute_doubleCollection_empty
+ Body: {
+    Quantiles.ScaleAndIndex intermediate = Quantiles.scale(10).index(3);
+    try {
+      intermediate.compute(EMPTY_DATASET);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_negative
+ Body: {
+    Quantiles.Scale intermediate = Quantiles.scale(10);
+    try {
+      intermediate.indexes(1, -1, 3);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: indexes - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_compute_intVarargs_empty
+ Body: {
+    Quantiles.ScaleAndIndexes intermediate = Quantiles.scale(10).indexes(1, 3, 5);
+    try {
+      intermediate.compute(new int[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_compute_longVarargs_empty
+ Body: {
+    Quantiles.ScaleAndIndexes intermediate = Quantiles.scale(10).indexes(1, 3, 5);
+    try {
+      intermediate.compute(new long[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_negative
+ Body: {
+    Quantiles.Scale intermediate = Quantiles.scale(10);
+    try {
+      intermediate.index(-1);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: index - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_tooHigh
+ Body: {
+    Quantiles.Scale intermediate = Quantiles.scale(10);
+    try {
+      intermediate.indexes(1, 11, 3);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: indexes - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_computeInPlace_empty
+ Body: {
+    Quantiles.ScaleAndIndex intermediate = Quantiles.scale(10).index(3);
+    try {
+      intermediate.computeInPlace(new double[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: computeInPlace - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_compute_intVarargs_empty
+ Body: {
+    Quantiles.ScaleAndIndex intermediate = Quantiles.scale(10).index(3);
+    try {
+      intermediate.compute(new int[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_collection_negative
+ Body: {
+    Quantiles.Scale intermediate = Quantiles.scale(10);
+    try {
+      intermediate.indexes(ImmutableList.of(1, -1, 3));
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: indexes - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_indexes_varargs_computeInPlace_empty
+ Body: {
+    Quantiles.ScaleAndIndexes intermediate = Quantiles.scale(10).indexes(1, 3, 5);
+    try {
+      intermediate.computeInPlace(new double[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: computeInPlace - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: QuantilesTest
+ Method: testScale_index_compute_doubleVarargs_empty
+ Body: {
+    Quantiles.ScaleAndIndex intermediate = Quantiles.scale(10).index(3);
+    try {
+      intermediate.compute(new double[] {});
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: compute - Predicate: N/A - Scenario: intermediate
+
+Project: guava
+ Class: ConfigurableDirectedGraphTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = graph.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_SET);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(graph.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: FauxveridesTest
+ Method: testImmutableSortedSetCopyOfIterable
+ Body: {
+    Set<Object> original = ImmutableSet.of(new Object(), new Object());
+
+    try {
+      ImmutableSortedSet.copyOf(original);
+      fail();
+    } catch (ClassCastException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: original
+
+Project: guava
+ Class: FauxveridesTest
+ Method: testImmutableSortedMapCopyOfMap
+ Body: {
+    Map<Object, Object> original =
+        ImmutableMap.of(new Object(), new Object(), new Object(), new Object());
+
+    try {
+      ImmutableSortedMap.copyOf(original);
+      fail();
+    } catch (ClassCastException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: original
+
+Project: guava
+ Class: FauxveridesTest
+ Method: testImmutableSortedSetCopyOfIterator
+ Body: {
+    Set<Object> original = ImmutableSet.of(new Object(), new Object());
+
+    try {
+      ImmutableSortedSet.copyOf(original.iterator());
+      fail();
+    } catch (ClassCastException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: original
+
+Project: guava
+ Class: FilesTest
+ Method: testMap_readWrite_max_value_plus_1
+ Body: {
+    // Setup
+    File file = createTempFile();
+    // Test
+    try {
+      Files.map(file, MapMode.READ_WRITE, (long) Integer.MAX_VALUE + 1);
+      fail("Should throw when size exceeds Integer.MAX_VALUE");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: map - Predicate: N/A - Scenario: file
+
+Project: guava
+ Class: MultimapReplaceValuesTester
+ Method: testReplaceValuesPutNotSupported
+ Body: {
+    List<V> values = Collections.singletonList(v3());
+    try {
+      multimap().replaceValues(k0(), values);
+      fail("Expected UnsupportedOperationException");
+    } catch (UnsupportedOperationException expected) {
+      // success
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: replaceValues - Predicate: N/A - Scenario: values
+
+Project: guava
+ Class: MultimapReplaceValuesTester
+ Method: testReplaceValuesRemoveNotSupported
+ Body: {
+    List<V> values = Collections.singletonList(v3());
+    try {
+      multimap().replaceValues(k0(), values);
+      fail("Expected UnsupportedOperationException");
+    } catch (UnsupportedOperationException expected) {
+      // success
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: replaceValues - Predicate: N/A - Scenario: values
+
+Project: guava
+ Class: ConfigurableDirectedNetworkTest
+ Method: edges_checkReturnedSetMutability
+ Body: {
+    Set<String> edges = network.edges();
+    try {
+      edges.add(E12);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addEdge(N1, N2, E12);
+      assertThat(network.edges()).containsExactlyElementsIn(edges);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addEdge - Scenario: edges
+
+Project: guava
+ Class: ConfigurableDirectedNetworkTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = network.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(network.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: TablesTest
+ Method: testToTableConflict
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, Table<String, String, Integer>> collector =
+        Tables.toTable(Cell::getRowKey, Cell::getColumnKey, Cell::getValue, HashBasedTable::create);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1), Tables.immutableCell("one", "uno", 2))
+          .collect(collector);
+      fail("Expected IllegalStateException");
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: TablesTest
+ Method: testToTableNullValues
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, Table<String, String, Integer>> collector =
+        Tables.toTable(
+            Cell::getRowKey,
+            Cell::getColumnKey,
+            Cell::getValue,
+            () -> ArrayTable.create(ImmutableList.of("one"), ImmutableList.of("uno")));
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", (Integer) null)).collect(collector);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: AbstractIteratorTest
+ Method: testExceptionAfterEndOfData
+ Body: {
+    Iterator<Integer> iter =
+        new AbstractIterator<Integer>() {
+          @Override
+          public Integer computeNext() {
+            endOfData();
+            throw new SomeUncheckedException();
+          }
+        };
+    try {
+      iter.hasNext();
+      fail("No exception thrown");
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: hasNext - Predicate: N/A - Scenario: iter
+
+Project: guava
+ Class: AbstractIteratorTest
+ Method: testReentrantHasNext
+ Body: {
+    Iterator<Integer> iter =
+        new AbstractIterator<Integer>() {
+          @Override
+          protected Integer computeNext() {
+            boolean unused = hasNext();
+            return null;
+          }
+        };
+    try {
+      iter.hasNext();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: hasNext - Predicate: N/A - Scenario: iter
+
+Project: guava
+ Class: InternersTest
+ Method: testStrong_null
+ Body: {
+    Interner<String> pool = Interners.newStrongInterner();
+    try {
+      pool.intern(null);
+      fail();
+    } catch (NullPointerException ok) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: intern - Predicate: N/A - Scenario: pool
+
+Project: guava
+ Class: InternersTest
+ Method: testConcurrencyLevel_Zero
+ Body: {
+    Interners.InternerBuilder builder = Interners.newBuilder();
+    try {
+      builder.concurrencyLevel(0);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: concurrencyLevel - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: InternersTest
+ Method: testConcurrencyLevel_Negative
+ Body: {
+    Interners.InternerBuilder builder = Interners.newBuilder();
+    try {
+      builder.concurrencyLevel(-42);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: concurrencyLevel - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: InternersTest
+ Method: testWeak_null
+ Body: {
+    Interner<String> pool = Interners.newWeakInterner();
+    try {
+      pool.intern(null);
+      fail();
+    } catch (NullPointerException ok) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: intern - Predicate: N/A - Scenario: pool
+
+Project: guava
+ Class: MoreCollectorsTest
+ Method: testToOptionalNull
+ Body: {
+    Stream<Object> stream = Stream.of((Object) null);
+    try {
+      stream.collect(MoreCollectors.toOptional());
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: stream
+
+Project: guava
+ Class: FakeTickerTest
+ Method: testAutoIncrement_negative
+ Body: {
+    FakeTicker ticker = new FakeTicker();
+    try {
+      ticker.setAutoIncrementStep(-1, TimeUnit.NANOSECONDS);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: setAutoIncrementStep - Predicate: N/A - Scenario: ticker
+
+Project: guava
+ Class: ListsTest
+ Method: testCartesianProductTooBig
+ Body: {
+    List<String> list = Collections.nCopies(10000, "foo");
+    try {
+      Lists.cartesianProduct(list, list, list, list, list);
+      fail("Expected IAE");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: cartesianProduct - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: ListsTest
+ Method: testPartition_badSize
+ Body: {
+    List<Integer> source = Collections.singletonList(1);
+    try {
+      Lists.partition(source, 0);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: partition - Predicate: N/A - Scenario: source
+
+Project: guava
+ Class: MacHashFunctionTest
+ Method: testBadKey_emptyKey
+ Body: {
+    SecretKey badKey =
+        new SecretKey() {
+          @Override
+          public String getAlgorithm() {
+            return "HmacMD5";
+          }
+
+          @Override
+          public byte[] getEncoded() {
+            return null;
+          }
+
+          @Override
+          public String getFormat() {
+            return "RAW";
+          }
+        };
+    try {
+      Hashing.hmacMd5(badKey);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    } catch (NullPointerException toleratedOnAndroid) {
+      // TODO(cpovirk): In an ideal world, we'd check here that we're running on Android.
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: hmacMd5 - Predicate: N/A - Scenario: badKey
+
+Project: guava
+ Class: BytesTest
+ Method: testToArray_withNull
+ Body: {
+    List<Byte> list = Arrays.asList((byte) 0, (byte) 1, null);
+    try {
+      Bytes.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: AbstractServiceTest
+ Method: testNotifyFailedWhenNotStarted
+ Body: {
+    AbstractService service = new DefaultService();
+    try {
+      service.notifyFailed(new Exception());
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: notifyFailed - Predicate: N/A - Scenario: service
+
+Project: guava
+ Class: AbstractServiceTest
+ Method: testNotifyStoppedWhenNotRunning
+ Body: {
+    AbstractService service = new DefaultService();
+    try {
+      service.notifyStopped();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: notifyStopped - Predicate: N/A - Scenario: service
+
+Project: guava
+ Class: AbstractServiceTest
+ Method: testNotifyStartedWhenNotStarting
+ Body: {
+    AbstractService service = new DefaultService();
+    try {
+      service.notifyStarted();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: notifyStarted - Predicate: N/A - Scenario: service
+
+Project: guava
+ Class: ConfigurableSimpleUndirectedGraphTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = graph.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_SET);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(graph.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: ImmutableEnumMapTest
+ Method: testToImmutableMap_exceptionOnDuplicateKey
+ Body: {
+    Collector<Entry<AnEnum, Integer>, ?, ImmutableMap<AnEnum, Integer>> collector =
+        Maps.toImmutableEnumMap(Entry::getKey, Entry::getValue);
+    try {
+      Stream.of(mapEntry(AnEnum.A, 1), mapEntry(AnEnum.A, 11)).collect(collector);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ByteStreamsTest
+ Method: testLimit_markNotSupported
+ Body: {
+    InputStream lin = ByteStreams.limit(new UnmarkableInputStream(), 2);
+
+    try {
+      lin.reset();
+      fail();
+    } catch (IOException expected) {
+      assertThat(expected).hasMessage("Mark not supported");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: reset - Predicate: hasMessage - Scenario: lin
+
+Project: guava
+ Class: ConfigurableDirectedMultiNetworkTest
+ Method: edges_checkReturnedSetMutability
+ Body: {
+    Set<String> edges = network.edges();
+    try {
+      edges.add(E12);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addEdge(N1, N2, E12);
+      assertThat(network.edges()).containsExactlyElementsIn(edges);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addEdge - Scenario: edges
+
+Project: guava
+ Class: ConfigurableDirectedMultiNetworkTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = network.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(network.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: GraphsTest
+ Method: inducedSubgraph_nodeNotInGraph
+ Body: {
+    MutableNetwork<Integer, String> undirectedGraph = NetworkBuilder.undirected().build();
+
+    try {
+      inducedSubgraph(undirectedGraph, ImmutableSet.of(N1));
+      fail("Should have rejected getting induced subgraph with node not in original graph.");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: inducedSubgraph - Predicate: N/A - Scenario: undirectedGraph
+
+Project: guava
+ Class: ConfigurableSimpleUndirectedNetworkTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = network.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(network.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: ConfigurableSimpleUndirectedNetworkTest
+ Method: edges_checkReturnedSetMutability
+ Body: {
+    Set<String> edges = network.edges();
+    try {
+      edges.add(E12);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addEdge(N1, N2, E12);
+      assertThat(network.edges()).containsExactlyElementsIn(edges);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addEdge - Scenario: edges
+
+Project: guava
+ Class: SupplementalMonitorTest
+ Method: testLeaveWithoutEnterThrowsIMSE
+ Body: {
+    Monitor monitor = new Monitor();
+    try {
+      monitor.leave();
+      fail("expected IllegalMonitorStateException");
+    } catch (IllegalMonitorStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: leave - Predicate: N/A - Scenario: monitor
+
+Project: guava
+ Class: FuturesGetCheckedTest
+ Method: testGetCheckedTimed_TimeoutException
+ Body: {
+    SettableFuture<String> future = SettableFuture.create();
+    try {
+      getChecked(future, TwoArgConstructorException.class, 0, SECONDS);
+      fail();
+    } catch (TwoArgConstructorException expected) {
+      assertThat(expected.getCause()).isInstanceOf(TimeoutException.class);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getChecked - Predicate: isInstanceOf - Scenario: future
+
+Project: guava
+ Class: FloatsTest
+ Method: testToArray_withNull
+ Body: {
+    List<Float> list = Arrays.asList((float) 0, (float) 1, null);
+    try {
+      Floats.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullValue
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.put("one", null);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullValueViaPutAll
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.putAll(Collections.<String, Integer>singletonMap("one", null));
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: putAll - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullKey
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.put(null, 1);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testToImmutableBiMap_exceptionOnDuplicateKey
+ Body: {
+      Collector<Entry<String, Integer>, ?, ImmutableBiMap<String, Integer>> collector =
+          ImmutableBiMap.toImmutableBiMap(Entry::getKey, Entry::getValue);
+      try {
+        Stream.of(mapEntry("one", 1), mapEntry("one", 11)).collect(collector);
+        fail("Expected IllegalArgumentException");
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: CreationTests
+ Method: testDuplicateValues
+ Body: {
+      ImmutableMap<String, Integer> map =
+          new ImmutableMap.Builder<String, Integer>()
+              .put("one", 1)
+              .put("two", 2)
+              .put("uno", 1)
+              .put("dos", 2)
+              .build();
+
+      try {
+        ImmutableBiMap.copyOf(map);
+        fail();
+      } catch (IllegalArgumentException expected) {
+        assertThat(expected.getMessage()).contains("1");
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: contains - Scenario: map
+
+Project: guava
+ Class: CreationTests
+ Method: testPuttingTheSameKeyTwiceThrowsOnBuild
+ Body: {
+      Builder<String, Integer> builder =
+          new Builder<String, Integer>()
+              .put("one", 1)
+              .put("one", 1); // throwing on this line would be even better
+
+      try {
+        builder.build();
+        fail();
+      } catch (IllegalArgumentException expected) {
+        assertThat(expected.getMessage()).contains("one");
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: contains - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullKeyViaPutAll
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.putAll(Collections.<String, Integer>singletonMap(null, 1));
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: putAll - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilder_orderEntriesByValue_usedTwiceFails
+ Body: {
+      ImmutableBiMap.Builder<String, Integer> builder =
+          new Builder<String, Integer>().orderEntriesByValue(Ordering.natural());
+      try {
+        builder.orderEntriesByValue(Ordering.natural());
+        fail("Expected IllegalStateException");
+      } catch (IllegalStateException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: orderEntriesByValue - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CollectionCreationTester
+ Method: testCreateWithNull_unsupported
+ Body: {
+    E[] array = createArrayWithNullElement();
+
+    try {
+      getSubjectGenerator().create(array);
+      fail("Creating a collection containing null should fail");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: create - Predicate: N/A - Scenario: array
+
+Project: guava
+ Class: FuturesTest
+ Method: testSubmitAsync_asyncCallable_nullInsteadOfFuture
+ Body: {
+    ListenableFuture<?> chainedFuture = submitAsync(constantAsyncCallable(null), directExecutor());
+    try {
+      getDone(chainedFuture);
+      fail();
+    } catch (ExecutionException expected) {
+      NullPointerException cause = (NullPointerException) expected.getCause();
+      assertThat(cause)
+          .hasMessageThat()
+          .contains(
+              "AsyncCallable.call returned null instead of a Future. "
+                  + "Did you mean to return immediateFuture(null)?");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getDone - Predicate: contains - Scenario: chainedFuture
+
+Project: guava
+ Class: FuturesTest
+ Method: testScheduleAsync_asyncCallable_nullInsteadOfFuture
+ Body: {
+    ListenableFuture<?> chainedFuture =
+        scheduleAsync(
+            constantAsyncCallable(null),
+            1,
+            TimeUnit.NANOSECONDS,
+            newSingleThreadScheduledExecutor());
+    try {
+      chainedFuture.get();
+      fail();
+    } catch (ExecutionException expected) {
+      NullPointerException cause = (NullPointerException) expected.getCause();
+      assertThat(cause)
+          .hasMessageThat()
+          .contains(
+              "AsyncCallable.call returned null instead of a Future. "
+                  + "Did you mean to return immediateFuture(null)?");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: get - Predicate: contains - Scenario: chainedFuture
+
+Project: guava
+ Class: EnumsTest
+ Method: testStringConverter_convertError
+ Body: {
+    Converter<String, TestEnum> converter = Enums.stringConverter(TestEnum.class);
+    try {
+      converter.convert("xxx");
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: convert - Predicate: N/A - Scenario: converter
+
+Project: guava
+ Class: BooleansTest
+ Method: testToArray_withNull
+ Body: {
+    List<Boolean> list = Arrays.asList(false, true, null);
+    try {
+      Booleans.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: OptionalTest
+ Method: testGet_absent
+ Body: {
+    Optional<String> optional = Optional.absent();
+    try {
+      optional.get();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: get - Predicate: N/A - Scenario: optional
+
+Project: guava
+ Class: OptionalTest
+ Method: testAsSet_absentIsImmutable
+ Body: {
+    Set<Object> absentAsSet = Optional.absent().asSet();
+    try {
+      absentAsSet.add("foo");
+      fail();
+    } catch (UnsupportedOperationException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: absentAsSet
+
+Project: guava
+ Class: OptionalTest
+ Method: testAsSet_presentIsImmutable
+ Body: {
+    Set<String> presentAsSet = Optional.of("a").asSet();
+    try {
+      presentAsSet.add("b");
+      fail();
+    } catch (UnsupportedOperationException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: presentAsSet
+
+Project: guava
+ Class: FeatureUtilTest
+ Method: testBuildTesterRequirements_methodClassConflict
+ Body: {
+    final Method method =
+        ExampleDerivedInterfaceTester.class.getMethod("testRequiringConflictingFeatures");
+    try {
+      FeatureUtil.buildTesterRequirements(method);
+      fail("Expected ConflictingRequirementsException");
+    } catch (ConflictingRequirementsException e) {
+      assertThat(e.getConflicts()).contains(ExampleBaseFeature.BASE_FEATURE_1);
+      assertEquals(method, e.getSource());
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: buildTesterRequirements - Predicate: contains - Scenario: method
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToIdle_negative_duration
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.expireAfterAccess(java.time.Duration.ofSeconds(-1));
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterAccess - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToIdle_setTwice
+ Body: {
+    CacheBuilder<Object, Object> builder =
+        CacheBuilder.newBuilder().expireAfterAccess(3600, SECONDS);
+    try {
+      // even to the same value is not allowed
+      builder.expireAfterAccess(3600, SECONDS);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterAccess - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testMaximumSize_setTwice
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().maximumSize(16);
+    try {
+      // even to the same value is not allowed
+      builder.maximumSize(16);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: maximumSize - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testInitialCapacity_setTwice
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().initialCapacity(16);
+    try {
+      // even to the same value is not allowed
+      builder.initialCapacity(16);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: initialCapacity - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testWeigher_withoutMaximumWeight
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().weigher(constantWeigher(42));
+    try {
+      builder.build(identityLoader());
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testRefresh_setTwice
+ Body: {
+    CacheBuilder<Object, Object> builder =
+        CacheBuilder.newBuilder().refreshAfterWrite(3600, SECONDS);
+    try {
+      // even to the same value is not allowed
+      builder.refreshAfterWrite(3600, SECONDS);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: refreshAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testMaximumSize_negative
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.maximumSize(-1);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: maximumSize - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToLive_negative
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.expireAfterWrite(-1, SECONDS);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testInitialCapacity_negative
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.initialCapacity(-1);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: initialCapacity - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testRefresh_zero_duration
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.refreshAfterWrite(java.time.Duration.ZERO);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: refreshAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testMaximumWeight_withoutWeigher
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().maximumWeight(1);
+    try {
+      builder.build(identityLoader());
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testRefresh_setTwice_duration
+ Body: {
+    CacheBuilder<Object, Object> builder =
+        CacheBuilder.newBuilder().refreshAfterWrite(java.time.Duration.ofSeconds(3600));
+    try {
+      // even to the same value is not allowed
+      builder.refreshAfterWrite(java.time.Duration.ofSeconds(3600));
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: refreshAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToLive_setTwice
+ Body: {
+    CacheBuilder<Object, Object> builder =
+        CacheBuilder.newBuilder().expireAfterWrite(3600, SECONDS);
+    try {
+      // even to the same value is not allowed
+      builder.expireAfterWrite(3600, SECONDS);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testConcurrencyLevel_zero
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.concurrencyLevel(0);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: concurrencyLevel - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToIdle_setTwice_duration
+ Body: {
+    CacheBuilder<Object, Object> builder =
+        CacheBuilder.newBuilder().expireAfterAccess(java.time.Duration.ofSeconds(3600));
+    try {
+      // even to the same value is not allowed
+      builder.expireAfterAccess(java.time.Duration.ofSeconds(3600));
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterAccess - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testMaximumWeight_negative
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.maximumWeight(-1);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: maximumWeight - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testRefresh_zero
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.refreshAfterWrite(0, SECONDS);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: refreshAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testKeyStrengthSetTwice
+ Body: {
+    CacheBuilder<Object, Object> builder1 = CacheBuilder.newBuilder().weakKeys();
+    try {
+      builder1.weakKeys();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: weakKeys - Predicate: N/A - Scenario: builder1
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testMaximumSize_andWeight
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().maximumSize(16);
+    try {
+      builder.maximumWeight(16);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: maximumWeight - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToLive_negative_duration
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.expireAfterWrite(java.time.Duration.ofSeconds(-1));
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testConcurrencyLevel_setTwice
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().concurrencyLevel(16);
+    try {
+      // even to the same value is not allowed
+      builder.concurrencyLevel(16);
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: concurrencyLevel - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToIdle_negative
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
+    try {
+      builder.expireAfterAccess(-1, SECONDS);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterAccess - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToLive_setTwice_duration
+ Body: {
+    CacheBuilder<Object, Object> builder =
+        CacheBuilder.newBuilder().expireAfterWrite(java.time.Duration.ofSeconds(3600));
+    try {
+      // even to the same value is not allowed
+      builder.expireAfterWrite(java.time.Duration.ofSeconds(3600));
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: expireAfterWrite - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ContiguousSetTest
+ Method: testSubSet_outOfOrder
+ Body: {
+    ImmutableSortedSet<Integer> set = ContiguousSet.create(Range.closed(1, 3), integers());
+    try {
+      set.subSet(3, 2);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: subSet - Predicate: N/A - Scenario: set
+
+Project: guava
+ Class: ContiguousSetTest
+ Method: testCreate_noMax
+ Body: {
+    Range<Integer> range = Range.greaterThan(0);
+    try {
+      ContiguousSet.create(range, RangeTest.UNBOUNDED_DOMAIN);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: create - Predicate: N/A - Scenario: range
+
+Project: guava
+ Class: ContiguousSetTest
+ Method: testCreate_noMin
+ Body: {
+    Range<Integer> range = Range.lessThan(0);
+    try {
+      ContiguousSet.create(range, RangeTest.UNBOUNDED_DOMAIN);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: create - Predicate: N/A - Scenario: range
+
+Project: guava
+ Class: ShortsTest
+ Method: testToArray_withNull
+ Body: {
+    List<Short> list = Arrays.asList((short) 0, (short) 1, null);
+    try {
+      Shorts.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: DoublesTest
+ Method: testToArray_withNull
+ Body: {
+    List<Double> list = Arrays.asList((double) 0, (double) 1, null);
+    try {
+      Doubles.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: IterablesTest
+ Method: testLimit_illegalArgument
+ Body: {
+    List<String> list = newArrayList("a", "b", "c");
+    try {
+      Iterables.limit(list, -1);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: limit - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: IterablesTest
+ Method: testGetLast_emptyIterable
+ Body: {
+    Set<String> set = Sets.newHashSet();
+    try {
+      Iterables.getLast(set);
+      fail();
+    } catch (NoSuchElementException e) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getLast - Predicate: N/A - Scenario: set
+
+Project: guava
+ Class: IterablesTest
+ Method: testGetLast_emptySortedSet
+ Body: {
+    SortedSet<String> sortedSet = ImmutableSortedSet.of();
+    try {
+      Iterables.getLast(sortedSet);
+      fail();
+    } catch (NoSuchElementException e) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getLast - Predicate: N/A - Scenario: sortedSet
+
+Project: guava
+ Class: IterablesTest
+ Method: testGetOnlyElement_noDefault_multiple
+ Body: {
+    Iterable<String> iterable = asList("foo", "bar");
+    try {
+      Iterables.getOnlyElement(iterable);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: N/A - Scenario: iterable
+
+Project: guava
+ Class: IterablesTest
+ Method: testGetOnlyElement_withDefault_multiple
+ Body: {
+    Iterable<String> iterable = asList("foo", "bar");
+    try {
+      Iterables.getOnlyElement(iterable, "x");
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: N/A - Scenario: iterable
+
+Project: guava
+ Class: IterablesTest
+ Method: testGetOnlyElement_noDefault_empty
+ Body: {
+    Iterable<String> iterable = Collections.emptyList();
+    try {
+      Iterables.getOnlyElement(iterable);
+      fail();
+    } catch (NoSuchElementException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: N/A - Scenario: iterable
+
+Project: guava
+ Class: IterablesTest
+ Method: testSkip_illegalArgument
+ Body: {
+    List<String> list = newArrayList("a", "b", "c");
+    try {
+      skip(list, -1);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: skip - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: IterablesTest
+ Method: testGetLast_emptyList
+ Body: {
+    List<String> list = Collections.emptyList();
+    try {
+      Iterables.getLast(list);
+      fail();
+    } catch (NoSuchElementException e) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getLast - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: IterablesTest
+ Method: testPartition_badSize
+ Body: {
+    Iterable<Integer> source = Collections.singleton(1);
+    try {
+      Iterables.partition(source, 0);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: partition - Predicate: N/A - Scenario: source
+
+Project: guava
+ Class: ImmutableRangeSetTest
+ Method: testAddAllUnsupported
+ Body: {
+    RangeSet<Integer> rangeSet =
+        ImmutableRangeSet.<Integer>builder()
+            .add(Range.closed(5, 8))
+            .add(Range.closedOpen(1, 3))
+            .build();
+
+    try {
+      rangeSet.addAll(ImmutableRangeSet.<Integer>of());
+      fail();
+    } catch (UnsupportedOperationException expected) {
+      // success
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addAll - Predicate: N/A - Scenario: rangeSet
+
+Project: guava
+ Class: ImmutableRangeSetTest
+ Method: testRemoveUnsupported
+ Body: {
+    RangeSet<Integer> rangeSet =
+        ImmutableRangeSet.<Integer>builder()
+            .add(Range.closed(5, 8))
+            .add(Range.closedOpen(1, 3))
+            .build();
+
+    try {
+      rangeSet.remove(Range.closed(6, 7));
+      fail();
+    } catch (UnsupportedOperationException expected) {
+      // success
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: remove - Predicate: N/A - Scenario: rangeSet
+
+Project: guava
+ Class: ImmutableRangeSetTest
+ Method: testAddUnsupported
+ Body: {
+    RangeSet<Integer> rangeSet =
+        ImmutableRangeSet.<Integer>builder()
+            .add(Range.closed(5, 8))
+            .add(Range.closedOpen(1, 3))
+            .build();
+
+    try {
+      rangeSet.add(Range.open(3, 4));
+      fail();
+    } catch (UnsupportedOperationException expected) {
+      // success
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: rangeSet
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testWhere_circleRejected
+ Body: {
+    TypeToken<List<T>> type = new TypeToken<List<T>>() {};
+    try {
+      type.where(
+          new TypeParameter<T>() {},
+          (TypeToken<T>) TypeToken.of(new TypeCapture<T>() {}.capture()));
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: where - Predicate: N/A - Scenario: type
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetSubtype_fromWildcard_upperBounded
+ Body: {
+    @SuppressWarnings("unchecked") // can't do new TypeToken<? extends ...>() {}
+    TypeToken<? extends Iterable<String>> type =
+        (TypeToken<? extends Iterable<String>>)
+            TypeToken.of(Types.subtypeOf(new TypeToken<Iterable<String>>() {}.getType()));
+    try {
+      type.getSubtype(Iterable.class);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getSubtype - Predicate: N/A - Scenario: type
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testConstructor_declaredBySuperclass
+ Body: {
+    Constructor<Object> constructor = Object.class.getConstructor();
+    try {
+      TypeToken.of(String.class).constructor(constructor);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: constructor - Predicate: N/A - Scenario: constructor
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testMethod_notDeclaredByType
+ Body: {
+    Method sizeMethod = Map.class.getMethod("size");
+    try {
+      TypeToken.of(List.class).method(sizeMethod);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: method - Predicate: N/A - Scenario: sizeMethod
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testConstructor_notDeclaredByType
+ Body: {
+    Constructor<String> constructor = String.class.getConstructor();
+    try {
+      TypeToken.of(Object.class).constructor(constructor);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: constructor - Predicate: N/A - Scenario: constructor
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testGetSubtype_fromWildcard_lowerBoundNotSupertype
+ Body: {
+    @SuppressWarnings("unchecked") // can't do new TypeToken<? extends ...>() {}
+    TypeToken<? super Iterable<String>> type =
+        (TypeToken<? super Iterable<String>>)
+            TypeToken.of(Types.supertypeOf(new TypeToken<ImmutableList<String>>() {}.getType()));
+    try {
+      type.getSubtype(List.class);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getSubtype - Predicate: N/A - Scenario: type
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilder_orderEntriesByValueFails
+ Body: {
+      ImmutableSortedMap.Builder<String, Integer> builder = ImmutableSortedMap.naturalOrder();
+      try {
+        builder.orderEntriesByValue(Ordering.natural());
+        fail("Expected UnsupportedOperationException");
+      } catch (UnsupportedOperationException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: orderEntriesByValue - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testCopyOfDuplicateKey
+ Body: {
+      Map<IntegerDiv10, String> original =
+          ImmutableMap.of(
+              new IntegerDiv10(3), "three",
+              new IntegerDiv10(20), "twenty",
+              new IntegerDiv10(11), "eleven",
+              new IntegerDiv10(35), "thirty five",
+              new IntegerDiv10(12), "twelve");
+
+      try {
+        ImmutableSortedMap.copyOf(original);
+        fail("Expected IllegalArgumentException");
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: original
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullKeyViaPutAll
+ Body: {
+      Builder<String, Integer> builder = ImmutableSortedMap.naturalOrder();
+      try {
+        builder.putAll(Collections.<String, Integer>singletonMap(null, 1));
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: putAll - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testToImmutableSortedMap_exceptionOnDuplicateKey
+ Body: {
+      Collector<Entry<String, Integer>, ?, ImmutableSortedMap<String, Integer>> collector =
+          ImmutableSortedMap.toImmutableSortedMap(
+              Ordering.natural(), Entry::getKey, Entry::getValue);
+      try {
+        Stream.of(mapEntry("one", 1), mapEntry("one", 11)).collect(collector);
+        fail("Expected IllegalArgumentException");
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: CreationTests
+ Method: testPuttingTheSameKeyTwiceThrowsOnBuild
+ Body: {
+      Builder<String, Integer> builder =
+          ImmutableSortedMap.<String, Integer>naturalOrder()
+              .put("one", 1)
+              .put("one", 2); // throwing on this line would be even better
+
+      try {
+        builder.build();
+        fail();
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullValue
+ Body: {
+      Builder<String, Integer> builder = ImmutableSortedMap.naturalOrder();
+      try {
+        builder.put("one", null);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullValueViaPutAll
+ Body: {
+      Builder<String, Integer> builder = ImmutableSortedMap.naturalOrder();
+      try {
+        builder.putAll(Collections.<String, Integer>singletonMap("one", null));
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: putAll - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullKey
+ Body: {
+      Builder<String, Integer> builder = ImmutableSortedMap.naturalOrder();
+      try {
+        builder.put(null, 1);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CharsTest
+ Method: testToArray_withNull
+ Body: {
+    List<Character> list = Arrays.asList((char) 0, (char) 1, null);
+    try {
+      Chars.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: BaseEncodingTest
+ Method: testAtMostOneSeparator
+ Body: {
+    BaseEncoding separated = base64().withSeparator("\n", 3);
+    try {
+      separated.withSeparator("$", 4);
+      fail("Expected UnsupportedOperationException");
+    } catch (UnsupportedOperationException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: withSeparator - Predicate: N/A - Scenario: separated
+
+Project: guava
+ Class: MakerTest
+ Method: testInitialCapacity_negative
+ Body: {
+      MapMaker maker = new MapMaker();
+      try {
+        maker.initialCapacity(-1);
+        fail();
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: initialCapacity - Predicate: N/A - Scenario: maker
+
+Project: guava
+ Class: CreationTests
+ Method: testSortedCopyOf_containsNull
+ Body: {
+      Collection<String> c = MinimalCollection.of("a", "b", "A", null, "c");
+      try {
+        ImmutableList.sortedCopyOf(String.CASE_INSENSITIVE_ORDER, c);
+        fail("Expected NPE");
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: sortedCopyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: CreationTests
+ Method: testCopyOf_iteratorContainingNull
+ Body: {
+      Iterator<String> iterator = asList("a", null, "b").iterator();
+      try {
+        ImmutableList.copyOf(iterator);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: iterator
+
+Project: guava
+ Class: CreationTests
+ Method: testCopyOf_collectionContainingNull
+ Body: {
+      Collection<String> c = MinimalCollection.of("a", null, "b");
+      try {
+        ImmutableList.copyOf(c);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: CreationTests
+ Method: testCopyOf_arrayContainingOnlyNull
+ Body: {
+      String[] array = new String[] {null};
+      try {
+        ImmutableList.copyOf(array);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: array
+
+Project: guava
+ Class: CreationTests
+ Method: testSortedCopyOf_natural_containsNull
+ Body: {
+      Collection<Integer> c = MinimalCollection.of(1, 3, null, 2);
+      try {
+        ImmutableList.sortedCopyOf(c);
+        fail("Expected NPE");
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: sortedCopyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: ConfigurableUndirectedGraphTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = graph.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_SET);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(graph.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullValue
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.put("one", null);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullValueViaPutAll
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.putAll(Collections.<String, Integer>singletonMap("one", null));
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: putAll - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testPuttingTheSameKeyTwiceThrowsOnBuild
+ Body: {
+      Builder<String, Integer> builder =
+          new Builder<String, Integer>()
+              .put("one", 1)
+              .put("one", 1); // throwing on this line would be even better
+
+      try {
+        builder.build();
+        fail();
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testToImmutableMap_exceptionOnDuplicateKey
+ Body: {
+      Collector<Entry<String, Integer>, ?, ImmutableMap<String, Integer>> collector =
+          ImmutableMap.toImmutableMap(Entry::getKey, Entry::getValue);
+      try {
+        Stream.of(mapEntry("one", 1), mapEntry("one", 11)).collect(collector);
+        fail("Expected IllegalArgumentException");
+      } catch (IllegalArgumentException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilder_orderEntriesByValue_usedTwiceFails
+ Body: {
+      ImmutableMap.Builder<String, Integer> builder =
+          new Builder<String, Integer>().orderEntriesByValue(Ordering.natural());
+      try {
+        builder.orderEntriesByValue(Ordering.natural());
+        fail("Expected IllegalStateException");
+      } catch (IllegalStateException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: orderEntriesByValue - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullKeyViaPutAll
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.putAll(Collections.<String, Integer>singletonMap(null, 1));
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: putAll - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: CreationTests
+ Method: testBuilderPutNullKey
+ Body: {
+      Builder<String, Integer> builder = new Builder<>();
+      try {
+        builder.put(null, 1);
+        fail();
+      } catch (NullPointerException expected) {
+      }
+    }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithParameter_invalidAttribute
+ Body: {
+    MediaType mediaType = MediaType.parse("text/plain");
+    try {
+      mediaType.withParameter("@", "2");
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: withParameter - Predicate: N/A - Scenario: mediaType
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testGetCharset_illegalCharset
+ Body: {
+    MediaType mediaType = MediaType.parse("text/plain; charset=\"!@#$%^&*()\"");
+    try {
+      mediaType.charset();
+      fail();
+    } catch (IllegalCharsetNameException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: charset - Predicate: N/A - Scenario: mediaType
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithParametersIterable_nullValue
+ Body: {
+    MediaType mediaType = MediaType.parse("text/plain");
+    try {
+      mediaType.withParameters("a", Arrays.asList((String) null));
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: withParameters - Predicate: N/A - Scenario: mediaType
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testGetCharset_unsupportedCharset
+ Body: {
+    MediaType mediaType = MediaType.parse("text/plain; charset=utf-wtf");
+    try {
+      mediaType.charset();
+      fail();
+    } catch (UnsupportedCharsetException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: charset - Predicate: N/A - Scenario: mediaType
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testGetCharset_tooMany
+ Body: {
+    MediaType mediaType = MediaType.parse("text/plain; charset=utf-8; charset=utf-16");
+    try {
+      mediaType.charset();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: charset - Predicate: N/A - Scenario: mediaType
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testWithParametersIterable_invalidAttribute
+ Body: {
+    MediaType mediaType = MediaType.parse("text/plain");
+    try {
+      mediaType.withParameters("@", ImmutableSet.of("2"));
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: withParameters - Predicate: N/A - Scenario: mediaType
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testBuilderAddCopiesHandlesNullsCorrectly
+ Body: {
+    ImmutableMultiset.Builder<String> builder = ImmutableMultiset.builder();
+    try {
+      builder.addCopies(null, 2);
+      fail("expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addCopies - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testCopyOf_multisetContainingNull
+ Body: {
+    Multiset<String> c = HashMultiset.create(asList("a", null, "b"));
+    try {
+      ImmutableMultiset.copyOf(c);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testCopyOf_iteratorContainingNull
+ Body: {
+    Iterator<String> iterator = asList("a", null, "b").iterator();
+    try {
+      ImmutableMultiset.copyOf(iterator);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: iterator
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testBuilderAddHandlesNullsCorrectly
+ Body: {
+    ImmutableMultiset.Builder<String> builder = ImmutableMultiset.builder();
+    try {
+      builder.add((String) null);
+      fail("expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testBuilderSetCountHandlesNullsCorrectly
+ Body: {
+    ImmutableMultiset.Builder<String> builder = ImmutableMultiset.builder();
+    try {
+      builder.setCount(null, 2);
+      fail("expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: setCount - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testCreation_arrayContainingOnlyNull
+ Body: {
+    String[] array = new String[] {null};
+    try {
+      ImmutableMultiset.copyOf(array);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: array
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testBuilderSetCountIllegal
+ Body: {
+    ImmutableMultiset.Builder<String> builder = ImmutableMultiset.builder();
+    try {
+      builder.setCount("a", -2);
+      fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: setCount - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testCopyOf_collectionContainingNull
+ Body: {
+    Collection<String> c = MinimalCollection.of("a", null, "b");
+    try {
+      ImmutableMultiset.copyOf(c);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testBuilderAddCopiesIllegal
+ Body: {
+    ImmutableMultiset.Builder<String> builder = ImmutableMultiset.builder();
+    try {
+      builder.addCopies("a", -2);
+      fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addCopies - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: FuturesGetDoneTest
+ Method: testFailed
+ Body: {
+    Exception failureCause = new Exception();
+    try {
+      getDone(immediateFailedFuture(failureCause));
+      fail();
+    } catch (ExecutionException expected) {
+      assertThat(expected.getCause()).isEqualTo(failureCause);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getDone - Predicate: isEqualTo - Scenario: failureCause
+
+Project: guava
+ Class: MultimapsTest
+ Method: testIndex_nullValue
+ Body: {
+    List<Integer> values = Arrays.asList(1, null);
+    try {
+      Multimaps.index(values, Functions.identity());
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: index - Predicate: N/A - Scenario: values
+
+Project: guava
+ Class: MultimapsTest
+ Method: testIndex_nullKey
+ Body: {
+    List<Integer> values = Arrays.asList(1, 2);
+    try {
+      Multimaps.index(values, Functions.constant(null));
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: index - Predicate: N/A - Scenario: values
+
+Project: guava
+ Class: LongsTest
+ Method: testToArray_withNull
+ Body: {
+    List<Long> list = Arrays.asList((long) 0, (long) 1, null);
+    try {
+      Longs.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: EqualsTesterTest
+ Method: testNullObjectInEqualityGroup
+ Body: {
+    EqualsTester tester = new EqualsTester();
+    try {
+      tester.addEqualityGroup(1, null, 3);
+      fail();
+    } catch (NullPointerException e) {
+      assertErrorMessage(e, "at index 1");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addEqualityGroup - Predicate: assertErrorMessage - Scenario: tester
+
+Project: guava
+ Class: EqualsTesterTest
+ Method: testNullEqualityGroup
+ Body: {
+    EqualsTester tester = new EqualsTester();
+    try {
+      tester.addEqualityGroup((Object[]) null);
+      fail();
+    } catch (NullPointerException e) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addEqualityGroup - Predicate: N/A - Scenario: tester
+
+Project: guava
+ Class: EnumMultisetTest
+ Method: testIllegalCreate
+ Body: {
+    Collection<Color> empty = EnumSet.noneOf(Color.class);
+    try {
+      EnumMultiset.create(empty);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: create - Predicate: N/A - Scenario: empty
+
+Project: guava
+ Class: ImmutableTypeToInstanceMapTest
+ Method: testGetInstance_containsTypeVariable
+ Body: {
+    ImmutableTypeToInstanceMap<Iterable<Number>> map = ImmutableTypeToInstanceMap.of();
+    try {
+      map.getInstance(this.<Number>anyIterableType());
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getInstance - Predicate: N/A - Scenario: map
+
+Project: guava
+ Class: ImmutableTypeToInstanceMapTest
+ Method: testPut_containsTypeVariable
+ Body: {
+    ImmutableTypeToInstanceMap.Builder<Iterable<Integer>> builder =
+        ImmutableTypeToInstanceMap.builder();
+    try {
+      builder.put(this.<Integer>anyIterableType(), ImmutableList.of(1));
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: put - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testToImmutableTableNullRowKey
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, ImmutableTable<String, String, Integer>> collector =
+        ImmutableTable.toImmutableTable(t -> null, Cell::getColumnKey, Cell::getValue);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1)).collect(collector);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testToImmutableTableNullColumnKey
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, ImmutableTable<String, String, Integer>> collector =
+        ImmutableTable.toImmutableTable(Cell::getRowKey, t -> null, Cell::getValue);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1)).collect(collector);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testToImmutableTableMergingNullMerge
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, ImmutableTable<String, String, Integer>> collector =
+        ImmutableTable.toImmutableTable(
+            Cell::getRowKey, Cell::getColumnKey, Cell::getValue, (v1, v2) -> null);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1), Tables.immutableCell("one", "uno", 2))
+          .collect(collector);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testToImmutableTableMergingNullRowKey
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, ImmutableTable<String, String, Integer>> collector =
+        ImmutableTable.toImmutableTable(
+            t -> null, Cell::getColumnKey, Cell::getValue, Integer::sum);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1)).collect(collector);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testToImmutableTableConflict
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, ImmutableTable<String, String, Integer>> collector =
+        ImmutableTable.toImmutableTable(Cell::getRowKey, Cell::getColumnKey, Cell::getValue);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1), Tables.immutableCell("one", "uno", 2))
+          .collect(collector);
+      fail("Expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testBuilder_noDuplicates
+ Body: {
+    ImmutableTable.Builder<Character, Integer, String> builder =
+        new ImmutableTable.Builder<Character, Integer, String>()
+            .put('a', 1, "foo")
+            .put('a', 1, "bar");
+    try {
+      builder.build();
+      fail();
+    } catch (IllegalArgumentException e) {
+      // success
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableTableTest
+ Method: testToImmutableTableMergingNullColumnKey
+ Body: {
+    Collector<Cell<String, String, Integer>, ?, ImmutableTable<String, String, Integer>> collector =
+        ImmutableTable.toImmutableTable(Cell::getRowKey, t -> null, Cell::getValue, Integer::sum);
+    try {
+      Stream.of(Tables.immutableCell("one", "uno", 1)).collect(collector);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: collect - Predicate: N/A - Scenario: collector
+
+Project: guava
+ Class: ConfigurableUndirectedMultiNetworkTest
+ Method: edges_checkReturnedSetMutability
+ Body: {
+    Set<String> edges = network.edges();
+    try {
+      edges.add(E12);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addEdge(N1, N2, E12);
+      assertThat(network.edges()).containsExactlyElementsIn(edges);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addEdge - Scenario: edges
+
+Project: guava
+ Class: ConfigurableUndirectedMultiNetworkTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = network.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(network.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testBuilderAddCopiesHandlesNullsCorrectly
+ Body: {
+    ImmutableSortedMultiset.Builder<String> builder = ImmutableSortedMultiset.naturalOrder();
+    try {
+      builder.addCopies(null, 2);
+      fail("expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addCopies - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testBuilderSetCountIllegal
+ Body: {
+    ImmutableSortedMultiset.Builder<String> builder = ImmutableSortedMultiset.naturalOrder();
+    try {
+      builder.setCount("a", -2);
+      fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: setCount - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testBuilderSetCountHandlesNullsCorrectly
+ Body: {
+    ImmutableSortedMultiset.Builder<String> builder =
+        new ImmutableSortedMultiset.Builder<>(Ordering.natural().nullsFirst());
+    try {
+      builder.setCount(null, 2);
+      fail("expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: setCount - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testCopyOf_multisetContainingNull
+ Body: {
+    Multiset<String> c = HashMultiset.create(asList("a", null, "b"));
+    try {
+      ImmutableSortedMultiset.copyOf(c);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testBuilderAddCopiesIllegal
+ Body: {
+    ImmutableSortedMultiset.Builder<String> builder = ImmutableSortedMultiset.naturalOrder();
+    try {
+      builder.addCopies("a", -2);
+      fail("expected IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: addCopies - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testCopyOf_iteratorContainingNull
+ Body: {
+    Iterator<String> iterator = asList("a", null, "b").iterator();
+    try {
+      ImmutableSortedMultiset.copyOf(iterator);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: iterator
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testCreation_arrayContainingOnlyNull
+ Body: {
+    String[] array = new String[] {null};
+    try {
+      ImmutableSortedMultiset.copyOf(array);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: array
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testCopyOf_collectionContainingNull
+ Body: {
+    Collection<String> c = MinimalCollection.of("a", null, "b");
+    try {
+      ImmutableSortedMultiset.copyOf(c);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: copyOf - Predicate: N/A - Scenario: c
+
+Project: guava
+ Class: ImmutableSortedMultisetTest
+ Method: testBuilderAddHandlesNullsCorrectly
+ Body: {
+    ImmutableSortedMultiset.Builder<String> builder = ImmutableSortedMultiset.naturalOrder();
+    try {
+      builder.add((String) null);
+      fail("expected NullPointerException");
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: IteratorsTest
+ Method: testPaddedPartition_badSize
+ Body: {
+    Iterator<Integer> source = Iterators.singletonIterator(1);
+    try {
+      Iterators.paddedPartition(source, 0);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: paddedPartition - Predicate: N/A - Scenario: source
+
+Project: guava
+ Class: IteratorsTest
+ Method: testGetOnlyElement_noDefault_moreThanOneLessThanFiveElements
+ Body: {
+    Iterator<String> iterator = asList("one", "two").iterator();
+    try {
+      Iterators.getOnlyElement(iterator);
+      fail();
+    } catch (IllegalArgumentException expected) {
+      assertThat(expected).hasMessage("expected one element but was: <one, two>");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: hasMessage - Scenario: iterator
+
+Project: guava
+ Class: IteratorsTest
+ Method: testGetOnlyElement_noDefault_empty
+ Body: {
+    Iterator<String> iterator = Iterators.emptyIterator();
+    try {
+      Iterators.getOnlyElement(iterator);
+      fail();
+    } catch (NoSuchElementException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: N/A - Scenario: iterator
+
+Project: guava
+ Class: IteratorsTest
+ Method: testGetOnlyElement_noDefault_moreThanFiveElements
+ Body: {
+    Iterator<String> iterator = asList("one", "two", "three", "four", "five", "six").iterator();
+    try {
+      Iterators.getOnlyElement(iterator);
+      fail();
+    } catch (IllegalArgumentException expected) {
+      assertThat(expected)
+          .hasMessage("expected one element but was: <one, two, three, four, five, ...>");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: hasMessage - Scenario: iterator
+
+Project: guava
+ Class: IteratorsTest
+ Method: testGetOnlyElement_noDefault_fiveElements
+ Body: {
+    Iterator<String> iterator = asList("one", "two", "three", "four", "five").iterator();
+    try {
+      Iterators.getOnlyElement(iterator);
+      fail();
+    } catch (IllegalArgumentException expected) {
+      assertThat(expected)
+          .hasMessage("expected one element but was: <one, two, three, four, five>");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: hasMessage - Scenario: iterator
+
+Project: guava
+ Class: IteratorsTest
+ Method: testPartition_badSize
+ Body: {
+    Iterator<Integer> source = Iterators.singletonIterator(1);
+    try {
+      Iterators.partition(source, 0);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: partition - Predicate: N/A - Scenario: source
+
+Project: guava
+ Class: IteratorsTest
+ Method: testGetOnlyElement_withDefault_two
+ Body: {
+    Iterator<String> iterator = asList("foo", "bar").iterator();
+    try {
+      Iterators.getOnlyElement(iterator, "x");
+      fail();
+    } catch (IllegalArgumentException expected) {
+      assertThat(expected).hasMessage("expected one element but was: <foo, bar>");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getOnlyElement - Predicate: hasMessage - Scenario: iterator
+
+Project: guava
+ Class: IteratorsTest
+ Method: testGetLast_exception
+ Body: {
+    List<String> list = newArrayList();
+    try {
+      getLast(list.iterator());
+      fail();
+    } catch (NoSuchElementException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: getLast - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: MapsTest
+ Method: testFromPropertiesNonStringKeys
+ Body: {
+    Properties properties =
+        new Properties() {
+          @Override
+          public Enumeration<?> propertyNames() {
+            return Iterators.asEnumeration(
+                Arrays.<Object>asList(Integer.valueOf(123), "first").iterator());
+          }
+        };
+
+    try {
+      Maps.fromProperties(properties);
+      fail();
+    } catch (ClassCastException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: fromProperties - Predicate: N/A - Scenario: properties
+
+Project: guava
+ Class: MapsTest
+ Method: testUniqueIndexNullValue
+ Body: {
+    List<String> listWithNull = Lists.newArrayList((String) null);
+    try {
+      Maps.uniqueIndex(listWithNull, Functions.constant(1));
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: uniqueIndex - Predicate: N/A - Scenario: listWithNull
+
+Project: guava
+ Class: MapsTest
+ Method: testUniqueIndexNullKey
+ Body: {
+    List<String> oneStringList = Lists.newArrayList("foo");
+    try {
+      Maps.uniqueIndex(oneStringList, Functions.constant(null));
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: uniqueIndex - Predicate: N/A - Scenario: oneStringList
+
+Project: guava
+ Class: MapsTest
+ Method: testToMapWithNullKeys
+ Body: {
+    Iterable<String> strings = Arrays.asList("one", null, "three");
+    try {
+      Maps.toMap(strings, Functions.constant("foo"));
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toMap - Predicate: N/A - Scenario: strings
+
+Project: guava
+ Class: MapsTest
+ Method: testToMapWithNullValues
+ Body: {
+    Iterable<String> strings = ImmutableList.of("one", "two", "three");
+    try {
+      Maps.toMap(strings, Functions.constant(null));
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toMap - Predicate: N/A - Scenario: strings
+
+Project: guava
+ Class: MapsTest
+ Method: testEnumMapWithInitialEmptyMap
+ Body: {
+    Map<SomeEnum, Integer> original = Maps.newHashMap();
+    try {
+      Maps.newEnumMap(original);
+      fail("Empty map must result in an IllegalArgumentException");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: newEnumMap - Predicate: N/A - Scenario: original
+
+Project: guava
+ Class: IntsTest
+ Method: testToArray_withNull
+ Body: {
+    List<Integer> list = Arrays.asList((int) 0, (int) 1, null);
+    try {
+      Ints.toArray(list);
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: toArray - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: AbstractIteratorTest
+ Method: testExceptionAfterEndOfData
+ Body: {
+    Iterator<Integer> iter =
+        new AbstractIterator<Integer>() {
+          @Override
+          public Integer computeNext() {
+            endOfData();
+            throw new SomeUncheckedException();
+          }
+        };
+    try {
+      iter.hasNext();
+      fail("No exception thrown");
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: hasNext - Predicate: N/A - Scenario: iter
+
+Project: guava
+ Class: AbstractIteratorTest
+ Method: testReentrantHasNext
+ Body: {
+    Iterator<Integer> iter =
+        new AbstractIterator<Integer>() {
+          @Override
+          protected Integer computeNext() {
+            boolean unused = hasNext();
+            return null;
+          }
+        };
+    try {
+      iter.hasNext();
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: hasNext - Predicate: N/A - Scenario: iter
+
+Project: guava
+ Class: ConfigurableSimpleDirectedGraphTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = graph.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_SET);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(graph.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: ConfigurableSimpleDirectedNetworkTest
+ Method: edges_checkReturnedSetMutability
+ Body: {
+    Set<String> edges = network.edges();
+    try {
+      edges.add(E12);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addEdge(N1, N2, E12);
+      assertThat(network.edges()).containsExactlyElementsIn(edges);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addEdge - Scenario: edges
+
+Project: guava
+ Class: ConfigurableSimpleDirectedNetworkTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = network.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(network.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: ConfigurableUndirectedNetworkTest
+ Method: edges_checkReturnedSetMutability
+ Body: {
+    Set<String> edges = network.edges();
+    try {
+      edges.add(E12);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addEdge(N1, N2, E12);
+      assertThat(network.edges()).containsExactlyElementsIn(edges);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addEdge - Scenario: edges
+
+Project: guava
+ Class: ConfigurableUndirectedNetworkTest
+ Method: nodes_checkReturnedSetMutability
+ Body: {
+    Set<Integer> nodes = network.nodes();
+    try {
+      nodes.add(N2);
+      fail(ERROR_MODIFIABLE_COLLECTION);
+    } catch (UnsupportedOperationException e) {
+      addNode(N1);
+      assertThat(network.nodes()).containsExactlyElementsIn(nodes);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: add - Predicate: addNode - Scenario: nodes
+
+Project: guava
+ Class: AbstractScheduledServiceTest
+ Method: testTimeout
+ Body: {
+    // Create a service whose executor will never run its commands
+    Service service =
+        new AbstractScheduledService() {
+          @Override
+          protected Scheduler scheduler() {
+            return Scheduler.newFixedDelaySchedule(0, 1, TimeUnit.NANOSECONDS);
+          }
+
+          @Override
+          protected ScheduledExecutorService executor() {
+            return TestingExecutors.noOpScheduledExecutor();
+          }
+
+          @Override
+          protected void runOneIteration() throws Exception {}
+
+          @Override
+          protected String serviceName() {
+            return "Foo";
+          }
+        };
+    try {
+      service.startAsync().awaitRunning(1, TimeUnit.MILLISECONDS);
+      fail("Expected timeout");
+    } catch (TimeoutException e) {
+      assertThat(e).hasMessage("Timed out waiting for Foo [STARTING] to reach the RUNNING state.");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: awaitRunning - Predicate: hasMessage - Scenario: service
+
+Project: guava
+ Class: HashCodeTest
+ Method: testFromStringFailsWithUpperCaseString
+ Body: {
+    String string = Hashing.sha1().hashString("foo", Charsets.US_ASCII).toString().toUpperCase();
+    try {
+      HashCode.fromString(string);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: fromString - Predicate: N/A - Scenario: string
+
+Project: guava
+ Class: HashCodeTest
+ Method: testWriteBytesToUndersizedArray
+ Body: {
+    byte[] dest = new byte[3];
+    try {
+      HASH_ABCD.writeBytesTo(dest, 0, 4);
+      fail();
+    } catch (IndexOutOfBoundsException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: writeBytesTo - Predicate: N/A - Scenario: dest
+
+Project: guava
+ Class: HashCodeTest
+ Method: testWriteBytesToUndersizedArrayLongMaxLength
+ Body: {
+    byte[] dest = new byte[3];
+    try {
+      HASH_ABCD.writeBytesTo(dest, 0, 5);
+      fail();
+    } catch (IndexOutOfBoundsException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: writeBytesTo - Predicate: N/A - Scenario: dest
+
+Project: guava
+ Class: AbstractIdleServiceTest
+ Method: testTimeout
+ Body: {
+    // Create a service whose executor will never run its commands
+    Service service =
+        new TestService() {
+          @Override
+          protected Executor executor() {
+            return new Executor() {
+              @Override
+              public void execute(Runnable command) {}
+            };
+          }
+
+          @Override
+          protected String serviceName() {
+            return "Foo";
+          }
+        };
+    try {
+      service.startAsync().awaitRunning(1, TimeUnit.MILLISECONDS);
+      fail("Expected timeout");
+    } catch (TimeoutException e) {
+      assertThat(e).hasMessage("Timed out waiting for Foo [STARTING] to reach the RUNNING state.");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: awaitRunning - Predicate: hasMessage - Scenario: service
+
+Project: guava
+ Class: MapCreationTester
+ Method: testCreateWithDuplicates_nonNullDuplicatesRejected
+ Body: {
+    Entry<K, V>[] entries = getEntriesMultipleNonNullKeys();
+    try {
+      resetMap(entries);
+      fail("Should reject duplicate non-null elements at creation");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: resetMap - Predicate: N/A - Scenario: entries
+
+Project: guava
+ Class: MapCreationTester
+ Method: testCreateWithDuplicates_nullDuplicatesRejected
+ Body: {
+    Entry<K, V>[] entries = getEntriesMultipleNullKeys();
+    try {
+      resetMap(entries);
+      fail("Should reject duplicate null elements at creation");
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: resetMap - Predicate: N/A - Scenario: entries
+
+Project: guava
+ Class: ImmutableSortedSetTest
+ Method: testEmpty_first
+ Body: {
+    SortedSet<String> set = of();
+    try {
+      set.first();
+      fail();
+    } catch (NoSuchElementException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: first - Predicate: N/A - Scenario: set
+
+Project: guava
+ Class: ImmutableSortedSetTest
+ Method: testEmpty_last
+ Body: {
+    SortedSet<String> set = of();
+    try {
+      set.last();
+      fail();
+    } catch (NoSuchElementException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: last - Predicate: N/A - Scenario: set
+
+Project: guava
+ Class: UnicodeEscaperTest
+ Method: testNullInput
+ Body: {
+    UnicodeEscaper e = SIMPLE_ESCAPER;
+    try {
+      e.escape((String) null);
+      fail("Null string should cause exception");
+    } catch (NullPointerException expected) {
+      // Pass
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: escape - Predicate: N/A - Scenario: e
+
+Project: guava
+ Class: LittleEndianDataInputStreamTest
+ Method: testReadUnsignedByte_eof
+ Body: {
+    DataInput in = new LittleEndianDataInputStream(new ByteArrayInputStream(new byte[0]));
+    try {
+      in.readUnsignedByte();
+      fail();
+    } catch (EOFException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: readUnsignedByte - Predicate: N/A - Scenario: in
+
+Project: guava
+ Class: LittleEndianDataInputStreamTest
+ Method: testReadLine
+ Body: {
+    DataInput in = new LittleEndianDataInputStream(new ByteArrayInputStream(data));
+    try {
+      in.readLine();
+      fail();
+    } catch (UnsupportedOperationException expected) {
+      assertThat(expected).hasMessage("readLine is not supported");
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: readLine - Predicate: hasMessage - Scenario: in
+
+Project: guava
+ Class: InvokableTest
+ Method: testInstanceMethod_invalidReturning
+ Body: {
+    Invokable<?, Object> delegate = Prepender.method("prepend", Iterable.class);
+    try {
+      delegate.returning(new TypeToken<Iterable<Integer>>() {});
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: returning - Predicate: N/A - Scenario: delegate
+
+Project: guava
+ Class: InvokableTest
+ Method: testConstructor_invalidReturning
+ Body: {
+    Invokable<?, Prepender> delegate = Prepender.constructor(String.class, int.class);
+    try {
+      delegate.returning(SubPrepender.class);
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: returning - Predicate: N/A - Scenario: delegate
+
+Project: guava
+ Class: InvokableTest
+ Method: testStaticMethod_invalidReturning
+ Body: {
+    Invokable<?, Object> delegate = Prepender.method("prepend", String.class, Iterable.class);
+    try {
+      delegate.returning(new TypeToken<Iterable<Integer>>() {});
+      fail();
+    } catch (IllegalArgumentException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: returning - Predicate: N/A - Scenario: delegate
+
+Project: guava
+ Class: CharStreamsTest
+ Method: testSkipFully_EOF
+ Body: {
+    Reader reader = new StringReader("abcde");
+    try {
+      CharStreams.skipFully(reader, 6);
+      fail("expected EOFException");
+    } catch (EOFException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: skipFully - Predicate: N/A - Scenario: reader
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagate_NoneDeclared_ErrorThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void noneDeclared() {
+            try {
+              methodThatThrowsError();
+            } catch (Throwable t) {
+              throw Throwables.propagate(t);
+            }
+          }
+        };
+
+    // Expect the error to propagate as-is
+    try {
+      sample.noneDeclared();
+      fail();
+    } catch (SomeError expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: noneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_NoneDeclared_UncheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void noneDeclared() {
+            try {
+              methodThatThrowsUnchecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(t);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the unchecked exception to propagate as-is
+    try {
+      sample.noneDeclared();
+      fail();
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: noneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfInstanceOf_UncheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void oneDeclared() throws SomeCheckedException {
+            try {
+              methodThatThrowsUnchecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfInstanceOf(t, SomeCheckedException.class);
+              throw Throwables.propagate(t);
+            }
+          }
+        };
+
+    // Expect unchecked exception to be thrown as-is
+    try {
+      sample.oneDeclared();
+      fail();
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: oneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_TwoDeclared_OtherCheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void twoDeclared() throws SomeCheckedException, SomeOtherCheckedException {
+            try {
+              methodThatThrowsOtherChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(
+                  t, SomeCheckedException.class, SomeOtherCheckedException.class);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the checked exception to propagate as-is
+    try {
+      sample.twoDeclared();
+      fail();
+    } catch (SomeOtherCheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: twoDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_OneDeclared_CheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void oneDeclared() throws SomeCheckedException {
+            try {
+              methodThatThrowsChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(t, SomeCheckedException.class);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the checked exception to propagate as-is
+    try {
+      sample.oneDeclared();
+      fail();
+    } catch (SomeCheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: oneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagate_NoneDeclared_CheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void noneDeclared() {
+            try {
+              methodThatThrowsChecked();
+            } catch (Throwable t) {
+              throw Throwables.propagate(t);
+            }
+          }
+        };
+
+    // Expect the undeclared exception to have been chained inside another
+    try {
+      sample.noneDeclared();
+      fail();
+    } catch (RuntimeException expected) {
+      assertThat(expected.getCause()).isInstanceOf(SomeCheckedException.class);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: noneDeclared - Predicate: isInstanceOf - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfInstanceOf_UndeclaredThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void oneDeclared() throws SomeCheckedException {
+            try {
+              methodThatThrowsOtherChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfInstanceOf(t, SomeCheckedException.class);
+              throw Throwables.propagate(t);
+            }
+          }
+        };
+
+    // Expect undeclared exception wrapped by RuntimeException to be thrown
+    try {
+      sample.oneDeclared();
+      fail();
+    } catch (RuntimeException expected) {
+      assertThat(expected.getCause()).isInstanceOf(SomeOtherCheckedException.class);
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: oneDeclared - Predicate: isInstanceOf - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagate_NoneDeclared_UncheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void noneDeclared() {
+            try {
+              methodThatThrowsUnchecked();
+            } catch (Throwable t) {
+              throw Throwables.propagate(t);
+            }
+          }
+        };
+
+    // Expect the unchecked exception to propagate as-is
+    try {
+      sample.noneDeclared();
+      fail();
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: noneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_OneDeclared_UncheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void oneDeclared() throws SomeCheckedException {
+            try {
+              methodThatThrowsUnchecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(t, SomeCheckedException.class);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the unchecked exception to propagate as-is
+    try {
+      sample.oneDeclared();
+      fail();
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: oneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_TwoDeclared_UncheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void twoDeclared() throws SomeCheckedException, SomeOtherCheckedException {
+            try {
+              methodThatThrowsUnchecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(
+                  t, SomeCheckedException.class, SomeOtherCheckedException.class);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the unchecked exception to propagate as-is
+    try {
+      sample.twoDeclared();
+      fail();
+    } catch (SomeUncheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: twoDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_TwoDeclared_CheckedThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void twoDeclared() throws SomeCheckedException, SomeOtherCheckedException {
+            try {
+              methodThatThrowsChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(
+                  t, SomeCheckedException.class, SomeOtherCheckedException.class);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the checked exception to propagate as-is
+    try {
+      sample.twoDeclared();
+      fail();
+    } catch (SomeCheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: twoDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_NoneDeclared_UndeclaredThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void noneDeclared() {
+            try {
+              methodThatThrowsUndeclaredChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(t);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the undeclared exception to have been chained inside another
+    try {
+      sample.noneDeclared();
+      fail();
+    } catch (SomeChainingException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: noneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfPossible_OneDeclared_UndeclaredThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void oneDeclared() throws SomeCheckedException {
+            try {
+              methodThatThrowsUndeclaredChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfPossible(t, SomeCheckedException.class);
+              throw new SomeChainingException(t);
+            }
+          }
+        };
+
+    // Expect the undeclared exception to have been chained inside another
+    try {
+      sample.oneDeclared();
+      fail();
+    } catch (SomeChainingException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: oneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: ThrowablesTest
+ Method: testPropagateIfInstanceOf_DeclaredThrown
+ Body: {
+    Sample sample =
+        new Sample() {
+          @Override
+          public void oneDeclared() throws SomeCheckedException {
+            try {
+              methodThatThrowsChecked();
+            } catch (Throwable t) {
+              Throwables.propagateIfInstanceOf(t, SomeCheckedException.class);
+              throw Throwables.propagate(t);
+            }
+          }
+        };
+
+    // Expect declared exception to be thrown as-is
+    try {
+      sample.oneDeclared();
+      fail();
+    } catch (SomeCheckedException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: oneDeclared - Predicate: N/A - Scenario: sample
+
+Project: guava
+ Class: CacheBuilderSpecTest
+ Method: testMaximumWeight_withoutWeigher
+ Body: {
+    CacheBuilder<Object, Object> builder = CacheBuilder.from(parse("maximumWeight=9000"));
+    try {
+      builder.build(CacheLoader.from(Suppliers.ofInstance(null)));
+      fail();
+    } catch (IllegalStateException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: build - Predicate: N/A - Scenario: builder
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testFirst_null
+ Body: {
+    List<String> list = Lists.newArrayList(null, "a", "b");
+    try {
+      FluentIterable.from(list).first();
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: first - Predicate: N/A - Scenario: list
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testFromArrayAndIteratorRemove
+ Body: {
+    FluentIterable<TimeUnit> units = FluentIterable.from(TimeUnit.values());
+    try {
+      Iterables.removeIf(units, Predicates.equalTo(TimeUnit.SECONDS));
+      fail("Expected an UnsupportedOperationException to be thrown but it wasn't.");
+    } catch (UnsupportedOperationException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: removeIf - Predicate: N/A - Scenario: units
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testLast_null
+ Body: {
+    List<String> list = Lists.newArrayList("a", "b", null);
+    try {
+      FluentIterable.from(list).last();
+      fail();
+    } catch (NullPointerException expected) {
+    }
+  }
+ Pattern Name: TryCatchPattern - Action: last - Predicate: N/A - Scenario: list
+

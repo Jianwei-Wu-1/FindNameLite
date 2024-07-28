@@ -1,0 +1,914 @@
+Project: zxcvbn-java
+ Class: DateMatcherTest
+ Method: testMatch
+ Body: {
+    String password = "121935-18-2374_6_281.97.4682346 8 1973 2 44";
+    ArrayList<DateMatch> matches = DateMatcher.match(password);
+    for (DateMatch m : matches) {
+      String sep = (m.getSeparator() == "") ? "[empty]" : m.getSeparator();
+      System.out.println(m.getDay() + sep + m.getMonth() + sep + m.getYear());
+    }
+  }
+ Pattern Name: LoopPattern_v3 - Action: println - Predicate: N/A - Scenario: m(unmatched with outside)
+
+Project: xodus
+ Class: Persistent23TreeTest
+ Method: iterationBenchmark
+ Body: {
+        final Persistent23Tree.MutableTree<Integer> tree = new Persistent23Tree<Integer>().beginWrite();
+        final int count = 100000;
+        for (int i = 0; i < count; ++i) {
+            tree.add(i);
+        }
+        TestUtil.time("Persistent23Tree iteration", new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 300; ++i) {
+                    int prev = Integer.MIN_VALUE;
+                    Assert.assertFalse(tree.contains(prev));
+                    final Iterator<Integer> it = tree.iterator();
+                    int j = 0;
+                    while (it.hasNext()) {
+                        j = it.next();
+                        Assert.assertTrue(prev < j);
+                        prev = j;
+                    }
+                    Assert.assertEquals(count - 1, j);
+                }
+            }
+        });
+        TestUtil.time("Persistent23Tree reverse iteration", new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 300; ++i) {
+                    int prev = Integer.MAX_VALUE;
+                    Assert.assertFalse(tree.contains(prev));
+                    final Iterator<Integer> it = tree.reverseIterator();
+                    int j = 0;
+                    while (it.hasNext()) {
+                        j = it.next();
+                        Assert.assertTrue(prev > j);
+                        prev = j;
+                    }
+                    Assert.assertEquals(0, j);
+                }
+            }
+        });
+    }
+ Pattern Name: LoopPattern_v3 - Action: add - Predicate: N/A - Scenario: count(matched)
+
+Project: xodus
+ Class: PersistentObjectCacheTest
+ Method: cacheIterator
+ Body: {
+        final PersistentObjectCache<String, String> cache = new PersistentObjectCache<>(4);
+        cache.put("Eclipse", "An IDE");
+        cache.put("IDEA", "good IDEA");
+        cache.put("IDEA 4.5", "better IDEA");
+        Assert.assertNotNull(cache.get("IDEA"));
+        Assert.assertNotNull(cache.get("IDEA 4.5"));
+        cache.put("IDEA 5.0", "perfect IDEA");
+        cache.put("IDEA 6.0", "IDEAL");
+        HashSet<String> values = new HashSet<>();
+        final Iterator<String> it = cache.values();
+        while (it.hasNext()) {
+            values.add(it.next());
+        }
+        Assert.assertNull(cache.get("Eclipse"));
+        Assert.assertFalse(values.contains("An IDE"));
+        Assert.assertTrue(values.contains("good IDEA"));
+        Assert.assertTrue(values.contains("better IDEA"));
+        Assert.assertTrue(values.contains("perfect IDEA"));
+        Assert.assertTrue(values.contains("IDEAL"));
+    }
+ Pattern Name: LoopPattern_v3 - Action: add(unmatched with outside) - Predicate: N/A - Scenario: it.hasNext(unmatched with outside)
+
+Project: xodus
+ Class: VfsStreamsLinearStrategySmallClusterTests
+ Method: writeRead4
+ Body: {
+        final Transaction txn = env.beginTransaction();
+        final File file0 = vfs.createFile(txn, "file0");
+        final OutputStream outputStream = vfs.writeFile(txn, file0);
+        final int count = 0x10000;
+        outputStream.write(new byte[count]);
+        outputStream.close();
+        final InputStream inputStream = vfs.readFile(txn, file0);
+        for (int i = 0; i < count; ++i) {
+            Assert.assertEquals(0, inputStream.read());
+        }
+        inputStream.close();
+        txn.commit();
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: read - Scenario: count(unmatched with outside)
+
+Project: xodus
+ Class: BTreeTest
+ Method: testSplitRight2
+ Body: {
+        int s = 1000;
+        tm = new BTreeEmpty(log, createTestSplittingPolicy(), true, 1).getMutableCopy();
+
+        for (int i = 0; i < s; i++) {
+            getTreeMutable().put(kv(i, "v" + i));
+        }
+
+        checkTree(getTreeMutable(), s).run();
+
+        long rootAddress = saveTree();
+
+        checkTree(getTreeMutable(), s).run();
+
+        reopen();
+
+        t = new BTree(log, rootAddress, true, 1);
+        checkTree(getTree(), s).run();
+    }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: s(matched)
+
+Project: xodus
+ Class: BTreeTest
+ Method: testPutSortDuplicates
+ Body: {
+        tm = new BTreeEmpty(log, createTestSplittingPolicy(), true, 1).getMutableCopy();
+
+        List<INode> expected = new ArrayList<>();
+        expected.add(kv("1", "1"));
+        expected.add(kv("2", "2"));
+        expected.add(kv("3", "3"));
+        expected.add(kv("5", "51"));
+        expected.add(kv("5", "52"));
+        expected.add(kv("5", "53"));
+        expected.add(kv("5", "54"));
+        expected.add(kv("5", "55"));
+        expected.add(kv("5", "56"));
+        expected.add(kv("5", "57"));
+        expected.add(kv("7", "7"));
+
+        for (INode ln : expected) {
+            getTreeMutable().put(ln);
+        }
+
+        assertMatchesIterator(tm, expected);
+    }
+ Pattern Name: LoopPattern_v3 - Action: put(unmatched with outside) - Predicate: N/A - Scenario: ln(unmatched with outside)
+
+Project: xodus
+ Class: BTreeTest
+ Method: testPutRightSortDuplicates
+ Body: {
+        tm = new BTreeEmpty(log, createTestSplittingPolicy(), true, 1).getMutableCopy();
+
+        List<INode> expected = new ArrayList<>();
+        expected.add(kv("1", "1"));
+        expected.add(kv("2", "2"));
+        expected.add(kv("3", "3"));
+        expected.add(kv("5", "51"));
+        expected.add(kv("5", "52"));
+        expected.add(kv("5", "53"));
+        expected.add(kv("5", "54"));
+        expected.add(kv("5", "55"));
+        expected.add(kv("5", "56"));
+        expected.add(kv("5", "57"));
+        expected.add(kv("7", "7"));
+
+        for (INode ln : expected) {
+            getTreeMutable().putRight(ln);
+        }
+
+        assertMatchesIterator(tm, expected);
+    }
+ Pattern Name: LoopPattern_v3 - Action: putRight(unmatched with outside) - Predicate: N/A - Scenario: ln(unmatched with outside)
+
+Project: xodus
+ Class: BTreeTest
+ Method: testPutRightSplitRight
+ Body: {
+        int s = 1000;
+        tm = new BTreeEmpty(log, createTestSplittingPolicy(), true, 1).getMutableCopy();
+
+        for (int i = 0; i < s; i++) {
+            getTreeMutable().putRight(kv(i, "v" + i));
+        }
+
+        checkTree(getTreeMutable(), s).run();
+
+        long rootAddress = saveTree();
+
+        checkTree(getTreeMutable(), s).run();
+
+        reopen();
+
+        t = new BTree(log, rootAddress, true, 1);
+        checkTree(getTree(), s).run();
+    }
+ Pattern Name: LoopPattern_v3 - Action: putRight - Predicate: N/A - Scenario: s(matched)
+
+Project: xodus
+ Class: BTreeTest
+ Method: testGetReturnsFirstSortedDuplicate
+ Body: {
+        tm = new BTreeEmpty(log, createTestSplittingPolicy(), true, 1).getMutableCopy();
+
+        List<INode> l = new ArrayList<>();
+        l.add(kv("1", "1"));
+        l.add(kv("2", "2"));
+        l.add(kv("3", "3"));
+        l.add(kv("5", "51"));
+        l.add(kv("5", "52"));
+        l.add(kv("5", "53"));
+        l.add(kv("5", "54"));
+        l.add(kv("5", "55"));
+        l.add(kv("5", "56"));
+        l.add(kv("5", "57"));
+        l.add(kv("7", "7"));
+
+        for (INode ln : l) {
+            getTreeMutable().add(ln);
+        }
+
+        valueEquals("51", tm.get(key("5")));
+    }
+ Pattern Name: LoopPattern_v3 - Action: add(matched) - Predicate: N/A - Scenario: ln(unmatched with outside)
+
+Project: xodus
+ Class: BTreeStructureIdTest
+ Method: testStructureIdSave
+ Body: {
+        BTreeMutable firstTree = new BTreeEmpty(log, createTestSplittingPolicy(), false, 42).getMutableCopy();
+        BTreeMutable secondTree = new BTreeEmpty(log, createTestSplittingPolicy(), false, 142).getMutableCopy();
+        for (INode node : createLNs("v", 100)) {
+            firstTree.put(node);
+            secondTree.put(node);
+        }
+        checkTree(firstTree, 100).run();
+        checkTree(secondTree, 100).run();
+        log.beginWrite();
+        long first = firstTree.save();
+        long second = secondTree.save();
+        log.flush();
+        log.endWrite();
+        assertContains(42, first);
+        assertContains(142, second);
+        assertStructureIdNotEqual(first, second);
+    }
+ Pattern Name: LoopPattern_v3 - Action: put - Predicate: N/A - Scenario: node(unmatched with outside)
+
+Project: xodus
+ Class: ObjectCacheTest
+ Method: cacheIterator
+ Body: {
+        final ObjectCache<String, String> cache = new ObjectCache<>(4);
+        cache.put("Eclipse", "An IDE");
+        cache.put("IDEA", "good IDEA");
+        cache.put("IDEA 4.5", "better IDEA");
+        cache.put("IDEA 5.0", "perfect IDEA");
+        cache.put("IDEA 6.0", "IDEAL");
+        HashSet<String> values = new HashSet<>();
+        final Iterator<String> it = cache.values();
+        while (it.hasNext()) {
+            values.add(it.next());
+        }
+        Assert.assertNull(cache.get("Eclipse"));
+        Assert.assertFalse(values.contains("An IDE"));
+        Assert.assertTrue(values.contains("good IDEA"));
+        Assert.assertTrue(values.contains("better IDEA"));
+        Assert.assertTrue(values.contains("perfect IDEA"));
+        Assert.assertTrue(values.contains("IDEAL"));
+    }
+ Pattern Name: LoopPattern_v3 - Action: add(unmatched with outside) - Predicate: N/A - Scenario: it.hasNext(unmatched with outside)
+
+Project: xodus
+ Class: LogInMemoryTests
+ Method: testSetHighAddress
+ Body: {
+        final int loggablesCount = 350000; // enough number to make sure two files will be created
+        getLog().beginWrite();
+        for (int i = 0; i < loggablesCount; ++i) {
+            getLog().write(DUMMY_LOGGABLE);
+        }
+        getLog().flush();
+        getLog().setHighAddress(getLog().endWrite(), 3);
+        final Iterator<RandomAccessLoggable> loggablesIterator = getLog().getLoggableIterator(0);
+        loggablesIterator.next();
+        Assert.assertFalse(loggablesIterator.hasNext());
+    }
+ Pattern Name: LoopPattern_v3 - Action: write(unmatched with outside) - Predicate: N/A - Scenario: loggablesCount(matched)
+
+Project: xodus
+ Class: LogInMemoryTests
+ Method: testSetHighAddress2
+ Body: {
+        final int loggablesCount = 350000; // enough number to make sure two files will be created
+        getLog().beginWrite();
+        for (int i = 0; i < loggablesCount; ++i) {
+            getLog().write(DUMMY_LOGGABLE);
+        }
+        getLog().setHighAddress(getLog().endWrite(), 0);
+        Assert.assertFalse(getLog().getLoggableIterator(0).hasNext());
+    }
+ Pattern Name: LoopPattern_v3 - Action: write(unmatched with outside) - Predicate: N/A - Scenario: loggablesCount(matched)
+
+Project: xodus
+ Class: LongObjectCacheTest
+ Method: cacheIterator
+ Body: {
+        LongObjectCache<String> cache = new LongObjectCache<>(4);
+        cache.put(0, "An IDE");
+        cache.put(1, "good IDEA");
+        cache.put(2, "better IDEA");
+        cache.put(3, "perfect IDEA");
+        cache.put(4, "IDEAL");
+        HashSet<String> values = new HashSet<>();
+        final Iterator<String> it = cache.values();
+        while (it.hasNext()) {
+            values.add(it.next());
+        }
+        Assert.assertNull(cache.get(0));
+        Assert.assertFalse(values.contains("An IDE"));
+        Assert.assertTrue(values.contains("good IDEA"));
+        Assert.assertTrue(values.contains("better IDEA"));
+        Assert.assertTrue(values.contains("perfect IDEA"));
+        Assert.assertTrue(values.contains("IDEAL"));
+    }
+ Pattern Name: LoopPattern_v3 - Action: add(unmatched with outside) - Predicate: N/A - Scenario: it.hasNext(unmatched with outside)
+
+Project: xodus
+ Class: ConflictTest
+ Method: testCreateTable
+ Body: {
+        final StoreTransaction txn = getStoreTransaction();
+        txn.newEntity("Issue").setProperty("name", "i1");
+        PersistentStoreTransaction txn2 = getEntityStore().beginTransaction();
+        txn2.newEntity("Issue").setProperty("name", "i0");
+        assertEquals(1, txn2.getAll("Issue").size());
+        txn2.commit();
+        assertEquals(1, txn.getAll("Issue").size());
+        assertEquals(txn, getEntityStore().getCurrentTransaction());
+        assertFalse(txn.flush());
+        //replay txn
+        txn.newEntity("Issue").setProperty("name", "i1"); // this way issue gets a new id, so iterates after i0
+        //end replay
+        txn.flush();
+        assertEquals(2, txn.getAll("Issue").size());
+        reinit();
+        assertEquals(2, getStoreTransaction().getAll("Issue").size());
+        int i = 0;
+        for (Entity issue : getStoreTransaction().getAll("Issue")) {
+            assertEquals(issue.getProperty("name"), "i" + i++);
+        }
+        assertEquals(2, i);
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: getProperty - Scenario: issue(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testAddDiagramElementAction1
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphNode curNode = new GraphNode();
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            GraphNode child = new GraphNode();
+
+            ProjectConfigurationManager manager = new ProjectConfigurationManager(new UMLModelManager());
+
+            // create an AddDiagramElementAction instance
+            UndoableAction action = new AddDiagramElementAction(curNode, child, manager);
+
+            action.execute();
+            action.undo();
+            action.redo();
+            curNode = child;
+        }
+
+        StressTestHelper.printTime("AddDiagramElementAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testAddDiagramElementAction2
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphNode curNode = new GraphNode();
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            GraphNode child = new GraphNode();
+
+            ProjectConfigurationManager manager = new ProjectConfigurationManager(new UMLModelManager());
+
+            // create an AddDiagramElementAction instance
+            UndoableAction action = new AddDiagramElementAction(curNode, child, manager);
+
+            action.execute();
+            action.undo();
+            action.redo();
+        }
+
+        StressTestHelper.printTime("AddDiagramElementAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testUpdateNameAction
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphEdge edge = StressTestHelper.createGraphEdgeForAssociation();
+        CompartmentExtractor extractor = new AssociationCompartmentExtractor(edge);
+        GraphElement newElement = extractor.extractName();
+
+        Action action = new UpdateNameAction(extractor, newElement);
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            action.execute();
+        }
+
+        StressTestHelper.printTime("UpdateNameAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testUpdateSecondAssociationEndAction
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphEdge edge = StressTestHelper.createGraphEdgeForAssociation();
+        CompartmentExtractor extractor = new AssociationCompartmentExtractor(edge);
+        GraphElement newElement = extractor.extractFirstAssociationEnd();
+
+        Action action = new UpdateSecondAssociationEndAction(extractor, newElement);
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            action.execute();
+        }
+
+        StressTestHelper.printTime("UpdateSecondAssociationEndAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testUpdateStereotypeAction
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphEdge edge = StressTestHelper.createGraphEdgeForAssociation();
+        CompartmentExtractor extractor = new AssociationCompartmentExtractor(edge);
+        GraphElement newElement = extractor.extractStereotype();
+
+        Action action = new UpdateStereotypeAction(extractor, newElement);
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            action.execute();
+        }
+
+        StressTestHelper.printTime("UpdateStereotypeAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testUpdateFirstAssociationEndAction
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphEdge edge = StressTestHelper.createGraphEdgeForAssociation();
+        CompartmentExtractor extractor = new AssociationCompartmentExtractor(edge);
+        GraphElement newElement = extractor.extractSecondAssociationEnd();
+
+        Action action = new UpdateFirstAssociationEndAction(extractor, newElement);
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            action.execute();
+        }
+
+        StressTestHelper.printTime("UpdateFirstAssociationEndAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: ActionStressTests
+ Method: testUpdateNamespaceAction
+ Body: {
+        StressTestHelper.startTimer();
+
+        GraphNode node = StressTestHelper.createGraphNodeForClassifier();
+        CompartmentExtractor extractor = new DefaultNodeCompartmentExtractor(node);
+        GraphElement newElement = extractor.extractNamespace();
+
+        Action action = new UpdateNamespaceAction(extractor, newElement);
+
+        for (int cnt = 0; cnt < StressTestHelper.testCount; ++cnt) {
+            action.execute();
+        }
+
+        StressTestHelper.printTime("UpdateNamespaceAction#execute()", StressTestHelper.testCount);
+    }
+ Pattern Name: LoopPattern_v3 - Action: execute(unmatched with outside) - Predicate: N/A - Scenario: StressTestHelper.testCount(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testFireDocumentationCreated
+ Body: {
+        addListeners();
+        addTarget();
+
+        this.documentationEditor.fireDocumentationCreated("currentDoc");
+
+        DocumentationEvent e = new DocumentationEvent(this.target, null, "currentDoc");
+
+        for (DocumentationListener listener : documentationEditor.getDocumentationListeners()) {
+            assertDocumentationEvent(e, ((MockDocumentationListener) listener).getFiredEvent());
+            assertEquals("created event", ((MockDocumentationListener) listener).getEventType(), "created");
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: getFiredEvent - Scenario: listener(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testFireDocumentationUpdated
+ Body: {
+        addListeners();
+        addTarget();
+
+        this.documentationEditor.fireDocumentationUpdated("previousDoc", "currentDoc");
+
+        DocumentationEvent e = new DocumentationEvent(this.target, "previousDoc", "currentDoc");
+
+        for (DocumentationListener listener : documentationEditor.getDocumentationListeners()) {
+            assertDocumentationEvent(e, ((MockDocumentationListener) listener).getFiredEvent());
+            assertEquals("updated event", ((MockDocumentationListener) listener).getEventType(), "updated");
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: getFiredEvent - Scenario: listener(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testFireDocumentationDeleted
+ Body: {
+        addListeners();
+        addTarget();
+
+        this.documentationEditor.fireDocumentationDeleted("previousDoc");
+
+        DocumentationEvent e = new DocumentationEvent(this.target, "previousDoc", null);
+
+        for (DocumentationListener listener : documentationEditor.getDocumentationListeners()) {
+            assertDocumentationEvent(e, ((MockDocumentationListener) listener).getFiredEvent());
+            assertEquals("deleted event", ((MockDocumentationListener) listener).getEventType(), "deleted");
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: getFiredEvent - Scenario: listener(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentTreeTabbedPaneImplStressTests
+ Method: testUpdateTreeNode
+ Body: {
+        DocumentTreePanel treePane = tabbedPane.createNewPanel();
+        treePane.setCurrentView(DocumentTreeViewType.DIAGRAM_CENTRIC);
+        BaseDocumentTreeView view = (BaseDocumentTreeView) treePane.getCurrentView();
+
+        Diagram useCaseDiagram = manager.getDiagrams().get(0);
+        Diagram classDiagram = manager.getDiagrams().get(1);
+        MutableTreeNode root = (MutableTreeNode) view.getTree().getModel().getRoot();
+        DefaultMutableTreeNode useCaseDiagramNode = (DefaultMutableTreeNode) root.getChildAt(0).getChildAt(0);
+
+        DiagramElement child = useCaseDiagram.getContaineds().get(0);
+        DefaultMutableTreeNode childNode = (DefaultMutableTreeNode) useCaseDiagramNode.getChildAt(0);
+
+        // update the namespace of the child element
+        useCaseDiagram.removeContained(child);
+        classDiagram.addContained(child);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < TIMES; i++) {
+            view.updateTreeNode((DocumentTreeNode) childNode.getUserObject());
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Stress tests: " + "The DocumentTreeTabbedPaneImpl#updateTreeNode"
+                + "(DocumentTreeNode) in " + TIMES
+                + " times takes " + (endTime - startTime) + "ms");
+    }
+ Pattern Name: LoopPattern_v3 - Action: updateTreeNode(unmatched with outside) - Predicate: N/A - Scenario: TIMES(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentTreeTabbedPaneImplStressTests
+ Method: testAddTreeNode
+ Body: {
+        DocumentTreePanel treePane = tabbedPane.createNewPanel();
+        treePane.setCurrentView(DocumentTreeViewType.DIAGRAM_CENTRIC);
+
+        Diagram classDiagram = manager.getDiagrams().get(1);
+
+        GraphNode newGraphNode = new GraphNode();
+        newGraphNode.setSemanticModel(StressTestHelper.createUml1SemanticModelBridge("NewNode"));
+        classDiagram.addContained(newGraphNode);
+
+        node = new DocumentTreeNode(newGraphNode);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < TIMES; i++) {
+            tabbedPane.addTreeNode(node);
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Stress tests: " + "The DocumentTreeTabbedPaneImpl#addTreeNode(DocumentTreeNode) in " + TIMES
+                + " times takes " + (endTime - startTime) + "ms");
+    }
+ Pattern Name: LoopPattern_v3 - Action: addTreeNode - Predicate: N/A - Scenario: TIMES(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentTreeTabbedPaneImplStressTests
+ Method: testGetSelectedTreeNodes
+ Body: {
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < TIMES; i++) {
+            tabbedPane.getSelectedTreeNodes();
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Stress tests: " + "The DocumentTreeTabbedPaneImpl#getSelectedTreeNodes() in " + TIMES
+                + " times takes " + (endTime - startTime) + "ms");
+
+        DocumentTreeNode[] selectedNodes = tabbedPane.getSelectedTreeNodes();
+        assertEquals("Failed to get the selected tree nodes correctly.", 0, selectedNodes.length);
+    }
+ Pattern Name: LoopPattern_v3 - Action: getSelectedTreeNodes - Predicate: N/A - Scenario: TIMES(unmatched with outside)
+
+Project: mytcuml
+ Class: DocumentTreeTabbedPaneImplStressTests
+ Method: testUpdateTree
+ Body: {
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < TIMES; i++) {
+            tabbedPane.updateTree();
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Stress tests: " + "The DocumentTreeTabbedPaneImpl#updateTree() in " + TIMES
+                + " times takes " + (endTime - startTime) + "ms");
+    }
+ Pattern Name: LoopPattern_v3 - Action: updateTree - Predicate: N/A - Scenario: TIMES(unmatched with outside)
+
+Project: mytcuml
+ Class: ClosableTabbedPaneUnitTest
+ Method: testAddClosableTabbedPaneEventHandlerStress
+ Body: {
+        long start = System.currentTimeMillis();
+
+        for (int i = 0; i < StressTestHelper.TIMES; ++i) {
+            MockClosableTabbedPaneEventHandlerForStress eventHandler = new MockClosableTabbedPaneEventHandlerForStress();
+
+            tabbedPane.addClosableTabbedPaneEventHandler(eventHandler);
+        }
+
+        assertEquals("Method addClosableTabbedPaneEventHandler should be incorrect", StressTestHelper.TIMES, tabbedPane
+                .getClosableTabbedPaneEventHandlers().length);
+
+        long stop = System.currentTimeMillis();
+
+        // display benchmark
+        System.out.println("Method testInstallSelectorStress() consumed time " + 1.0 * (stop - start)
+                / StressTestHelper.TIMES + " ms");
+    }
+ Pattern Name: LoopPattern_v3 - Action: addClosableTabbedPaneEventHandler - Predicate: N/A - Scenario: StressTestHelper.TIMES(unmatched with outside)
+
+Project: mytcuml
+ Class: ClosableTabbedPaneUnitTest
+ Method: testInsertTabStress
+ Body: {
+        long start = System.currentTimeMillis();
+
+        for (int i = 0; i < StressTestHelper.TIMES; ++i) {
+            JComponent component = new JTextArea();
+
+            tabbedPane.insertTab("stresstest" + String.valueOf(i), null, component, null, 0);
+
+            assertEquals("Method insertTab should be incorrect", i + 1, tabbedPane.getTabCount());
+        }
+
+        long stop = System.currentTimeMillis();
+
+        // display benchmark
+        System.out.println("Method testInstallSelectorStress() consumed time " + 1.0 * (stop - start)
+                / StressTestHelper.TIMES + " ms");
+    }
+ Pattern Name: LoopPattern_v3 - Action: insertTab - Predicate: getTabCount - Scenario: StressTestHelper.TIMES(unmatched with outside)
+
+Project: mytcuml
+ Class: SemanticModelBridgeAccuracyTests
+ Method: testPresentation_Operation
+ Body: {
+      // creat a string array.
+        String [] presentations = new String [] {"Top", "Coder", "Dev", "Des"};
+        for (String presentation : presentations) {
+            // set the presentation.
+            test.setPresentation(presentation);
+            // get the presentation.
+            assertEquals("The presentation expected to be equal", presentation,
+                test.getPresentation());
+        }
+       // set the presentation to null.
+        test.setPresentation(null);
+         // get the presentation.
+        assertNull("The presentation expected to be null", test.getPresentation());
+    }
+ Pattern Name: LoopPattern_v3 - Action: setPresentation - Predicate: getPresentation - Scenario: presentation(unmatched with outside)
+
+Project: mytcuml
+ Class: UITests
+ Method: testModifiersPropertyPanel
+ Body: {
+        JCheckBox checkBox = frame.getCheckBoxes()[2];
+
+        checkBox.setSelected(true);
+        getHelper().enterClickAndLeave(new MouseEventData(this, configureBtn));
+
+        JPanel panel = (JPanel) propertiesPanel.getComponent(0);
+        JPanel modifierPanel = (JPanel) panel.getComponent(1);
+        List modifierCheckBoxes = new ComponentFinder(JCheckBox.class).findAll(modifierPanel);
+
+        for (Object comp : modifierCheckBoxes) {
+            JCheckBox modifierCheckBox = (JCheckBox) comp;
+            modifierCheckBox.setSelected(true);
+            modifierCheckBox.setSelected(false);
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: setSelected(unmatched with outside) - Predicate: N/A - Scenario: comp(unmatched with outside)
+
+Project: mytcuml
+ Class: TextFieldStressTests
+ Method: testLineStyleStress
+ Body: {
+        // record the start time
+        TestHelper.startTimer();
+
+        for (int i = 0; i < TestHelper.NUMBER; i++) {
+            // get graph node
+            textField.getGraphNode();
+            // get anchor type
+            textField.getAnchorType();
+            // get anchorage
+            textField.getAnchorage();
+            // set new anchorage
+            textField.setAnchorage(new Point(i, -i));
+            // get isSelected flag
+            textField.isSelected();
+            // set new isSelected flag
+            textField.setSelected(i % 2 == 0);
+            // update the anchorage
+            textField.updateAnchorage();
+        }
+
+        // print the result
+        TestHelper.printResultMulTimes("TextField");
+    }
+ Pattern Name: LoopPattern_v3 - Action: getGraphNode(unmatched with outside) - Predicate: N/A - Scenario: TestHelper.NUMBER
+
+Project: mytcuml
+ Class: EventManagerStressTest
+ Method: testHandleGUIEvent
+ Body: {
+        ActionEvent actionEvent = new ActionEvent(undoableAction, undoableAction);
+        long now = System.currentTimeMillis();
+        for (int i = 0; i < COUNT; i++) {
+            manager.handleGUIEvent(actionEvent);
+        }
+        System.out.println("Invoking handleGUIEvent(EventObject) for " + COUNT + " times takes "
+                + (System.currentTimeMillis() - now) / 1000.0 + " seconds.");
+    }
+ Pattern Name: LoopPattern_v3 - Action: handleGUIEvent - Predicate: N/A - Scenario: COUNT(unmatched with outside)
+
+Project: mytcuml
+ Class: EventManagerStressTest
+ Method: testHandleActionEvent_UndoChangesEvent
+ Body: {
+        UndoChangesEvent actionEvent = new UndoChangesEvent(undoableAction, undoableAction);
+        long now = System.currentTimeMillis();
+        for (int i = 0; i < COUNT; i++) {
+            manager.handleActionEvent(actionEvent);
+        }
+        System.out.println("Invoking handleActionEvent(ActionEvent) with UndoChangesEvent for " + COUNT
+                + " times takes " + (System.currentTimeMillis() - now) / 1000.0 + " seconds.");
+    }
+ Pattern Name: LoopPattern_v3 - Action: handleActionEvent - Predicate: N/A - Scenario: COUNT(unmatched with outside)
+
+Project: mytcuml
+ Class: EventManagerStressTest
+ Method: testHandleActionEvent_RedoChangesEvent
+ Body: {
+        RedoChangesEvent actionEvent = new RedoChangesEvent(undoableAction, undoableAction);
+        long now = System.currentTimeMillis();
+        for (int i = 0; i < COUNT; i++) {
+            manager.handleActionEvent(actionEvent);
+        }
+        System.out.println("Invoking handleActionEvent(ActionEvent) with RedoChangesEvent for " + COUNT
+                + " times takes " + (System.currentTimeMillis() - now) / 1000.0 + " seconds.");
+    }
+ Pattern Name: LoopPattern_v3 - Action: handleActionEvent - Predicate: N/A - Scenario: COUNT(unmatched with outside)
+
+Project: mytcuml
+ Class: UseCaseImplTestAccuracy
+ Method: testAddIncluder
+ Body: {
+        includer.setAddition(ucl);
+        ucl.addIncluder(includer);
+        ucl.addIncluder(includer);
+        Collection <Include> res = ucl.getIncluders();
+        assertEquals("Should be equal.", 2, res.size());
+        Iterator<Include> iter = res.iterator();
+        while (iter.hasNext()) {
+            assertEquals("Should be equal.", includer, iter.next());
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: next - Scenario: iter.hasNext(unmatched with outside)
+
+Project: mytcuml
+ Class: UseCaseImplTestAccuracy
+ Method: testGetIncludedUseCases
+ Body: {
+        assertEquals("Should be equal.", 0, ucl.getIncludedUseCases().size());
+
+        include.setBase(ucl);
+        include.setAddition(useCase);
+
+        ucl.addInclude(include);
+        ucl.addInclude(include);
+
+        Collection <UseCase> res = ucl.getIncludedUseCases();
+        assertEquals("Should be equal.", 2, res.size());
+        Iterator<UseCase> iter = res.iterator();
+        while (iter.hasNext()) {
+            assertEquals("Should be equal.", useCase, iter.next());
+        }
+
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: next - Scenario: iter.hasNext(unmatched with outside)
+
+Project: mytcuml
+ Class: GeneratorStressTests
+ Method: testRadioButtonsPropertyComponentGenerator1
+ Body: {
+        propertyDefinition.setPropertyType(PropertyType.RADIO_BUTTONS);
+        propertyDefinition.setPropertyValue("2");
+        propertyDefinition.setValueChoices(new HashSet<String>(Arrays.asList("1", "2", "3")));
+        target = new RadioButtonsPropertyComponentGenerator();
+
+        this.start();
+        for (int i = 0; i < LOAD1; i++) {
+            target.generateComponent(propertyDefinition);
+        }
+        this.stop();
+        // print execute info
+        System.out
+                .println("Run generateComponent() method of RadioButtonsPropertyComponentGenerator "
+                        + "for "
+                        + LOAD1
+                        + " times consumes "
+                        + getMilliseconds()
+                        + " milliseconds.");
+    }
+ Pattern Name: LoopPattern_v3 - Action: generateComponent(unmatched with outside) - Predicate: N/A - Scenario: LOAD1
+
+Project: mytcuml
+ Class: ImageManipulationImageExporterTest
+ Method: testGetSupportedFormats
+ Body: {
+        String[] supportedFormats = {"jpeg", "bmp", "png", "pnm", "tiff", "gif", "custom_format_2" };
+
+        String[] result = exporter.getSupportedFormats();
+        Set<String> set = new HashSet<String>();
+        set.addAll(Arrays.asList(result));
+
+        for (int i = 0; i < supportedFormats.length; i++) {
+            assertTrue(supportedFormats[i] + " should be supported", set.contains(supportedFormats[i]));
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: N/A(unmatched with outside) - Predicate: contains - Scenario: supportedFormats.length(unmatched with outside)
+
+Project: mytcuml
+ Class: TextElementTest
+ Method: testSetText
+ Body: {
+        String[] strings = TestHelper.getRandomStrings();
+
+        for (String item : strings) {
+            instance.setText(item);
+            assertEquals("incorrect string", item, instance.getText());
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: setText - Predicate: getText - Scenario: item(unmatched with outside)
+
+Project: mytcuml
+ Class: TextElementTest
+ Method: testGetText
+ Body: {
+        String[] strings = TestHelper.getRandomStrings();
+
+        for (String item : strings) {
+            instance.setText(item);
+            assertEquals("incorrect string", item, instance.getText());
+        }
+    }
+ Pattern Name: LoopPattern_v3 - Action: setText - Predicate: getText - Scenario: item(unmatched with outside)

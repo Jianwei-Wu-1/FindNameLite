@@ -1,0 +1,27 @@
+Project: worktorule
+ Class: JiraWithBasicAuthorizationTest
+ Method: closedIssue
+ Body: {
+        assertFalse(issues.isOpen(BuildEnvironment.getenv("JIRA_CLOSED_ISSUE_ID")));
+    }
+ Pattern Name: AllAssertions_NMC - Action: isOpen - Predicate: getenv - Scenario: issues
+
+Project: mytcuml
+ Class: MessageUtilUnitTest
+ Method: test_accuracy_checkAsynchronousMessage1
+ Body: {
+        assertFalse("checkAsynchronousMessage failed", messageUtil.checkAsynchronousMessage(TestHelper
+            .getSendSignalMessage()));
+    }
+ Pattern Name: AllAssertions_NMC - Action: checkAsynchronousMessage - Predicate: getSendSignalMessage - Scenario: messageUtil
+
+Project: mytcuml
+ Class: MessageUtilAccuracyTests
+ Method: testCheckSynchronousMessageAccuracy
+ Body: {
+        assertTrue("checkSynchronousMessage failed", messageUtil.checkSynchronousMessage(AccuracyTestHelper
+            .createStimulusForSynchronousMessage()));
+        assertFalse("checkSynchronousMessage failed", messageUtil.checkSynchronousMessage(AccuracyTestHelper
+            .createStimulusForAsynchronousMessage()));
+    }
+ Pattern Name: AllAssertions_NMC - Action: checkSynchronousMessage - Predicate: createStimulusForAsynchronousMessage - Scenario: messageUtil

@@ -1,0 +1,253 @@
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name
+<s> test Get Node From Tree </s>
+tokens: test
+tokens: Get
+tokens: Node
+tokens: From
+tokens: Tree
+
+
+No.0
+Parsed score: -32.6721
+Parsed tree: (S1 (S (VP (VB test) (S (VP (VB Get) (NP (NNP Node)) (PP (IN From) (NP (NN Tree))))))))
+Tree size: 18 value:S1 nodeString: S1
+Leaves: test-1 
+Leaves: Get-2 
+Leaves: Node-3 
+Leaves: From-4 
+Leaves: Tree-5 
+each word: test/VB
+each word: Get/VB
+each word: Node/NNP
+each word: From/IN
+each word: Tree/NN
+End for this test name

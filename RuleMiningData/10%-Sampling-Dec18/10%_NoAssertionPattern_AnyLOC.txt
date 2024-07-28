@@ -1,0 +1,1148 @@
+Project: zxcvbn-java
+ Class: BasicMatchTest
+ Method: testContructor
+ Body: {
+    System.out.println("Test of the constructor of class BasicMatch");
+    
+    illegalArgumentException.expect(IllegalArgumentException.class);
+    illegalArgumentException.expectMessage("Null String");
+    BasicMatch instanceWithNull = new BasicMatchImpl(null);
+    
+    illegalArgumentException.expect(IllegalArgumentException.class);
+    illegalArgumentException.expectMessage("Empty String");
+    BasicMatch instanceWithEmpty = new BasicMatchImpl(null);
+  }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: println (Alternative Action: expect=2 ) - Predicate: N/A - Scenario: instanceWithNull (Alternative Scenario: instanceWithEmpty=1 )
+
+Project: TW-Travel-Jetpacked
+ Class: ArrayConcatTest
+ Method: testArrayConcat
+ Body: {
+		final String script = "var a = ['a0', 'a1'];\n"
+			+ "a[3] = 'a3';\n"
+			+ "var b = ['b1', 'b2'];\n"
+			+ "b.concat(a)";
+
+		final ContextAction action = new ContextAction()
+		{
+			public Object run(final Context _cx)
+			{
+				final ScriptableObject scope = _cx.initStandardObjects();
+				final Object result = _cx.evaluateString(scope, script, "test script", 0, null);
+				assertEquals("b1,b2,a0,a1,,a3", Context.toString(result));
+				return null;
+			}
+		};
+
+		Utils.runWithAllOptimizationLevels(action);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: runWithAllOptimizationLevels (Alternative Action: runWithAllOptimizationLevels=1 ) - Predicate: N/A - Scenario: script (Alternative Scenario: result=1 )
+
+Project: TW-Travel-Jetpacked
+ Class: Bug412433Test
+ Method: testMaleformedJavascript2
+ Body: {
+        Context context = Context.enter();
+        ScriptableObject scope = context.initStandardObjects();
+        context.evaluateString(scope, "\"\".split(/[/?,/&]/)", "", 0, null);
+        Context.exit();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: evaluateString (Alternative Action: exit=1 ) - Predicate: N/A - Scenario: context (Alternative Scenario: scope=1 )
+
+Project: TW-Travel-Jetpacked
+ Class: ApplyOnPrimitiveNumberTest
+ Method: testIt
+ Body: {
+		final String script = "var fn = function() { return this; }\n"
+			+ "fn.apply(1)";
+
+		final ContextAction action = new ContextAction()
+		{
+			public Object run(final Context _cx)
+			{
+				final ScriptableObject scope = _cx.initStandardObjects();
+				final Object result = _cx.evaluateString(scope, script, "test script", 0, null);
+				assertEquals("object", ScriptRuntime.typeof(result));
+				assertEquals("1", Context.toString(result));
+				return null;
+			}
+		};
+		Utils.runWithAllOptimizationLevels(action);
+	}
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: runWithAllOptimizationLevels (Alternative Action: runWithAllOptimizationLevels=1 ) - Predicate: N/A - Scenario: script (Alternative Scenario: result=1 )
+
+Project: xodus
+ Class: StoreTest
+ Method: testCreateThreeStoresWithoutAutoCommit
+ Body: {
+        final Environment env = getEnvironment();
+        final Transaction txn = env.beginTransaction();
+        env.openStore("store1", StoreConfig.WITHOUT_DUPLICATES, txn);
+        env.openStore("store2", StoreConfig.WITHOUT_DUPLICATES, txn);
+        final Store store3 = env.openStore("store3", StoreConfig.WITHOUT_DUPLICATES, txn);
+        store3.put(txn, getKey(), getValue());
+        txn.commit();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: openStore (Alternative Action: openStore=3 ) - Predicate: N/A - Scenario: env (Alternative Scenario: store3=1 )
+
+Project: xodus
+ Class: VfsStreamsLowMemTests
+ Method: writeNegativePosition
+ Body: {
+        final Transaction txn = env.beginTransaction();
+        final File file0 = vfs.createFile(txn, "file0");
+        TestUtil.runWithExpectedException(new Runnable() {
+            @Override
+            public void run() {
+                vfs.writeFile(txn, file0, -1);
+            }
+        }, IllegalArgumentException.class);
+        txn.commit();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: runWithExpectedException (Alternative Action: runWithExpectedException=1 ) - Predicate: N/A - Scenario: txn (Alternative Scenario: file0=1 )
+
+roject: wheels
+ Class: ReadersTest
+ Method: testReadNullableOptionalStrict
+ Body: {
+        Function<String, NullableOptional<Integer>> fi = readWithNullsStrict(Readers::readIntegerStrict);
+        Function<String, NullableOptional<Boolean>> fb = readWithNullsStrict(Readers::readBooleanStrict);
+
+        readNullableOptionalStrict_helper(fi, "NullableOptional[23]", "Optional[NullableOptional[23]]");
+        readNullableOptionalStrict_helper(fi, "NullableOptional[0]", "Optional[NullableOptional[0]]");
+        readNullableOptionalStrict_helper(fi, "NullableOptional[-5]", "Optional[NullableOptional[-5]]");
+        readNullableOptionalStrict_helper(fi, "NullableOptional[null]", "Optional[NullableOptional[null]]");
+        readNullableOptionalStrict_helper(fi, "NullableOptional.empty", "Optional[NullableOptional.empty]");
+        readNullableOptionalStrict_helper(fb, "NullableOptional[false]", "Optional[NullableOptional[false]]");
+        readNullableOptionalStrict_helper(fb, "NullableOptional[true]", "Optional[NullableOptional[true]]");
+        readNullableOptionalStrict_helper(fb, "NullableOptional[null]", "Optional[NullableOptional[null]]");
+        readNullableOptionalStrict_helper(fb, "NullableOptional.empty", "Optional[NullableOptional.empty]");
+
+        readNullableOptionalStrict_helper(fi, "Optional[23]", "Optional.empty");
+        readNullableOptionalStrict_helper(fi, "NullableOptional[10000000000000000000]", "Optional.empty");
+        readNullableOptionalStrict_helper(fi, "NullableOptional[xyz]", "Optional.empty");
+        readNullableOptionalStrict_helper(fi, "NullableOptional[10", "Optional.empty");
+        readNullableOptionalStrict_helper(fi, "NullableOptional", "Optional.empty");
+        readNullableOptionalStrict_helper(fi, "xyz", "Optional.empty");
+        readNullableOptionalStrict_helper(fi, "", "Optional.empty");
+        readNullableOptionalStrict_helper(fb, "NullableOptional[12]", "Optional.empty");
+
+        readNullableOptionalStrict_fail_helper(s -> null, "NullableOptional[hello]");
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: readNullableOptionalStrict_helper (Alternative Action: readNullableOptionalStrict_helper=17 ) - Predicate: N/A - Scenario: fi (Alternative Scenario: fi=1 )
+
+Project: wheels
+ Class: StringBasedComparatorTest
+ Method: testCompare
+ Body: {
+        StringBasedComparator comparator = new StringBasedComparator("cat");
+        StringBasedComparator uselessComparator = new StringBasedComparator("");
+
+        compare_helper(comparator, "cat");
+
+        compare_fail_helper(comparator, 'a', 'z');
+        compare_fail_helper(uselessComparator, 'a', 'z');
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: compare_helper (Alternative Action: compare_fail_helper=2 ) - Predicate: N/A - Scenario: comparator (Alternative Scenario: comparator=1 )
+
+Project: wheels
+ Class: ListBasedComparatorTest
+ Method: testCompare
+ Body: {
+        ListBasedComparator<Integer> comparator = new ListBasedComparator<>(readIntegerListWithNulls("[3, null, 2]"));
+        ListBasedComparator<Integer> uselessComparator = new ListBasedComparator<>(Collections.emptyList());
+
+        compare_helper(comparator, "[3, null, 2]");
+
+        compare_fail_helper(comparator, 1, 2);
+        compare_fail_helper(uselessComparator, 1, 2);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: compare_helper (Alternative Action: compare_fail_helper=2 ) - Predicate: N/A - Scenario: comparator (Alternative Scenario: comparator=1 )
+
+Project: mytcuml
+ Class: CoreSemanticModelBridgeTransformerTest
+ Method: testTransform
+ Body: {
+        Node node = transformer.transform(element, document, d2XMITransformer);
+        validateCoreSemanticModelBridge(node, element);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: validateCoreSemanticModelBridge (Alternative Action: transform=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerAccuracyTests
+ Method: testMouseClicked_NotRightClickMouseEvent
+ Body: {
+        MouseEvent event = new MouseEvent(edge, MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false,
+                MouseEvent.BUTTON1);
+
+        trigger.mouseClicked(event);
+
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: DefaultJarImporterAccuracyTest
+ Method: testExtractExternalPackages
+ Body: {
+        defaultJarImporter.retrievePackagesAndClassesFromJars(new URL[] {new File(
+            "test_files/accuracytests/classpath/test_1.jar").toURI().toURL() });
+        // running successfully
+        defaultJarImporter.extractExternalClasses();
+        // getting packages
+        Map<String,Package> packages = defaultJarImporter.getPackages();
+        // checking for Serializable
+        checkPackage(packages, Serializable.class.getPackage());
+        // checking for Runnable
+        checkPackage(packages, Runnable.class.getPackage());
+        // checking for GregorianCalendar
+        checkPackage(packages, GregorianCalendar.class.getPackage());
+        // checking for String
+        checkPackage(packages, String.class.getPackage());
+        // checking for Integer
+        checkPackage(packages, Integer.class.getPackage());
+        // checking for java.sql.Date
+        checkPackage(packages, Date.class.getPackage());
+        // checking for java.util.Date
+        checkPackage(packages, java.util.Date.class.getPackage());
+        // checking for List
+        checkPackage(packages, List.class.getPackage());
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: retrievePackagesAndClassesFromJars (Alternative Action: getPackage=8 ) - Predicate: N/A - Scenario: packages (Alternative Scenario: packages=1 )
+
+Project: mytcuml
+ Class: DefaultJarImporterAccuracyTest
+ Method: testExtractExternalClasses
+ Body: {
+        defaultJarImporter.retrievePackagesAndClassesFromJars(new URL[] {new File(
+            "test_files/accuracytests/classpath/test_1.jar").toURI().toURL() });
+        // running successfully
+        defaultJarImporter.extractExternalClasses();
+        // getting external classes
+        Map<String,Class<?>> externalClasses = defaultJarImporter.getExternalClasses();
+        // checking for Serializable
+        checkClass(externalClasses, Serializable.class);
+        // checking for Runnable
+        checkClass(externalClasses, Runnable.class);
+        // checking for GregorianCalendar
+        checkClass(externalClasses, GregorianCalendar.class);
+        // checking for String
+        checkClass(externalClasses, String.class);
+        // checking for Integer
+        checkClass(externalClasses, Integer.class);
+        // checking for java.sql.Date
+        checkClass(externalClasses, Date.class);
+        // checking for long
+        checkClass(externalClasses, long.class);
+        // checking for java.util.Date
+        checkClass(externalClasses, java.util.Date.class);
+        // checking for boolean
+        checkClass(externalClasses, boolean.class);
+        // checking for List
+        checkClass(externalClasses, List.class);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: retrievePackagesAndClassesFromJars (Alternative Action: checkClass=10 ) - Predicate: N/A - Scenario: externalClasses (Alternative Scenario: externalClasses=1 )
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testConstructorWithInvalidThicknessConfig
+ Body: {
+        JLabel label = new JLabel("just for the test!");
+        JScrollPane sp = new JScrollPane(label);
+
+        UIManager.put("BirdsEyeView.overlayColor", Color.gray);
+        UIManager.put("BirdsEyeView.overlayBorderColor", Color.yellow);
+        UIManager.put("BirdsEyeView.overlayOpacity", "0.5");
+
+        UIManager.put("BirdsEyeView.overlayBorderThickness", null);
+        new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+        // pass
+
+        UIManager.put("BirdsEyeView.overlayBorderThickness", "-1");
+        new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+        // pass
+
+        UIManager.put("BirdsEyeView.overlayBorderThickness", "abc");
+        new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+        // pass
+
+        UIManager.put("BirdsEyeView.overlayBorderThickness", "   ");
+        new BirdsEyeView(sp, sp.getViewport().getSize(), sp.getLocation());
+        // pass
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: put (Alternative Action: put=7 ) - Predicate: N/A - Scenario: label (Alternative Scenario: label=1 )
+
+Project: mytcuml
+ Class: AggregationBiDirectionalUnitTests
+ Method: testPaintComponent_NotNullGraphics
+ Body: {
+        JFrame frame = new JFrame();
+        frame.setVisible(true);
+        Graphics g = frame.getGraphics();
+
+        frame.add(edgeEnding);
+
+        edgeEnding.paintComponent(g);
+
+        frame.setVisible(false);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setVisible (Alternative Action: setVisible=2 ) - Predicate: N/A - Scenario: frame (Alternative Scenario: g=1 )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testPaintComponentGraphics
+ Body: {
+
+        GraphEdge graphedge = TestUtil.createGraphEdge();
+        EnumMap<LifelinePropertyType,String> properties = TestUtil.createLifelineWithSomeProperties();
+
+        Lifeline lifeline = new Lifeline(graphedge,properties);
+
+        //Set the ShadowColor and ShadowLength
+        lifeline.setShadowColor(Color.GRAY);
+        lifeline.setShadowLength(1);
+
+        //Set the RenderScheme
+        lifeline.setRenderScheme(RenderScheme.TopCoderScheme);
+
+        //Set the Strock Color
+        lifeline.setStrokeColor(Color.BLUE);
+
+        //Set the left endpoints
+        EdgeEnding leftending = lifeline.getLeftEnding();
+        leftending.setEndingPoint(new Point(100,100));
+
+        //Set the right endpoints
+        EdgeEnding rightending = lifeline.getRightEnding();
+        rightending.setEndingPoint(new Point(100,300));
+
+
+        graphedge = TestUtil.createGraphEdge();
+        properties = TestUtil.createLifelineWithSomeProperties();
+        Lifeline lifeline2 = new Lifeline(graphedge,properties);
+
+        //Set the ShadowColor and ShadowLength
+        lifeline2.setShadowColor(Color.GRAY);
+        lifeline2.setShadowLength(1);
+
+        //Set the RenderScheme
+        lifeline2.setRenderScheme(RenderScheme.TopCoderScheme);
+
+        //Set the Strock Color
+        lifeline2.setStrokeColor(Color.BLACK);
+
+        //Set the left endpoints
+        leftending = lifeline2.getLeftEnding();
+        leftending.setEndingPoint(new Point(300,100));
+
+        //Set the right endpoints
+         rightending = lifeline2.getRightEnding();
+         rightending.setEndingPoint(new Point(300,300));
+
+
+        AccuracyTestImagePrinter printer = new AccuracyTestImagePrinter(
+                "test_files/accuracy_tests/Life_line.jpg");
+        Graphics g = printer.initImage();
+        lifeline.paintComponent(g);//printer.initImage());
+        lifeline2.paintComponent(g);
+        printer.print();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setShadowColor (Alternative Action: setEndingPoint=4 ) - Predicate: N/A - Scenario: graphedge (Alternative Scenario: lifeline2=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testDemo_ActionEvent
+ Body: {
+        // Register the validators to UndoableAction.class
+        eventManager.addEventValidator(successEventValidator, UndoableAction.class);
+
+        // Register the validators to all Action class
+        eventManager.addEventValidator(modifiedEventValidator);
+
+        // Register the validators to simple Action Class
+        eventManager.addEventValidator(deniedEventValidator, Action.class);
+
+        // The following listeners implement ActionEventListener
+        // Register the actionEventListener1 to MockUndoableAction class
+        eventManager.addActionEventListener(actionEventListener1, MockAddClassDiagramAction.class);
+
+        // Register the actionEventListener2 to all the action events
+        eventManager.addActionEventListener(actionEventListener2);
+
+        // Register the actionEventListener3 to simple Action Class
+        eventManager.addActionEventListener(actionEventListener3, Action.class);
+
+        // Create the action event, and handle it
+        ActionEvent actionEvent = new ActionEvent(undoableAction1, new String());
+
+        // Handle the event, actionEventListener1 and actionEventListener2 should be notified
+        // If the validation by the validator is not DENIED, the action will be executed.
+        eventManager.handleActionEvent(actionEvent);
+
+        // Create an undo changes event, and handle it
+        UndoChangesEvent undoChangesEvent = new UndoChangesEvent(undoableAction2, new String());
+
+        // Handle the event, actionEventListener1 and actionEventListener2 should be notified
+        eventManager.handleActionEvent(undoChangesEvent);
+
+        // Create a redo changes event, and handle it
+        RedoChangesEvent redoChangesEvent = new RedoChangesEvent(undoableAction2, new String());
+
+        // Handle the event, actionEventListener1 and actionEventListener2 should be notified
+        eventManager.handleActionEvent(redoChangesEvent);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: addEventValidator (Alternative Action: addEventValidator=3 ) - Predicate: N/A - Scenario: actionEvent (Alternative Scenario: actionEvent=1 )
+
+Project: mytcuml
+ Class: XMIConverterHandlerAccuracyTest
+ Method: testAddConverter_Accuracy
+ Body: {
+        XMIConverter converter = new AccuracyMockDefaultXMIConverter();
+        handler.addConverter(converter);
+        // should succeed
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: addConverter (Alternative Action: addConverter=1 ) - Predicate: N/A - Scenario: converter (Alternative Scenario: converter=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testManipulateViewport
+ Body: {
+        // create UI
+        UnitTestHelper.createUI(demoController, zoomPanel);
+
+        // get access to the JViewport
+        JViewport viewport = zoomPanel.getViewport();
+        // manipulate via JViewport's API
+        Rectangle toShow = new Rectangle(200, 100);
+        viewport.scrollRectToVisible(toShow);
+        Dimension size = new Dimension(400, 300);
+        viewport.setViewSize(size);
+        viewport.setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
+
+        // dispose the UI
+        UnitTestHelper.disposeUI();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: createUI (Alternative Action: setViewSize=1 ) - Predicate: N/A - Scenario: viewport (Alternative Scenario: size=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testCreateZoomPaneUI
+ Body: {
+        // Create and set up the window.
+        // The JFrame instance.
+        JFrame frame = new JFrame("CoordinatesDemo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // We add the zoom component to the root pane
+        Container container = frame.getRootPane();
+        container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
+
+        // Create the Label to show mouse event information
+        DemoController controller = new DemoController();
+
+        // coordinateArea is the zoomed component
+        CoordinateArea coordinateArea1 = new CoordinateArea(controller);
+
+        // create a ZoomPanel to wrap around it.
+        ZoomPane zoomPane = new ZoomPane(coordinateArea1, new NatureZoomTransform(3.0));
+        container.add(zoomPane);
+
+        // add label
+        controller.buildUI(container);
+
+        // Display the window.
+        frame.pack();
+        frame.setVisible(true);
+
+        // Dispose the window. This may not be useful in your application.
+        frame.dispose();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setDefaultCloseOperation (Alternative Action: setVisible=1 ) - Predicate: N/A - Scenario: frame (Alternative Scenario: container=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testCreateUI
+ Body: {
+        // Create and set up the window.
+        // The JFrame instance.
+        JFrame frame = new JFrame("CoordinatesDemo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // We add the zoom component to the root pane
+        Container container = frame.getRootPane();
+        container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
+
+        // Create the Label to show mouse event information
+        DemoController controller = new DemoController();
+
+        // coordinateArea is the zoomed component
+        CoordinateArea coordinateArea1 = new CoordinateArea(controller);
+
+        // create a ZoomPanel to wrap around it.
+        ZoomPanel zoomPanel1 = new ZoomPanel(coordinateArea1);
+        container.add(zoomPanel1);
+
+        // add label
+        controller.buildUI(container);
+
+        // Display the window.
+        frame.pack();
+        frame.setVisible(true);
+
+        // Dispose the window. This may not be useful in your application.
+        frame.dispose();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setDefaultCloseOperation (Alternative Action: setVisible=1 ) - Predicate: N/A - Scenario: frame (Alternative Scenario: container=1 )
+
+Project: mytcuml
+ Class: GraphNodeTransformerTest
+ Method: testTransform
+ Body: {
+        Node node = transformer.transform(element, document, d2XMITransformer);
+        validateGraphNode(node, element);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: validateGraphNode (Alternative Action: transform=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: DemoTests
+ Method: testCopyActions
+ Body: {
+
+        // copy initialNode
+        CopyInitialNodeAction action1 = new CopyInitialNodeAction(initialNode, clipboard);
+        action1.execute();
+
+        // copy objectFlowState
+        CopyObjectFlowStateAction action2 = new CopyObjectFlowStateAction(objectFlowState, clipboard);
+        action2.execute();
+
+        // copy actionState
+        CopyActionStateAction action3 = new CopyActionStateAction(actionState, clipboard);
+        action3.execute();
+
+        // copy sendSignalActionNode
+        CopySendSignalActionAction action4 = new CopySendSignalActionAction(sendSignalActionNode, clipboard);
+        action4.execute();
+
+        // copy acceptEventActionNode
+        CopyAcceptEventActionAction action5 = new CopyAcceptEventActionAction(acceptEventActionNode, clipboard);
+        action5.execute();
+
+        // copy forkNode
+        CopyForkNodeAction action6 = new CopyForkNodeAction(forkNode, clipboard);
+        action6.execute();
+
+        // copy joinNode
+        CopyJoinNodeAction action7 = new CopyJoinNodeAction(joinNode, clipboard);
+        action7.execute();
+
+        // copy decisionNode
+        CopyDecisionNodeAction action8 = new CopyDecisionNodeAction(decisionNode, clipboard);
+        action8.execute();
+
+        // copy mergeNode
+        CopyMergeNodeAction action9 = new CopyMergeNodeAction(mergeNode, clipboard);
+        action9.execute();
+
+        // copy flowFinalNode
+        CopyFlowFinalNodeAction action10 = new CopyFlowFinalNodeAction(flowFinalNode, clipboard);
+        action10.execute();
+
+        // copy finalNode
+        CopyFinalNodeAction action11 = new CopyFinalNodeAction(finalNode, clipboard);
+        action11.execute();
+
+        // copy transition
+        CopyTransitionAction action12 = new CopyTransitionAction(transition, clipboard);
+        action12.execute();
+
+        // if we want to use system clipboard, just pass in null clipboard
+        action12 = new CopyTransitionAction(transition, null);
+        action12.execute();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: execute (Alternative Action: execute=13 ) - Predicate: N/A - Scenario: action1 (Alternative Scenario: action6=1 )
+
+Project: mytcuml
+ Class: DiagramLinkTransformerTest
+ Method: testTransform
+ Body: {
+        // transform it
+        Node node = transformer.transform(element, document, d2XMITransformer);
+        // check the structure of the XML Node
+        validateDiagramLink(node, element);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: validateDiagramLink (Alternative Action: transform=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: BaseEdgeAccuracyTest
+ Method: testNotifyGraphEdgeChange
+ Body: {
+        GraphNode nameNode = (GraphNode) graphEdge.getContaineds().get(1);
+        GraphNode stereotypeNode = (GraphNode) graphEdge.getContaineds().get(0);
+
+        // Set the new position.
+        Point newNamePoint = new Point();
+        newNamePoint.setX(100.0);
+        newNamePoint.setY(200.0);
+        nameNode.setPosition(newNamePoint);
+
+        // Set the new position.
+        Point newStereotypePoint = new Point();
+        newStereotypePoint.setX(100.0);
+        newStereotypePoint.setY(200.0);
+        stereotypeNode.setPosition(newStereotypePoint);
+
+        baseEdge.notifyGraphEdgeChange();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setX (Alternative Action: setY=2 ) - Predicate: N/A - Scenario: nameNode (Alternative Scenario: stereotypeNode=1 )
+
+Project: mytcuml
+ Class: DemoTest
+ Method: testDemo2
+ Body: {
+        // assuming we have got a Point
+        Point position = new Point();
+
+        // create a new instance
+        GraphEdge edge = new GraphEdge();
+
+        // set the new position
+        edge.setPosition(position);
+
+        // get the current position
+        Point edgePosition = edge.getPosition();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setPosition (Alternative Action: getPosition=1 ) - Predicate: N/A - Scenario: position (Alternative Scenario: edge=1 )
+
+Project: mytcuml
+ Class: DemoTest
+ Method: testDemo3
+ Body: {
+        // assuming we have got two DiagramLinks
+        DiagramLink diagramLink1 = new DiagramLink();
+        DiagramLink diagramLink2 = new DiagramLink();
+
+        // create a new instance
+        GraphEdge edge = new GraphEdge();
+
+        // append element 1 and 2
+        edge.addLink(diagramLink1);
+        edge.addLink(diagramLink2);
+
+        // remove element 1
+        boolean hasBeenRemoved = edge.removeLink(diagramLink1);
+
+        // get a copy of all the elements
+        Collection<DiagramLink> edgeLinks = edge.getLinks();
+
+        // check element 2 for inclusion
+        boolean isIn = edge.containsLink(diagramLink2);
+
+        // count the number of elements
+        int howMany = edge.countLinks();
+
+        // remove all the elements
+        edge.clearLinks();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: addLink (Alternative Action: addLink=2 ) - Predicate: N/A - Scenario: diagramLink1 (Alternative Scenario: hasBeenRemoved=1 )
+
+Project: mytcuml
+ Class: DemoTest
+ Method: testDemo4
+ Body: {
+        // Assuming we have got four BezierPoints
+        BezierPoint bezierPoint1 = new BezierPoint();
+        BezierPoint bezierPoint2 = new BezierPoint();
+        BezierPoint bezierPoint3 = new BezierPoint();
+        BezierPoint bezierPoint4 = new BezierPoint();
+
+        // create a new instance
+        GraphEdge edge = new GraphEdge();
+
+        // append element 2 and 3
+        edge.addWaypoint(bezierPoint2);
+        edge.addWaypoint(bezierPoint3);
+
+        // insert element 4 at position 2
+        edge.addWaypoint(2, bezierPoint4);
+
+        // replace the element at position 0 with element 1
+        edge.setWaypoint(0, bezierPoint1);
+
+        // remove the element at position 1
+        Point removed = edge.removeWaypoint(1);
+
+        // remove the element 4
+        boolean hasBeenRemoved = edge.removeWaypoint(bezierPoint4);
+
+        // get a copy of all the elements
+        List<Point> edgeWaypoints = edge.getWaypoints();
+
+        // check element 1 for inclusion
+        boolean isIn = edge.containsWaypoint(bezierPoint1);
+
+        // get the index of element 1
+        int index = edge.indexOfWaypoint(bezierPoint1);
+
+        // get the number of elements
+        int howMany = edge.countWaypoints();
+
+        // remove all the elements
+        edge.clearWaypoints();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: addWaypoint (Alternative Action: addWaypoint=3 ) - Predicate: N/A - Scenario: bezierPoint1 (Alternative Scenario: edgeWaypoints=1 )
+
+Project: mytcuml
+ Class: ActivityDiagramConversionFacadeAccuracyTests
+ Method: testConvertSemanticModelBridgeWithoutUml1SemanticModelBridge
+ Body: {
+        SemanticModelBridge bridge = new SimpleSemanticModelElement();
+        Method method = ActivityDiagramConversionFacade.class.getDeclaredMethod("convertSemanticModelBridge",
+                SemanticModelBridge.class);
+        method.setAccessible(true);
+        // nothing happen
+        method.invoke(null, bridge);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setAccessible (Alternative Action: setAccessible=1 ) - Predicate: N/A - Scenario: bridge (Alternative Scenario: method=1 )
+
+Project: mytcuml
+ Class: ActivityDiagramConversionFacadeAccuracyTests
+ Method: testConvertSemanticModelBridge
+ Body: {
+        Uml1SemanticModelBridge bridge = new Uml1SemanticModelBridge();
+        bridge.setElement(new ZUMLActivityDiagramImpl());
+        Method method = ActivityDiagramConversionFacade.class.getDeclaredMethod("convertSemanticModelBridge",
+                SemanticModelBridge.class);
+        method.setAccessible(true);
+        method.invoke(null, bridge);
+        checkSemanticModelBridgeElement(bridge);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setElement (Alternative Action: checkSemanticModelBridgeElement=1 ) - Predicate: N/A - Scenario: bridge (Alternative Scenario: method=1 )
+
+Project: mytcuml
+ Class: PolylineTransformerTest
+ Method: testTransform
+ Body: {
+        Node node = transformer.transform(element, document, d2XMITransformer);
+        validatePolyline(node, element);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: validatePolyline (Alternative Action: transform=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: PopupMenuEndingTriggerAccuracyTests
+ Method: testMouseClicked
+ Body: {
+        MouseEvent event = new MouseEvent(UnitTestsHelper.createDirectedAssociation(),
+                MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false, MouseEvent.BUTTON1);
+
+        trigger.mouseClicked(event);
+
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: BezierPointTransformerTest
+ Method: testTransform
+ Body: {
+        Node node = transformer.transform(element, document, d2XMITransformer);
+        validateBezierPoint(node, element);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: validateBezierPoint (Alternative Action: transform=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testDemo2
+ Body: {
+        //4.3.2 Simple attribute management
+        //Manage a simple attribute: EnumerationLiteral.enumeration. All other simple attributes
+        //are managed in this manner and are not shown here.
+
+        // Create sample entity with a simple attribute to manage
+        EnumerationLiteral enumerationLiteral = new EnumerationLiteralImpl();
+
+        // Use setter
+        Enumeration enumeration = new EnumerationImpl();
+        enumerationLiteral.setEnumeration(enumeration);
+
+        // Use getter
+        Enumeration retrievedEnumeration = enumerationLiteral.getEnumeration();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setEnumeration (Alternative Action: getEnumeration=1 ) - Predicate: N/A - Scenario: enumerationLiteral (Alternative Scenario: enumerationLiteral=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testDemo3
+ Body: {
+        //4.3.3 List attribute management
+        //Manage a list attribute: Enumeration.literals.
+
+        // Create sample entity with a list attribute to manage
+        Enumeration enumeration = new EnumerationImpl();
+
+        // Use single-entity add method
+        EnumerationLiteral lit1 = new EnumerationLiteralImpl();
+        enumeration.addLiteral(lit1);
+
+        // There is now one literal in the list
+
+        // Use multiple-entity add method
+        // collection with 5 valid literals
+        Collection<EnumerationLiteral> col1 = new ArrayList<EnumerationLiteral>();
+        EnumerationLiteral value1 = new EnumerationLiteralImpl();
+        EnumerationLiteral value2 = new EnumerationLiteralImpl();
+        EnumerationLiteral value3 = new EnumerationLiteralImpl();
+        EnumerationLiteral value4 = new EnumerationLiteralImpl();
+        EnumerationLiteral value5 = new EnumerationLiteralImpl();
+        col1.add(value1);
+        col1.add(value2);
+        col1.add(value3);
+        col1.add(value4);
+        col1.add(value5);
+
+        enumeration.addLiterals(col1);
+        // There will now be 6 literals in the list
+
+        // Use single-entity, indexed add method, using lit1 again
+        enumeration.addLiteral(2, lit1);
+
+        // There are now 7 literals in the list, with
+        // another lit1 in third spot
+
+        // Use multiple-entity, indexed add method
+        // collection with 2 valid literals
+        Collection<EnumerationLiteral> col2 = new ArrayList<EnumerationLiteral>();
+        col2.add(value2);
+        col2.add(value4);
+        enumeration.addLiterals(3, col2);
+
+        // There will now be 9 literals in the list, with these two
+        // literals in fourth and fifth spots
+
+        // Use contains method to check for literal presence
+        boolean present = enumeration.containsLiteral(lit1);
+
+        // This will be true. It will locate the lit1 reference
+        // in the first spot.
+
+        // Use count method to get the number of literals
+        int count = enumeration.countLiterals();
+
+        // The count will be 9. Duplicates are counted as separate entities.
+
+        // Use single-entity remove method
+        boolean removed = enumeration.removeLiteral(lit1);
+
+        // This will be true, and the list size is 8, regardless
+        // if lit1 has duplicates in this list, which it does, and these
+        // are not removed
+
+        // Use multiple-entity remove method, using above col2
+        boolean altered = enumeration.removeLiterals(col2);
+        // This will be true, and the list size is 6
+
+        // Use clear method
+        enumeration.clearLiterals();
+
+        // The list size is 0 and contains no literals
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: addLiteral (Alternative Action: add=7 ) - Predicate: N/A - Scenario: enumeration (Alternative Scenario: value5=1 )
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testGetFontAccuracy
+ Body: {
+        Font font1 = panel.getFont();
+        // verify
+        System.out.println(font1);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: println (Alternative Action: println=1 ) - Predicate: N/A - Scenario: font1 (Alternative Scenario: font1=1 )
+
+Project: mytcuml
+ Class: AbstractSideMenuPanelTest
+ Method: testMethodSideMenuModelPropertyChange_PropertyChangeEvent
+ Body: {
+        PropertyChangeEvent event = new PropertyChangeEvent(new Object(), "name", new Object(),
+                new Object());
+        ((MyAbstractSideMenuPanel) target).sideMenuModelPropertyChange(event);
+        // nothing happen
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: sideMenuModelPropertyChange (Alternative Action: sideMenuModelPropertyChange=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: Demo
+ Method: testInstantiationDemo
+ Body: {
+        // Create an instance of sample entity
+        Message message = new MessageImpl();
+
+        // Create sample entity with a simple attribute to manage
+        Stimulus conformingStimulus = new MockStimulus();
+
+        // Use setter
+        message.setConformingStimulus(conformingStimulus);
+        // Use getter
+        Stimulus retrievedConformingStimulus = message.getConformingStimulus();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setConformingStimulus (Alternative Action: getConformingStimulus=1 ) - Predicate: N/A - Scenario: message (Alternative Scenario: conformingStimulus=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerUnitTests
+ Method: testMouseClicked_NotRightClickMouseEvent
+ Body: {
+        MouseEvent event = new MouseEvent(edge,
+                MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false, MouseEvent.BUTTON1);
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerUnitTests
+ Method: testMouseClicked_NullEvent
+ Body: {
+        MouseEvent event = null;
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerUnitTests
+ Method: testMouseClicked_NotActiveEdgeEnding
+ Body: {
+        MouseEvent event = new MouseEvent(new JLabel("not ActiveEdgeEnding"),
+                MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false, MouseEvent.BUTTON2);
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: SubsystemNodeContainerTests
+ Method: testPaintComponent
+ Body: {
+        JFrame frame = new JFrame();
+        frame.setVisible(true);
+        Graphics g = frame.getGraphics();
+        nodeContainer.paintComponent(g);
+        frame.setVisible(false);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setVisible (Alternative Action: setVisible=2 ) - Predicate: N/A - Scenario: frame (Alternative Scenario: g=1 )
+
+Project: mytcuml
+ Class: SubsystemNodeContainerTests
+ Method: testNotifyGraphNodeChange_Compartments
+ Body: {
+        GraphElement element = (GraphElement) graphNode.getContaineds().get(0);
+        GraphNode nameNode = (GraphNode) element.getContaineds().get(1);
+        GraphNode stereotypeNode = (GraphNode) element.getContaineds().get(0);
+        GraphNode namespaceNode = (GraphNode) element.getContaineds().get(2);
+
+        // change the size and location name graphNode.
+        nameNode.setPosition(TestHelper.getPoint(5.0, 9.0));
+        nameNode.setSize(TestHelper.getDimension(4.5, 2.3));
+
+        // change the size and location stereotype graphNode.
+        stereotypeNode.setPosition(TestHelper.getPoint(20.0, 30.0));
+        stereotypeNode.setSize(TestHelper.getDimension(5.2, 3.4));
+
+        // change the size and location namespace graphNode.
+        namespaceNode.setPosition(TestHelper.getPoint(19.0, 31.0));
+        namespaceNode.setSize(TestHelper.getDimension(5.2, 6.7));
+
+        nodeContainer.notifyGraphNodeChange("change");
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setPosition (Alternative Action: get=4 ) - Predicate: N/A - Scenario: element (Alternative Scenario: namespaceNode=1 )
+
+Project: mytcuml
+ Class: DirectedAssociationUnitTests
+ Method: testPaintComponent_NotNullGraphics
+ Body: {
+        JFrame frame = new JFrame();
+        frame.setVisible(true);
+        Graphics g = frame.getGraphics();
+
+        frame.add(edgeEnding);
+
+        edgeEnding.paintComponent(g);
+
+        frame.setVisible(false);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setVisible (Alternative Action: setVisible=2 ) - Predicate: N/A - Scenario: frame (Alternative Scenario: g=1 )
+
+Project: mytcuml
+ Class: EditBoxTriggerTest
+ Method: testMouseClicked_WrongSource
+ Body: {
+        MouseEvent event = new MouseEvent(new JButton(), MouseEvent.MOUSE_CLICKED, 1000, MouseEvent.ALT_DOWN_MASK, 0,
+                0, 2, true, MouseEvent.BUTTON1);
+        trigger.mouseClicked(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: EditBoxTriggerTest
+ Method: testMouseClicked
+ Body: {
+        MouseEvent event = new MouseEvent(classNode.getNameCompartment(), MouseEvent.MOUSE_CLICKED, 1000,
+                MouseEvent.ALT_DOWN_MASK, 0, 0, 2, true, MouseEvent.BUTTON1);
+        trigger.mouseClicked(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: getNameCompartment=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: EditBoxTriggerTest
+ Method: testMouseClicked_WrongButton
+ Body: {
+        MouseEvent event = new MouseEvent(classNode, MouseEvent.MOUSE_CLICKED, 1000, MouseEvent.ALT_DOWN_MASK, 0, 0, 2,
+                true, MouseEvent.BUTTON2);
+        trigger.mouseClicked(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckList
+ Body: {
+        List<String> list = new ArrayList<String>();
+        Util.checkList(list, "name");
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: checkList (Alternative Action: checkList=1 ) - Predicate: N/A - Scenario: list (Alternative Scenario: list=1 )
+
+Project: mytcuml
+ Class: BaseEdgeTests
+ Method: testNotifyGraphEdgeChange_Compartments
+ Body: {
+        GraphNode nameNode = (GraphNode) graphEdge.getContaineds().get(1);
+        GraphNode stereotypeNode = (GraphNode) graphEdge.getContaineds().get(0);
+
+        // change the size and location name graphNode.
+        nameNode.setPosition(TestHelper.getPoint(5.0, 9.0));
+        nameNode.setSize(TestHelper.getDimension(4.5, 2.3));
+
+        // change the size and location stereotype graphNode.
+        stereotypeNode.setPosition(TestHelper.getPoint(20.0, 30.0));
+        stereotypeNode.setSize(TestHelper.getDimension(3.4, 5.2));
+
+        baseEdge.notifyGraphEdgeChange();
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setPosition (Alternative Action: getPoint=2 ) - Predicate: N/A - Scenario: nameNode (Alternative Scenario: stereotypeNode=1 )
+
+Project: mytcuml
+ Class: PopupMenuEndingTriggerUnitTests
+ Method: testMouseClicked_NotActiveEdgeEnding
+ Body: {
+        MouseEvent event = new MouseEvent(new JLabel("not ActiveEdgeEnding"),
+                MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false, MouseEvent.BUTTON2);
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: PopupMenuEndingTriggerUnitTests
+ Method: testMouseClicked_NotRightClickMouseEvent
+ Body: {
+        MouseEvent event = new MouseEvent(UnitTestsHelper.createDirectedAssociation(),
+                MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false, MouseEvent.BUTTON1);
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: PopupMenuEndingTriggerUnitTests
+ Method: testMouseClicked_NullPopupMenu
+ Body: {
+        DirectedAssociation edgeEnding = UnitTestsHelper.createDirectedAssociation();
+        edgeEnding.setComponentPopupMenu(null);
+
+        MouseEvent event = new MouseEvent(edgeEnding,
+                MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false, MouseEvent.BUTTON2);
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setComponentPopupMenu (Alternative Action: setComponentPopupMenu=1 ) - Predicate: N/A - Scenario: edgeEnding (Alternative Scenario: edgeEnding=1 )
+
+Project: mytcuml
+ Class: PopupMenuEndingTriggerUnitTests
+ Method: testMouseClicked_NullEvent
+ Body: {
+        MouseEvent event = null;
+
+        trigger.mouseClicked(event);
+        //return directly
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: MouseDragHandlerUnitTests
+ Method: testMouseMovedAccuracy
+ Body: {
+        Diagram diagram = new Diagram();
+        Dimension dimension = new Dimension();
+        dimension.setWidth(500.0);
+        dimension.setHeight(500.0);
+        diagram.setSize(dimension);
+
+        Point point = new Point();
+        point.setX(5);
+        point.setY(5);
+        diagram.setPosition(point);
+
+        DiagramViewer viewer = new DiagramViewer();
+        viewer.setNewElementType(Node.class);
+        event = new MouseEvent(viewer.createDiagramView(diagram), 0, 0, 0, 0, 0, 0, true);
+        mdh.mouseMoved(event);
+
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: setWidth (Alternative Action: setY=1 ) - Predicate: N/A - Scenario: diagram (Alternative Scenario: diagram=1 )
+
+Project: mytcuml
+ Class: WayPointMouseHanlerTest
+ Method: testMousePressedMouseEvent_Accuracy
+ Body: {
+        SelectionCorner corner = edge.getWayPoints().get(1);
+        Point point = new Point(250, 100);
+        MouseEvent event = new MouseEvent(corner, MouseEvent.MOUSE_RELEASED, 1000, MouseEvent.ALT_DOWN_MASK, point.x,
+                point.y, 2, true, MouseEvent.BUTTON1);
+        handler.mousePressed(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mousePressed (Alternative Action: get=1 ) - Predicate: N/A - Scenario: corner (Alternative Scenario: corner=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerTest
+ Method: testMouseRightClicked
+ Body: {
+        MouseEvent event = new MouseEvent(classNode, MouseEvent.MOUSE_CLICKED, 1000, MouseEvent.ALT_DOWN_MASK, 0, 0, 1,
+                true, MouseEvent.BUTTON3);
+        trigger.mouseClicked(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerTest
+ Method: testMouseClicked_WrongButton
+ Body: {
+        MouseEvent event = new MouseEvent(classNode, MouseEvent.MOUSE_CLICKED, 1000, MouseEvent.ALT_DOWN_MASK, 0, 0, 1,
+                true, MouseEvent.BUTTON1);
+        trigger.mouseClicked(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )
+
+Project: mytcuml
+ Class: PopupMenuTriggerTest
+ Method: testMouseClicked_WrongSource
+ Body: {
+        MouseEvent event = new MouseEvent(new JButton(), MouseEvent.MOUSE_CLICKED, 1000, MouseEvent.ALT_DOWN_MASK, 0,
+                0, 1, true, MouseEvent.BUTTON3);
+        trigger.mouseClicked(event);
+    }
+ Pattern Name: NoAssertionPattern_AnyLOC - Action: mouseClicked (Alternative Action: mouseClicked=1 ) - Predicate: N/A - Scenario: event (Alternative Scenario: event=1 )

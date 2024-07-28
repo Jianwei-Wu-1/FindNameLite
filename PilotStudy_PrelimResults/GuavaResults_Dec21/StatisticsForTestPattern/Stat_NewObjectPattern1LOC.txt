@@ -1,0 +1,1737 @@
+Project: guava
+ Class: SetsTest
+ Method: testNullPointerExceptions
+ Body: {
+    new NullPointerTester()
+        .setDefault(Enum.class, SomeEnum.A)
+        .setDefault(Class.class, SomeEnum.class) // for newEnumSet
+        .testAllPublicStaticMethods(Sets.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testAllPublicStaticMethods - Predicate: setDefault - Scenario: new NullPointerTester()
+        .setDefault(Enum.class, SomeEnum.A)
+        .setDefault(Class.class, SomeEnum.class)
+
+Project: guava
+ Class: NullPointerTesterTest
+ Method: testConstructor_Ignored_ShouldPass
+ Body: {
+    new NullPointerTester()
+        .ignore(FailOnOneOfTwoConstructors.class.getDeclaredConstructor(String.class))
+        .testAllPublicConstructors(FailOnOneOfTwoConstructors.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testAllPublicConstructors - Predicate: ignore - Scenario: new NullPointerTester()
+        .ignore(FailOnOneOfTwoConstructors.class.getDeclaredConstructor(String.class))
+
+Project: guava
+ Class: RangeTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Range.open(1, 5), Range.range(1, OPEN, 5, OPEN))
+        .addEqualityGroup(Range.greaterThan(2), Range.greaterThan(2))
+        .addEqualityGroup(Range.all(), Range.all())
+        .addEqualityGroup("Phil")
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Range.open(1, 5), Range.range(1, OPEN, 5, OPEN))
+        .addEqualityGroup(Range.greaterThan(2), Range.greaterThan(2))
+        .addEqualityGroup(Range.all(), Range.all())
+        .addEqualityGroup("Phil")
+
+Project: guava
+ Class: RangeTest
+ Method: testEquivalentFactories
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Range.all())
+        .addEqualityGroup(Range.atLeast(1), Range.downTo(1, CLOSED))
+        .addEqualityGroup(Range.greaterThan(1), Range.downTo(1, OPEN))
+        .addEqualityGroup(Range.atMost(7), Range.upTo(7, CLOSED))
+        .addEqualityGroup(Range.lessThan(7), Range.upTo(7, OPEN))
+        .addEqualityGroup(Range.open(1, 7), Range.range(1, OPEN, 7, OPEN))
+        .addEqualityGroup(Range.openClosed(1, 7), Range.range(1, OPEN, 7, CLOSED))
+        .addEqualityGroup(Range.closed(1, 7), Range.range(1, CLOSED, 7, CLOSED))
+        .addEqualityGroup(Range.closedOpen(1, 7), Range.range(1, CLOSED, 7, OPEN))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Range.all())
+        .addEqualityGroup(Range.atLeast(1), Range.downTo(1, CLOSED))
+        .addEqualityGroup(Range.greaterThan(1), Range.downTo(1, OPEN))
+        .addEqualityGroup(Range.atMost(7), Range.upTo(7, CLOSED))
+        .addEqualityGroup(Range.lessThan(7), Range.upTo(7, OPEN))
+        .addEqualityGroup(Range.open(1, 7), Range.range(1, OPEN, 7, OPEN))
+        .addEqualityGroup(Range.openClosed(1, 7), Range.range(1, OPEN, 7, CLOSED))
+        .addEqualityGroup(Range.closed(1, 7), Range.range(1, CLOSED, 7, CLOSED))
+        .addEqualityGroup(Range.closedOpen(1, 7), Range.range(1, CLOSED, 7, OPEN))
+
+Project: guava
+ Class: MoreExecutorsTest
+ Method: testExecutors_nullCheck
+ Body: {
+    new ClassSanityTester()
+        .setDefault(RateLimiter.class, RateLimiter.create(1.0))
+        .forAllPublicStaticMethods(MoreExecutors.class)
+        .thatReturn(Executor.class)
+        .testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: thatReturn - Scenario: new ClassSanityTester()
+        .setDefault(RateLimiter.class, RateLimiter.create(1.0))
+        .forAllPublicStaticMethods(MoreExecutors.class)
+        .thatReturn(Executor.class)
+
+Project: guava
+ Class: EmptyImmutableTableTest
+ Method: testEqualsObjectNullValues
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(INSTANCE)
+        .addEqualityGroup(ArrayTable.create(ImmutableSet.of('A'), ImmutableSet.of(1)))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(INSTANCE)
+        .addEqualityGroup(ArrayTable.create(ImmutableSet.of('A'), ImmutableSet.of(1)))
+
+Project: guava
+ Class: LinkedListMultimapTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            LinkedListMultimap.create(), LinkedListMultimap.create(), LinkedListMultimap.create(1))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            LinkedListMultimap.create(), LinkedListMultimap.create(), LinkedListMultimap.create(1))
+
+Project: guava
+ Class: ImmutableMapTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableMap.of(), ImmutableMap.builder().build())
+        .addEqualityGroup(ImmutableMap.of(1, 1), ImmutableMap.builder().put(1, 1).build())
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2, 3, 3))
+        .addEqualityGroup(ImmutableMap.of(1, 4, 2, 2, 3, 3))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 4, 3, 3))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2, 3, 4))
+        .addEqualityGroup(ImmutableMap.of(1, 2, 2, 3, 3, 1))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2, 3, 3, 4, 4))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableMap.of(), ImmutableMap.builder().build())
+        .addEqualityGroup(ImmutableMap.of(1, 1), ImmutableMap.builder().put(1, 1).build())
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2, 3, 3))
+        .addEqualityGroup(ImmutableMap.of(1, 4, 2, 2, 3, 3))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 4, 3, 3))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2, 3, 4))
+        .addEqualityGroup(ImmutableMap.of(1, 2, 2, 3, 3, 1))
+        .addEqualityGroup(ImmutableMap.of(1, 1, 2, 2, 3, 3, 4, 4))
+
+Project: guava
+ Class: SynchronizedNavigableMapTest
+ Method: testEquals
+ Body: {
+    create().equals(new HashMap<String, Integer>());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: equals - Predicate: create - Scenario: create()
+
+Project: guava
+ Class: SynchronizedNavigableMapTest
+ Method: testPutAll
+ Body: {
+    create().putAll(new HashMap<String, Integer>());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: putAll - Predicate: create - Scenario: create()
+
+Project: guava
+ Class: UninterruptiblesTest
+ Method: testNull
+ Body: {
+    new NullPointerTester()
+        .setDefault(CountDownLatch.class, new CountDownLatch(0))
+        .setDefault(Semaphore.class, new Semaphore(999))
+        .testAllPublicStaticMethods(Uninterruptibles.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testAllPublicStaticMethods - Predicate: setDefault - Scenario: new NullPointerTester()
+        .setDefault(CountDownLatch.class, new CountDownLatch(0))
+        .setDefault(Semaphore.class, new Semaphore(999))
+
+Project: guava
+ Class: ImmutableSetTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableSet.of(), ImmutableSet.of())
+        .addEqualityGroup(ImmutableSet.of(1), ImmutableSet.of(1), ImmutableSet.of(1, 1))
+        .addEqualityGroup(ImmutableSet.of(1, 2, 1), ImmutableSet.of(2, 1, 1))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableSet.of(), ImmutableSet.of())
+        .addEqualityGroup(ImmutableSet.of(1), ImmutableSet.of(1), ImmutableSet.of(1, 1))
+        .addEqualityGroup(ImmutableSet.of(1, 2, 1), ImmutableSet.of(2, 1, 1))
+
+Project: guava
+ Class: FreshValueGeneratorTest
+ Method: testNulls
+ Body: {
+    new ClassSanityTester()
+        .setDefault(Method.class, FreshValueGeneratorTest.class.getDeclaredMethod("testNulls"))
+        .testNulls(FreshValueGenerator.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: setDefault - Scenario: new ClassSanityTester()
+        .setDefault(Method.class, FreshValueGeneratorTest.class.getDeclaredMethod("testNulls"))
+
+Project: guava
+ Class: BloomFilterTest
+ Method: testEquals_empty
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 100, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 100, 0.02))
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 200, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 200, 0.02))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 100, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 100, 0.02))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 200, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 200, 0.02))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 100, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 100, 0.02))
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 200, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.byteArrayFunnel(), 200, 0.02))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 100, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 100, 0.02))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 200, 0.01))
+        .addEqualityGroup(BloomFilter.create(Funnels.unencodedCharsFunnel(), 200, 0.02))
+
+Project: guava
+ Class: ElementTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(A.field("privateField"), A.field("privateField"))
+        .addEqualityGroup(A.field("publicField"))
+        .addEqualityGroup(A.constructor(), A.constructor())
+        .addEqualityGroup(A.method("privateMethod"), A.method("privateMethod"))
+        .addEqualityGroup(A.method("publicFinalMethod"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(A.field("privateField"), A.field("privateField"))
+        .addEqualityGroup(A.field("publicField"))
+        .addEqualityGroup(A.constructor(), A.constructor())
+        .addEqualityGroup(A.method("privateMethod"), A.method("privateMethod"))
+        .addEqualityGroup(A.method("publicFinalMethod"))
+
+Project: guava
+ Class: JdkFutureAdaptersTest
+ Method: testAdapters_nullChecks
+ Body: {
+    new ClassSanityTester()
+        .forAllPublicStaticMethods(JdkFutureAdapters.class)
+        .thatReturn(Future.class)
+        .testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: thatReturn - Scenario: new ClassSanityTester()
+        .forAllPublicStaticMethods(JdkFutureAdapters.class)
+        .thatReturn(Future.class)
+
+Project: guava
+ Class: ResourcesTest
+ Method: testNulls
+ Body: {
+    new NullPointerTester()
+        .setDefault(URL.class, classfile(ResourcesTest.class))
+        .testAllPublicStaticMethods(Resources.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testAllPublicStaticMethods - Predicate: setDefault - Scenario: new NullPointerTester()
+        .setDefault(URL.class, classfile(ResourcesTest.class))
+
+Project: guava
+ Class: SuppliersTest
+ Method: testOfInstance_equals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Suppliers.ofInstance("foo"), Suppliers.ofInstance("foo"))
+        .addEqualityGroup(Suppliers.ofInstance("bar"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Suppliers.ofInstance("foo"), Suppliers.ofInstance("foo"))
+        .addEqualityGroup(Suppliers.ofInstance("bar"))
+
+Project: guava
+ Class: SuppliersTest
+ Method: testSuppliersNullChecks
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(Suppliers.class).testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(Suppliers.class)
+
+Project: guava
+ Class: SuppliersTest
+ Method: testCompose_equals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Suppliers.compose(Functions.constant(1), Suppliers.ofInstance("foo")),
+            Suppliers.compose(Functions.constant(1), Suppliers.ofInstance("foo")))
+        .addEqualityGroup(Suppliers.compose(Functions.constant(2), Suppliers.ofInstance("foo")))
+        .addEqualityGroup(Suppliers.compose(Functions.constant(1), Suppliers.ofInstance("bar")))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Suppliers.compose(Functions.constant(1), Suppliers.ofInstance("foo")),
+            Suppliers.compose(Functions.constant(1), Suppliers.ofInstance("foo")))
+        .addEqualityGroup(Suppliers.compose(Functions.constant(2), Suppliers.ofInstance("foo")))
+        .addEqualityGroup(Suppliers.compose(Functions.constant(1), Suppliers.ofInstance("bar")))
+
+Project: guava
+ Class: SuppliersTest
+ Method: testSuppliersSerializable
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(Suppliers.class).testSerializable();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testSerializable - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(Suppliers.class)
+
+Project: guava
+ Class: ImmutableMultimapTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableMultimap.of(), ImmutableMultimap.of())
+        .addEqualityGroup(ImmutableMultimap.of(1, "a"), ImmutableMultimap.of(1, "a"))
+        .addEqualityGroup(
+            ImmutableMultimap.of(1, "a", 2, "b"), ImmutableMultimap.of(2, "b", 1, "a"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableMultimap.of(), ImmutableMultimap.of())
+        .addEqualityGroup(ImmutableMultimap.of(1, "a"), ImmutableMultimap.of(1, "a"))
+        .addEqualityGroup(
+            ImmutableMultimap.of(1, "a", 2, "b"), ImmutableMultimap.of(2, "b", 1, "a"))
+
+Project: guava
+ Class: InternetDomainNameTest
+ Method: testEquality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(idn("google.com"), idn("google.com"), idn("GOOGLE.COM"))
+        .addEqualityGroup(idn("www.google.com"))
+        .addEqualityGroup(UNICODE_EXAMPLE)
+        .addEqualityGroup(PUNYCODE_EXAMPLE)
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(idn("google.com"), idn("google.com"), idn("GOOGLE.COM"))
+        .addEqualityGroup(idn("www.google.com"))
+        .addEqualityGroup(UNICODE_EXAMPLE)
+        .addEqualityGroup(PUNYCODE_EXAMPLE)
+
+Project: guava
+ Class: ClassSanityTesterTest
+ Method: testReturnValuesFromAnotherPackageIgnoredForNullTests
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(JdkObjectFactory.class).testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(JdkObjectFactory.class)
+
+Project: guava
+ Class: StatsTest
+ Method: testEqualsAndHashCode
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Stats.of(1.0, 1.0, 5.0, 5.0),
+            Stats.of(1.0, 1.0, 5.0, 5.0),
+            Stats.of(ImmutableList.of(1.0, 1.0, 5.0, 5.0)),
+            Stats.of(ImmutableList.of(1.0, 1.0, 5.0, 5.0).iterator()),
+            SerializableTester.reserialize(Stats.of(1.0, 1.0, 5.0, 5.0)))
+        .addEqualityGroup(Stats.of(1.0, 5.0))
+        .addEqualityGroup(Stats.of(1.0, 5.0, 1.0, 6.0))
+        .addEqualityGroup(Stats.of(2.0, 6.0, 2.0, 6.0))
+        .addEqualityGroup(
+            new Stats(5, -5.5, 55.5, -5.55, 5.55), new Stats(5, -5.5, 55.5, -5.55, 5.55))
+        .addEqualityGroup(new Stats(6, -5.5, 55.5, -5.55, 5.55))
+        .addEqualityGroup(new Stats(5, -5.6, 55.5, -5.55, 5.55))
+        .addEqualityGroup(new Stats(5, -5.5, 55.6, -5.55, 5.55))
+        .addEqualityGroup(new Stats(5, -5.5, 55.5, -5.56, 5.55))
+        .addEqualityGroup(new Stats(5, -5.5, 55.5, -5.55, 5.56))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Stats.of(1.0, 1.0, 5.0, 5.0),
+            Stats.of(1.0, 1.0, 5.0, 5.0),
+            Stats.of(ImmutableList.of(1.0, 1.0, 5.0, 5.0)),
+            Stats.of(ImmutableList.of(1.0, 1.0, 5.0, 5.0).iterator()),
+            SerializableTester.reserialize(Stats.of(1.0, 1.0, 5.0, 5.0)))
+        .addEqualityGroup(Stats.of(1.0, 5.0))
+        .addEqualityGroup(Stats.of(1.0, 5.0, 1.0, 6.0))
+        .addEqualityGroup(Stats.of(2.0, 6.0, 2.0, 6.0))
+        .addEqualityGroup(
+            new Stats(5, -5.5, 55.5, -5.55, 5.55), new Stats(5, -5.5, 55.5, -5.55, 5.55))
+        .addEqualityGroup(new Stats(6, -5.5, 55.5, -5.55, 5.55))
+        .addEqualityGroup(new Stats(5, -5.6, 55.5, -5.55, 5.55))
+        .addEqualityGroup(new Stats(5, -5.5, 55.6, -5.55, 5.55))
+        .addEqualityGroup(new Stats(5, -5.5, 55.5, -5.56, 5.55))
+        .addEqualityGroup(new Stats(5, -5.5, 55.5, -5.55, 5.56))
+
+Project: guava
+ Class: ClassPathTest
+ Method: testClassPathEntries_emptyURLClassLoader_noParent
+ Body: {
+    assertThat(ClassPath.Scanner.getClassPathEntries(new URLClassLoader(new URL[0], null)).keySet())
+        .isEmpty();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: isEmpty - Predicate: assertThat - Scenario: assertThat(ClassPath.Scanner.getClassPathEntries(new URLClassLoader(new URL[0], null)).keySet())
+
+Project: guava
+ Class: ClassPathTest
+ Method: testClassPathEntries_notURLClassLoader_noParent
+ Body: {
+    assertThat(ClassPath.Scanner.getClassPathEntries(new ClassLoader(null) {})).isEmpty();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: isEmpty - Predicate: assertThat - Scenario: assertThat(ClassPath.Scanner.getClassPathEntries(new ClassLoader(null) {}))
+
+Project: guava
+ Class: ClassPathTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(classInfo(ClassPathTest.class), classInfo(ClassPathTest.class))
+        .addEqualityGroup(classInfo(Test.class), classInfo(Test.class, getClass().getClassLoader()))
+        .addEqualityGroup(
+            new ResourceInfo("a/b/c.txt", getClass().getClassLoader()),
+            new ResourceInfo("a/b/c.txt", getClass().getClassLoader()))
+        .addEqualityGroup(new ResourceInfo("x.txt", getClass().getClassLoader()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(classInfo(ClassPathTest.class), classInfo(ClassPathTest.class))
+        .addEqualityGroup(classInfo(Test.class), classInfo(Test.class, getClass().getClassLoader()))
+        .addEqualityGroup(
+            new ResourceInfo("a/b/c.txt", getClass().getClassLoader()),
+            new ResourceInfo("a/b/c.txt", getClass().getClassLoader()))
+        .addEqualityGroup(new ResourceInfo("x.txt", getClass().getClassLoader()))
+
+Project: guava
+ Class: ClassPathTest
+ Method: testGetClassPathFromManifest_nullManifest
+ Body: {
+    assertThat(ClassPath.Scanner.getClassPathFromManifest(new File("some.jar"), null)).isEmpty();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: isEmpty - Predicate: assertThat - Scenario: assertThat(ClassPath.Scanner.getClassPathFromManifest(new File("some.jar"), null))
+
+Project: guava
+ Class: FuturesTest
+ Method: testFutures_nullChecks
+ Body: {
+    new ClassSanityTester()
+        .forAllPublicStaticMethods(Futures.class)
+        .thatReturn(Future.class)
+        .testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: thatReturn - Scenario: new ClassSanityTester()
+        .forAllPublicStaticMethods(Futures.class)
+        .thatReturn(Future.class)
+
+Project: guava
+ Class: OptionalTest
+ Method: testEqualsAndHashCode
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Optional.absent(), reserialize(Optional.absent()))
+        .addEqualityGroup(Optional.of(new Long(5)), reserialize(Optional.of(new Long(5))))
+        .addEqualityGroup(Optional.of(new Long(42)), reserialize(Optional.of(new Long(42))))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Optional.absent(), reserialize(Optional.absent()))
+        .addEqualityGroup(Optional.of(new Long(5)), reserialize(Optional.of(new Long(5))))
+        .addEqualityGroup(Optional.of(new Long(42)), reserialize(Optional.of(new Long(42))))
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testInitialCapacity_large
+ Body: {
+    CacheBuilder.newBuilder().initialCapacity(Integer.MAX_VALUE);
+    // that the builder didn't blow up is enough;
+    // don't actually create this monster!
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: initialCapacity - Predicate: newBuilder - Scenario: CacheBuilder.newBuilder()
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testConcurrencyLevel_large
+ Body: {
+    CacheBuilder.newBuilder().concurrencyLevel(Integer.MAX_VALUE);
+    // don't actually build this beast
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: concurrencyLevel - Predicate: newBuilder - Scenario: CacheBuilder.newBuilder()
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToIdle_small
+ Body: {
+    CacheBuilder.newBuilder().expireAfterAccess(1, NANOSECONDS).build(identityLoader());
+    // well, it didn't blow up.
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: build - Predicate: expireAfterAccess - Scenario: CacheBuilder.newBuilder().expireAfterAccess(1, NANOSECONDS)
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToIdleAndToLive
+ Body: {
+    CacheBuilder.newBuilder()
+        .expireAfterWrite(1, NANOSECONDS)
+        .expireAfterAccess(1, NANOSECONDS)
+        .build(identityLoader());
+    // well, it didn't blow up.
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: build - Predicate: expireAfterAccess - Scenario: CacheBuilder.newBuilder()
+        .expireAfterWrite(1, NANOSECONDS)
+        .expireAfterAccess(1, NANOSECONDS)
+
+Project: guava
+ Class: CacheBuilderTest
+ Method: testTimeToLive_small
+ Body: {
+    CacheBuilder.newBuilder().expireAfterWrite(1, NANOSECONDS).build(identityLoader());
+    // well, it didn't blow up.
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: build - Predicate: expireAfterWrite - Scenario: CacheBuilder.newBuilder().expireAfterWrite(1, NANOSECONDS)
+
+Project: guava
+ Class: FunctionsTest
+ Method: testNulls
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(Functions.class).testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(Functions.class)
+
+Project: guava
+ Class: FunctionsTest
+ Method: testEqualsAndSerializable
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(Functions.class).testEqualsAndSerializable();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEqualsAndSerializable - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(Functions.class)
+
+Project: guava
+ Class: IterablesTest
+ Method: testIterables_nullCheck
+ Body: {
+    new ClassSanityTester()
+        .forAllPublicStaticMethods(Iterables.class)
+        .thatReturn(Iterable.class)
+        .testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: thatReturn - Scenario: new ClassSanityTester()
+        .forAllPublicStaticMethods(Iterables.class)
+        .thatReturn(Iterable.class)
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            TypeToken.of(String.class),
+            TypeToken.of(String.class),
+            new Entry<String, Integer>() {}.keyType(),
+            new Entry<Integer, String>() {}.valueType(),
+            new TypeToken<String>() {},
+            new TypeToken<String>() {})
+        .addEqualityGroup(
+            TypeToken.of(Integer.class),
+            new TypeToken<Integer>() {},
+            new Entry<Integer, String>() {}.keyType(),
+            new Entry<String, Integer>() {}.valueType())
+        .addEqualityGroup(new TypeToken<List<String>>() {}, new TypeToken<List<String>>() {})
+        .addEqualityGroup(new TypeToken<List<?>>() {}, new TypeToken<List<?>>() {})
+        .addEqualityGroup(new TypeToken<Map<A, ?>>() {}, new TypeToken<Map<A, ?>>() {})
+        .addEqualityGroup(new TypeToken<Map<B, ?>>() {})
+        .addEqualityGroup(
+            TypeToken.of(new TypeCapture<A>() {}.capture()),
+            TypeToken.of(new TypeCapture<A>() {}.capture()))
+        .addEqualityGroup(TypeToken.of(new TypeCapture<B>() {}.capture()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            TypeToken.of(String.class),
+            TypeToken.of(String.class),
+            new Entry<String, Integer>() {}.keyType(),
+            new Entry<Integer, String>() {}.valueType(),
+            new TypeToken<String>() {},
+            new TypeToken<String>() {})
+        .addEqualityGroup(
+            TypeToken.of(Integer.class),
+            new TypeToken<Integer>() {},
+            new Entry<Integer, String>() {}.keyType(),
+            new Entry<String, Integer>() {}.valueType())
+        .addEqualityGroup(new TypeToken<List<String>>() {}, new TypeToken<List<String>>() {})
+        .addEqualityGroup(new TypeToken<List<?>>() {}, new TypeToken<List<?>>() {})
+        .addEqualityGroup(new TypeToken<Map<A, ?>>() {}, new TypeToken<Map<A, ?>>() {})
+        .addEqualityGroup(new TypeToken<Map<B, ?>>() {})
+        .addEqualityGroup(
+            TypeToken.of(new TypeCapture<A>() {}.capture()),
+            TypeToken.of(new TypeCapture<A>() {}.capture()))
+        .addEqualityGroup(TypeToken.of(new TypeCapture<B>() {}.capture()))
+
+Project: guava
+ Class: ImmutableDoubleArrayTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableDoubleArray.of())
+        .addEqualityGroup(
+            ImmutableDoubleArray.of(1, 2),
+            reserialize(ImmutableDoubleArray.of(1, 2)),
+            ImmutableDoubleArray.of(0, 1, 2, 3).subArray(1, 3))
+        .addEqualityGroup(ImmutableDoubleArray.of(1, 3))
+        .addEqualityGroup(ImmutableDoubleArray.of(1, 2, 3))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableDoubleArray.of())
+        .addEqualityGroup(
+            ImmutableDoubleArray.of(1, 2),
+            reserialize(ImmutableDoubleArray.of(1, 2)),
+            ImmutableDoubleArray.of(0, 1, 2, 3).subArray(1, 3))
+        .addEqualityGroup(ImmutableDoubleArray.of(1, 3))
+        .addEqualityGroup(ImmutableDoubleArray.of(1, 2, 3))
+
+Project: guava
+ Class: SynchronizedMapTest
+ Method: testEquals
+ Body: {
+    create().equals(new HashMap<String, Integer>());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: equals - Predicate: create - Scenario: create()
+
+Project: guava
+ Class: SynchronizedMapTest
+ Method: testPutAll
+ Body: {
+    create().putAll(new HashMap<String, Integer>());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: putAll - Predicate: create - Scenario: create()
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testWrap
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            LENGTH_EQUIVALENCE.wrap("hello"),
+            LENGTH_EQUIVALENCE.wrap("hello"),
+            LENGTH_EQUIVALENCE.wrap("world"))
+        .addEqualityGroup(LENGTH_EQUIVALENCE.wrap("hi"), LENGTH_EQUIVALENCE.wrap("yo"))
+        .addEqualityGroup(LENGTH_EQUIVALENCE.wrap(null), LENGTH_EQUIVALENCE.wrap(null))
+        .addEqualityGroup(Equivalence.equals().wrap("hello"))
+        .addEqualityGroup(Equivalence.equals().wrap(null))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            LENGTH_EQUIVALENCE.wrap("hello"),
+            LENGTH_EQUIVALENCE.wrap("hello"),
+            LENGTH_EQUIVALENCE.wrap("world"))
+        .addEqualityGroup(LENGTH_EQUIVALENCE.wrap("hi"), LENGTH_EQUIVALENCE.wrap("yo"))
+        .addEqualityGroup(LENGTH_EQUIVALENCE.wrap(null), LENGTH_EQUIVALENCE.wrap(null))
+        .addEqualityGroup(Equivalence.equals().wrap("hello"))
+        .addEqualityGroup(Equivalence.equals().wrap(null))
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testPairwiseEquivalent_equals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Equivalence.equals().pairwise(), Equivalence.equals().pairwise())
+        .addEqualityGroup(Equivalence.identity().pairwise())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Equivalence.equals().pairwise(), Equivalence.equals().pairwise())
+        .addEqualityGroup(Equivalence.identity().pairwise())
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testOnResultOf_equals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Equivalence.identity().onResultOf(Functions.toStringFunction()),
+            Equivalence.identity().onResultOf(Functions.toStringFunction()))
+        .addEqualityGroup(Equivalence.equals().onResultOf(Functions.toStringFunction()))
+        .addEqualityGroup(Equivalence.identity().onResultOf(Functions.identity()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Equivalence.identity().onResultOf(Functions.toStringFunction()),
+            Equivalence.identity().onResultOf(Functions.toStringFunction()))
+        .addEqualityGroup(Equivalence.equals().onResultOf(Functions.toStringFunction()))
+        .addEqualityGroup(Equivalence.identity().onResultOf(Functions.identity()))
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testOnResultOf
+ Body: {
+    EquivalenceTester.of(Equivalence.equals().onResultOf(Functions.toStringFunction()))
+        .addEquivalenceGroup(new IntValue(1), new IntValue(1))
+        .addEquivalenceGroup(new IntValue(2))
+        .test();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: test - Predicate: addEquivalenceGroup - Scenario: EquivalenceTester.of(Equivalence.equals().onResultOf(Functions.toStringFunction()))
+        .addEquivalenceGroup(new IntValue(1), new IntValue(1))
+        .addEquivalenceGroup(new IntValue(2))
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testIdentityEquivalent
+ Body: {
+    EquivalenceTester.of(Equivalence.identity())
+        .addEquivalenceGroup(new Integer(42))
+        .addEquivalenceGroup(new Integer(42))
+        .addEquivalenceGroup("a")
+        .test();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: test - Predicate: addEquivalenceGroup - Scenario: EquivalenceTester.of(Equivalence.identity())
+        .addEquivalenceGroup(new Integer(42))
+        .addEquivalenceGroup(new Integer(42))
+        .addEquivalenceGroup("a")
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Equivalence.equals(), Equivalence.equals())
+        .addEqualityGroup(Equivalence.identity(), Equivalence.identity())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Equivalence.equals(), Equivalence.equals())
+        .addEqualityGroup(Equivalence.identity(), Equivalence.identity())
+
+Project: guava
+ Class: EquivalenceTest
+ Method: testEqualsEquivalent
+ Body: {
+    EquivalenceTester.of(Equivalence.equals())
+        .addEquivalenceGroup(new Integer(42), 42)
+        .addEquivalenceGroup("a")
+        .test();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: test - Predicate: addEquivalenceGroup - Scenario: EquivalenceTester.of(Equivalence.equals())
+        .addEquivalenceGroup(new Integer(42), 42)
+        .addEquivalenceGroup("a")
+
+Project: guava
+ Class: MultisetEqualsTester
+ Method: testEqualsSameContents
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            getMultiset(), getSubjectGenerator().create(getSampleElements().toArray()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            getMultiset(), getSubjectGenerator().create(getSampleElements().toArray()))
+
+Project: guava
+ Class: MultisetEqualsTester
+ Method: testEqualsMultisetWithNullValue
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(getMultiset())
+        .addEqualityGroup(
+            getSubjectGenerator().create(createArrayWithNullElement()),
+            getSubjectGenerator().create(createArrayWithNullElement()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(getMultiset())
+        .addEqualityGroup(
+            getSubjectGenerator().create(createArrayWithNullElement()),
+            getSubjectGenerator().create(createArrayWithNullElement()))
+
+Project: guava
+ Class: MultisetEqualsTester
+ Method: testNotEqualsEmpty
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(getMultiset())
+        .addEqualityGroup(getSubjectGenerator().create())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(getMultiset())
+        .addEqualityGroup(getSubjectGenerator().create())
+
+Project: guava
+ Class: SynchronizedBiMapTest
+ Method: testEquals
+ Body: {
+    create().equals(new HashMap<String, Integer>());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: equals - Predicate: create - Scenario: create()
+
+Project: guava
+ Class: SynchronizedBiMapTest
+ Method: testPutAll
+ Body: {
+    create().putAll(new HashMap<String, Integer>());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: putAll - Predicate: create - Scenario: create()
+
+Project: guava
+ Class: PairedStatsTest
+ Method: testEqualsAndHashCode
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            MANY_VALUES_PAIRED_STATS,
+            DUPLICATE_MANY_VALUES_PAIRED_STATS,
+            SerializableTester.reserialize(MANY_VALUES_PAIRED_STATS))
+        .addEqualityGroup(
+            new PairedStats(MANY_VALUES_STATS_ITERABLE, OTHER_MANY_VALUES_STATS, 1.23),
+            new PairedStats(MANY_VALUES_STATS_VARARGS, OTHER_MANY_VALUES_STATS, 1.23))
+        .addEqualityGroup(
+            new PairedStats(OTHER_MANY_VALUES_STATS, MANY_VALUES_STATS_ITERABLE, 1.23))
+        .addEqualityGroup(
+            new PairedStats(MANY_VALUES_STATS_ITERABLE, MANY_VALUES_STATS_ITERABLE, 1.23))
+        .addEqualityGroup(new PairedStats(TWO_VALUES_STATS, MANY_VALUES_STATS_ITERABLE, 1.23))
+        .addEqualityGroup(new PairedStats(MANY_VALUES_STATS_ITERABLE, ONE_VALUE_STATS, 1.23))
+        .addEqualityGroup(
+            new PairedStats(MANY_VALUES_STATS_ITERABLE, MANY_VALUES_STATS_ITERABLE, 1.234))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            MANY_VALUES_PAIRED_STATS,
+            DUPLICATE_MANY_VALUES_PAIRED_STATS,
+            SerializableTester.reserialize(MANY_VALUES_PAIRED_STATS))
+        .addEqualityGroup(
+            new PairedStats(MANY_VALUES_STATS_ITERABLE, OTHER_MANY_VALUES_STATS, 1.23),
+            new PairedStats(MANY_VALUES_STATS_VARARGS, OTHER_MANY_VALUES_STATS, 1.23))
+        .addEqualityGroup(
+            new PairedStats(OTHER_MANY_VALUES_STATS, MANY_VALUES_STATS_ITERABLE, 1.23))
+        .addEqualityGroup(
+            new PairedStats(MANY_VALUES_STATS_ITERABLE, MANY_VALUES_STATS_ITERABLE, 1.23))
+        .addEqualityGroup(new PairedStats(TWO_VALUES_STATS, MANY_VALUES_STATS_ITERABLE, 1.23))
+        .addEqualityGroup(new PairedStats(MANY_VALUES_STATS_ITERABLE, ONE_VALUE_STATS, 1.23))
+        .addEqualityGroup(
+            new PairedStats(MANY_VALUES_STATS_ITERABLE, MANY_VALUES_STATS_ITERABLE, 1.234))
+
+Project: guava
+ Class: RelationshipTesterTest
+ Method: testNulls
+ Body: {
+    new ClassSanityTester()
+        .setDefault(ItemReporter.class, new ItemReporter())
+        .testNulls(RelationshipTester.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: setDefault - Scenario: new ClassSanityTester()
+        .setDefault(ItemReporter.class, new ItemReporter())
+
+Project: guava
+ Class: CollectSpliteratorsTest
+ Method: testFlatMap
+ Body: {
+    SpliteratorTester.of(
+            () ->
+                CollectSpliterators.flatMap(
+                    Arrays.spliterator(new String[] {"abc", "", "de", "f", "g", ""}),
+                    (String str) -> Lists.charactersOf(str).spliterator(),
+                    Spliterator.SIZED | Spliterator.DISTINCT | Spliterator.NONNULL,
+                    7))
+        .expect('a', 'b', 'c', 'd', 'e', 'f', 'g');
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: expect - Predicate: of - Scenario: SpliteratorTester.of(
+            () ->
+                CollectSpliterators.flatMap(
+                    Arrays.spliterator(new String[] {"abc", "", "de", "f", "g", ""}),
+                    (String str) -> Lists.charactersOf(str).spliterator(),
+                    Spliterator.SIZED | Spliterator.DISTINCT | Spliterator.NONNULL,
+                    7))
+
+Project: guava
+ Class: CollectSpliteratorsTest
+ Method: testMap
+ Body: {
+    SpliteratorTester.of(
+            () ->
+                CollectSpliterators.map(
+                    Arrays.spliterator(new String[] {"a", "b", "c", "d", "e"}), Ascii::toUpperCase))
+        .expect("A", "B", "C", "D", "E");
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: expect - Predicate: of - Scenario: SpliteratorTester.of(
+            () ->
+                CollectSpliterators.map(
+                    Arrays.spliterator(new String[] {"a", "b", "c", "d", "e"}), Ascii::toUpperCase))
+
+Project: guava
+ Class: ForwardingWrapperTesterTest
+ Method: testNulls
+ Body: {
+    new NullPointerTester()
+        .setDefault(Class.class, Runnable.class)
+        .testAllPublicInstanceMethods(new ForwardingWrapperTester());
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testAllPublicInstanceMethods - Predicate: setDefault - Scenario: new NullPointerTester()
+        .setDefault(Class.class, Runnable.class)
+
+Project: guava
+ Class: HashingTest
+ Method: testConcatenating_equals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Hashing.concatenating(asList(Hashing.md5())))
+        .addEqualityGroup(Hashing.concatenating(asList(Hashing.murmur3_32())))
+        .addEqualityGroup(
+            Hashing.concatenating(Hashing.md5(), Hashing.md5()),
+            Hashing.concatenating(asList(Hashing.md5(), Hashing.md5())))
+        .addEqualityGroup(
+            Hashing.concatenating(Hashing.murmur3_32(), Hashing.md5()),
+            Hashing.concatenating(asList(Hashing.murmur3_32(), Hashing.md5())))
+        .addEqualityGroup(
+            Hashing.concatenating(Hashing.md5(), Hashing.murmur3_32()),
+            Hashing.concatenating(asList(Hashing.md5(), Hashing.murmur3_32())))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Hashing.concatenating(asList(Hashing.md5())))
+        .addEqualityGroup(Hashing.concatenating(asList(Hashing.murmur3_32())))
+        .addEqualityGroup(
+            Hashing.concatenating(Hashing.md5(), Hashing.md5()),
+            Hashing.concatenating(asList(Hashing.md5(), Hashing.md5())))
+        .addEqualityGroup(
+            Hashing.concatenating(Hashing.murmur3_32(), Hashing.md5()),
+            Hashing.concatenating(asList(Hashing.murmur3_32(), Hashing.md5())))
+        .addEqualityGroup(
+            Hashing.concatenating(Hashing.md5(), Hashing.murmur3_32()),
+            Hashing.concatenating(asList(Hashing.md5(), Hashing.murmur3_32())))
+
+Project: guava
+ Class: EnumBiMapTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            EnumBiMap.create(ImmutableMap.of(Currency.DOLLAR, Country.CANADA)),
+            EnumBiMap.create(ImmutableMap.of(Currency.DOLLAR, Country.CANADA)))
+        .addEqualityGroup(EnumBiMap.create(ImmutableMap.of(Currency.DOLLAR, Country.CHILE)))
+        .addEqualityGroup(EnumBiMap.create(ImmutableMap.of(Currency.FRANC, Country.CANADA)))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            EnumBiMap.create(ImmutableMap.of(Currency.DOLLAR, Country.CANADA)),
+            EnumBiMap.create(ImmutableMap.of(Currency.DOLLAR, Country.CANADA)))
+        .addEqualityGroup(EnumBiMap.create(ImmutableMap.of(Currency.DOLLAR, Country.CHILE)))
+        .addEqualityGroup(EnumBiMap.create(ImmutableMap.of(Currency.FRANC, Country.CANADA)))
+
+Project: guava
+ Class: ImmutableIntArrayTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableIntArray.of())
+        .addEqualityGroup(
+            ImmutableIntArray.of(1, 2),
+            reserialize(ImmutableIntArray.of(1, 2)),
+            ImmutableIntArray.of(0, 1, 2, 3).subArray(1, 3))
+        .addEqualityGroup(ImmutableIntArray.of(1, 3))
+        .addEqualityGroup(ImmutableIntArray.of(1, 2, 3))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableIntArray.of())
+        .addEqualityGroup(
+            ImmutableIntArray.of(1, 2),
+            reserialize(ImmutableIntArray.of(1, 2)),
+            ImmutableIntArray.of(0, 1, 2, 3).subArray(1, 3))
+        .addEqualityGroup(ImmutableIntArray.of(1, 3))
+        .addEqualityGroup(ImmutableIntArray.of(1, 2, 3))
+
+Project: guava
+ Class: HostSpecifierTest
+ Method: testEquality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(spec("1.2.3.4"), spec("1.2.3.4"))
+        .addEqualityGroup(spec("2001:db8::1"), spec("2001:db8::1"), spec("[2001:db8::1]"))
+        .addEqualityGroup(spec("2001:db8::2"))
+        .addEqualityGroup(spec("google.com"), spec("google.com"))
+        .addEqualityGroup(spec("www.google.com"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(spec("1.2.3.4"), spec("1.2.3.4"))
+        .addEqualityGroup(spec("2001:db8::1"), spec("2001:db8::1"), spec("[2001:db8::1]"))
+        .addEqualityGroup(spec("2001:db8::2"))
+        .addEqualityGroup(spec("google.com"), spec("google.com"))
+        .addEqualityGroup(spec("www.google.com"))
+
+Project: guava
+ Class: AbstractFutureTest
+ Method: testToString_misbehaving
+ Body: {
+    assertThat(
+            new AbstractFuture<Object>() {
+              @Override
+              public String pendingToString() {
+                throw new RuntimeException("I'm a misbehaving implementation");
+              }
+            }.toString())
+        .matches(
+            "[^\\[]+\\[status=PENDING, info=\\[Exception thrown from implementation: "
+                + "class java.lang.RuntimeException\\]\\]");
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: matches - Predicate: assertThat - Scenario: assertThat(
+            new AbstractFuture<Object>() {
+              @Override
+              public String pendingToString() {
+                throw new RuntimeException("I'm a misbehaving implementation");
+              }
+            }.toString())
+
+Project: guava
+ Class: AbstractFutureTest
+ Method: testToString_failed
+ Body: {
+    assertThat(Futures.immediateFailedFuture(new RuntimeException("foo")).toString())
+        .matches("[^\\[]+\\[status=FAILURE, cause=\\[java.lang.RuntimeException: foo\\]\\]");
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: matches - Predicate: assertThat - Scenario: assertThat(Futures.immediateFailedFuture(new RuntimeException("foo")).toString())
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testEquals_nonUtf8Charsets
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(MediaType.create("text", "plain"))
+        .addEqualityGroup(MediaType.create("text", "plain").withCharset(UTF_8))
+        .addEqualityGroup(MediaType.create("text", "plain").withCharset(UTF_16))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(MediaType.create("text", "plain"))
+        .addEqualityGroup(MediaType.create("text", "plain").withCharset(UTF_8))
+        .addEqualityGroup(MediaType.create("text", "plain").withCharset(UTF_16))
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            MediaType.create("text", "plain"),
+            MediaType.create("TEXT", "PLAIN"),
+            MediaType.parse("text/plain"),
+            MediaType.parse("TEXT/PLAIN"),
+            MediaType.create("text", "plain").withParameter("a", "1").withoutParameters())
+        .addEqualityGroup(
+            MediaType.create("text", "plain").withCharset(UTF_8),
+            MediaType.create("text", "plain").withParameter("CHARSET", "UTF-8"),
+            MediaType.create("text", "plain")
+                .withParameters(ImmutableMultimap.of("charset", "utf-8")),
+            MediaType.parse("text/plain;charset=utf-8"),
+            MediaType.parse("text/plain; charset=utf-8"),
+            MediaType.parse("text/plain;  charset=utf-8"),
+            MediaType.parse("text/plain; \tcharset=utf-8"),
+            MediaType.parse("text/plain; \r\n\tcharset=utf-8"),
+            MediaType.parse("text/plain; CHARSET=utf-8"),
+            MediaType.parse("text/plain; charset=\"utf-8\""),
+            MediaType.parse("text/plain; charset=\"\\u\\tf-\\8\""),
+            MediaType.parse("text/plain; charset=UTF-8"),
+            MediaType.parse("text/plain ; charset=utf-8"))
+        .addEqualityGroup(MediaType.parse("text/plain; charset=utf-8; charset=utf-8"))
+        .addEqualityGroup(
+            MediaType.create("text", "plain").withParameter("a", "value"),
+            MediaType.create("text", "plain").withParameter("A", "value"))
+        .addEqualityGroup(
+            MediaType.create("text", "plain").withParameter("a", "VALUE"),
+            MediaType.create("text", "plain").withParameter("A", "VALUE"))
+        .addEqualityGroup(
+            MediaType.create("text", "plain")
+                .withParameters(ImmutableListMultimap.of("a", "1", "a", "2")),
+            MediaType.create("text", "plain")
+                .withParameters(ImmutableListMultimap.of("a", "2", "a", "1")))
+        .addEqualityGroup(MediaType.create("text", "csv"))
+        .addEqualityGroup(MediaType.create("application", "atom+xml"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            MediaType.create("text", "plain"),
+            MediaType.create("TEXT", "PLAIN"),
+            MediaType.parse("text/plain"),
+            MediaType.parse("TEXT/PLAIN"),
+            MediaType.create("text", "plain").withParameter("a", "1").withoutParameters())
+        .addEqualityGroup(
+            MediaType.create("text", "plain").withCharset(UTF_8),
+            MediaType.create("text", "plain").withParameter("CHARSET", "UTF-8"),
+            MediaType.create("text", "plain")
+                .withParameters(ImmutableMultimap.of("charset", "utf-8")),
+            MediaType.parse("text/plain;charset=utf-8"),
+            MediaType.parse("text/plain; charset=utf-8"),
+            MediaType.parse("text/plain;  charset=utf-8"),
+            MediaType.parse("text/plain; \tcharset=utf-8"),
+            MediaType.parse("text/plain; \r\n\tcharset=utf-8"),
+            MediaType.parse("text/plain; CHARSET=utf-8"),
+            MediaType.parse("text/plain; charset=\"utf-8\""),
+            MediaType.parse("text/plain; charset=\"\\u\\tf-\\8\""),
+            MediaType.parse("text/plain; charset=UTF-8"),
+            MediaType.parse("text/plain ; charset=utf-8"))
+        .addEqualityGroup(MediaType.parse("text/plain; charset=utf-8; charset=utf-8"))
+        .addEqualityGroup(
+            MediaType.create("text", "plain").withParameter("a", "value"),
+            MediaType.create("text", "plain").withParameter("A", "value"))
+        .addEqualityGroup(
+            MediaType.create("text", "plain").withParameter("a", "VALUE"),
+            MediaType.create("text", "plain").withParameter("A", "VALUE"))
+        .addEqualityGroup(
+            MediaType.create("text", "plain")
+                .withParameters(ImmutableListMultimap.of("a", "1", "a", "2")),
+            MediaType.create("text", "plain")
+                .withParameters(ImmutableListMultimap.of("a", "2", "a", "1")))
+        .addEqualityGroup(MediaType.create("text", "csv"))
+        .addEqualityGroup(MediaType.create("application", "atom+xml"))
+
+Project: guava
+ Class: ImmutableMultisetTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableMultiset.of(), ImmutableMultiset.of())
+        .addEqualityGroup(ImmutableMultiset.of(1), ImmutableMultiset.of(1))
+        .addEqualityGroup(ImmutableMultiset.of(1, 1), ImmutableMultiset.of(1, 1))
+        .addEqualityGroup(ImmutableMultiset.of(1, 2, 1), ImmutableMultiset.of(2, 1, 1))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableMultiset.of(), ImmutableMultiset.of())
+        .addEqualityGroup(ImmutableMultiset.of(1), ImmutableMultiset.of(1))
+        .addEqualityGroup(ImmutableMultiset.of(1, 1), ImmutableMultiset.of(1, 1))
+        .addEqualityGroup(ImmutableMultiset.of(1, 2, 1), ImmutableMultiset.of(2, 1, 1))
+
+Project: guava
+ Class: EqualsTesterTest
+ Method: testEqualityGroups
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(named("foo").addPeers("bar"), named("bar").addPeers("foo"))
+        .addEqualityGroup(named("baz"), named("baz"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(named("foo").addPeers("bar"), named("bar").addPeers("foo"))
+        .addEqualityGroup(named("baz"), named("baz"))
+
+Project: guava
+ Class: FunnelsTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Funnels.byteArrayFunnel())
+        .addEqualityGroup(Funnels.integerFunnel())
+        .addEqualityGroup(Funnels.longFunnel())
+        .addEqualityGroup(Funnels.unencodedCharsFunnel())
+        .addEqualityGroup(Funnels.stringFunnel(Charsets.UTF_8))
+        .addEqualityGroup(Funnels.stringFunnel(Charsets.US_ASCII))
+        .addEqualityGroup(
+            Funnels.sequentialFunnel(Funnels.integerFunnel()),
+            SerializableTester.reserialize(Funnels.sequentialFunnel(Funnels.integerFunnel())))
+        .addEqualityGroup(Funnels.sequentialFunnel(Funnels.longFunnel()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Funnels.byteArrayFunnel())
+        .addEqualityGroup(Funnels.integerFunnel())
+        .addEqualityGroup(Funnels.longFunnel())
+        .addEqualityGroup(Funnels.unencodedCharsFunnel())
+        .addEqualityGroup(Funnels.stringFunnel(Charsets.UTF_8))
+        .addEqualityGroup(Funnels.stringFunnel(Charsets.US_ASCII))
+        .addEqualityGroup(
+            Funnels.sequentialFunnel(Funnels.integerFunnel()),
+            SerializableTester.reserialize(Funnels.sequentialFunnel(Funnels.integerFunnel())))
+        .addEqualityGroup(Funnels.sequentialFunnel(Funnels.longFunnel()))
+
+Project: guava
+ Class: EnumMultisetTest
+ Method: testEquals
+ Body: {
+    new ClassSanityTester()
+        .setDistinctValues(Class.class, Color.class, Gender.class)
+        .setDistinctValues(Enum.class, Color.BLUE, Color.RED)
+        .forAllPublicStaticMethods(EnumMultisetFactory.class)
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester()
+        .setDistinctValues(Class.class, Color.class, Gender.class)
+        .setDistinctValues(Enum.class, Color.BLUE, Color.RED)
+        .forAllPublicStaticMethods(EnumMultisetFactory.class)
+
+Project: guava
+ Class: EnumMultisetTest
+ Method: testNulls
+ Body: {
+    new NullPointerTester()
+        .setDefault(Class.class, Color.class)
+        .setDefault(Iterable.class, EnumSet.allOf(Color.class))
+        .testAllPublicStaticMethods(EnumMultiset.class);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testAllPublicStaticMethods - Predicate: setDefault - Scenario: new NullPointerTester()
+        .setDefault(Class.class, Color.class)
+        .setDefault(Iterable.class, EnumSet.allOf(Color.class))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testSubtypeOf_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.subtypeOf(Integer.class))
+        .addEqualityGroup(Predicates.subtypeOf(Number.class))
+        .addEqualityGroup(Predicates.subtypeOf(Float.class))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.subtypeOf(Integer.class))
+        .addEqualityGroup(Predicates.subtypeOf(Number.class))
+        .addEqualityGroup(Predicates.subtypeOf(Float.class))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAlwaysTrue_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(TRUE, Predicates.alwaysTrue())
+        .addEqualityGroup(isOdd())
+        .addEqualityGroup(Predicates.alwaysFalse())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(TRUE, Predicates.alwaysTrue())
+        .addEqualityGroup(isOdd())
+        .addEqualityGroup(Predicates.alwaysFalse())
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_equalityOneArg
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.or(NEVER_REACHED), Predicates.or(NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.or())
+        .addEqualityGroup(Predicates.and(NEVER_REACHED))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.or(NEVER_REACHED), Predicates.or(NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.or())
+        .addEqualityGroup(Predicates.and(NEVER_REACHED))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_equalityBinary
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.or(FALSE, NEVER_REACHED), Predicates.or(FALSE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(NEVER_REACHED, FALSE))
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.or(FALSE, NEVER_REACHED), Predicates.or(FALSE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(NEVER_REACHED, FALSE))
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsNull_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.isNull(), Predicates.isNull())
+        .addEqualityGroup(Predicates.notNull())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.isNull(), Predicates.isNull())
+        .addEqualityGroup(Predicates.notNull())
+
+Project: guava
+ Class: PredicatesTest
+ Method: testContains_equals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Predicates.contains(Pattern.compile("foo")), Predicates.containsPattern("foo"))
+        .addEqualityGroup(Predicates.contains(Pattern.compile("foo", Pattern.CASE_INSENSITIVE)))
+        .addEqualityGroup(Predicates.containsPattern("bar"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Predicates.contains(Pattern.compile("foo")), Predicates.containsPattern("foo"))
+        .addEqualityGroup(Predicates.contains(Pattern.compile("foo", Pattern.CASE_INSENSITIVE)))
+        .addEqualityGroup(Predicates.containsPattern("bar"))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsEqualTo_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.equalTo(1), Predicates.equalTo(1))
+        .addEqualityGroup(Predicates.equalTo(2))
+        .addEqualityGroup(Predicates.equalTo(null))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.equalTo(1), Predicates.equalTo(1))
+        .addEqualityGroup(Predicates.equalTo(2))
+        .addEqualityGroup(Predicates.equalTo(null))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_equalityTernary
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Predicates.and(TRUE, isOdd(), NEVER_REACHED),
+            Predicates.and(TRUE, isOdd(), NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(isOdd(), NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.and(TRUE))
+        .addEqualityGroup(Predicates.or(TRUE, isOdd(), NEVER_REACHED))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Predicates.and(TRUE, isOdd(), NEVER_REACHED),
+            Predicates.and(TRUE, isOdd(), NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(isOdd(), NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.and(TRUE))
+        .addEqualityGroup(Predicates.or(TRUE, isOdd(), NEVER_REACHED))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testNotNull_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.notNull(), Predicates.notNull())
+        .addEqualityGroup(Predicates.isNull())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.notNull(), Predicates.notNull())
+        .addEqualityGroup(Predicates.isNull())
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_equalityIterable
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Predicates.and(Arrays.asList(TRUE, NEVER_REACHED)),
+            Predicates.and(Arrays.asList(TRUE, NEVER_REACHED)),
+            Predicates.and(TRUE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Predicates.and(Arrays.asList(TRUE, NEVER_REACHED)),
+            Predicates.and(Arrays.asList(TRUE, NEVER_REACHED)),
+            Predicates.and(TRUE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testEqualsAndSerializable
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(Predicates.class).testEqualsAndSerializable();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEqualsAndSerializable - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(Predicates.class)
+
+Project: guava
+ Class: PredicatesTest
+ Method: testNulls
+ Body: {
+    new ClassSanityTester().forAllPublicStaticMethods(Predicates.class).testNulls();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testNulls - Predicate: forAllPublicStaticMethods - Scenario: new ClassSanityTester().forAllPublicStaticMethods(Predicates.class)
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsEqualToNull_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.equalTo(null), Predicates.equalTo(null))
+        .addEqualityGroup(Predicates.equalTo(1))
+        .addEqualityGroup(Predicates.equalTo("null"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.equalTo(null), Predicates.equalTo(null))
+        .addEqualityGroup(Predicates.equalTo(1))
+        .addEqualityGroup(Predicates.equalTo("null"))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_equalityNoArgs
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.and(), Predicates.and())
+        .addEqualityGroup(Predicates.and(FALSE))
+        .addEqualityGroup(Predicates.or())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.and(), Predicates.and())
+        .addEqualityGroup(Predicates.and(FALSE))
+        .addEqualityGroup(Predicates.or())
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_equalityIterable
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Predicates.or(Arrays.asList(FALSE, NEVER_REACHED)),
+            Predicates.or(Arrays.asList(FALSE, NEVER_REACHED)),
+            Predicates.or(FALSE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Predicates.or(Arrays.asList(FALSE, NEVER_REACHED)),
+            Predicates.or(Arrays.asList(FALSE, NEVER_REACHED)),
+            Predicates.or(FALSE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_equalityTernary
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Predicates.or(FALSE, NEVER_REACHED, TRUE), Predicates.or(FALSE, NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED, FALSE))
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED, TRUE))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Predicates.or(FALSE, NEVER_REACHED, TRUE), Predicates.or(FALSE, NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED, FALSE))
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.and(FALSE, NEVER_REACHED, TRUE))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testOr_equalityNoArgs
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.or(), Predicates.or())
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.and())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.or(), Predicates.or())
+        .addEqualityGroup(Predicates.or(TRUE))
+        .addEqualityGroup(Predicates.and())
+
+Project: guava
+ Class: PredicatesTest
+ Method: testIsInstanceOf_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            Predicates.instanceOf(Integer.class), Predicates.instanceOf(Integer.class))
+        .addEqualityGroup(Predicates.instanceOf(Number.class))
+        .addEqualityGroup(Predicates.instanceOf(Float.class))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            Predicates.instanceOf(Integer.class), Predicates.instanceOf(Integer.class))
+        .addEqualityGroup(Predicates.instanceOf(Number.class))
+        .addEqualityGroup(Predicates.instanceOf(Float.class))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_equalityBinary
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.and(TRUE, NEVER_REACHED), Predicates.and(TRUE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.and(TRUE))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.and(TRUE, NEVER_REACHED), Predicates.and(TRUE, NEVER_REACHED))
+        .addEqualityGroup(Predicates.and(NEVER_REACHED, TRUE))
+        .addEqualityGroup(Predicates.and(TRUE))
+        .addEqualityGroup(Predicates.or(TRUE, NEVER_REACHED))
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAlwaysFalse_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(FALSE, Predicates.alwaysFalse())
+        .addEqualityGroup(isOdd())
+        .addEqualityGroup(Predicates.alwaysTrue())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(FALSE, Predicates.alwaysFalse())
+        .addEqualityGroup(isOdd())
+        .addEqualityGroup(Predicates.alwaysTrue())
+
+Project: guava
+ Class: PredicatesTest
+ Method: testNot_equality
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Predicates.not(isOdd()), Predicates.not(isOdd()))
+        .addEqualityGroup(Predicates.not(TRUE))
+        .addEqualityGroup(isOdd())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Predicates.not(isOdd()), Predicates.not(isOdd()))
+        .addEqualityGroup(Predicates.not(TRUE))
+        .addEqualityGroup(isOdd())
+
+Project: guava
+ Class: StringsTest
+ Method: testLenientFormat_badArgumentToString
+ Body: {
+    assertThat(Strings.lenientFormat("boiler %s plate", new ThrowsOnToString()))
+        .matches(
+            "boiler <com\\.google\\.common\\.base\\.StringsTest\\$ThrowsOnToString@[0-9a-f]+ "
+                + "threw java\\.lang\\.UnsupportedOperationException> plate");
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: matches - Predicate: assertThat - Scenario: assertThat(Strings.lenientFormat("boiler %s plate", new ThrowsOnToString()))
+
+Project: guava
+ Class: StringsTest
+ Method: testLenientFormat_badArgumentToString_gwtFriendly
+ Body: {
+    assertThat(Strings.lenientFormat("boiler %s plate", new ThrowsOnToString()))
+        .matches(
+            "boiler <.*> plate");
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: matches - Predicate: assertThat - Scenario: assertThat(Strings.lenientFormat("boiler %s plate", new ThrowsOnToString()))
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testEqualsObject
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(testTable, HashBasedTable.create(testTable))
+        .addEqualityGroup(ImmutableTable.of(), HashBasedTable.create())
+        .addEqualityGroup(HashBasedTable.create(ImmutableTable.of('A', 2, "")))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(testTable, HashBasedTable.create(testTable))
+        .addEqualityGroup(ImmutableTable.of(), HashBasedTable.create())
+        .addEqualityGroup(HashBasedTable.create(ImmutableTable.of('A', 2, "")))
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testEqualsObjectNullValues
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(testTable)
+        .addEqualityGroup(ArrayTable.create(ImmutableSet.of('A'), ImmutableSet.of(1)))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(testTable)
+        .addEqualityGroup(ArrayTable.create(ImmutableSet.of('A'), ImmutableSet.of(1)))
+
+Project: guava
+ Class: MultimapEqualsTester
+ Method: testNotEqualsEmpty
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(multimap())
+        .addEqualityGroup(getSubjectGenerator().create())
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(multimap())
+        .addEqualityGroup(getSubjectGenerator().create())
+
+Project: guava
+ Class: MultimapEqualsTester
+ Method: testEqualsTrue
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(multimap(), getSubjectGenerator().create(getSampleElements().toArray()))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(multimap(), getSubjectGenerator().create(getSampleElements().toArray()))
+
+Project: guava
+ Class: ImmutableLongArrayTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(ImmutableLongArray.of())
+        .addEqualityGroup(
+            ImmutableLongArray.of(1, 2),
+            reserialize(ImmutableLongArray.of(1, 2)),
+            ImmutableLongArray.of(0, 1, 2, 3).subArray(1, 3))
+        .addEqualityGroup(ImmutableLongArray.of(1, 3))
+        .addEqualityGroup(ImmutableLongArray.of(1, 2, 3))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(ImmutableLongArray.of())
+        .addEqualityGroup(
+            ImmutableLongArray.of(1, 2),
+            reserialize(ImmutableLongArray.of(1, 2)),
+            ImmutableLongArray.of(0, 1, 2, 3).subArray(1, 3))
+        .addEqualityGroup(ImmutableLongArray.of(1, 3))
+        .addEqualityGroup(ImmutableLongArray.of(1, 2, 3))
+
+Project: guava
+ Class: InvokableTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(Prepender.constructor(), Prepender.constructor())
+        .addEqualityGroup(Prepender.constructor(String.class, int.class))
+        .addEqualityGroup(Prepender.method("privateMethod"), Prepender.method("privateMethod"))
+        .addEqualityGroup(Prepender.method("privateFinalMethod"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(Prepender.constructor(), Prepender.constructor())
+        .addEqualityGroup(Prepender.constructor(String.class, int.class))
+        .addEqualityGroup(Prepender.method("privateMethod"), Prepender.method("privateMethod"))
+        .addEqualityGroup(Prepender.method("privateFinalMethod"))
+
+Project: guava
+ Class: RemovalNotificationTest
+ Method: testEquals
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(
+            RemovalNotification.create("one", 1, RemovalCause.EXPLICIT),
+            RemovalNotification.create("one", 1, RemovalCause.REPLACED))
+        .addEqualityGroup(RemovalNotification.create("1", 1, RemovalCause.EXPLICIT))
+        .addEqualityGroup(RemovalNotification.create("one", 2, RemovalCause.EXPLICIT))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(
+            RemovalNotification.create("one", 1, RemovalCause.EXPLICIT),
+            RemovalNotification.create("one", 1, RemovalCause.REPLACED))
+        .addEqualityGroup(RemovalNotification.create("1", 1, RemovalCause.EXPLICIT))
+        .addEqualityGroup(RemovalNotification.create("one", 2, RemovalCause.EXPLICIT))
+
+Project: guava
+ Class: CacheBuilderSpecTest
+ Method: testEqualsAndHashCode
+ Body: {
+    new EqualsTester()
+        .addEqualityGroup(parse(""), parse(""))
+        .addEqualityGroup(parse("concurrencyLevel=7"), parse("concurrencyLevel=7"))
+        .addEqualityGroup(parse("concurrencyLevel=15"), parse("concurrencyLevel=15"))
+        .addEqualityGroup(parse("initialCapacity=7"), parse("initialCapacity=7"))
+        .addEqualityGroup(parse("initialCapacity=15"), parse("initialCapacity=15"))
+        .addEqualityGroup(parse("maximumSize=7"), parse("maximumSize=7"))
+        .addEqualityGroup(parse("maximumSize=15"), parse("maximumSize=15"))
+        .addEqualityGroup(parse("maximumWeight=7"), parse("maximumWeight=7"))
+        .addEqualityGroup(parse("maximumWeight=15"), parse("maximumWeight=15"))
+        .addEqualityGroup(parse("expireAfterAccess=60s"), parse("expireAfterAccess=1m"))
+        .addEqualityGroup(parse("expireAfterAccess=60m"), parse("expireAfterAccess=1h"))
+        .addEqualityGroup(parse("expireAfterWrite=60s"), parse("expireAfterWrite=1m"))
+        .addEqualityGroup(parse("expireAfterWrite=60m"), parse("expireAfterWrite=1h"))
+        .addEqualityGroup(parse("weakKeys"), parse("weakKeys"))
+        .addEqualityGroup(parse("softValues"), parse("softValues"))
+        .addEqualityGroup(parse("weakValues"), parse("weakValues"))
+        .addEqualityGroup(parse("recordStats"), parse("recordStats"))
+        .testEquals();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: testEquals - Predicate: addEqualityGroup - Scenario: new EqualsTester()
+        .addEqualityGroup(parse(""), parse(""))
+        .addEqualityGroup(parse("concurrencyLevel=7"), parse("concurrencyLevel=7"))
+        .addEqualityGroup(parse("concurrencyLevel=15"), parse("concurrencyLevel=15"))
+        .addEqualityGroup(parse("initialCapacity=7"), parse("initialCapacity=7"))
+        .addEqualityGroup(parse("initialCapacity=15"), parse("initialCapacity=15"))
+        .addEqualityGroup(parse("maximumSize=7"), parse("maximumSize=7"))
+        .addEqualityGroup(parse("maximumSize=15"), parse("maximumSize=15"))
+        .addEqualityGroup(parse("maximumWeight=7"), parse("maximumWeight=7"))
+        .addEqualityGroup(parse("maximumWeight=15"), parse("maximumWeight=15"))
+        .addEqualityGroup(parse("expireAfterAccess=60s"), parse("expireAfterAccess=1m"))
+        .addEqualityGroup(parse("expireAfterAccess=60m"), parse("expireAfterAccess=1h"))
+        .addEqualityGroup(parse("expireAfterWrite=60s"), parse("expireAfterWrite=1m"))
+        .addEqualityGroup(parse("expireAfterWrite=60m"), parse("expireAfterWrite=1h"))
+        .addEqualityGroup(parse("weakKeys"), parse("weakKeys"))
+        .addEqualityGroup(parse("softValues"), parse("softValues"))
+        .addEqualityGroup(parse("weakValues"), parse("weakValues"))
+        .addEqualityGroup(parse("recordStats"), parse("recordStats"))
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testCopyInto_Set
+ Body: {
+    assertThat(fluent(1, 3, 5).copyInto(Sets.newHashSet(1, 2))).containsExactly(1, 2, 3, 5);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: containsExactly - Predicate: assertThat - Scenario: assertThat(fluent(1, 3, 5).copyInto(Sets.newHashSet(1, 2)))
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testCopyInto_SetAllDuplicates
+ Body: {
+    assertThat(fluent(1, 3, 5).copyInto(Sets.newHashSet(1, 2, 3, 5))).containsExactly(1, 2, 3, 5);
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: containsExactly - Predicate: assertThat - Scenario: assertThat(fluent(1, 3, 5).copyInto(Sets.newHashSet(1, 2, 3, 5)))
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testCopyInto_List
+ Body: {
+    assertThat(fluent(1, 3, 5).copyInto(Lists.newArrayList(1, 2)))
+        .containsExactly(1, 2, 1, 3, 5)
+        .inOrder();
+  }
+ Pattern Name: NewObjectPattern1LOC - Action: inOrder - Predicate: containsExactly - Scenario: assertThat(fluent(1, 3, 5).copyInto(Lists.newArrayList(1, 2)))
+        .containsExactly(1, 2, 1, 3, 5)
+

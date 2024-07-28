@@ -1,0 +1,126 @@
+Project: guava
+ Class: MoreExecutorsTest
+ Method: testDirectExecutorService_awaitTermination_missedSignal
+ Body: {
+    final ExecutorService service = MoreExecutors.newDirectExecutorService();
+    Thread waiter =
+        new Thread() {
+          @Override
+          public void run() {
+            try {
+              service.awaitTermination(1, TimeUnit.DAYS);
+            } catch (InterruptedException e) {
+              return;
+            }
+          }
+        };
+    waiter.start();
+    awaitTimedWaiting(waiter);
+    service.shutdown();
+    Uninterruptibles.joinUninterruptibly(waiter, 10, TimeUnit.SECONDS);
+    if (waiter.isAlive()) {
+      waiter.interrupt();
+      fail("awaitTermination failed to trigger after shutdown()");
+    }
+  }
+ Pattern Name: IfElsePattern_NoElseStatement - Action: interrupt(unmatched) - Predicate: N/A - Scenario: waiter(full matched)
+
+Project: guava
+ Class: CollectionIteratorTester
+ Method: testIterator_removeAffectsBackingCollection
+ Body: {
+    int originalSize = collection.size();
+    Iterator<E> iterator = collection.iterator();
+    Object element = iterator.next();
+    // If it's an Entry, it may become invalid once it's removed from the Map. Copy it.
+    if (element instanceof Entry) {
+      Entry<?, ?> entry = (Entry<?, ?>) element;
+      element = mapEntry(entry.getKey(), entry.getValue());
+    }
+    assertTrue(collection.contains(element)); // sanity check
+    iterator.remove();
+    assertFalse(collection.contains(element));
+    assertEquals(originalSize - 1, collection.size());
+  }
+ Pattern Name: IfElsePattern_NoElseStatement - Action:  - Predicate: N/A - Scenario: element(partial unmatched)
+
+Project: guava
+ Class: CharSourceTester
+ Method: testLengthIfKnown
+ Body: {
+    Optional<Long> lengthIfKnown = source.lengthIfKnown();
+    if (lengthIfKnown.isPresent()) {
+      assertEquals(expected.length(), (long) lengthIfKnown.get());
+    }
+  }
+ Pattern Name: IfElsePattern_NoElseStatement - Action:  - Predicate: N/A - Scenario: lengthIfKnown(partial unmatched)
+
+Project: guava
+ Class: AbstractFutureTest
+ Method: testToString_delayedTimeout
+ Body: {
+    TimedWaiterThread thread =
+        new TimedWaiterThread(new AbstractFuture<Object>() {}, 2, TimeUnit.SECONDS);
+    thread.start();
+    thread.awaitWaiting();
+    thread.suspend();
+    // Sleep for enough time to add 1500 milliseconds of overwait to the get() call.
+    long toWaitMillis = 3500 - TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - thread.startTime);
+    Thread.sleep(toWaitMillis);
+    thread.setPriority(Thread.MAX_PRIORITY);
+    thread.resume();
+    thread.join();
+    // It's possible to race and suspend the thread just before the park call actually takes effect,
+    // causing the thread to be suspended for 3.5 seconds, and then park itself for 2 seconds after
+    // being resumed. To avoid a flake in this scenario, calculate how long that thread actually
+    // waited and assert based on that time. Empirically, the race where the thread ends up waiting
+    // for 5.5 seconds happens about 2% of the time.
+    boolean longWait = TimeUnit.NANOSECONDS.toSeconds(thread.timeSpentBlocked) >= 5;
+    // Count how long it actually took to return; we'll accept any number between the expected delay
+    // and the approximate actual delay, to be robust to variance in thread scheduling.
+    char overWaitNanosFirstDigit =
+        Long.toString(
+                thread.timeSpentBlocked - TimeUnit.MILLISECONDS.toNanos(longWait ? 5000 : 3000))
+            .charAt(0);
+    if (overWaitNanosFirstDigit < '4') {
+      overWaitNanosFirstDigit = '9';
+    }
+    String nanosRegex = "[4-" + overWaitNanosFirstDigit + "][0-9]+";
+    assertWithMessage(
+            "Spent " + thread.timeSpentBlocked + " ns blocked; slept for " + toWaitMillis + " ms")
+        .that(thread.exception)
+        .hasMessageThat()
+        .matches(
+            "Waited 2 seconds \\(plus "
+                + (longWait ? "3" : "1")
+                + " seconds, "
+                + nanosRegex
+                + " nanoseconds delay\\).*");
+  }
+ Pattern Name: IfElsePattern_NoElseStatement - Action: (unmatched) - Predicate: N/A - Scenario: overWaitNanosFirstDigit(partial unmatched)
+
+Project: guava
+ Class: ByteSourceTester
+ Method: testSizeIfKnown
+ Body: {
+    Optional<Long> sizeIfKnown = source.sizeIfKnown();
+    if (sizeIfKnown.isPresent()) {
+      assertEquals(expected.length, (long) sizeIfKnown.get());
+    }
+  }
+ Pattern Name: IfElsePattern_NoElseStatement - Action:  - Predicate: N/A - Scenario: sizeIfKnown(partial unmatched)
+
+Project: guava
+ Class: ByteSourceTester
+ Method: testSlice_constrainedRange
+ Body: {
+    long size = source.read().length;
+    if (size >= 2) {
+      ByteSource sliced = source.slice(1, size - 2);
+      assertEquals(size - 2, sliced.read().length);
+      ByteSource resliced = sliced.slice(0, size - 1);
+      assertTrue(sliced.contentEquals(resliced));
+    }
+  }
+ Pattern Name: IfElsePattern_NoElseStatement - Action:  - Predicate: N/A - Scenario: size(partial unmatched)
+

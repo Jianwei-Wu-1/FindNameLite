@@ -1,0 +1,3 @@
+@Deprecated
+
+package TestPatternSpoon_Deprecated_;

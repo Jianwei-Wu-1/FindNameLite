@@ -1,0 +1,1490 @@
+Project: guava
+ Class: NullPointerTesterTest
+ Method: testVisibility_public
+ Body: {
+    assertFalse(
+        Visibility.PUBLIC.isVisible(VisibilityMethods.class.getDeclaredMethod("privateMethod")));
+    assertFalse(
+        Visibility.PUBLIC.isVisible(
+            VisibilityMethods.class.getDeclaredMethod("packagePrivateMethod")));
+    assertFalse(
+        Visibility.PUBLIC.isVisible(VisibilityMethods.class.getDeclaredMethod("protectedMethod")));
+    assertTrue(
+        Visibility.PUBLIC.isVisible(VisibilityMethods.class.getDeclaredMethod("publicMethod")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isVisible - Predicate: getDeclaredMethod - Scenario: Visibility.PUBLIC
+
+Project: guava
+ Class: NullPointerTesterTest
+ Method: testVisibility_protected
+ Body: {
+    assertFalse(
+        Visibility.PROTECTED.isVisible(VisibilityMethods.class.getDeclaredMethod("privateMethod")));
+    assertFalse(
+        Visibility.PROTECTED.isVisible(
+            VisibilityMethods.class.getDeclaredMethod("packagePrivateMethod")));
+    assertTrue(
+        Visibility.PROTECTED.isVisible(
+            VisibilityMethods.class.getDeclaredMethod("protectedMethod")));
+    assertTrue(
+        Visibility.PROTECTED.isVisible(VisibilityMethods.class.getDeclaredMethod("publicMethod")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isVisible - Predicate: getDeclaredMethod - Scenario: Visibility.PROTECTED
+
+Project: guava
+ Class: NullPointerTesterTest
+ Method: testVisibility_package
+ Body: {
+    assertFalse(
+        Visibility.PACKAGE.isVisible(VisibilityMethods.class.getDeclaredMethod("privateMethod")));
+    assertTrue(
+        Visibility.PACKAGE.isVisible(
+            VisibilityMethods.class.getDeclaredMethod("packagePrivateMethod")));
+    assertTrue(
+        Visibility.PACKAGE.isVisible(VisibilityMethods.class.getDeclaredMethod("protectedMethod")));
+    assertTrue(
+        Visibility.PACKAGE.isVisible(VisibilityMethods.class.getDeclaredMethod("publicMethod")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isVisible - Predicate: getDeclaredMethod - Scenario: Visibility.PACKAGE
+
+Project: guava
+ Class: RangeTest
+ Method: testIsConnected
+ Body: {
+    assertTrue(Range.closed(3, 5).isConnected(Range.open(5, 6)));
+    assertTrue(Range.closed(3, 5).isConnected(Range.openClosed(5, 5)));
+    assertTrue(Range.open(3, 5).isConnected(Range.closed(5, 6)));
+    assertTrue(Range.closed(3, 7).isConnected(Range.open(6, 8)));
+    assertTrue(Range.open(3, 7).isConnected(Range.closed(5, 6)));
+    assertFalse(Range.closed(3, 5).isConnected(Range.closed(7, 8)));
+    assertFalse(Range.closed(3, 5).isConnected(Range.closedOpen(7, 7)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isConnected - Predicate: closedOpen - Scenario: Range.closed(3, 5)
+
+Project: guava
+ Class: MapEntrySetTester
+ Method: testContainsEntryWithNullKeyAbsent
+ Body: {
+    assertFalse(getMap().entrySet().contains(Helpers.mapEntry(null, v0())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: mapEntry - Scenario: getMap().entrySet()
+
+Project: guava
+ Class: MapEntrySetTester
+ Method: testContainsEntryWithNullValueAbsent
+ Body: {
+    assertFalse(getMap().entrySet().contains(Helpers.mapEntry(k0(), null)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: mapEntry - Scenario: getMap().entrySet()
+
+Project: guava
+ Class: CollectionAddAllTester
+ Method: testAddAll_supportedSomePresent
+ Body: {
+    assertTrue(
+        "addAll(somePresent) should return true",
+        collection.addAll(MinimalCollection.of(e3(), e0())));
+    assertTrue("should contain " + e3(), collection.contains(e3()));
+    assertTrue("should contain " + e0(), collection.contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: addAll - Predicate: e0 - Scenario: collection
+
+Project: guava
+ Class: MapEqualsTester
+ Method: testEquals_otherMapWithSameEntries
+ Body: {
+    assertTrue(
+        "A Map should equal any other Map containing the same entries.",
+        getMap().equals(newHashMap(getSampleEntries())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: newHashMap - Scenario: getMap()
+
+Project: guava
+ Class: MapEqualsTester
+ Method: testEquals_list
+ Body: {
+    assertFalse(
+        "A List should never equal a Map.",
+        getMap().equals(Helpers.copyToList(getMap().entrySet())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: copyToList - Scenario: getMap()
+
+Project: guava
+ Class: MapContainsKeyTester
+ Method: testContains_yes
+ Body: {
+    assertTrue("containsKey(present) should return true", getMap().containsKey(k0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: k0 - Scenario: getMap()
+
+Project: guava
+ Class: MapContainsKeyTester
+ Method: testContains_no
+ Body: {
+    assertFalse("containsKey(notPresent) should return false", getMap().containsKey(k3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: k3 - Scenario: getMap()
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testTailMapInclusive
+ Body: {
+    assertTrue(navigableMap.tailMap(a.getKey(), true).containsKey(a.getKey()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: getKey - Scenario: navigableMap.tailMap(a.getKey(), true)
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testTailMapExclusive
+ Body: {
+    assertFalse(navigableMap.tailMap(a.getKey(), false).containsKey(a.getKey()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: getKey - Scenario: navigableMap.tailMap(a.getKey(), false)
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testEmptyMapNearby
+ Body: {
+    assertNull(navigableMap.lowerEntry(k0()));
+    assertNull(navigableMap.lowerKey(k0()));
+    assertNull(navigableMap.floorEntry(k0()));
+    assertNull(navigableMap.floorKey(k0()));
+    assertNull(navigableMap.ceilingEntry(k0()));
+    assertNull(navigableMap.ceilingKey(k0()));
+    assertNull(navigableMap.higherEntry(k0()));
+    assertNull(navigableMap.higherKey(k0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: lowerEntry - Predicate: k0 - Scenario: navigableMap
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testPollFirst
+ Body: {
+    assertEquals(a, navigableMap.pollFirstEntry());
+    assertEquals(entries.subList(1, entries.size()), Helpers.copyToList(navigableMap.entrySet()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: pollFirstEntry - Predicate: size - Scenario: navigableMap
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testHeadMapInclusive
+ Body: {
+    assertTrue(navigableMap.headMap(a.getKey(), true).containsKey(a.getKey()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: getKey - Scenario: navigableMap.headMap(a.getKey(), true)
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testSingletonMapNearby
+ Body: {
+    assertNull(navigableMap.lowerEntry(k0()));
+    assertNull(navigableMap.lowerKey(k0()));
+    assertEquals(a, navigableMap.floorEntry(k0()));
+    assertEquals(a.getKey(), navigableMap.floorKey(k0()));
+    assertEquals(a, navigableMap.ceilingEntry(k0()));
+    assertEquals(a.getKey(), navigableMap.ceilingKey(k0()));
+    assertNull(navigableMap.higherEntry(k0()));
+    assertNull(navigableMap.higherKey(k0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: lowerEntry - Predicate: k0 - Scenario: navigableMap
+
+Project: guava
+ Class: NavigableMapNavigationTester
+ Method: testHeadMapExclusive
+ Body: {
+    assertFalse(navigableMap.headMap(a.getKey(), false).containsKey(a.getKey()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: getKey - Scenario: navigableMap.headMap(a.getKey(), false)
+
+Project: guava
+ Class: BytesTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Bytes.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Bytes.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Bytes.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new byte[] {(byte) 1, (byte) 0, (byte) 0}, Bytes.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Bytes
+
+Project: guava
+ Class: BytesTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Bytes.concat()));
+    assertTrue(Arrays.equals(EMPTY, Bytes.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Bytes.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Bytes.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Bytes.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Bytes.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new byte[] {(byte) 1, (byte) 1, (byte) 1}, Bytes.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new byte[] {(byte) 1, (byte) 2, (byte) 3, (byte) 4}, Bytes.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: SetEqualsTester
+ Method: testEquals_list
+ Body: {
+    assertFalse("A List should never equal a Set.", getSet().equals(Helpers.copyToList(getSet())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: copyToList - Scenario: getSet()
+
+Project: guava
+ Class: SetEqualsTester
+ Method: testEquals_otherSetWithSameElements
+ Body: {
+    assertTrue(
+        "A Set should equal any other Set containing the same elements.",
+        getSet().equals(MinimalSet.from(getSampleElements())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: from - Scenario: getSet()
+
+Project: guava
+ Class: AbstractInvocationHandlerTest
+ Method: testDelegate
+ Body: {
+    assertEquals(LIST1, ImmutableList.copyOf(newDelegatingList(LIST1)));
+    assertEquals(LIST1, ImmutableList.copyOf(newDelegatingListWithEquals(LIST1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: copyOf - Predicate: newDelegatingListWithEquals - Scenario: ImmutableList
+
+Project: guava
+ Class: MultimapContainsValueTester
+ Method: testContainsValueNo
+ Body: {
+    assertFalse(multimap().containsValue(v3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsValue - Predicate: v3 - Scenario: multimap()
+
+Project: guava
+ Class: MultimapContainsValueTester
+ Method: testContainsValueYes
+ Body: {
+    assertTrue(multimap().containsValue(v0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsValue - Predicate: v0 - Scenario: multimap()
+
+Project: guava
+ Class: ResourcesTest
+ Method: testGetResource_relativePath
+ Body: {
+    assertNotNull(Resources.getResource(getClass(), "testdata/i18n.txt"));
+  }
+ Pattern Name: AllAssertions_NMC - Action: getResource - Predicate: getClass - Scenario: Resources
+
+Project: guava
+ Class: FloatsTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Floats.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Floats.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Floats.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new float[] {(float) 1, (float) 0, (float) 0}, Floats.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Floats
+
+Project: guava
+ Class: FloatsTest
+ Method: testMin
+ Body: {
+    assertEquals(LEAST, Floats.min(LEAST));
+    assertEquals(GREATEST, Floats.min(GREATEST));
+    assertEquals(
+        (float) 0,
+        Floats.min((float) 8, (float) 6, (float) 7, (float) 5, (float) 3, (float) 0, (float) 9));
+
+    assertEquals(-0f, Floats.min(-0f, 0f));
+    assertEquals(-0f, Floats.min(0f, -0f));
+    assertEquals(LEAST, Floats.min(NUMBERS));
+    assertTrue(Float.isNaN(Floats.min(VALUES)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: min - Predicate: min - Scenario: Floats
+
+Project: guava
+ Class: FloatsTest
+ Method: testMax
+ Body: {
+    assertEquals(GREATEST, Floats.max(GREATEST));
+    assertEquals(LEAST, Floats.max(LEAST));
+    assertEquals(
+        (float) 9,
+        Floats.max((float) 8, (float) 6, (float) 7, (float) 5, (float) 3, (float) 0, (float) 9));
+
+    assertEquals(0f, Floats.max(-0f, 0f));
+    assertEquals(0f, Floats.max(0f, -0f));
+    assertEquals(GREATEST, Floats.max(NUMBERS));
+    assertTrue(Float.isNaN(Floats.max(VALUES)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: max - Predicate: max - Scenario: Floats
+
+Project: guava
+ Class: FloatsTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Floats.concat()));
+    assertTrue(Arrays.equals(EMPTY, Floats.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Floats.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Floats.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Floats.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Floats.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new float[] {(float) 1, (float) 1, (float) 1}, Floats.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new float[] {(float) 1, (float) 2, (float) 3, (float) 4},
+            Floats.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: MoreFilesTest
+ Method: testGetNameWithoutExtension
+ Body: {
+    assertEquals("", MoreFiles.getNameWithoutExtension(FS.getPath(".txt")));
+    assertEquals("blah", MoreFiles.getNameWithoutExtension(FS.getPath("blah.txt")));
+    assertEquals("blah.", MoreFiles.getNameWithoutExtension(FS.getPath("blah..txt")));
+    assertEquals(".blah", MoreFiles.getNameWithoutExtension(FS.getPath(".blah.txt")));
+    assertEquals("blah", MoreFiles.getNameWithoutExtension(root().resolve("tmp/blah.txt")));
+    assertEquals("blah.tar", MoreFiles.getNameWithoutExtension(FS.getPath("blah.tar.gz")));
+    assertEquals("", MoreFiles.getNameWithoutExtension(root()));
+    assertEquals("", MoreFiles.getNameWithoutExtension(FS.getPath(".")));
+    assertEquals(".", MoreFiles.getNameWithoutExtension(FS.getPath("..")));
+    assertEquals("..", MoreFiles.getNameWithoutExtension(FS.getPath("...")));
+    assertEquals("blah", MoreFiles.getNameWithoutExtension(FS.getPath("blah")));
+    assertEquals("blah", MoreFiles.getNameWithoutExtension(FS.getPath("blah.")));
+    assertEquals(".blah", MoreFiles.getNameWithoutExtension(FS.getPath(".blah.")));
+    assertEquals("blah", MoreFiles.getNameWithoutExtension(root().resolve("foo.bar/blah")));
+    assertEquals("blah", MoreFiles.getNameWithoutExtension(root().resolve("foo/.bar/blah")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: getNameWithoutExtension - Predicate: resolve - Scenario: MoreFiles
+
+Project: guava
+ Class: MoreFilesTest
+ Method: testGetFileExtension
+ Body: {
+    assertEquals("txt", MoreFiles.getFileExtension(FS.getPath(".txt")));
+    assertEquals("txt", MoreFiles.getFileExtension(FS.getPath("blah.txt")));
+    assertEquals("txt", MoreFiles.getFileExtension(FS.getPath("blah..txt")));
+    assertEquals("txt", MoreFiles.getFileExtension(FS.getPath(".blah.txt")));
+    assertEquals("txt", MoreFiles.getFileExtension(root().resolve("tmp/blah.txt")));
+    assertEquals("gz", MoreFiles.getFileExtension(FS.getPath("blah.tar.gz")));
+    assertEquals("", MoreFiles.getFileExtension(root()));
+    assertEquals("", MoreFiles.getFileExtension(FS.getPath(".")));
+    assertEquals("", MoreFiles.getFileExtension(FS.getPath("..")));
+    assertEquals("", MoreFiles.getFileExtension(FS.getPath("...")));
+    assertEquals("", MoreFiles.getFileExtension(FS.getPath("blah")));
+    assertEquals("", MoreFiles.getFileExtension(FS.getPath("blah.")));
+    assertEquals("", MoreFiles.getFileExtension(FS.getPath(".blah.")));
+    assertEquals("", MoreFiles.getFileExtension(root().resolve("foo.bar/blah")));
+    assertEquals("", MoreFiles.getFileExtension(root().resolve("foo/.bar/blah")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: getFileExtension - Predicate: resolve - Scenario: MoreFiles
+
+Project: guava
+ Class: NavigableSetNavigationTester
+ Method: testEmptySetNearby
+ Body: {
+    assertNull(navigableSet.lower(e0()));
+    assertNull(navigableSet.floor(e0()));
+    assertNull(navigableSet.ceiling(e0()));
+    assertNull(navigableSet.higher(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: lower - Predicate: e0 - Scenario: navigableSet
+
+Project: guava
+ Class: NavigableSetNavigationTester
+ Method: testPollFirst
+ Body: {
+    assertEquals(a, navigableSet.pollFirst());
+    assertEquals(values.subList(1, values.size()), Helpers.copyToList(navigableSet));
+  }
+ Pattern Name: AllAssertions_NMC - Action: pollFirst - Predicate: size - Scenario: navigableSet
+
+Project: guava
+ Class: NavigableSetNavigationTester
+ Method: testSingletonSetNearby
+ Body: {
+    assertNull(navigableSet.lower(e0()));
+    assertEquals(a, navigableSet.floor(e0()));
+    assertEquals(a, navigableSet.ceiling(e0()));
+    assertNull(navigableSet.higher(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: lower - Predicate: e0 - Scenario: navigableSet
+
+Project: guava
+ Class: BooleansTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Booleans.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY_FALSE, Booleans.ensureCapacity(ARRAY_FALSE, 0, 1));
+    assertSame(ARRAY_FALSE, Booleans.ensureCapacity(ARRAY_FALSE, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new boolean[] {true, false, false},
+            Booleans.ensureCapacity(new boolean[] {true}, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Booleans
+
+Project: guava
+ Class: BooleansTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Booleans.concat()));
+    assertTrue(Arrays.equals(EMPTY, Booleans.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Booleans.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY_FALSE, Booleans.concat(ARRAY_FALSE)));
+    assertNotSame(ARRAY_FALSE, Booleans.concat(ARRAY_FALSE));
+    assertTrue(Arrays.equals(ARRAY_FALSE, Booleans.concat(EMPTY, ARRAY_FALSE, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new boolean[] {false, false, false},
+            Booleans.concat(ARRAY_FALSE, ARRAY_FALSE, ARRAY_FALSE)));
+    assertTrue(
+        Arrays.equals(
+            new boolean[] {false, false, true}, Booleans.concat(ARRAY_FALSE, ARRAY_FALSE_TRUE)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: OptionalTest
+ Method: testOr_supplier_absent
+ Body: {
+    assertEquals("fallback", Optional.absent().or(Suppliers.ofInstance("fallback")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: or - Predicate: ofInstance - Scenario: Optional.absent()
+
+Project: guava
+ Class: OptionalTest
+ Method: testOr_supplier_present
+ Body: {
+    assertEquals("a", Optional.of("a").or(Suppliers.ofInstance("fallback")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: or - Predicate: ofInstance - Scenario: Optional.of("a")
+
+Project: guava
+ Class: MultisetContainsTester
+ Method: testContainsAllMultisetIgnoresFrequency
+ Body: {
+    assertTrue(getMultiset().containsAll(getSubjectGenerator().create(e0(), e0(), e0())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: create - Scenario: getMultiset()
+
+Project: guava
+ Class: MultisetContainsTester
+ Method: testContainsAllListIgnoresFrequency
+ Body: {
+    assertTrue(getMultiset().containsAll(Arrays.asList(e0(), e0(), e0())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: asList - Scenario: getMultiset()
+
+Project: guava
+ Class: FeatureUtilTest
+ Method: testBuildTesterRequirements_method
+ Body: {
+    assertEquals(
+        FeatureUtil.buildTesterRequirements(
+            ExampleDerivedInterfaceTester.class.getMethod(
+                "testRequiringTwoExplicitDerivedFeatures")),
+        new TesterRequirements(
+            Sets.<Feature<?>>newHashSet(
+                ExampleBaseFeature.BASE_FEATURE_1,
+                ExampleDerivedFeature.DERIVED_FEATURE_1,
+                ExampleDerivedFeature.DERIVED_FEATURE_2),
+            Collections.<Feature<?>>emptySet()));
+    assertEquals(
+        FeatureUtil.buildTesterRequirements(
+            ExampleDerivedInterfaceTester.class.getMethod("testRequiringAllThreeDerivedFeatures")),
+        new TesterRequirements(
+            Sets.<Feature<?>>newHashSet(
+                ExampleBaseFeature.BASE_FEATURE_1,
+                ExampleDerivedFeature.DERIVED_FEATURE_1,
+                ExampleDerivedFeature.DERIVED_FEATURE_2,
+                ExampleDerivedFeature.DERIVED_FEATURE_3),
+            Collections.<Feature<?>>emptySet()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: buildTesterRequirements - Predicate: getMethod - Scenario: FeatureUtil
+
+Project: guava
+ Class: FeatureUtilTest
+ Method: testBuildDeclaredTesterRequirements
+ Body: {
+    assertEquals(
+        FeatureUtil.buildDeclaredTesterRequirements(
+            ExampleDerivedInterfaceTester.class.getMethod(
+                "testRequiringTwoExplicitDerivedFeatures")),
+        new TesterRequirements(
+            FeatureUtil.addImpliedFeatures(
+                Sets.<Feature<?>>newHashSet(
+                    ExampleDerivedFeature.DERIVED_FEATURE_1,
+                    ExampleDerivedFeature.DERIVED_FEATURE_2)),
+            Collections.<Feature<?>>emptySet()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: buildDeclaredTesterRequirements - Predicate: getMethod - Scenario: FeatureUtil
+
+Project: guava
+ Class: Collections2Test
+ Method: testPermutationSetSize
+ Body: {
+    assertPermutationsCount(1, Collections2.permutations(Collections.<Integer>emptyList()));
+    assertPermutationsCount(1, Collections2.permutations(newArrayList(1)));
+    assertPermutationsCount(2, Collections2.permutations(newArrayList(1, 2)));
+    assertPermutationsCount(6, Collections2.permutations(newArrayList(1, 2, 3)));
+    assertPermutationsCount(5040, Collections2.permutations(newArrayList(1, 2, 3, 4, 5, 6, 7)));
+    assertPermutationsCount(40320, Collections2.permutations(newArrayList(1, 2, 3, 4, 5, 6, 7, 8)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: permutations - Predicate: newArrayList - Scenario: Collections2
+
+Project: guava
+ Class: MultisetCountTester
+ Method: testCount_1
+ Body: {
+    assertEquals("multiset.count(present) didn't return 1", 1, getMultiset().count(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: count - Predicate: e0 - Scenario: getMultiset()
+
+Project: guava
+ Class: MultisetCountTester
+ Method: testCount_0
+ Body: {
+    assertEquals("multiset.count(missing) didn't return 0", 0, getMultiset().count(e3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: count - Predicate: e3 - Scenario: getMultiset()
+
+Project: guava
+ Class: ShortsTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Shorts.concat()));
+    assertTrue(Arrays.equals(EMPTY, Shorts.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Shorts.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Shorts.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Shorts.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Shorts.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new short[] {(short) 1, (short) 1, (short) 1}, Shorts.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new short[] {(short) 1, (short) 2, (short) 3, (short) 4},
+            Shorts.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: ShortsTest
+ Method: testToByteArray
+ Body: {
+    assertTrue(Arrays.equals(new byte[] {0x23, 0x45}, Shorts.toByteArray((short) 0x2345)));
+    assertTrue(
+        Arrays.equals(new byte[] {(byte) 0xFE, (byte) 0xDC}, Shorts.toByteArray((short) 0xFEDC)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: toByteArray - Scenario: Arrays
+
+Project: guava
+ Class: ShortsTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Shorts.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Shorts.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Shorts.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new short[] {(short) 1, (short) 0, (short) 0}, Shorts.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Shorts
+
+Project: guava
+ Class: DoublesTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Doubles.concat()));
+    assertTrue(Arrays.equals(EMPTY, Doubles.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Doubles.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Doubles.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Doubles.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Doubles.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new double[] {(double) 1, (double) 1, (double) 1},
+            Doubles.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new double[] {(double) 1, (double) 2, (double) 3, (double) 4},
+            Doubles.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: DoublesTest
+ Method: testMin
+ Body: {
+    assertEquals(LEAST, Doubles.min(LEAST));
+    assertEquals(GREATEST, Doubles.min(GREATEST));
+    assertEquals(
+        (double) 0,
+        Doubles.min(
+            (double) 8, (double) 6, (double) 7, (double) 5, (double) 3, (double) 0, (double) 9));
+
+    assertEquals(-0.0, Doubles.min(-0.0, 0.0));
+    assertEquals(-0.0, Doubles.min(0.0, -0.0));
+    assertEquals(LEAST, Doubles.min(NUMBERS));
+    assertTrue(Double.isNaN(Doubles.min(VALUES)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: min - Predicate: min - Scenario: Doubles
+
+Project: guava
+ Class: DoublesTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Doubles.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Doubles.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Doubles.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new double[] {(double) 1, (double) 0, (double) 0},
+            Doubles.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Doubles
+
+Project: guava
+ Class: DoublesTest
+ Method: testMax
+ Body: {
+    assertEquals(LEAST, Doubles.max(LEAST));
+    assertEquals(GREATEST, Doubles.max(GREATEST));
+    assertEquals(
+        (double) 9,
+        Doubles.max(
+            (double) 8, (double) 6, (double) 7, (double) 5, (double) 3, (double) 0, (double) 9));
+
+    assertEquals(0.0, Doubles.max(-0.0, 0.0));
+    assertEquals(0.0, Doubles.max(0.0, -0.0));
+    assertEquals(GREATEST, Doubles.max(NUMBERS));
+    assertTrue(Double.isNaN(Doubles.max(VALUES)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: max - Predicate: max - Scenario: Doubles
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testAssertSubtypeTokenBeforeSupertypeToken_oneType
+ Body: {
+    assertSubtypeTokenBeforeSupertypeToken(ImmutableList.of(TypeToken.of(String.class)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: of - Scenario: ImmutableList
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testAssertSubtypeTokenBeforeSupertypeToken_subtypeFirst
+ Body: {
+    assertSubtypeTokenBeforeSupertypeToken(
+        ImmutableList.of(TypeToken.of(String.class), TypeToken.of(CharSequence.class)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: of - Scenario: ImmutableList
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testisSupertypeOf_typeVariable
+ Body: {
+    assertAssignable(
+        TypeToken.of(new TypeCapture<N1>() {}.capture()),
+        TypeToken.of(new TypeCapture<N1>() {}.capture()));
+    assertNotAssignable(new TypeToken<List<N11>>() {}, new TypeToken<List<N1>>() {});
+    assertNotAssignable(
+        new TypeToken<Number>() {}, TypeToken.of(new TypeCapture<N1>() {}.capture()));
+    assertAssignable(
+        TypeToken.of(new TypeCapture<N11>() {}.capture()),
+        TypeToken.of(new TypeCapture<N1>() {}.capture()));
+    assertNotAssignable(
+        TypeToken.of(new TypeCapture<N2>() {}.capture()),
+        TypeToken.of(new TypeCapture<N1>() {}.capture()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: capture - Scenario: TypeToken
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testAssignableParameterizedTypeToObject
+ Body: {
+    assertTrue(
+        TypeToken.of(Object.class).isSupertypeOf(TypeToken.of(new TypeCapture<T>() {}.capture())));
+    assertFalse(
+        TypeToken.of(int.class).isSupertypeOf(TypeToken.of(new TypeCapture<T>() {}.capture())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isSupertypeOf - Predicate: of - Scenario: TypeToken.of(Object.class)
+
+Project: guava
+ Class: TypeTokenTest
+ Method: testisSupertypeOf_recursiveTypeVariableBounds
+ Body: {
+    assertAssignable(
+        TypeToken.of(new TypeCapture<L>() {}.capture()),
+        TypeToken.of(new TypeCapture<L>() {}.capture()));
+    assertNotAssignable(
+        TypeToken.of(new TypeCapture<R>() {}.capture()),
+        TypeToken.of(new TypeCapture<L>() {}.capture()));
+    assertAssignable(TypeToken.of(new TypeCapture<L>() {}.capture()), new TypeToken<List<R>>() {});
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: capture - Scenario: TypeToken
+
+Project: guava
+ Class: CharsTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Chars.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Chars.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Chars.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new char[] {(char) 1, (char) 0, (char) 0}, Chars.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Chars
+
+Project: guava
+ Class: CharsTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Chars.concat()));
+    assertTrue(Arrays.equals(EMPTY, Chars.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Chars.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Chars.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Chars.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Chars.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new char[] {(char) 1, (char) 1, (char) 1}, Chars.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new char[] {(char) 1, (char) 2, (char) 3, (char) 4}, Chars.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testEntrySet_retainAllAbsent
+ Body: {
+    assertTrue(
+        "multiset.entrySet.retainAll(missingEntry) returned true",
+        getMultiset()
+            .entrySet()
+            .retainAll(Collections.singleton(Multisets.immutableEntry(e0(), 2))));
+    assertFalse(
+        "multiset contains element after retaining a different entry",
+        getMultiset().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: retainAll - Predicate: e0 - Scenario: getMultiset()
+            .entrySet()
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testEntrySet_removeAbsent
+ Body: {
+    assertFalse(
+        "multiset.entrySet.remove(missingEntry) returned true",
+        getMultiset().entrySet().remove(Multisets.immutableEntry(e0(), 2)));
+    assertTrue(
+        "multiset didn't contain element after removing a missing entry",
+        getMultiset().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: remove - Predicate: e0 - Scenario: getMultiset().entrySet()
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testEntrySet_retainAllPresent
+ Body: {
+    assertFalse(
+        "multiset.entrySet.retainAll(presentEntry) returned false",
+        getMultiset()
+            .entrySet()
+            .retainAll(Collections.singleton(Multisets.immutableEntry(e0(), 1))));
+    assertTrue(
+        "multiset doesn't contains element after retaining its entry",
+        getMultiset().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: retainAll - Predicate: e0 - Scenario: getMultiset()
+            .entrySet()
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testEntrySet_removeAllAbsent
+ Body: {
+    assertFalse(
+        "multiset.entrySet.remove(missingEntry) returned true",
+        getMultiset()
+            .entrySet()
+            .removeAll(Collections.singleton(Multisets.immutableEntry(e0(), 2))));
+    assertTrue(
+        "multiset didn't contain element after removing a missing entry",
+        getMultiset().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: removeAll - Predicate: e0 - Scenario: getMultiset()
+            .entrySet()
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testEntrySet_removePresent
+ Body: {
+    assertTrue(
+        "multiset.entrySet.remove(presentEntry) returned false",
+        getMultiset().entrySet().remove(Multisets.immutableEntry(e0(), 1)));
+    assertFalse("multiset contains element after removing its entry", getMultiset().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: remove - Predicate: e0 - Scenario: getMultiset().entrySet()
+
+Project: guava
+ Class: MultisetEntrySetTester
+ Method: testEntrySet_removeAllPresent
+ Body: {
+    assertTrue(
+        "multiset.entrySet.removeAll(presentEntry) returned false",
+        getMultiset()
+            .entrySet()
+            .removeAll(Collections.singleton(Multisets.immutableEntry(e0(), 1))));
+    assertFalse("multiset contains element after removing its entry", getMultiset().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: removeAll - Predicate: e0 - Scenario: getMultiset()
+            .entrySet()
+
+Project: guava
+ Class: MultimapContainsKeyTester
+ Method: testContainsKeyYes
+ Body: {
+    assertTrue(multimap().containsKey(k0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: k0 - Scenario: multimap()
+
+Project: guava
+ Class: MultimapContainsKeyTester
+ Method: testContainsKeyNo
+ Body: {
+    assertFalse(multimap().containsKey(k3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: k3 - Scenario: multimap()
+
+Project: guava
+ Class: MultimapContainsEntryTester
+ Method: testContainsEntryYes
+ Body: {
+    assertTrue(multimap().containsEntry(k0(), v0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsEntry - Predicate: k0 - Scenario: multimap()
+
+Project: guava
+ Class: MultimapContainsEntryTester
+ Method: testContainsEntryNo
+ Body: {
+    assertFalse(multimap().containsEntry(k3(), v3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsEntry - Predicate: k3 - Scenario: multimap()
+
+Project: guava
+ Class: MultimapEntriesTester
+ Method: testContainsEntryWithNullKeyAbsent
+ Body: {
+    assertFalse(multimap().entries().contains(Helpers.mapEntry(null, v0())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: mapEntry - Scenario: multimap().entries()
+
+Project: guava
+ Class: MultimapEntriesTester
+ Method: testContainsEntryWithNullValueAbsent
+ Body: {
+    assertFalse(multimap().entries().contains(Helpers.mapEntry(k0(), null)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: mapEntry - Scenario: multimap().entries()
+
+Project: guava
+ Class: CollectionContainsTester
+ Method: testContains_no
+ Body: {
+    assertFalse("contains(notPresent) should return false", collection.contains(e3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: e3 - Scenario: collection
+
+Project: guava
+ Class: CollectionContainsTester
+ Method: testContains_yes
+ Body: {
+    assertTrue("contains(present) should return true", collection.contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: e0 - Scenario: collection
+
+Project: guava
+ Class: MediaTypeTest
+ Method: testIs
+ Body: {
+    assertTrue(PLAIN_TEXT_UTF_8.is(ANY_TYPE));
+    assertTrue(JPEG.is(ANY_TYPE));
+    assertTrue(ANY_TEXT_TYPE.is(ANY_TYPE));
+    assertTrue(PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE));
+    assertTrue(PLAIN_TEXT_UTF_8.withoutParameters().is(ANY_TEXT_TYPE));
+    assertFalse(JPEG.is(ANY_TEXT_TYPE));
+    assertTrue(PLAIN_TEXT_UTF_8.is(PLAIN_TEXT_UTF_8));
+    assertTrue(PLAIN_TEXT_UTF_8.is(PLAIN_TEXT_UTF_8.withoutParameters()));
+    assertFalse(PLAIN_TEXT_UTF_8.withoutParameters().is(PLAIN_TEXT_UTF_8));
+    assertFalse(PLAIN_TEXT_UTF_8.is(HTML_UTF_8));
+    assertFalse(PLAIN_TEXT_UTF_8.withParameter("charset", "UTF-16").is(PLAIN_TEXT_UTF_8));
+    assertFalse(PLAIN_TEXT_UTF_8.is(PLAIN_TEXT_UTF_8.withParameter("charset", "UTF-16")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: is - Predicate: withParameter - Scenario: PLAIN_TEXT_UTF_8
+
+Project: guava
+ Class: ComparatorsTest
+ Method: testIsInOrder
+ Body: {
+    assertFalse(Comparators.isInOrder(asList(5, 3, 0, 9), Ordering.natural()));
+    assertFalse(Comparators.isInOrder(asList(0, 5, 3, 9), Ordering.natural()));
+    assertTrue(Comparators.isInOrder(asList(0, 3, 5, 9), Ordering.natural()));
+    assertTrue(Comparators.isInOrder(asList(0, 0, 3, 3), Ordering.natural()));
+    assertTrue(Comparators.isInOrder(asList(0, 3), Ordering.natural()));
+    assertTrue(Comparators.isInOrder(Collections.singleton(1), Ordering.natural()));
+    assertTrue(Comparators.isInOrder(Collections.<Integer>emptyList(), Ordering.natural()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isInOrder - Predicate: emptyList - Scenario: Comparators
+
+Project: guava
+ Class: ComparatorsTest
+ Method: testIsInStrictOrder
+ Body: {
+    assertFalse(Comparators.isInStrictOrder(asList(5, 3, 0, 9), Ordering.natural()));
+    assertFalse(Comparators.isInStrictOrder(asList(0, 5, 3, 9), Ordering.natural()));
+    assertTrue(Comparators.isInStrictOrder(asList(0, 3, 5, 9), Ordering.natural()));
+    assertFalse(Comparators.isInStrictOrder(asList(0, 0, 3, 3), Ordering.natural()));
+    assertTrue(Comparators.isInStrictOrder(asList(0, 3), Ordering.natural()));
+    assertTrue(Comparators.isInStrictOrder(Collections.singleton(1), Ordering.natural()));
+    assertTrue(Comparators.isInStrictOrder(Collections.<Integer>emptyList(), Ordering.natural()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isInStrictOrder - Predicate: emptyList - Scenario: Comparators
+
+Project: guava
+ Class: LongsTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Longs.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Longs.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Longs.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(
+            new long[] {(long) 1, (long) 0, (long) 0}, Longs.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Longs
+
+Project: guava
+ Class: LongsTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Longs.concat()));
+    assertTrue(Arrays.equals(EMPTY, Longs.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Longs.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Longs.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Longs.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Longs.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(
+            new long[] {(long) 1, (long) 1, (long) 1}, Longs.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new long[] {(long) 1, (long) 2, (long) 3, (long) 4}, Longs.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: OrderingTest
+ Method: testIsStrictlyOrdered
+ Body: {
+    assertFalse(numberOrdering.isStrictlyOrdered(asList(5, 3, 0, 9)));
+    assertFalse(numberOrdering.isStrictlyOrdered(asList(0, 5, 3, 9)));
+    assertTrue(numberOrdering.isStrictlyOrdered(asList(0, 3, 5, 9)));
+    assertFalse(numberOrdering.isStrictlyOrdered(asList(0, 0, 3, 3)));
+    assertTrue(numberOrdering.isStrictlyOrdered(asList(0, 3)));
+    assertTrue(numberOrdering.isStrictlyOrdered(Collections.singleton(1)));
+    assertTrue(numberOrdering.isStrictlyOrdered(Collections.<Integer>emptyList()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isStrictlyOrdered - Predicate: emptyList - Scenario: numberOrdering
+
+Project: guava
+ Class: OrderingTest
+ Method: testIsOrdered
+ Body: {
+    assertFalse(numberOrdering.isOrdered(asList(5, 3, 0, 9)));
+    assertFalse(numberOrdering.isOrdered(asList(0, 5, 3, 9)));
+    assertTrue(numberOrdering.isOrdered(asList(0, 3, 5, 9)));
+    assertTrue(numberOrdering.isOrdered(asList(0, 0, 3, 3)));
+    assertTrue(numberOrdering.isOrdered(asList(0, 3)));
+    assertTrue(numberOrdering.isOrdered(Collections.singleton(1)));
+    assertTrue(numberOrdering.isOrdered(Collections.<Integer>emptyList()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: isOrdered - Predicate: emptyList - Scenario: numberOrdering
+
+Project: guava
+ Class: TraverserTest
+ Method: forTree_breadthFirstIterable_twoTrees
+ Body: {
+    assertEqualCharNodes(Traverser.forTree(TWO_TREES).breadthFirst(charactersOf("a")), "ab");
+    assertEqualCharNodes(Traverser.forTree(TWO_TREES).breadthFirst(charactersOf("ca")), "cadb");
+  }
+ Pattern Name: AllAssertions_NMC - Action: breadthFirst - Predicate: charactersOf - Scenario: Traverser.forTree(TWO_TREES)
+
+Project: guava
+ Class: TraverserTest
+ Method: forGraph_depthFirstPostOrderIterable_twoTrees
+ Body: {
+    assertEqualCharNodes(
+        Traverser.forGraph(TWO_TREES).depthFirstPostOrder(charactersOf("a")), "ba");
+    assertEqualCharNodes(
+        Traverser.forGraph(TWO_TREES).depthFirstPostOrder(charactersOf("ac")), "badc");
+  }
+ Pattern Name: AllAssertions_NMC - Action: depthFirstPostOrder - Predicate: charactersOf - Scenario: Traverser.forGraph(TWO_TREES)
+
+Project: guava
+ Class: TraverserTest
+ Method: forTree_depthFirstPostOrderIterable_twoTrees
+ Body: {
+    assertEqualCharNodes(Traverser.forTree(TWO_TREES).depthFirstPostOrder(charactersOf("a")), "ba");
+    assertEqualCharNodes(
+        Traverser.forTree(TWO_TREES).depthFirstPostOrder(charactersOf("ca")), "dcba");
+  }
+ Pattern Name: AllAssertions_NMC - Action: depthFirstPostOrder - Predicate: charactersOf - Scenario: Traverser.forTree(TWO_TREES)
+
+Project: guava
+ Class: TraverserTest
+ Method: forTree_depthFirstPreOrderIterable_twoTrees
+ Body: {
+    assertEqualCharNodes(Traverser.forTree(TWO_TREES).depthFirstPreOrder(charactersOf("a")), "ab");
+    assertEqualCharNodes(
+        Traverser.forTree(TWO_TREES).depthFirstPreOrder(charactersOf("ca")), "cdab");
+  }
+ Pattern Name: AllAssertions_NMC - Action: depthFirstPreOrder - Predicate: charactersOf - Scenario: Traverser.forTree(TWO_TREES)
+
+Project: guava
+ Class: TraverserTest
+ Method: forGraph_depthFirstPreOrderIterable_twoTrees
+ Body: {
+    assertEqualCharNodes(Traverser.forGraph(TWO_TREES).depthFirstPreOrder(charactersOf("a")), "ab");
+    assertEqualCharNodes(
+        Traverser.forGraph(TWO_TREES).depthFirstPreOrder(charactersOf("ac")), "abcd");
+  }
+ Pattern Name: AllAssertions_NMC - Action: depthFirstPreOrder - Predicate: charactersOf - Scenario: Traverser.forGraph(TWO_TREES)
+
+Project: guava
+ Class: TraverserTest
+ Method: forGraph_breadthFirstIterable_twoTrees
+ Body: {
+    assertEqualCharNodes(Traverser.forGraph(TWO_TREES).breadthFirst(charactersOf("a")), "ab");
+    assertEqualCharNodes(Traverser.forGraph(TWO_TREES).breadthFirst(charactersOf("ac")), "acbd");
+  }
+ Pattern Name: AllAssertions_NMC - Action: breadthFirst - Predicate: charactersOf - Scenario: Traverser.forGraph(TWO_TREES)
+
+Project: guava
+ Class: PredicatesTest
+ Method: testAnd_applyOneArg
+ Body: {
+    assertEvalsLikeOdd(Predicates.and(isOdd()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: and - Predicate: isOdd - Scenario: Predicates
+
+Project: guava
+ Class: PredicatesTest
+ Method: testNot_apply
+ Body: {
+    assertEvalsToTrue(Predicates.not(FALSE));
+    assertEvalsToFalse(Predicates.not(TRUE));
+    assertEvalsLikeOdd(Predicates.not(Predicates.not(isOdd())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: not - Predicate: not - Scenario: Predicates
+
+Project: guava
+ Class: BigIntegerMathTest
+ Method: testConstantSqrt2PrecomputedBits
+ Body: {
+    assertEquals(
+        BigIntegerMath.sqrt(
+            BigInteger.ZERO.setBit(2 * BigIntegerMath.SQRT2_PRECOMPUTE_THRESHOLD + 1), FLOOR),
+        BigIntegerMath.SQRT2_PRECOMPUTED_BITS);
+  }
+ Pattern Name: AllAssertions_NMC - Action: sqrt - Predicate: setBit - Scenario: BigIntegerMath
+
+Project: guava
+ Class: IntsTest
+ Method: testEnsureCapacity
+ Body: {
+    assertSame(EMPTY, Ints.ensureCapacity(EMPTY, 0, 1));
+    assertSame(ARRAY1, Ints.ensureCapacity(ARRAY1, 0, 1));
+    assertSame(ARRAY1, Ints.ensureCapacity(ARRAY1, 1, 1));
+    assertTrue(
+        Arrays.equals(new int[] {(int) 1, (int) 0, (int) 0}, Ints.ensureCapacity(ARRAY1, 2, 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: ensureCapacity - Predicate: ensureCapacity - Scenario: Ints
+
+Project: guava
+ Class: IntsTest
+ Method: testConcat
+ Body: {
+    assertTrue(Arrays.equals(EMPTY, Ints.concat()));
+    assertTrue(Arrays.equals(EMPTY, Ints.concat(EMPTY)));
+    assertTrue(Arrays.equals(EMPTY, Ints.concat(EMPTY, EMPTY, EMPTY)));
+    assertTrue(Arrays.equals(ARRAY1, Ints.concat(ARRAY1)));
+    assertNotSame(ARRAY1, Ints.concat(ARRAY1));
+    assertTrue(Arrays.equals(ARRAY1, Ints.concat(EMPTY, ARRAY1, EMPTY)));
+    assertTrue(
+        Arrays.equals(new int[] {(int) 1, (int) 1, (int) 1}, Ints.concat(ARRAY1, ARRAY1, ARRAY1)));
+    assertTrue(
+        Arrays.equals(
+            new int[] {(int) 1, (int) 2, (int) 3, (int) 4}, Ints.concat(ARRAY1, ARRAY234)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: concat - Scenario: Arrays
+
+Project: guava
+ Class: IntsTest
+ Method: testToByteArray
+ Body: {
+    assertTrue(Arrays.equals(new byte[] {0x12, 0x13, 0x14, 0x15}, Ints.toByteArray(0x12131415)));
+    assertTrue(
+        Arrays.equals(
+            new byte[] {(byte) 0xFF, (byte) 0xEE, (byte) 0xDD, (byte) 0xCC},
+            Ints.toByteArray(0xFFEEDDCC)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: toByteArray - Scenario: Arrays
+
+Project: guava
+ Class: MapContainsValueTester
+ Method: testContains_no
+ Body: {
+    assertFalse("containsValue(notPresent) should return false", getMap().containsValue(v3()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsValue - Predicate: v3 - Scenario: getMap()
+
+Project: guava
+ Class: MapContainsValueTester
+ Method: testContains_yes
+ Body: {
+    assertTrue("containsValue(present) should return true", getMap().containsValue(v0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsValue - Predicate: v0 - Scenario: getMap()
+
+Project: guava
+ Class: Murmur3Hash32Test
+ Method: testSimpleStringUtf8
+ Body: {
+    assertEquals(
+        murmur3_32().hashBytes("ABCDefGHI\u0799".getBytes(Charsets.UTF_8)),
+        murmur3_32().hashString("ABCDefGHI\u0799", Charsets.UTF_8));
+  }
+ Pattern Name: AllAssertions_NMC - Action: hashBytes - Predicate: getBytes - Scenario: murmur3_32()
+
+Project: guava
+ Class: GeneralRangeTest
+ Method: testReverse
+ Body: {
+    assertEquals(GeneralRange.all(ORDERING.reverse()), GeneralRange.all(ORDERING).reverse());
+    assertEquals(
+        GeneralRange.downTo(ORDERING.reverse(), 3, CLOSED),
+        GeneralRange.upTo(ORDERING, 3, CLOSED).reverse());
+    assertEquals(
+        GeneralRange.upTo(ORDERING.reverse(), 3, OPEN),
+        GeneralRange.downTo(ORDERING, 3, OPEN).reverse());
+    assertEquals(
+        GeneralRange.range(ORDERING.reverse(), 5, OPEN, 3, CLOSED),
+        GeneralRange.range(ORDERING, 3, CLOSED, 5, OPEN).reverse());
+  }
+ Pattern Name: AllAssertions_NMC - Action: all - Predicate: reverse - Scenario: GeneralRange
+
+Project: guava
+ Class: GeneralRangeTest
+ Method: testFromRangeAll
+ Body: {
+    assertEquals(GeneralRange.all(Ordering.natural()), GeneralRange.from(Range.all()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: all - Predicate: natural - Scenario: GeneralRange
+
+Project: guava
+ Class: SortedMapNavigationTester
+ Method: testHeadMapExclusive
+ Body: {
+    assertFalse(navigableMap.headMap(a.getKey()).containsKey(a.getKey()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: getKey - Scenario: navigableMap.headMap(a.getKey())
+
+Project: guava
+ Class: SortedMapNavigationTester
+ Method: testTailMapInclusive
+ Body: {
+    assertTrue(navigableMap.tailMap(a.getKey()).containsKey(a.getKey()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsKey - Predicate: getKey - Scenario: navigableMap.tailMap(a.getKey())
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testCellSet
+ Body: {
+    assertEquals(ImmutableSet.of(Tables.immutableCell('a', 1, "blah")), testTable.cellSet());
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: immutableCell - Scenario: ImmutableSet
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testColumnMap
+ Body: {
+    assertEquals(ImmutableMap.of(1, ImmutableMap.of('a', "blah")), testTable.columnMap());
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: of - Scenario: ImmutableMap
+
+Project: guava
+ Class: SingletonImmutableTableTest
+ Method: testRowMap
+ Body: {
+    assertEquals(ImmutableMap.of('a', ImmutableMap.of(1, "blah")), testTable.rowMap());
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: of - Scenario: ImmutableMap
+
+Project: guava
+ Class: MultisetReadsTester
+ Method: testEntrySet_contains_nonentry
+ Body: {
+    assertFalse(
+        "multiset.entrySet() contains a non-entry", getMultiset().entrySet().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: e0 - Scenario: getMultiset().entrySet()
+
+Project: guava
+ Class: MultisetReadsTester
+ Method: testEquals_yes
+ Body: {
+    assertTrue(
+        "multiset doesn't equal a multiset with the same elements",
+        getMultiset().equals(HashMultiset.create(getSampleElements())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: create - Scenario: getMultiset()
+
+Project: guava
+ Class: MultisetReadsTester
+ Method: testElementSet_contains
+ Body: {
+    assertTrue(
+        "multiset.elementSet().contains(present) returned false",
+        getMultiset().elementSet().contains(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: e0 - Scenario: getMultiset().elementSet()
+
+Project: guava
+ Class: MultisetReadsTester
+ Method: testEntrySet_contains
+ Body: {
+    assertTrue(
+        "multiset.entrySet() didn't contain [present, 1]",
+        getMultiset().entrySet().contains(Multisets.immutableEntry(e0(), 1)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: immutableEntry - Scenario: getMultiset().entrySet()
+
+Project: guava
+ Class: MultisetReadsTester
+ Method: testEntrySet_contains_count0
+ Body: {
+    assertFalse(
+        "multiset.entrySet() contains [missing, 0]",
+        getMultiset().entrySet().contains(Multisets.immutableEntry(e3(), 0)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: contains - Predicate: immutableEntry - Scenario: getMultiset().entrySet()
+
+Project: guava
+ Class: InetAddressesTest
+ Method: testToAddrStringIPv4
+ Body: {
+    // Don't need to test IPv4 much; it just calls getHostAddress().
+    assertEquals("1.2.3.4", InetAddresses.toAddrString(InetAddresses.forString("1.2.3.4")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: toAddrString - Predicate: forString - Scenario: InetAddresses
+
+Project: guava
+ Class: InetAddressesTest
+ Method: testToAddrStringIPv6
+ Body: {
+    assertEquals(
+        "1:2:3:4:5:6:7:8", InetAddresses.toAddrString(InetAddresses.forString("1:2:3:4:5:6:7:8")));
+    assertEquals(
+        "2001:0:0:4::8", InetAddresses.toAddrString(InetAddresses.forString("2001:0:0:4:0:0:0:8")));
+    assertEquals(
+        "2001::4:5:6:7:8",
+        InetAddresses.toAddrString(InetAddresses.forString("2001:0:0:4:5:6:7:8")));
+    assertEquals(
+        "2001:0:3:4:5:6:7:8",
+        InetAddresses.toAddrString(InetAddresses.forString("2001:0:3:4:5:6:7:8")));
+    assertEquals(
+        "0:0:3::ffff", InetAddresses.toAddrString(InetAddresses.forString("0:0:3:0:0:0:0:ffff")));
+    assertEquals(
+        "::4:0:0:0:ffff",
+        InetAddresses.toAddrString(InetAddresses.forString("0:0:0:4:0:0:0:ffff")));
+    assertEquals(
+        "::5:0:0:ffff", InetAddresses.toAddrString(InetAddresses.forString("0:0:0:0:5:0:0:ffff")));
+    assertEquals(
+        "1::4:0:0:7:8", InetAddresses.toAddrString(InetAddresses.forString("1:0:0:4:0:0:7:8")));
+    assertEquals("::", InetAddresses.toAddrString(InetAddresses.forString("0:0:0:0:0:0:0:0")));
+    assertEquals("::1", InetAddresses.toAddrString(InetAddresses.forString("0:0:0:0:0:0:0:1")));
+    assertEquals(
+        "2001:658:22a:cafe::",
+        InetAddresses.toAddrString(InetAddresses.forString("2001:0658:022a:cafe::")));
+    assertEquals("::102:304", InetAddresses.toAddrString(InetAddresses.forString("::1.2.3.4")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: toAddrString - Predicate: forString - Scenario: InetAddresses
+
+Project: guava
+ Class: DoubleMathTest
+ Method: testLog2NaNInfinity
+ Body: {
+    assertEquals(Double.POSITIVE_INFINITY, DoubleMath.log2(Double.POSITIVE_INFINITY));
+    assertTrue(Double.isNaN(DoubleMath.log2(Double.NEGATIVE_INFINITY)));
+    assertTrue(Double.isNaN(DoubleMath.log2(Double.NaN)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: log2 - Predicate: log2 - Scenario: DoubleMath
+
+Project: guava
+ Class: ListEqualsTester
+ Method: testEquals_set
+ Body: {
+    assertFalse("A List should never equal a Set.", getList().equals(MinimalSet.from(getList())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: equals - Predicate: from - Scenario: getList()
+
+Project: guava
+ Class: MultisetRemoveTester
+ Method: testRemove_occurrences_present
+ Body: {
+    assertEquals(
+        "multiset.remove(present, 2) didn't return the old count",
+        1,
+        getMultiset().remove(e0(), 2));
+    assertFalse(
+        "multiset contains present after multiset.remove(present, 2)",
+        getMultiset().contains(e0()));
+    assertEquals(0, getMultiset().count(e0()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: remove - Predicate: e0 - Scenario: getMultiset()
+
+Project: guava
+ Class: InvokableTest
+ Method: testConstructor_exceptionTypes
+ Body: {
+    assertEquals(
+        ImmutableList.of(TypeToken.of(NullPointerException.class)),
+        Prepender.constructor(String.class, int.class).getExceptionTypes());
+  }
+ Pattern Name: AllAssertions_NMC - Action: of - Predicate: of - Scenario: ImmutableList
+
+Project: guava
+ Class: CollectionSerializationEqualTester
+ Method: testReserialize
+ Body: {
+    assertEquals(SerializableTester.reserialize(actualContents()), actualContents());
+  }
+ Pattern Name: AllAssertions_NMC - Action: reserialize - Predicate: actualContents - Scenario: SerializableTester
+
+Project: guava
+ Class: MapGetOrDefaultTester
+ Method: testGetOrDefault_absentNullDefault
+ Body: {
+    assertNull("getOrDefault(absent, null) should return null", getMap().getOrDefault(k3(), null));
+  }
+ Pattern Name: AllAssertions_NMC - Action: getOrDefault - Predicate: k3 - Scenario: getMap()
+
+Project: guava
+ Class: Utf8Test
+ Method: testEncodedLength_validStrings
+ Body: {
+    assertEquals(0, Utf8.encodedLength(""));
+    assertEquals(11, Utf8.encodedLength("Hello world"));
+    assertEquals(8, Utf8.encodedLength("Résumé"));
+    assertEquals(
+        461,
+        Utf8.encodedLength(
+            "威廉·莎士比亞（William Shakespeare，"
+                + "1564年4月26號—1616年4月23號[1]）係隻英國嗰演員、劇作家同詩人，"
+                + "有時間佢簡稱莎翁；中國清末民初哈拕翻譯做舌克斯毕、沙斯皮耳、筛斯比耳、"
+                + "莎基斯庇尔、索士比尔、夏克思芘尔、希哀苦皮阿、叶斯壁、沙克皮尔、"
+                + "狹斯丕爾。[2]莎士比亞編寫過好多作品，佢嗰劇作響西洋文學好有影響，"
+                + "哈都拕人翻譯做好多話。"));
+    // A surrogate pair
+    assertEquals(4, Utf8.encodedLength(newString(MIN_HIGH_SURROGATE, MIN_LOW_SURROGATE)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: encodedLength - Predicate: newString - Scenario: Utf8
+
+Project: guava
+ Class: CollectionContainsAllTester
+ Method: testContainsAll_partialOverlap
+ Body: {
+    assertFalse(
+        "containsAll(partialOverlap) should return false",
+        collection.containsAll(MinimalCollection.of(e0(), e3())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: of - Scenario: collection
+
+Project: guava
+ Class: CollectionContainsAllTester
+ Method: testContainsAll_disjoint
+ Body: {
+    assertFalse(
+        "containsAll(disjoint) should return false",
+        collection.containsAll(MinimalCollection.of(e3())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: of - Scenario: collection
+
+Project: guava
+ Class: CollectionContainsAllTester
+ Method: testContainsAll_empty
+ Body: {
+    assertTrue(
+        "containsAll(empty) should return true", collection.containsAll(MinimalCollection.of()));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: of - Scenario: collection
+
+Project: guava
+ Class: CollectionContainsAllTester
+ Method: testContainsAll_subset
+ Body: {
+    assertTrue(
+        "containsAll(subset) should return true",
+        collection.containsAll(MinimalCollection.of(e0())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: of - Scenario: collection
+
+Project: guava
+ Class: CollectionContainsAllTester
+ Method: testContainsAll_sameElements
+ Body: {
+    assertTrue(
+        "containsAll(sameElements) should return true",
+        collection.containsAll(MinimalCollection.of(createSamplesArray())));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: of - Scenario: collection
+
+Project: guava
+ Class: CollectionContainsAllTester
+ Method: testContainsAll_nullAllowed
+ Body: {
+    assertFalse(collection.containsAll(MinimalCollection.of((E) null)));
+  }
+ Pattern Name: AllAssertions_NMC - Action: containsAll - Predicate: of - Scenario: collection
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testJoin_empty
+ Body: {
+    assertEquals("", fluent().join(Joiner.on(",")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: join - Predicate: on - Scenario: fluent()
+
+Project: guava
+ Class: FluentIterableTest
+ Method: testJoin
+ Body: {
+    assertEquals("2,1,3,4", fluent(2, 1, 3, 4).join(Joiner.on(",")));
+  }
+ Pattern Name: AllAssertions_NMC - Action: join - Predicate: on - Scenario: fluent(2, 1, 3, 4)
+

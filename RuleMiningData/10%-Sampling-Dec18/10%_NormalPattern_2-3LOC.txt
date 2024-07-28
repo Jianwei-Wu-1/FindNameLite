@@ -1,0 +1,3000 @@
+Project: worktorule
+ Class: IgnoreInProgressTest
+ Method: skipsFailingTestIfAnnotatedWithOpenIssue
+ Body: {
+        issueTracker.open("issue-id");
+
+        assertTestIsSkipped(rule.apply(
+                new FailingTest(new ExampleFailure()),
+                descriptionOfTest(ClassWithNoAnnotations.class, new InProgressAnnotation("issue-id"))));
+
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: open (Alternative Action: apply=1 ) - Predicate: apply - Scenario: issueTracker (Alternative Scenario:  )
+
+Project: worktorule
+ Class: IgnoreInProgressTest
+ Method: runsTestWithoutWrapperIfNotAnnotated
+ Body: {
+        Statement base = new PassingTest();
+        Statement testWithRuleApplied = rule.apply(base, descriptionOfTest(ClassWithNoAnnotations.class));
+
+        assertThat(testWithRuleApplied, sameInstance(base));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: sameInstance=1 ) - Predicate: sameInstance - Scenario: base (Alternative Scenario: testWithRuleApplied=1 )
+
+Project: worktorule
+ Class: JiraIssueUrlSchemeTest
+ Method: expandsApiWithExplicitPort
+ Body: {
+        JiraIssueUriScheme jira = new JiraIssueUriScheme(URI.create("https://jira.example.com:8443"));
+
+        assertThat(jira.uriForIssue("EXAMPLE-999"),
+                equalTo(URI.create("https://jira.example.com:8443/rest/api/2/issue/EXAMPLE-999?fields=status")));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: create=2 ) - Predicate: uriForIssue - Scenario: jira (Alternative Scenario: jira=1 )
+
+Project: worktorule
+ Class: JiraIssueUrlSchemeTest
+ Method: expandsApiUrlsForGivenJiraInstance
+ Body: {
+        JiraIssueUriScheme jira = new JiraIssueUriScheme(URI.create("https://jira.example.com"));
+
+        assertThat(jira.uriForIssue("EXAMPLE-999"),
+                equalTo(URI.create("https://jira.example.com/rest/api/2/issue/EXAMPLE-999?fields=status")));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: create=2 ) - Predicate: uriForIssue - Scenario: jira (Alternative Scenario: jira=1 )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testToString
+ Body: {
+        assertEquals("Name: Test\nTech Level: " + test.getTech() + "\nGovernment: "
+            + test.getGovernment() + "\nResource: " + test.getResource() + "\nPolice: "
+            + test.getPolice() + "\nPirate: " + test.getPirate() + "\nLocation: 17"
+            + ", 29\n", test.toString());
+        System.out.println(test.toString());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: println (Alternative Action: toString=2 ) - Predicate: toString - Scenario: System.out (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetResource
+ Body: {
+        String[] resourceNames = {"No Special Resources","No Special Resources",
+            "No Special Resources", "No Special Resources", "Mineral Rich", "Mineral Poor",
+            "Desert", "Lots of Water", "Rich Soil", "Poor Soil", "Rich Fauna", "Lifeless",
+            "Weird Mushrooms", "Lots of Herbs", "Artistic", "Warlike"};
+        assertTrue(Arrays.asList(resourceNames).contains(test.getResource()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getResource=1 ) - Predicate: contains - Scenario: resourceNames (Alternative Scenario: resourceNames=1 )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetPolice
+ Body: {
+        String[] amountNames = {"None", "Minimal", "Moderate", "Abundant"};
+        assertTrue(Arrays.asList(amountNames).contains(test.getPolice()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getPolice=1 ) - Predicate: contains - Scenario: amountNames (Alternative Scenario: amountNames=1 )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetTech
+ Body: {
+        String[] techNames = {"Pre-Algriculture", "Agriculture", "Medieval",
+            "Renaissance", "Early-Industrial", "Industrial", "Post-Industrial", "Hi-Tech"};
+        assertTrue(Arrays.asList(techNames).contains(test.getTech()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: contains=1 ) - Predicate: contains - Scenario: techNames (Alternative Scenario: techNames=1 )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testSetResource
+ Body: {
+        test.setResource("Something");
+        assertEquals("Something", test.getResource());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setResource (Alternative Action: getResource=1 ) - Predicate: getResource - Scenario: test (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: SolarSystemTest
+ Method: testGetGovernment
+ Body: {
+        String[] governmentNames = {"Monarchy", "Technocracy", "Democracy", 
+            "Corporate State", "Theocracy", "Feudal State", "Socialist State", "Anarchy"};
+        assertTrue(Arrays.asList(governmentNames).contains(test.getGovernment()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: contains=1 ) - Predicate: contains - Scenario: governmentNames (Alternative Scenario: governmentNames=1 )
+
+Project: WorkInProgress
+ Class: PersonTest
+ Method: testToString
+ Body: {
+        assertEquals("Name: Me\nPilot Skill: 3\nFighter Skill: 4\nTrader Skill: 5\n"
+            + "Engineering Skill: 8", test.toString());
+        assertEquals("Name: Kirk\nPilot Skill: 8\nFighter Skill: 5\nTrader Skill: 4\n"
+            + "Engineering Skill: 3", noName.toString());
+        System.out.println(test.toString());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: println (Alternative Action: toString=3 ) - Predicate: toString - Scenario: System.out (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: MarketPlaceTest
+ Method: testSellingItem
+ Body: {
+         int waterAmt = mkt.getAmount()[0] + 5;
+         //mkt.sellingItem(0, 5);
+         
+         assertEquals(waterAmt, mkt.getAmount()[0]);
+     }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getAmount=2 ) - Predicate: N/A - Scenario: waterAmt (Alternative Scenario: waterAmt=1 )
+
+Project: WorkInProgress
+ Class: MarketPlaceTest
+ Method: testBuyingItem
+ Body: {
+         int waterAmt = mkt.getAmount()[0] - 5;
+         //mkt.buyingItem(0, 5);
+         
+         assertEquals(waterAmt, mkt.getAmount()[0]);
+     }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getAmount=2 ) - Predicate: N/A - Scenario: waterAmt (Alternative Scenario: waterAmt=1 )
+
+Project: WorkInProgress
+ Class: ShipTest
+ Method: testRemoveItem
+ Body: {
+         assertFalse(small.removeItem(new TradeItem("Water")));
+         
+         small.addItem(new TradeItem("Water"));
+         assertTrue(small.removeItem(new TradeItem("Water")));
+     }
+ Pattern Name: NormalPattern_2/3LOC - Action: addItem (Alternative Action: removeItem=2 ) - Predicate: removeItem - Scenario: small (Alternative Scenario:  )
+
+Project: WorkInProgress
+ Class: ShipTest
+ Method: testSetFuel
+ Body: {
+         small.setFuel(10101);
+         assertEquals(10101, small.getFuel());
+     }
+ Pattern Name: NormalPattern_2/3LOC - Action: setFuel (Alternative Action: setFuel=1 ) - Predicate: getFuel - Scenario: small (Alternative Scenario:  )
+
+Project: xodus
+ Class: TransactionTest
+ Method: test_XD_477
+ Body: {
+        getEnvironment().getEnvironmentConfig().setEnvTxnReplayTimeout(500L);
+        getEnvironment().executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull Transaction txn) {
+                env.openStore("new store", StoreConfig.WITHOUT_DUPLICATES, txn);
+                getEnvironment().executeInTransaction(new TransactionalExecutable() {
+                    @Override
+                    public void execute(@NotNull Transaction txn) {
+                        env.openStore("new store 2", StoreConfig.WITHOUT_DUPLICATES, txn);
+                    }
+                });
+                txn.flush();
+                Assert.assertFalse(txn.isExclusive());
+                txn.revert();
+                Assert.assertFalse(txn.isExclusive());
+                // here transaction is idempotent and not exclusive
+                try {
+                    Thread.sleep(600);
+                } catch (InterruptedException ignore) {
+                    Thread.currentThread().interrupt();
+                }
+                txn.revert();
+                Assert.assertFalse(txn.isExclusive());
+            }
+        });
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setEnvTxnReplayTimeout (Alternative Action: isExclusive=3 ) - Predicate: N/A - Scenario: getEnvironment().getEnvironmentConfig() (Alternative Scenario:  )
+
+Project: xodus
+ Class: StoreTest
+ Method: test_XD_459
+ Body: {
+        final Store store = env.computeInTransaction(new TransactionalComputable<Store>() {
+            @Override
+            public Store compute(@NotNull final Transaction txn) {
+                return env.openStore("Store", StoreConfig.WITHOUT_DUPLICATES, txn);
+            }
+        });
+        env.executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull final Transaction txn) {
+                store.put(txn, StringBinding.stringToEntry("0"), StringBinding.stringToEntry("0"));
+                store.put(txn, StringBinding.stringToEntry("1"), StringBinding.stringToEntry("1"));
+            }
+        });
+        env.executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull final Transaction txn) {
+                try (Cursor cursor = store.openCursor(txn)) {
+                    assertTrue(cursor.getSearchBoth(StringBinding.stringToEntry("0"), StringBinding.stringToEntry("0")));
+                    assertTrue(cursor.deleteCurrent());
+                    assertFalse(cursor.getSearchBoth(StringBinding.stringToEntry("x"), StringBinding.stringToEntry("x")));
+                    assertFalse(cursor.deleteCurrent());
+                    assertTrue(cursor.getSearchBoth(StringBinding.stringToEntry("1"), StringBinding.stringToEntry("1")));
+                    assertTrue(cursor.deleteCurrent());
+                }
+            }
+        });
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: executeInTransaction (Alternative Action: stringToEntry=10 ) - Predicate: N/A - Scenario: store (Alternative Scenario: cursor=1 )
+
+Project: xodus
+ Class: StoreTest
+ Method: testNewlyCreatedStoreExists_XD_394
+ Body: {
+        final Environment env = getEnvironment();
+        env.executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull Transaction txn) {
+                final Store store = env.openStore("store", StoreConfig.WITHOUT_DUPLICATES, txn);
+                assertTrue(env.storeExists(store.getName(), txn));
+            }
+        });
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getName=1 ) - Predicate: N/A - Scenario: env (Alternative Scenario: store=1 )
+
+Project: xodus
+ Class: EnvironmentTest
+ Method: cursorOnFlushedTxn
+ Body: {
+        final Store store = openStoreAutoCommit("new_store", StoreConfig.WITHOUT_DUPLICATES);
+        env.executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull final Transaction txn) {
+                store.put(txn, IntegerBinding.intToEntry(0), StringBinding.stringToEntry(Integer.toString(0)));
+                store.put(txn, IntegerBinding.intToEntry(1), StringBinding.stringToEntry(Integer.toString(1)));
+                for (int i = 0; i < 2; ++i) {
+                }
+            }
+        });
+        env.executeInTransaction(new TransactionalExecutable() {
+            @Override
+            public void execute(@NotNull Transaction txn) {
+                try (Cursor cursor = store.openCursor(txn)) {
+                    assertTrue(cursor.getNext());
+                    Assert.assertEquals(0, IntegerBinding.entryToInt(cursor.getKey()));
+                    store.put(txn, IntegerBinding.intToEntry(2), StringBinding.stringToEntry(Integer.toString(2)));
+                    assertTrue(txn.flush());
+                    TestUtil.runWithExpectedException(new Runnable() {
+                        @Override
+                        public void run() {
+                            cursor.getNext();
+                        }
+                    }, ExodusException.class);
+                    TestUtil.runWithExpectedException(new Runnable() {
+                        @Override
+                        public void run() {
+                            cursor.getPrev();
+                        }
+                    }, ExodusException.class);
+                    TestUtil.runWithExpectedException(new Runnable() {
+                        @Override
+                        public void run() {
+                            cursor.getKey();
+                        }
+                    }, ExodusException.class);
+                    TestUtil.runWithExpectedException(new Runnable() {
+                        @Override
+                        public void run() {
+                            cursor.getValue();
+                        }
+                    }, ExodusException.class);
+                }
+            }
+        });
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: executeInTransaction (Alternative Action: runWithExpectedException=4 ) - Predicate: N/A - Scenario: store (Alternative Scenario: cursor=1 )
+
+Project: xodus
+ Class: EnvironmentTest
+ Method: testStatisticsBytesWritten
+ Body: {
+        testEmptyEnvironment();
+        assertTrue(env.getStatistics().getStatisticsItem(BYTES_WRITTEN).getTotal() > 0L);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: testEmptyEnvironment (Alternative Action: getStatistics=1 ) - Predicate: N/A - Scenario: N/A (Alternative Scenario:  )
+
+Project: xodus
+ Class: EnvironmentTest
+ Method: testCreateSingleStore
+ Body: {
+        final Store store = openStoreAutoCommit("new_store", StoreConfig.WITHOUT_DUPLICATES);
+        assertLoggableTypes(getLog(), 0, BTreeBase.BOTTOM_ROOT,
+            DatabaseRoot.DATABASE_ROOT_TYPE, BTreeBase.BOTTOM_ROOT, BTreeBase.LEAF, BTreeBase.LEAF,
+            BTreeBase.BOTTOM_ROOT, DatabaseRoot.DATABASE_ROOT_TYPE);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getLog=1 ) - Predicate: getLog - Scenario: store (Alternative Scenario: store=1 )
+
+Project: xodus
+ Class: LoggableTests
+ Method: testFactoryNullLoggable
+ Body: {
+        final Loggable nullLoggable = NullLoggable.create();
+        Assert.assertNotNull(nullLoggable);
+        Assert.assertEquals(nullLoggable.getType(), NullLoggable.create().getType());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getType=2 ) - Predicate: getType - Scenario: nullLoggable (Alternative Scenario: nullLoggable=1 )
+
+Project: xodus
+ Class: LoggableTests
+ Method: testCompoundByteIterable3
+ Body: {
+        final CompoundByteIterable ci = new CompoundByteIterable(new ByteIterable[]{
+                new ArrayByteIterable(new byte[]{0, 1, 2, 3, 4}),
+                new ArrayByteIterable(new byte[]{5, 6, 7, 8, 9})
+        });
+        Assert.assertEquals(10, ci.getLength());
+
+        Assert.assertTrue(matchesArray(
+                ci, new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: matchesArray=1 ) - Predicate: matchesArray - Scenario: ci (Alternative Scenario: ci=1 )
+
+Project: xodus
+ Class: LoggableTests
+ Method: testCompoundByteIteratorSkip2
+ Body: {
+        CompoundByteIteratorBase iterator = new CompoundByteIteratorBase() {
+            byte[][] a = {{1}, {2}, {3}, {4}};
+            int current = 0;
+
+            @Override
+            protected ByteIterator nextIterator() {
+                return new ArrayByteIterable(a[current++]).iterator();
+            }
+        };
+        iterator.skip(3);
+        Assert.assertEquals(iterator.next(), 4);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: skip (Alternative Action: next=1 ) - Predicate: next - Scenario: iterator (Alternative Scenario: iterator=1 )
+
+Project: mytcuml
+ Class: CommentNodeAccuracyTest
+ Method: testContains
+ Body: {
+        commentNode.notifyUpdate();
+        assertTrue("commentNode should contain point (101, 101).", commentNode.contains(101, 101));
+        assertFalse("commentNode should not contain point (1000, 1000).", commentNode.contains(1000, 1000));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: notifyUpdate (Alternative Action: contains=2 ) - Predicate: contains - Scenario: commentNode (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddExceptionActionTest
+ Method: testCtor1
+ Body: {
+        AddExceptionAction addAction = new AddExceptionAction(exception, manager);
+
+        assertEquals("Should return ModelElement instance.", exception, addAction.getModelElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getModelElement=1 ) - Predicate: getModelElement - Scenario: addAction (Alternative Scenario: addAction=1 )
+
+Project: mytcuml
+ Class: AddExceptionActionTest
+ Method: testGetPresentationName
+ Body: {
+        AddExceptionAction addAction = new AddExceptionAction(exception, manager);
+
+        assertEquals("Should return PRESENTATION_NAME.", "Add Exception", addAction.getPresentationName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getPresentationName=1 ) - Predicate: getPresentationName - Scenario: addAction (Alternative Scenario: addAction=1 )
+
+Project: mytcuml
+ Class: AddExceptionActionTest
+ Method: testCtor2
+ Body: {
+        AddExceptionAction addAction = new AddExceptionAction(exception, manager, manager.getModel());
+
+        assertEquals("Should return ModelElement instance.", exception, addAction.getModelElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getModel=1 ) - Predicate: getModelElement - Scenario: addAction (Alternative Scenario: addAction=1 )
+
+Project: mytcuml
+ Class: NamespaceAbstractImplUnitTests
+ Method: testClearOwnedElements
+ Body: {
+        testNamespaceAbstractImpl.clearOwnedElements();
+        assertEquals("The count of ownedElement should be 0.", 0, testNamespaceAbstractImpl.countOwnedElements());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: clearOwnedElements (Alternative Action: clearOwnedElements=1 ) - Predicate: countOwnedElements - Scenario: testNamespaceAbstractImpl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: NamespaceAbstractImplUnitTests
+ Method: testAddOwnedElement
+ Body: {
+        ModelElement ownedElement = new ModelElementImpl();
+        testNamespaceAbstractImpl.addOwnedElement(ownedElement);
+        assertTrue("Add ownedElement incorrectly.", testNamespaceAbstractImpl.removeOwnedElement(ownedElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addOwnedElement (Alternative Action: removeOwnedElement=1 ) - Predicate: removeOwnedElement - Scenario: ownedElement (Alternative Scenario: ownedElement=1 )
+
+Project: mytcuml
+ Class: NamespaceAbstractImplUnitTests
+ Method: testRemoveOwnedElement
+ Body: {
+        ModelElement ownedElement = new ModelElementImpl();
+        testNamespaceAbstractImpl.addOwnedElement(ownedElement);
+        assertTrue("Remove ownedElement incorrectly.", testNamespaceAbstractImpl.removeOwnedElement(ownedElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addOwnedElement (Alternative Action: removeOwnedElement=1 ) - Predicate: removeOwnedElement - Scenario: ownedElement (Alternative Scenario: ownedElement=1 )
+
+Project: mytcuml
+ Class: RemoveGeneralizationActionTest
+ Method: testGetPresentationName
+ Body: {
+        testRemoveGeneralizationAction();
+
+        assertEquals("Presentation name is incorrect.",
+                "Remove Generalization", action.getPresentationName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: testRemoveGeneralizationAction (Alternative Action: testRemoveGeneralizationAction=1 ) - Predicate: getPresentationName - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteDiagramElementActionAccuracyTest
+ Method: testUndo
+ Body: {
+        pde.execute();
+        pde.undo();
+        assertTrue("Should be true.", dg.containsContained(de));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: undo=1 ) - Predicate: containsContained - Scenario: pde (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ConfigHelperTest
+ Method: testCreateObjectFactory
+ Body: {
+        ObjectFactory factory = ConfigHelper.createObjectFactory("config_helper", "object_factory");
+        assertNotNull("ObjectFactory should be instantiated successfully", factory);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createObjectFactory=1 ) - Predicate: N/A - Scenario: factory (Alternative Scenario: factory=1 )
+
+Project: mytcuml
+ Class: DefaultTagEditorTestAcc
+ Method: testSetTarget1
+ Body: {
+        this.tagEditor.setTarget(this.operation);
+        assertEquals(1, this.getTableModel().getRowCount());
+        assertOptionsForOperation(this.getOptionComboBox());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setTarget (Alternative Action: getRowCount=1 ) - Predicate: getOptionComboBox - Scenario: this.tagEditor (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DefaultTagEditorTestAcc
+ Method: testSetTarget2
+ Body: {
+        this.tagEditor.setTarget(this.classifier);
+        assertEquals(1, this.getTableModel().getRowCount());
+        assertOptionsForClass(this.getOptionComboBox());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setTarget (Alternative Action: getRowCount=1 ) - Predicate: getOptionComboBox - Scenario: this.tagEditor (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteGeneralizationActionTest
+ Method: testGetPresentationName
+ Body: {
+        testPasteGeneralizationAction();
+
+        assertEquals("Presentation name is incorrect.", "Paste Generalization",
+                action.getPresentationName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: testPasteGeneralizationAction (Alternative Action: getPresentationName=1 ) - Predicate: getPresentationName - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ObjectUtilUnitTest
+ Method: test_accuracy_checkObjectNamespace1
+ Body: {
+        Object object = new ObjectImpl();
+        object.setNamespace(new CollaborationImpl());
+        assertFalse("checkObjectNamespace failed", objectUtil.checkObjectNamespace(object));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setNamespace (Alternative Action: checkObjectNamespace=1 ) - Predicate: checkObjectNamespace - Scenario: object (Alternative Scenario: object=1 )
+
+Project: mytcuml
+ Class: ObjectUtilUnitTest
+ Method: test_accuracy_copyObject
+ Body: {
+        Object object = new ObjectImpl();
+        objectUtil.copyObject(object);
+        // FIXME complete this
+        assertNotSame("copyObject failed", objectUtil.copyObject(object), object);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: copyObject (Alternative Action: copyObject=2 ) - Predicate: copyObject - Scenario: object (Alternative Scenario: object=1 )
+
+Project: mytcuml
+ Class: ObjectUtilUnitTest
+ Method: test_accuracy_addObjectToClipboard
+ Body: {
+        TestHelper.OBJECT.setName("test");
+        objectUtil.addObjectToClipboard(TestHelper.OBJECT, Toolkit.getDefaultToolkit().getSystemClipboard());
+        assertEquals("addObjectToClipboard failed", ((Object) Toolkit.getDefaultToolkit().getSystemClipboard()
+                .getContents(null).getTransferData(CollaborationTransfer.OBJECT_FLAVOR)).getName(), "test");
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setName (Alternative Action: getDefaultToolkit=2 ) - Predicate: getName - Scenario: TestHelper.OBJECT (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ProjectConfigurationExceptionTests
+ Method: testProjectConfigurationException1
+ Body: {
+        ProjectConfigurationException exception = new ProjectConfigurationException(ERROR_MESSAGE);
+        assertNotNull("Unable to instantiate ProjectConfigurationException.", exception);
+        assertEquals("Error message is not properly propagated to super class.", ERROR_MESSAGE, exception.getMessage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: getMessage - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ProjectConfigurationExceptionTests
+ Method: testProjectConfigurationExceptionInheritance2
+ Body: {
+        ProjectConfigurationException exception = new ProjectConfigurationException(ERROR_MESSAGE, CAUSE_EXCEPTION);
+        assertTrue("ProjectConfigurationException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ProjectConfigurationExceptionTests
+ Method: testProjectConfigurationExceptionInheritance1
+ Body: {
+        ProjectConfigurationException exception = new ProjectConfigurationException(ERROR_MESSAGE);
+        assertTrue("ProjectConfigurationException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ZoomPanelUnitTest
+ Method: testGetZoomBackgroundAccuracy
+ Body: {
+        Color color = Color.GRAY;
+        // set color
+        panel.setZoomBackground(color);
+        // get color
+        assertEquals("should be BLUE", color, panel.getZoomBackground());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setZoomBackground (Alternative Action: setZoomBackground=1 ) - Predicate: getZoomBackground - Scenario: color (Alternative Scenario: color=1 )
+
+Project: mytcuml
+ Class: ZoomPanelUnitTest
+ Method: testSetZoomBackgroundAccuracyWithNull
+ Body: {
+        // the default color
+        Color old = panel.getZoomBackground();
+        panel.setZoomBackground(null);
+        assertEquals("should be the default color", old, panel.getZoomBackground());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setZoomBackground (Alternative Action: getZoomBackground=2 ) - Predicate: getZoomBackground - Scenario: old (Alternative Scenario: old=1 )
+
+Project: mytcuml
+ Class: AccuracyTestCutSubsystemAction
+ Method: testConstructor
+ Body: {
+        CutSubsystemAction cutSubsystemAction = new CutSubsystemAction(subsystem);
+        assertNotNull("Instance of CutSubsystemAction should be created.", cutSubsystemAction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: cutSubsystemAction (Alternative Scenario: cutSubsystemAction=1 )
+
+Project: mytcuml
+ Class: AccuracyTestCutSubsystemAction
+ Method: testConstructorWithNamespace
+ Body: {
+        CutSubsystemAction cutSubsystemAction = new CutSubsystemAction(subsystem, clipboard);
+        assertNotNull("Instance of CutSubsystemAction should be created.", cutSubsystemAction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: cutSubsystemAction (Alternative Scenario: cutSubsystemAction=1 )
+
+Project: mytcuml
+ Class: CutObjectActionAccuracyTests
+ Method: testUndoAccuracy2
+ Body: {
+        cutObjectAction.execute();
+        cutObjectAction.undo();
+        assertFalse("should not logged warn as can undo.", confirmFileContents("WARN"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: undo=1 ) - Predicate: confirmFileContents - Scenario: cutObjectAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutObjectActionAccuracyTests
+ Method: testUndoAccuracy1
+ Body: {
+        cutObjectAction.die();
+        cutObjectAction.undo();
+        assertTrue("should logged warn as can not undo.", confirmFileContents("WARN"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: die (Alternative Action: die=1 ) - Predicate: confirmFileContents - Scenario: cutObjectAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutObjectActionAccuracyTests
+ Method: testRedoAccuracy1
+ Body: {
+        cutObjectAction.die();
+        cutObjectAction.redo();
+        assertTrue("should logged warn as can not undo.", confirmFileContents("WARN"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: die (Alternative Action: die=1 ) - Predicate: confirmFileContents - Scenario: cutObjectAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AccuracyTestRemoveSubsystemAction
+ Method: testConstructor
+ Body: {
+        RemoveSubsystemAction removeSubsystemAction = new RemoveSubsystemAction(subsystem);
+        assertNotNull("Instance of RemoveSubsystemAction should be created.", removeSubsystemAction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: removeSubsystemAction (Alternative Scenario: removeSubsystemAction=1 )
+
+Project: mytcuml
+ Class: AccuracyTestAddExtendAction
+ Method: testConstructor
+ Body: {
+        AddExtendAction addExtendAction = new AddExtendAction(extend, manager);
+        assertNotNull("Instance of AddExtendAction should be created.", addExtendAction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: addExtendAction (Alternative Scenario: addExtendAction=1 )
+
+Project: mytcuml
+ Class: AddObjectFlowNodeActionTest
+ Method: testCreateModelElement
+ Body: {
+        ObjectFlowState element = (ObjectFlowState) TestHelper.getPrivateField(AddObjectFlowNodeAction.class, action,
+                "element");
+        assertNotNull("The model element should have been created.", element);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getPrivateField=1 ) - Predicate: N/A - Scenario: element (Alternative Scenario: element=1 )
+
+Project: mytcuml
+ Class: AddObjectFlowNodeActionTest
+ Method: testCreateGraphNode
+ Body: {
+        GraphNode graphNode = (GraphNode) TestHelper
+                .getPrivateField(AddObjectFlowNodeAction.class, action, "graphNode");
+        assertNotNull("The graph node should have been created.", graphNode);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getPrivateField=1 ) - Predicate: N/A - Scenario: graphNode (Alternative Scenario: graphNode=1 )
+
+Project: mytcuml
+ Class: AddObjectFlowNodeActionTest
+ Method: testCreateNode
+ Body: {
+        Node node = (Node) TestHelper.getPrivateField(AddNodeAction.class, action, "node");
+        assertNotNull("The node should have been created.", node);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getPrivateField=1 ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: CutObjectActionUnitTest
+ Method: test_accuracy_execute
+ Body: {
+        cutObjectAction.execute();
+        assertEquals("execute failed", ((Object) Toolkit.getDefaultToolkit().getSystemClipboard()
+                .getContents(null).getTransferData(CollaborationTransfer.OBJECT_FLAVOR)).getName(), "test");
+        assertTrue("execute failed", !cutObjectAction.getObjectUtil().checkObjectNamespace(object));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: checkObjectNamespace=1 ) - Predicate: N/A - Scenario: cutObjectAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DirectionalActiveTabSelectorUnitTest
+ Method: testSelectNewActiveTabAccuracy1
+ Body: {
+        pane.setSelectedIndex(0);
+        selector.selectNewActiveTab(pane);
+        assertEquals("selectNewActiveTab incorrect", 1, pane.getSelectedIndex());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setSelectedIndex (Alternative Action: selectNewActiveTab=1 ) - Predicate: getSelectedIndex - Scenario: pane (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DirectionalActiveTabSelectorUnitTest
+ Method: testSelectNewActiveTabAccuracy2
+ Body: {
+        pane.setSelectedIndex(3);
+        selector.selectNewActiveTab(pane);
+        assertEquals("selectNewActiveTab incorrect", 3, pane.getSelectedIndex());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setSelectedIndex (Alternative Action: selectNewActiveTab=1 ) - Predicate: getSelectedIndex - Scenario: pane (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DirectionalActiveTabSelectorUnitTest
+ Method: testSelectNewActiveTabAccuracy3
+ Body: {
+        pane.setSelectedIndex(-1);
+        selector.selectNewActiveTab(pane);
+        assertEquals("selectNewActiveTab incorrect", -1, pane.getSelectedIndex());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setSelectedIndex (Alternative Action: selectNewActiveTab=1 ) - Predicate: getSelectedIndex - Scenario: pane (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddAttributeActionUnitTests
+ Method: testExecuteAction
+ Body: {
+        testAddAttributeAction.executeAction();
+        assertTrue("AddAttributeAction executeAction incorrectly", classifier.containsFeature(attribute));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: executeAction (Alternative Action: containsFeature=1 ) - Predicate: containsFeature - Scenario: testAddAttributeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddAttributeActionUnitTests
+ Method: testRedoAction
+ Body: {
+        testAddAttributeAction.redoAction();
+        assertTrue("AddAttributeAction redoAction incorrectly", classifier.containsFeature(attribute));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: redoAction (Alternative Action: redoAction=1 ) - Predicate: containsFeature - Scenario: testAddAttributeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddAttributeActionUnitTests
+ Method: testUndoAction
+ Body: {
+        testAddAttributeAction.undoAction();
+        assertFalse("AddAttributeAction undoAction incorrectly", classifier.containsFeature(attribute));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: undoAction (Alternative Action: containsFeature=1 ) - Predicate: containsFeature - Scenario: testAddAttributeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestCodeWriter
+ Method: testexistDirectoryStringAccuracyWithNonExisting
+ Body: {
+        File f = TestHelper.createTempDir();
+        f.delete();
+        assertFalse("shouldn't be directory", this.uut.existDirectory(f.getAbsolutePath()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: delete (Alternative Action: getAbsolutePath=1 ) - Predicate: existDirectory - Scenario: f (Alternative Scenario: f=1 )
+
+Project: mytcuml
+ Class: DocumentTreeViewTransferHandlerTests
+ Method: testCreateTransferable
+ Body: {
+        DataFlavor flavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=\""
+            + DocumentTreeNode[].class.getName() + "\"");
+        JComponent component = new JLabel("test");
+
+        assertTrue("Failed to create the transferable correctly.",
+            handler.createTransferable(component).isDataFlavorSupported(flavor));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: isDataFlavorSupported=1 ) - Predicate: isDataFlavorSupported - Scenario: flavor (Alternative Scenario: flavor=1 )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testCountConnectionsAccuracy
+ Body: {
+        link.addConnection(connection1);
+        link.addConnection(connection1);
+        assertEquals("count should be 2.", 2, link.countConnections());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: addConnection=2 ) - Predicate: countConnections - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testAddConnection2Accuracy
+ Body: {
+        link.addConnection(0, connection1);
+        assertEquals("index should 0.", 0, link.indexOfConnection(connection1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: indexOfConnection=1 ) - Predicate: indexOfConnection - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testAddConnection1Accuracy
+ Body: {
+        link.addConnection(connection1);
+        assertEquals("index should be 0.", 0, link.indexOfConnection(connection1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: indexOfConnection=1 ) - Predicate: indexOfConnection - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testRemoveConnection1Accuracy
+ Body: {
+        link.addConnection(connection1);
+        assertEquals("it should return connection.", connection1, link.removeConnection(0));
+        assertEquals("connection should be removed.", -1, link.indexOfConnection(connection1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: indexOfConnection=1 ) - Predicate: indexOfConnection - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testRemoveConnectionAccuracy2
+ Body: {
+        link.addConnection(connection1);
+        assertTrue("result is incorrect.", link.removeConnection(connection1));
+        assertFalse("result is incorrect.", link.removeConnection(connection1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: removeConnection=2 ) - Predicate: removeConnection - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testClearConnectionsAccuracy
+ Body: {
+        link.addConnection(connection1);
+        link.clearConnections();
+        assertEquals("connections count should be 0.", 0, link.countConnections());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: clearConnections=1 ) - Predicate: countConnections - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testContainsStimulusAccuracy
+ Body: {
+        link.addStimulus(stimulus1);
+        assertTrue("it should be true.", link.containsStimulus(stimulus1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addStimulus (Alternative Action: addStimulus=1 ) - Predicate: containsStimulus - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testClearStimuliAccuracy
+ Body: {
+        link.addStimulus(stimulus1);
+        link.clearStimuli();
+        assertEquals("count should 0.", 0, link.countStimuli());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addStimulus (Alternative Action: addStimulus=1 ) - Predicate: countStimuli - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testRemoveStimulusAccuracy
+ Body: {
+        link.addStimulus(stimulus1);
+        assertTrue("result is incorrect.", link.removeStimulus(stimulus1));
+        assertFalse("result is incorrect.", link.removeStimulus(stimulus1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addStimulus (Alternative Action: removeStimulus=2 ) - Predicate: removeStimulus - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testCountStimuliAccuracy
+ Body: {
+        link.addStimulus(stimulus1);
+        assertEquals("count should 1.", 1, link.countStimuli());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addStimulus (Alternative Action: addStimulus=1 ) - Predicate: countStimuli - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testContainsConnectionAccuracy
+ Body: {
+        link.addConnection(connection1);
+        assertTrue("it should be true.", link.containsConnection(connection1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addConnection (Alternative Action: containsConnection=1 ) - Predicate: containsConnection - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LinkImplAccuracyTest
+ Method: testAddStimulusAccuracy
+ Body: {
+        link.addStimulus(stimulus1);
+        assertEquals("count should 1.", 1, link.countStimuli());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addStimulus (Alternative Action: addStimulus=1 ) - Predicate: countStimuli - Scenario: link (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddTransitionActionAccuracyTests
+ Method: testExecute
+ Body: {
+        test.execute();
+        assertEquals("execute method fails.", transition,
+                new ArrayList<Transition>(activityGraph.getTransitions()).get(0));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getTransitions=1 ) - Predicate: get - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AddTransitionActionAccuracyTests
+ Method: testUndo
+ Body: {
+        test.execute();
+        test.undo();
+        assertEquals("undo method fails.", 0, activityGraph.getTransitions().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getTransitions=1 ) - Predicate: size - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testAddDocumentationListener
+ Body: {
+        addListeners();
+        assertListeners();
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addListeners (Alternative Action: addListeners=1 ) - Predicate: N/A - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testGetDocumentationListeners
+ Body: {
+        addListeners();
+
+        assertListeners();
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addListeners (Alternative Action: addListeners=1 ) - Predicate: N/A - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testRemoveDocumentationListener1
+ Body: {
+        addListeners();
+
+        this.documentationEditor.removeDocumentationListener(null);
+
+        assertListeners();
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addListeners (Alternative Action: removeDocumentationListener=1 ) - Predicate: N/A - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testRemoveDocumentationListener2
+ Body: {
+        addListeners();
+
+        this.documentationEditor.removeDocumentationListener(new MockDocumentationListener());
+
+        assertListeners();
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addListeners (Alternative Action: removeDocumentationListener=1 ) - Predicate: N/A - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DocumentationEditorTestAcc
+ Method: testSetTarget
+ Body: {
+        addTarget();
+        assertEquals("same target", target, this.documentationEditor.getTarget());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addTarget (Alternative Action: getTarget=1 ) - Predicate: getTarget - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: BirdsEyeViewTest
+ Method: testMousePressedFail
+ Body: {
+        BirdsEyeView view = initBirdsEyeView();
+        view.mousePressed(null);
+        assertEquals("The location of view port should be same with expected.",
+                new Point(0, 0), view.getViewPort().getLocation());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: mousePressed (Alternative Action: getLocation=1 ) - Predicate: getLocation - Scenario: view (Alternative Scenario: view=1 )
+
+Project: mytcuml
+ Class: RedoActionExecutionExceptionTests
+ Method: testRedoActionExecutionExceptionInheritance2
+ Body: {
+        RedoActionExecutionException exception = new RedoActionExecutionException(ERROR_MESSAGE, CAUSE_EXCEPTION);
+        assertTrue("RedoActionExecutionException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: RedoActionExecutionExceptionTests
+ Method: testRedoActionExecutionExceptionInheritance1
+ Body: {
+        RedoActionExecutionException exception = new RedoActionExecutionException(ERROR_MESSAGE);
+        assertTrue("RedoActionExecutionException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: RedoActionExecutionExceptionTests
+ Method: testRedoActionExecutionException1
+ Body: {
+        RedoActionExecutionException exception = new RedoActionExecutionException(ERROR_MESSAGE);
+        assertNotNull("Unable to instantiate LoaderException.", exception);
+        assertEquals("Error message is not properly propagated to super class.", ERROR_MESSAGE, exception.getMessage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: getMessage - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ActorNodeAccuracyTest
+ Method: testNotifyGraphNodeChange
+ Body: {
+        graphNode.setSize(AccuracyTestHelper.createDimension(1000, 1000));
+        actorNode.notifyGraphNodeChange("hello world.");
+        assertTrue("Should be true.", actorNode.contains(900, 900));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setSize (Alternative Action: notifyGraphNodeChange=1 ) - Predicate: contains - Scenario: graphNode (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ElementImportImplAccuracyTest
+ Method: testGetSetAliasAccuracy
+ Body: {
+        assertNull("result is incorrect.", elementImport.getAlias());
+        elementImport.setAlias("test");
+        assertEquals("result is incorrect.", "test", elementImport.getAlias());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setAlias (Alternative Action: getAlias=2 ) - Predicate: getAlias - Scenario: elementImport (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ElementImportImplAccuracyTest
+ Method: testIsSetSpecificationAccuracy
+ Body: {
+        assertFalse("result is incorrect.", elementImport.isSpecification());
+        elementImport.setSpecification(true);
+        assertTrue("result is incorrect.", elementImport.isSpecification());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setSpecification (Alternative Action: isSpecification=2 ) - Predicate: isSpecification - Scenario: elementImport (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ElementImportImplAccuracyTest
+ Method: testGetSetImportedElementAccuracy
+ Body: {
+        assertNull("result is incorrect.", elementImport.getImportedElement());
+        elementImport.setImportedElement(modelElement);
+        assertEquals("result is incorrect.", modelElement, elementImport.getImportedElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setImportedElement (Alternative Action: getImportedElement=2 ) - Predicate: getImportedElement - Scenario: elementImport (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ElementImportImplAccuracyTest
+ Method: testGetSetVisibilityAccuracy
+ Body: {
+        assertNull("result is incorrect.", elementImport.getVisibility());
+        elementImport.setVisibility(VisibilityKind.PACKAGE);
+        assertEquals("result is incorrect.", VisibilityKind.PACKAGE, elementImport.getVisibility());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setVisibility (Alternative Action: getVisibility=2 ) - Predicate: getVisibility - Scenario: elementImport (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ElementImportImplAccuracyTest
+ Method: testGetSetPackageAccuracy
+ Body: {
+        assertNull("result is incorrect.", elementImport.getPackage());
+        elementImport.setPackage(p);
+        assertEquals("result is incorrect.", p, elementImport.getPackage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPackage (Alternative Action: getPackage=2 ) - Predicate: getPackage - Scenario: elementImport (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ActionAbstractImplAccuracyTests
+ Method: testProcedure_Operation
+ Body: {
+        // get the original value of procedure.
+        assertNull("The procedure expected to be null", test.getProcedure());
+
+        // set the procedure.
+        test.setProcedure(procedure);
+
+        // get the procedure to check it's value.
+        assertSame("The two procedures expected to be same", procedure,
+            test.getProcedure());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setProcedure (Alternative Action: getProcedure=2 ) - Predicate: getProcedure - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock2_Accuracy1
+ Body: {
+        // if the dock can't be docked in this container, it will not be docked
+        container.dock(new DefaultDock(new DockableWrapper(new JPanel())), new Point(10, 10));
+        assertFalse("The container should not be docked.", container.isDocked());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: isDocked - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock3_Accuracy1
+ Body: {
+        // if the dock can't be docked in this container, it will not be docked
+        container.dock(new DefaultDock(new DockableWrapper(new JPanel())), 1);
+        assertFalse("The container should not be docked.", container.isDocked());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: isDocked - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testSetLocation
+ Body: {
+        container.setLocation(new Point(10, 10));
+        assertEquals("The location should be equal.", 10, container.getDockTarget().getLocation().x);
+        assertEquals("The location should be equal.", 10, container.getDockTarget().getLocation().y);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setLocation (Alternative Action: getLocation=2 ) - Predicate: N/A - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testOpen
+ Body: {
+        assertFalse("The dock target should not be visible.", container.getDockTarget().isVisible());
+        container.open();
+        assertTrue("The dock target should be visible.", container.getDockTarget().isVisible());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: open (Alternative Action: getDockTarget=2 ) - Predicate: isVisible - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock1_Accuracy1
+ Body: {
+        // if the dock can't be docked in this container, it will not be docked
+        container.dock(new DefaultDock(new DockableWrapper(new JPanel())));
+        assertFalse("The container should not be docked.", container.isDocked());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: isDocked - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock2_Accuracy2
+ Body: {
+        // dock this dock
+        container.dock(dock, new Point(10, 10));
+        assertTrue("The container should be docked.", container.isDocked());
+        assertEquals("The dock's current dock container should be container.",
+                container, dock.getCurrentDockContainer());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: getCurrentDockContainer - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock4_Accuracy2
+ Body: {
+        // dock this dock
+        container.dock(dock, new Point(10, 10), 1);
+        assertTrue("The container should be docked.", container.isDocked());
+        assertEquals("The dock's current dock container should be container.",
+                container, dock.getCurrentDockContainer());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: getCurrentDockContainer - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testIsDocked
+ Body: {
+        assertFalse("The container should not be docked.", container.isDocked());
+        container.dock(dock);
+        assertTrue("The container should be docked.", container.isDocked());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=2 ) - Predicate: isDocked - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock3_Accuracy2
+ Body: {
+        // dock this dock
+        container.dock(dock, 1);
+        assertTrue("The container should be docked.", container.isDocked());
+        assertEquals("The dock's current dock container should be container.",
+                container, dock.getCurrentDockContainer());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: getCurrentDockContainer - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock4_Accuracy1
+ Body: {
+        // if the dock can't be docked in this container, it will not be docked
+        container.dock(new DefaultDock(new DockableWrapper(new JPanel())), new Point(10, 10), 1);
+        assertFalse("The container should not be docked.", container.isDocked());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: isDocked - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock1_Accuracy2
+ Body: {
+        // dock this dock
+        container.dock(dock);
+        assertTrue("The container should be docked.", container.isDocked());
+        assertEquals("The dock's current dock container should be container.",
+                container, dock.getCurrentDockContainer());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: dock (Alternative Action: isDocked=1 ) - Predicate: getCurrentDockContainer - Scenario: container (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveTransitionActionTests
+ Method: testExecute
+ Body: {
+        action.execute();
+        assertFalse("Failed to execute the Execute() method.", stateMachine.containsTransition(transition));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: containsTransition=1 ) - Predicate: containsTransition - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: RemoveTransitionActionTests
+ Method: testUndo
+ Body: {
+        action.execute();
+        action.undo();
+        assertTrue("Failed to execute the undo() method.", stateMachine.containsTransition(transition));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: undo=1 ) - Predicate: containsTransition - Scenario: action (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: EditBoxListenerTest
+ Method: testTextCancelled_null
+ Body: {
+        listener.textEntered(null);
+        assertEquals("Null event should be ignored.", textField.getText(), oldText);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: textEntered (Alternative Action: getText=1 ) - Predicate: getText - Scenario: listener (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: EditBoxListenerTest
+ Method: testTextEntered_null
+ Body: {
+        listener.textEntered(null);
+        assertEquals("Null event should be ignored.", textField.getText(), oldText);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: textEntered (Alternative Action: getText=1 ) - Predicate: getText - Scenario: listener (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineImplTests
+ Method: testSetRepresents
+ Body: {
+        Attribute represents = new AttributeImpl();
+        lifelineImpl.setRepresents(represents);
+        assertEquals("Sets the represent failed.", represents, lifelineImpl.getRepresents());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRepresents (Alternative Action: getRepresents=1 ) - Predicate: getRepresents - Scenario: represents (Alternative Scenario: represents=1 )
+
+Project: mytcuml
+ Class: LifelineImplTests
+ Method: testToTCUMLElement_Name
+ Body: {
+        lifelineImpl.setName("test name");
+        Object object = lifelineImpl.toTCUMLElement();
+        assertEquals("The name in transformed object should equals to that of lifelineImpl.", object.getName(),
+                lifelineImpl.getName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setName (Alternative Action: getName=2 ) - Predicate: getName - Scenario: object (Alternative Scenario: object=1 )
+
+Project: mytcuml
+ Class: LifelineImplTests
+ Method: testGetRepresents
+ Body: {
+        Attribute represents = new AttributeImpl();
+        lifelineImpl.setRepresents(represents);
+        assertEquals("Sets the represent failed.", represents, lifelineImpl.getRepresents());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRepresents (Alternative Action: getRepresents=1 ) - Predicate: getRepresents - Scenario: represents (Alternative Scenario: represents=1 )
+
+Project: mytcuml
+ Class: LifelineImplTests
+ Method: testToTCUMLElement_Consistent
+ Body: {
+        Object object1 = lifelineImpl.toTCUMLElement();
+        Object object2 = lifelineImpl.toTCUMLElement();
+        assertEquals("The returned instance must always the same for every call of this method.", object1, object2);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: toTCUMLElement=2 ) - Predicate: N/A - Scenario: object1 (Alternative Scenario: object2=1 )
+
+Project: mytcuml
+ Class: DecisionNodeTest
+ Method: testContains_False_2
+ Body: {
+        int x = decisionNode.getSelectionBound().x / 2;
+        int y = decisionNode.getSelectionBound().y;
+        assertFalse("The given point should not be contained.", decisionNode.contains(x, y));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getSelectionBound=2 ) - Predicate: contains - Scenario: x (Alternative Scenario: x=1 )
+
+Project: mytcuml
+ Class: DecisionNodeTest
+ Method: testContains_False_1
+ Body: {
+        int x = -10;
+        int y = -10;
+        assertFalse("The given point should not be contained.", decisionNode.contains(x, y));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: contains=1 ) - Predicate: contains - Scenario: x (Alternative Scenario: x=1 )
+
+Project: mytcuml
+ Class: DecisionNodeTest
+ Method: testContains_True
+ Body: {
+        int x = decisionNode.getSelectionBound().x + (int) Math.round(graphNode.getSize().getWidth() / 2);
+        int y = decisionNode.getSelectionBound().y + (int) Math.round(graphNode.getSize().getHeight() / 2);
+        assertTrue("The given point should be contained.", decisionNode.contains(x, y));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getSize=2 ) - Predicate: contains - Scenario: x (Alternative Scenario: x=1 )
+
+Project: mytcuml
+ Class: ReferenceTest
+ Method: testGetReferenced
+ Body: {
+        DiagramElement diagramElement = new MockDiagramElement();
+        instance.setReferenced(diagramElement);
+        assertEquals("incorrect Referenced", diagramElement, instance.getReferenced());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setReferenced (Alternative Action: getReferenced=1 ) - Predicate: getReferenced - Scenario: diagramElement (Alternative Scenario: diagramElement=1 )
+
+Project: mytcuml
+ Class: ReferenceTest
+ Method: testSetReferencedNull
+ Body: {
+        instance.setReferenced(null);
+        assertNull("null value should be allowed", instance.getReferenced());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setReferenced (Alternative Action: getReferenced=1 ) - Predicate: getReferenced - Scenario: instance (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ReferenceTest
+ Method: testSetReferenced
+ Body: {
+        DiagramElement diagramElement = new MockDiagramElement();
+        instance.setReferenced(diagramElement);
+        assertEquals("incorrect Referenced", diagramElement, instance.getReferenced());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setReferenced (Alternative Action: getReferenced=1 ) - Predicate: getReferenced - Scenario: diagramElement (Alternative Scenario: diagramElement=1 )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetShadowLength
+ Body: {
+
+        lifeline.setShadowLength(4);
+        assertEquals("Fail to get the shadowLength correctly",4,lifeline.getShadowLength());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setShadowLength (Alternative Action: setShadowLength=1 ) - Predicate: getShadowLength - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetDashLength
+ Body: {
+
+        lifeline.setDashLength(12);
+        assertEquals("Fail to get the dashLength correctly",12,lifeline.getDashLength());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setDashLength (Alternative Action: getDashLength=1 ) - Predicate: getDashLength - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetRenderScheme
+ Body: {
+
+        lifeline.setRenderScheme(RenderScheme.TopCoderScheme);
+        assertEquals("Fail to get the renderScheme correctly",RenderScheme.TopCoderScheme,lifeline.getRenderScheme());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRenderScheme (Alternative Action: setRenderScheme=1 ) - Predicate: getRenderScheme - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testSetStrokeColor_Accuracy
+ Body: {
+
+        lifeline.setStrokeColor(new Color(128,128,128));
+        assertEquals("Fail to set the strokecolor correctly.",new Color(128,128,128),lifeline.getStrokeColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setStrokeColor (Alternative Action: setStrokeColor=1 ) - Predicate: getStrokeColor - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testSetRenderScheme_Accuracy
+ Body: {
+
+        lifeline.setRenderScheme(RenderScheme.SimpleScheme);
+        assertEquals("Fail to set the renderScheme correctly.",RenderScheme.SimpleScheme,lifeline.getRenderScheme());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRenderScheme (Alternative Action: setRenderScheme=1 ) - Predicate: getRenderScheme - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetStrokeColor
+ Body: {
+
+        lifeline.setStrokeColor(new Color(18,18,18));
+        assertEquals("Fail to get the strokecolor correctly",new Color(18,18,18),lifeline.getStrokeColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setStrokeColor (Alternative Action: setStrokeColor=1 ) - Predicate: getStrokeColor - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetBlankLength
+ Body: {
+
+        lifeline.setBlankLength(9);
+        assertEquals("Fail to get the blanklength correctly",9,lifeline.getBlankLength());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setBlankLength (Alternative Action: setBlankLength=1 ) - Predicate: getBlankLength - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testSetShadowColor_Accuracy
+ Body: {
+
+        lifeline.setShadowColor(new Color(0,0,0));
+        assertEquals("Fail to set the shadowcolor correctly",new Color(0,0,0),lifeline.getShadowColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setShadowColor (Alternative Action: getShadowColor=1 ) - Predicate: getShadowColor - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetLifelineLength
+ Body: {
+
+        lifeline.setLifelineLength(80);
+        assertEquals("Fail to get the lifelineLength correctly",80,lifeline.getLifelineLength());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setLifelineLength (Alternative Action: getLifelineLength=1 ) - Predicate: getLifelineLength - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetShadowColor
+ Body: {
+
+        lifeline.setShadowColor(new Color(12,12,12));
+        assertEquals("Fail to get the shadowcolor correctly",new Color(12,12,12),lifeline.getShadowColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setShadowColor (Alternative Action: getShadowColor=1 ) - Predicate: getShadowColor - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testGetBounds
+ Body: {
+        Rectangle rect = lifeline.getBounds();
+        assertNotNull("Fail to call the method getBounds",rect);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getBounds=1 ) - Predicate: N/A - Scenario: rect (Alternative Scenario: rect=1 )
+
+Project: mytcuml
+ Class: LifelineAccuracyTest
+ Method: testSetLifelineLength_Accuracy
+ Body: {
+
+        lifeline.setLifelineLength(95);
+        assertEquals("Fail to set the lifelineLength correctly.",95,lifeline.getLifelineLength());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setLifelineLength (Alternative Action: getLifelineLength=1 ) - Predicate: getLifelineLength - Scenario: lifeline (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ExtensionLinkPropertyPanelTests
+ Method: testRefreshPanel_NoExtens
+ Body: {
+        panel.configurePanel(new ExtendImpl());
+
+        assertEquals("Failed to refresh panel correctly.", "",
+            ((JLabel) panel.retrievePanel().getComponent(0)).getText());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: configurePanel (Alternative Action: configurePanel=1 ) - Predicate: getText - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ExtensionLinkPropertyPanelTests
+ Method: testRefreshPanel_NoVisible
+ Body: {
+        panel.refreshPanel();
+
+        assertEquals("Failed to refresh panel correctly.", "Extension",
+            ((JLabel) panel.retrievePanel().getComponent(0)).getText());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: refreshPanel (Alternative Action: retrievePanel=1 ) - Predicate: getText - Scenario: panel (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseColorPropertyFromNamespace
+ Body: {
+        Color value = Util.parseColorProperty("com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode",
+                "NodeFillColor");
+
+        assertEquals("Failed to get the color property value.", Color.BLACK, value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseColorProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testReadIntegerProperty
+ Body: {
+        int value = Util.readIntegerProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "NodeFontSize", 40);
+
+        assertEquals("Failed to get the int property value.", 15, value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: readIntegerProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseIntegerPropertyFromNamespace
+ Body: {
+        Integer value = Util.parseIntegerProperty("com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode",
+                "NodeWidth");
+
+        assertEquals("Failed to get the int property value.", new Integer(150), value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseIntegerProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseStringPropertyFromNamespace_Unknown
+ Body: {
+        String value = Util.parseStringProperty("com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode",
+                "value");
+
+        assertNull("Failed to get the string property value.", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseStringProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testparseColorPropertyFromNamespace_Unknown
+ Body: {
+        Color value = Util
+                .parseColorProperty("com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "value");
+
+        assertNull("Failed to get the color property value.", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseColorProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseStringPropertyFromDiagramElement_Unknown
+ Body: {
+        String value = Util.parseStringProperty(TestHelper.createGraphNode(), "value");
+
+        assertNull("Failed to get the string property value.", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createGraphNode=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseColorPropertyFromDiagramElement
+ Body: {
+        Color value = Util.parseColorProperty(TestHelper.createGraphNode(), "color");
+
+        assertEquals("Failed to get the color property value.", new Color(85, 85, 85), value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createGraphNode=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testparseColorPropertyFromDiagramElement_Unknown
+ Body: {
+        Color value = Util.parseColorProperty(TestHelper.createGraphNode(), "value");
+
+        assertNull("Failed to get the color property value.", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createGraphNode=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseFontStyleProperty_Unknown
+ Body: {
+        int fontStyle = Util.parseFontStyleProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "value", Font.PLAIN);
+
+        assertEquals("Failed to get the font style.", Font.PLAIN, fontStyle);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseFontStyleProperty=1 ) - Predicate: N/A - Scenario: fontStyle (Alternative Scenario: fontStyle=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseIntegerPropertyFromNamespace_Unknown
+ Body: {
+        Integer value = Util.parseIntegerProperty("com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode",
+                "value");
+
+        assertNull("Failed to get the int property value.", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseIntegerProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testReadColorProperty_Unknown
+ Body: {
+        Color value = Util.readColorProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "value", Color.BLUE);
+
+        assertEquals("Failed to get the color property value.", Color.BLUE, value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: readColorProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseReaderSchemeProperty
+ Body: {
+        RenderScheme scheme = Util.parseReaderSchemeProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "NodeRenderScheme", 1);
+
+        assertEquals("Failed to get the render scheme.", RenderScheme.TopCoderScheme, scheme);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseReaderSchemeProperty=1 ) - Predicate: N/A - Scenario: scheme (Alternative Scenario: scheme=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseIntegerPropertyFromDiagramElement
+ Body: {
+        Integer value = Util.parseIntegerProperty(TestHelper.createGraphNode(), "shadow");
+
+        assertEquals("Failed to get the integer property value.", new Integer(23), value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createGraphNode=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testReadStringProperty_Unknown
+ Body: {
+        String value = Util.readStringProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "value", "value");
+
+        assertEquals("Failed to get the string property value.", "value", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: readStringProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseIntegerPropertyFromDiagramElement_Unknown
+ Body: {
+        Integer value = Util.parseIntegerProperty(TestHelper.createGraphNode(), "value");
+
+        assertNull("Failed to get the integer property value.", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createGraphNode=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseReaderSchemeProperty_Unknown
+ Body: {
+        RenderScheme scheme = Util.parseReaderSchemeProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "value", 0);
+
+        assertEquals("Failed to get the render scheme.", RenderScheme.SimpleScheme, scheme);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseReaderSchemeProperty=1 ) - Predicate: N/A - Scenario: scheme (Alternative Scenario: scheme=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseStringPropertyFromNamespace
+ Body: {
+        String value = Util.parseStringProperty("com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode",
+                "NodeFillColor");
+
+        assertEquals("Failed to get the string property value.", "Color.BLACK", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseStringProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testReadColorProperty
+ Body: {
+        Color value = Util.readColorProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "NodeFillColor", Color.BLUE);
+
+        assertEquals("Failed to get the color property value.", Color.BLACK, value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: readColorProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseFontStyleProperty
+ Body: {
+        int fontStyle = Util.parseFontStyleProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "NodeFontStyle", Font.PLAIN);
+
+        assertEquals("Failed to get the font style.", Font.ITALIC, fontStyle);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: parseFontStyleProperty=1 ) - Predicate: N/A - Scenario: fontStyle (Alternative Scenario: fontStyle=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testReadIntegerProperty_Unknown
+ Body: {
+        int value = Util.readIntegerProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "value", 40);
+
+        assertEquals("Failed to get the int property value.", 40, value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: readIntegerProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testParseStringPropertyFromDiagramElement
+ Body: {
+        String value = Util.parseStringProperty(TestHelper.createGraphNode(), "color");
+
+        assertEquals("Failed to get the string property value.", "#555555", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: createGraphNode=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testReadStringProperty
+ Body: {
+        String value = Util.readStringProperty(new GraphNode(), "value",
+                "com.topcoder.gui.diagramviewer.uml.sequenceelements.objectnode", "NodeFillColor", "value");
+
+        assertEquals("Failed to get the string property value.", "Color.BLACK", value);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: readStringProperty=1 ) - Predicate: N/A - Scenario: value (Alternative Scenario: value=1 )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMouseReleasedWithNonSelectionCornerEventAccuracy
+ Body: {
+        ((JComponent) nonCornerEvent.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
+        listener.mouseReleased(nonCornerEvent);
+        // nothing should happen
+        assertTrue("The cursor should be left as E_RESIZE_CURSOR.",
+            ((JComponent) nonCornerEvent.getSource()).getCursor().equals(
+                Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR)));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setCursor (Alternative Action: getSource=2 ) - Predicate: equals - Scenario: ((JComponent) nonCornerEvent.getSource()) (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMouseDraggedWithWhenNoLastPointAccuracy
+ Body: {
+        SelectionCorner corner = new SelectionCorner(SelectionCornerType.EAST, new Point(100, 200));
+        listener.mouseDragged(new MouseEvent(corner, 0, new Date().getTime(), 0, 5, 6, 0, false));
+        // nothing should happen
+        assertNull("The event should not be fired.", node.getPassedinEvent());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: mouseDragged (Alternative Action: mouseDragged=1 ) - Predicate: getPassedinEvent - Scenario: corner (Alternative Scenario: corner=1 )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMousePressedWithNonSelectionCornerEventAccuracy
+ Body: {
+        listener.mousePressed(nonCornerEvent);
+        // nothing should happen
+        assertTrue("The cursor should be left as default.",
+            ((JComponent) nonCornerEvent.getSource()).getCursor().equals(Cursor.getDefaultCursor()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: mousePressed (Alternative Action: getCursor=1 ) - Predicate: equals - Scenario: listener (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMouseReleasedWithNullEventAccuracy
+ Body: {
+        ((JComponent) nonCornerEvent.getSource()).setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
+        listener.mouseReleased(null);
+        // nothing should happen
+        assertTrue("The cursor should be left as E_RESIZE_CURSOR.",
+            ((JComponent) nonCornerEvent.getSource()).getCursor().equals(
+                Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR)));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setCursor (Alternative Action: getSource=2 ) - Predicate: equals - Scenario: ((JComponent) nonCornerEvent.getSource()) (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMousePressedWithNullEventAccuracy
+ Body: {
+        listener.mousePressed(null);
+        // nothing should happen
+        assertTrue("The cursor should be left as default.",
+            ((JComponent) nonCornerEvent.getSource()).getCursor().equals(Cursor.getDefaultCursor()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: mousePressed (Alternative Action: getCursor=1 ) - Predicate: equals - Scenario: listener (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMouseDraggedWithNonSelectionCornerEventAccuracy
+ Body: {
+        listener.mouseDragged(nonCornerEvent);
+        // nothing should happen
+        assertNull("The event should not be fired.", node.getPassedinEvent());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: mouseDragged (Alternative Action: mouseDragged=1 ) - Predicate: getPassedinEvent - Scenario: listener (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerMouseListenerUnitTests
+ Method: testMouseDraggedWithNullEventAccuracy
+ Body: {
+        listener.mouseDragged(null);
+        // nothing should happen
+        assertNull("The event should not be fired.", node.getPassedinEvent());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: mouseDragged (Alternative Action: mouseDragged=1 ) - Predicate: getPassedinEvent - Scenario: listener (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testSetDragEnabled
+ Body: {
+        dock.setDragEnabled(true);
+        
+        assertTrue("True is expected.", dock.isDragEnabled());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setDragEnabled (Alternative Action: isDragEnabled=1 ) - Predicate: isDragEnabled - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testAddDockListener
+ Body: {
+        dock.addDockListener(new MyDockListener());
+       assertEquals("Equal to 1.", 1, dock.getDockListeners().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addDockListener (Alternative Action: getDockListeners=1 ) - Predicate: size - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testSetDragStartLocation
+ Body: {
+        Point p = new Point(10, 100);
+        
+        dock.setDragStartLocation(p);
+        
+        assertEquals("Equal is expected.", p, dock.getDragStartLocation());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setDragStartLocation (Alternative Action: getDragStartLocation=1 ) - Predicate: getDragStartLocation - Scenario: p (Alternative Scenario: p=1 )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testIsDragEnabled
+ Body: {
+        dock.setDragEnabled(false);
+        assertFalse("false is expected.", dock.isDragEnabled());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setDragEnabled (Alternative Action: isDragEnabled=1 ) - Predicate: isDragEnabled - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testGetAndGestureCursor
+ Body: {
+        Cursor cursor = new Cursor(0);
+        
+        dock.setGestureCursor(cursor);
+        
+        assertEquals("Equal is expected.", cursor, dock.getGestureCursor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setGestureCursor (Alternative Action: getGestureCursor=1 ) - Predicate: getGestureCursor - Scenario: cursor (Alternative Scenario: cursor=1 )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testGetCurrentDockContainer_2
+ Body: {
+        dock.floatTo(new Point(100, 1000));
+        assertNotNull("should  not be null.", dock.getCurrentDockContainer());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: floatTo (Alternative Action: getCurrentDockContainer=1 ) - Predicate: getCurrentDockContainer - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: TestDefaultDockAccuracy
+ Method: testGetAndSetFloatable
+ Body: {
+        dock.setFloatable(false);
+        
+        assertFalse("The floatable is set to false.", dock.isFloatable());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setFloatable (Alternative Action: isFloatable=1 ) - Predicate: isFloatable - Scenario: dock (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutActionTest
+ Method: testRedo_Success
+ Body: {
+        //set the redo flag to true
+        cutAction.undo();
+        cutAction.redo();
+        assertFalse(usecaseToolUtil.removeElementFromModel(modelElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: undo (Alternative Action: undo=1 ) - Predicate: removeElementFromModel - Scenario: cutAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutActionTest
+ Method: testUndo_Success
+ Body: {
+        //set the undo flag to true
+        cutAction.redo();
+        cutAction.undo();
+        assertTrue(usecaseToolUtil.removeElementFromModel(modelElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: redo (Alternative Action: undo=1 ) - Predicate: removeElementFromModel - Scenario: cutAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: IllegalGraphElementExceptionUnitTests
+ Method: testConstructor1
+ Body: {
+        IllegalGraphElementException excp = new IllegalGraphElementException(new GraphEdge(), "Failed");
+
+        assertNotNull("The instance should be created.", excp);
+        assertTrue("The message field should be set correctly.", excp.getMessage().startsWith("Failed"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: startsWith - Scenario: excp (Alternative Scenario: excp=1 )
+
+Project: mytcuml
+ Class: IllegalGraphElementExceptionUnitTests
+ Method: testGetGraphElement_NotNull
+ Body: {
+        Throwable e = new Exception();
+        IllegalGraphElementException excp = new IllegalGraphElementException(new GraphEdge(), "Failed", e);
+
+        assertNotNull("Should return proper graph element.", excp.getGraphElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getGraphElement=1 ) - Predicate: getGraphElement - Scenario: e (Alternative Scenario: e=1 )
+
+Project: mytcuml
+ Class: IllegalGraphElementExceptionUnitTests
+ Method: testGetGraphElement_Null
+ Body: {
+        IllegalGraphElementException excp = new IllegalGraphElementException(null, "Failed");
+
+        assertNull("Should return null.", excp.getGraphElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getGraphElement=1 ) - Predicate: getGraphElement - Scenario: excp (Alternative Scenario: excp=1 )
+
+Project: mytcuml
+ Class: ChangeTypeActionTest
+ Method: testUndoAction
+ Body: {
+        testChangeTypeAction.undoAction();
+        assertEquals("ChangeTypeAction undoAction incorrectly.", oldType, element.getParticipant());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: undoAction (Alternative Action: getParticipant=1 ) - Predicate: getParticipant - Scenario: testChangeTypeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ChangeTypeActionTest
+ Method: testRedoAction
+ Body: {
+        testChangeTypeAction.redoAction();
+        assertEquals("ChangeTypeAction redoAction incorrectly.", newType, element.getParticipant());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: redoAction (Alternative Action: redoAction=1 ) - Predicate: getParticipant - Scenario: testChangeTypeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ChangeTypeActionTest
+ Method: testExecuteAction
+ Body: {
+        testChangeTypeAction.executeAction();
+        assertEquals("ChangeTypeAction executeAction incorrectly.", newType, element.getParticipant());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: executeAction (Alternative Action: getParticipant=1 ) - Predicate: getParticipant - Scenario: testChangeTypeAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ChangeTypeActionTest
+ Method: testChangeTypeActionConstructor
+ Body: {
+        UndoableAbstractAction action = new ChangeTypeAction(element, oldType, false);
+        assertNotNull("Create ChangeTypeAction incorrectly.", action);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: action (Alternative Scenario: action=1 )
+
+Project: mytcuml
+ Class: JavaExceptionElementFormatterTests
+ Method: testFormat_NotExceptionClass
+ Body: {
+        element.clearStereotypes();
+        TestHelper.loadSingleXMLConfig(NAMESPACE, "test_files" + File.separator + "AbstractElementFormatter.xml");
+
+        assertFalse("Failed to return correct value.", formatter.format(element));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: clearStereotypes (Alternative Action: loadSingleXMLConfig=1 ) - Predicate: format - Scenario: element (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: JavaExceptionElementFormatterTests
+ Method: testFormat_NotClass
+ Body: {
+        TestHelper.loadSingleXMLConfig(NAMESPACE, "test_files" + File.separator + "AbstractElementFormatter.xml");
+
+        assertFalse("Failed to return correct value.", formatter.format(new PackageImpl()));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: loadSingleXMLConfig (Alternative Action: loadSingleXMLConfig=1 ) - Predicate: format - Scenario: TestHelper (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteStateNodeAbstractActionAccuracyTests
+ Method: testExecute2
+ Body: {
+        test.execute();
+        assertEquals("execute method fails to set state's container.", activityGraph.getTop(), state
+                .getContainer());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getContainer=1 ) - Predicate: getTop - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteStateNodeAbstractActionAccuracyTests
+ Method: testExecute1
+ Body: {
+        test.execute();
+        assertEquals("execute method fails.", state, new ArrayList<StateVertex>(((CompositeState) activityGraph
+                .getTop()).getSubVertexes()).get(0));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getTop=1 ) - Predicate: get - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteStateNodeAbstractActionAccuracyTests
+ Method: testUndo1
+ Body: {
+        test.execute();
+        test.undo();
+
+        assertEquals("undo method fails.", 0, ((CompositeState) activityGraph.getTop()).getSubVertexes().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: undo=1 ) - Predicate: size - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CopyCommentActionAccuracyTest
+ Method: testCopyCommentAction
+ Body: {
+        CopyCommentAction currentCopyCommentAction = new CopyCommentAction(comment, clipboard);
+        assertSame("comments must be the same", comment, AccuracyTestsHelper.getFieldValue(currentCopyCommentAction,
+            "comment"));
+        assertSame("clipboads must be the same", clipboard, AccuracyTestsHelper.getFieldValue(
+            currentCopyCommentAction, "clipboard"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getFieldValue=2 ) - Predicate: getFieldValue - Scenario: currentCopyCommentAction (Alternative Scenario: currentCopyCommentAction=1 )
+
+Project: mytcuml
+ Class: DocumentTreePanelImplTest
+ Method: testGetCurrentView
+ Body: {
+        documentTreePanelImpl.setCurrentView(DocumentTreeViewType.DIAGRAM_CENTRIC);
+
+        assertEquals("Returned value is not as expected", DocumentTreeViewType.DIAGRAM_CENTRIC,
+            documentTreePanelImpl.getCurrentView().getViewType());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setCurrentView (Alternative Action: getViewType=1 ) - Predicate: getViewType - Scenario: documentTreePanelImpl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutNoteRelationshipActionAccuracyTest
+ Method: testUndo
+ Body: {
+        // run successfully
+        cutNoteRelationshipAction.undo();
+        assertTrue("model element must own comment", modelElement.containsComment(comment));
+        assertTrue("model element must contains comment", comment.containsAnnotatedElement(modelElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: undo (Alternative Action: undo=1 ) - Predicate: containsAnnotatedElement - Scenario: cutNoteRelationshipAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CutNoteRelationshipActionAccuracyTest
+ Method: testExecute
+ Body: {
+        // run successfully
+        cutNoteRelationshipAction.execute();
+        assertFalse("model element must not own comment", modelElement.containsComment(comment));
+        assertFalse("model element must be removed from comment", comment.containsAnnotatedElement(modelElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: containsComment=1 ) - Predicate: containsAnnotatedElement - Scenario: cutNoteRelationshipAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AbstractXMITransformerAccuracyTest
+ Method: testGetXMIWriter
+ Body: {
+        assertNull("getXMIWriter failed.", transfer.getXMIWriter());
+        transfer.setXMIWriter(writer);
+        assertEquals("getXMIWriter failed.", writer, transfer.getXMIWriter());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setXMIWriter (Alternative Action: getXMIWriter=2 ) - Predicate: getXMIWriter - Scenario: transfer (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: AbstractXMITransformerAccuracyTest
+ Method: testSetXMIWriterAccuracy
+ Body: {
+        transfer.setXMIWriter(writer);
+        assertEquals("setXMIWriter failed.", writer, transfer.getXMIWriter());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setXMIWriter (Alternative Action: getXMIWriter=1 ) - Predicate: getXMIWriter - Scenario: transfer (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testAddElementToModel_ModelElementNamespace_Success
+ Body: {
+        usecaseToolUtil.addElementToModel(modelElement, namespace);
+        assertEquals(namespace, modelElement.getNamespace());
+        assertTrue(modelElement.getNamespace().getOwnedElements().contains(modelElement));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addElementToModel (Alternative Action: getNamespace=2 ) - Predicate: contains - Scenario: usecaseToolUtil (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ColorChooserPanelTests
+ Method: testColorChooserPanelAccuracy
+ Body: {
+        ColorChooserPanel panel1 = new ColorChooserPanel();
+        // verify
+        assertNotNull("the object should be created", panel1);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: panel1 (Alternative Scenario: panel1=1 )
+
+Project: mytcuml
+ Class: DefaultComponentVisibleMakerTest
+ Method: testMakeVisible
+ Body: {
+        component.setVisible(false);
+        visibleMaker.makeVisible(component);
+
+        assertTrue("component should be visible", component.isVisible());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setVisible (Alternative Action: setVisible=1 ) - Predicate: isVisible - Scenario: component (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CopyDependencyActionTest
+ Method: testCtor1
+ Body: {
+        CopyDependencyAction copyAction = new CopyDependencyAction(dependency);
+
+        assertTrue("Should be a CopyDependencyAction instance.", copyAction instanceof CopyDependencyAction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: copyAction (Alternative Scenario: copyAction=1 )
+
+Project: mytcuml
+ Class: CopyDependencyActionTest
+ Method: testCtor2
+ Body: {
+        CopyDependencyAction copyAction = new CopyDependencyAction(dependency, clipboard);
+
+        assertTrue("Should be a CopyDependencyAction instance.", copyAction instanceof CopyDependencyAction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: copyAction (Alternative Scenario: copyAction=1 )
+
+Project: mytcuml
+ Class: NotValidNamespaceExceptionTests
+ Method: testConstructor2
+ Body: {
+        NotValidNamespaceException e
+            = new NotValidNamespaceException(TEST_MESSAGE, data);
+        assertEquals("The message is incorrect.", TEST_MESSAGE, e.getMessage());
+        assertEquals("The cause is incorrect.", MESSAGE, e.getApplicationCode());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getApplicationCode=1 ) - Predicate: getApplicationCode - Scenario: e (Alternative Scenario: e=1 )
+
+Project: mytcuml
+ Class: NotValidNamespaceExceptionTests
+ Method: testConstructor0
+ Body: {
+        NotValidNamespaceException e = new NotValidNamespaceException(TEST_MESSAGE);
+        assertEquals("The returned message should be equal to set.", TEST_MESSAGE, e.getMessage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: getMessage - Scenario: e (Alternative Scenario: e=1 )
+
+Project: mytcuml
+ Class: NotValidNamespaceExceptionTests
+ Method: testConstructor1
+ Body: {
+        NotValidNamespaceException e
+            = new NotValidNamespaceException(TEST_MESSAGE, cause);
+        assertEquals("The message is incorrect.", TEST_MESSAGE, e.getMessage());
+        assertEquals("The inner exception is incorrect.", cause, e.getCause());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: getCause - Scenario: e (Alternative Scenario: e=1 )
+
+Project: mytcuml
+ Class: AdjustDiagramZoomLevelActionAccuracyTests
+ Method: testAdjustDiagramZoomLevelActionCtor_Basic
+ Body: {
+        // check for creating successful.
+        assertNotNull("Create failed.", test);
+        // adjust the diagram's zoom level.
+        test.execute();
+        // check new zoom level here.
+        assertEquals("Equal zoom level expected.", 5.7, diagram.getZoom());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getZoom=1 ) - Predicate: getZoom - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: InteractionImplUnitTest
+ Method: testCtor
+ Body: {
+        Interaction interaction = new InteractionImpl();
+        assertNotNull("Unable to create InteractionImpl instance.", interaction);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: interaction (Alternative Scenario: interaction=1 )
+
+Project: mytcuml
+ Class: UpdateOperationOrderActionUnitTests
+ Method: testUndoAction
+ Body: {
+        testUpdateOperationOrderAction.redoAction();
+        testUpdateOperationOrderAction.undoAction();
+        assertEquals("UpdateOperationOrderAction undoAction incorrectly", 1, classifier.getFeatures()
+                .indexOf(operation));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: redoAction (Alternative Action: getFeatures=1 ) - Predicate: indexOf - Scenario: testUpdateOperationOrderAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UpdateOperationOrderActionUnitTests
+ Method: testRedoAction
+ Body: {
+        testUpdateOperationOrderAction.redoAction();
+        assertEquals("UpdateOperationOrderAction redoAction incorrectly", 3, classifier.getFeatures()
+                .indexOf(operation));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: redoAction (Alternative Action: getFeatures=1 ) - Predicate: indexOf - Scenario: testUpdateOperationOrderAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UpdateOperationOrderActionUnitTests
+ Method: testExecuteAction
+ Body: {
+        testUpdateOperationOrderAction.redoAction();
+        assertEquals("UpdateOperationOrderAction executeAction incorrectly", 3, classifier.getFeatures().indexOf(
+                operation));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: redoAction (Alternative Action: getFeatures=1 ) - Predicate: indexOf - Scenario: testUpdateOperationOrderAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteTransitionActionAccuracyTests
+ Method: testExecute2
+ Body: {
+        test.execute();
+        assertEquals("execute method fails to set Transition's StateMachine.", activityGraph, transition
+                .getStateMachine());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getStateMachine=1 ) - Predicate: getStateMachine - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: PasteTransitionActionAccuracyTests
+ Method: testExecute1
+ Body: {
+        test.execute();
+        assertEquals("execute method fails.", transition,
+                new ArrayList<Transition>(activityGraph.getTransitions()).get(0));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getTransitions=1 ) - Predicate: get - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testSetPositionNull
+ Body: {
+        instance.setPosition(null);
+        assertNull("null value should be allowed", instance.getPosition());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPosition (Alternative Action: getPosition=1 ) - Predicate: getPosition - Scenario: instance (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testAddGraphEdgeDuplicate
+ Body: {
+        // append an element twice
+        instance.addGraphEdge(graphEdge1);
+        instance.addGraphEdge(graphEdge1);
+
+        assertEquals("two elements expected", 2, instance.countGraphEdges());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addGraphEdge (Alternative Action: addGraphEdge=2 ) - Predicate: countGraphEdges - Scenario: instance (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testGetGraphElement
+ Body: {
+        GraphElement graphElement = new MockGraphElement();
+        instance.setGraphElement(graphElement);
+        assertEquals("incorrect GraphElement", graphElement, instance.getGraphElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setGraphElement (Alternative Action: setGraphElement=1 ) - Predicate: getGraphElement - Scenario: graphElement (Alternative Scenario: graphElement=1 )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testGetPosition
+ Body: {
+        Point point = new Point();
+        instance.setPosition(point);
+        assertEquals("incorrect Position", point, instance.getPosition());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPosition (Alternative Action: getPosition=1 ) - Predicate: getPosition - Scenario: point (Alternative Scenario: point=1 )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testSetGraphElementNull
+ Body: {
+        instance.setGraphElement(null);
+        assertNull("null value should be allowed", instance.getGraphElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setGraphElement (Alternative Action: setGraphElement=1 ) - Predicate: getGraphElement - Scenario: instance (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testSetGraphElement
+ Body: {
+        GraphElement graphElement = new MockGraphElement();
+        instance.setGraphElement(graphElement);
+        assertEquals("incorrect GraphElement", graphElement, instance.getGraphElement());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setGraphElement (Alternative Action: setGraphElement=1 ) - Predicate: getGraphElement - Scenario: graphElement (Alternative Scenario: graphElement=1 )
+
+Project: mytcuml
+ Class: GraphConnectorTest
+ Method: testContainsGraphEdge
+ Body: {
+        // the collection contains one element
+        instance.addGraphEdge(graphEdge1);
+
+        assertTrue("true expected", instance.containsGraphEdge(graphEdge1));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addGraphEdge (Alternative Action: addGraphEdge=1 ) - Predicate: containsGraphEdge - Scenario: instance (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ElementCreationExceptionTests
+ Method: testElementCreationException2
+ Body: {
+        ElementCreationException exception = new ElementCreationException(ERROR_MESSAGE);
+        assertNotNull("Unable to instantiate LoaderException.", exception);
+        assertEquals("Error message is not properly propagated to super class.", ERROR_MESSAGE, exception.getMessage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: getMessage - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ElementCreationExceptionTests
+ Method: testElementCreationExceptionInheritance3
+ Body: {
+        ElementCreationException exception = new ElementCreationException(ERROR_MESSAGE, CAUSE_EXCEPTION);
+        assertTrue("ElementCreationException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ElementCreationExceptionTests
+ Method: testElementCreationExceptionInheritance2
+ Body: {
+        ElementCreationException exception = new ElementCreationException(ERROR_MESSAGE);
+        assertTrue("ElementCreationException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: ElementCreationExceptionTests
+ Method: testElementCreationExceptionInheritance1
+ Body: {
+        ElementCreationException exception = new ElementCreationException();
+        assertTrue("ElementCreationException does not subclass Exception.", exception instanceof Exception);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: exception (Alternative Scenario: exception=1 )
+
+Project: mytcuml
+ Class: SelectionCornerUnitTests
+ Method: testSetStrokeColorAccuracy
+ Body: {
+        corner.setStrokeColor(Color.GREEN);
+        assertTrue("The strokeColor field should be set.",
+            TestHelper.getPrivateField(SelectionCorner.class, corner, "strokeColor").equals(Color.GREEN));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setStrokeColor (Alternative Action: equals=1 ) - Predicate: equals - Scenario: corner (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerUnitTests
+ Method: testSetCenterAccuracy
+ Body: {
+        corner.setCenter(new Point(-100, -200));
+        assertTrue("The center field should be set.",
+            TestHelper.getPrivateField(SelectionCorner.class, corner, "center").equals(new Point(-100, -200)));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setCenter (Alternative Action: equals=1 ) - Predicate: equals - Scenario: corner (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerUnitTests
+ Method: testSetRadiusAccuracy
+ Body: {
+        corner.setRadius(20);
+        assertTrue("The radius field should be set.",
+            TestHelper.getPrivateField(SelectionCorner.class, corner, "radius").toString().equals("20"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRadius (Alternative Action: equals=1 ) - Predicate: equals - Scenario: corner (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerUnitTests
+ Method: testSetFillColorAccuracy
+ Body: {
+        corner.setFillColor(Color.GREEN);
+        assertTrue("The fillColor field should be set.",
+            TestHelper.getPrivateField(SelectionCorner.class, corner, "fillColor").equals(Color.GREEN));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setFillColor (Alternative Action: equals=1 ) - Predicate: equals - Scenario: corner (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SelectionCornerUnitTests
+ Method: testSetTypeAccuracy
+ Body: {
+        corner.setType(SelectionCornerType.WEST);
+        assertTrue("The type field should be set.",
+            TestHelper.getPrivateField(SelectionCorner.class, corner, "type").equals(SelectionCornerType.WEST));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setType (Alternative Action: equals=1 ) - Predicate: equals - Scenario: corner (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: XMIWriterAccuracyTest
+ Method: testPutXMIRootAttribute
+ Body: {
+        writer.putXMIRootAttribute("key", "value");
+        assertEquals("putXMIRootAttribute failed.", "value", writer.getXMIRootAttribute("key"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: putXMIRootAttribute (Alternative Action: getXMIRootAttribute=1 ) - Predicate: getXMIRootAttribute - Scenario: writer (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: XMIWriterAccuracyTest
+ Method: testClearXMIRootAttributes
+ Body: {
+        writer.clearXMIRootAttributes();
+        assertEquals("clearXMIRootAttributes failed.", 0, writer.getXMIRootAttributeKeys().length);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: clearXMIRootAttributes (Alternative Action: clearXMIRootAttributes=1 ) - Predicate: N/A - Scenario: writer (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: XMIWriterAccuracyTest
+ Method: testGetXMIRootAttributeKeysEmpty
+ Body: {
+        XMIWriter xmlWriter = new XMIWriter(manager, transformers, new HashMap<String, String>());
+        assertEquals("getXMIRootAttributeKeys failed.", 0, xmlWriter.getXMIRootAttributeKeys().length);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getXMIRootAttributeKeys=1 ) - Predicate: N/A - Scenario: xmlWriter (Alternative Scenario: xmlWriter=1 )
+
+Project: mytcuml
+ Class: CopyMessageActionUnitTest
+ Method: test_accuracy_CopyMessageAction1
+ Body: {
+        Clipboard clipboard = new Clipboard("test");
+        CopyMessageAction copyMessageAction1 = new MockCopyMessageAction(asynchronousMessage, clipboard);
+        // check for null
+        assertNotNull("CopyMessageAction creation failed", copyMessageAction1);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: clipboard (Alternative Scenario: copyMessageAction1=1 )
+
+Project: mytcuml
+ Class: CopyMessageActionUnitTest
+ Method: test_accuracy_execute
+ Body: {
+        copyMessageAction.execute();
+        assertTrue("execute failed", copyMessageAction.getMessageUtil().checkAsynchronousMessage(
+            (Stimulus) Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null).getTransferData(
+                CollaborationTransfer.ASYNCHRONOUS_MESSAGE_FLAVOR)));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: execute (Alternative Action: getDefaultToolkit=1 ) - Predicate: checkAsynchronousMessage - Scenario: copyMessageAction (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: CheckBoxPropertyComponentGeneratorTests
+ Method: testGenerateComponent0
+ Body: {
+        definition.setPropertyValue(Boolean.TRUE.toString());
+        JCheckBox checkBox = generator.generateComponent(definition);
+
+        assertTrue("CheckBox.isSelected() should return the same value as definition value.",
+            checkBox.isSelected());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPropertyValue (Alternative Action: setPropertyValue=1 ) - Predicate: isSelected - Scenario: checkBox (Alternative Scenario: checkBox=1 )
+
+Project: mytcuml
+ Class: CheckBoxPropertyComponentGeneratorTests
+ Method: testGenerateComponent1
+ Body: {
+        definition.setPropertyValue(Boolean.FALSE.toString());
+        JCheckBox checkBox = generator.generateComponent(definition);
+
+        assertFalse("CheckBox.isSelected() should return the same value as definition value.",
+            checkBox.isSelected());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPropertyValue (Alternative Action: setPropertyValue=1 ) - Predicate: isSelected - Scenario: checkBox (Alternative Scenario: checkBox=1 )
+
+Project: mytcuml
+ Class: AbstractXMITransformerUnitTest
+ Method: testSetXMIWriter_Accuracy
+ Body: {
+        XMIWriter writer = new XMIWriter(new UMLModelManager(), TestHelper.createMandatoryTransformers());
+        abstractXMITransformer.setXMIWriter(writer);
+
+        assertSame("the internal field is not set.", writer, abstractXMITransformer.getXMIWriter());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setXMIWriter (Alternative Action: getXMIWriter=1 ) - Predicate: getXMIWriter - Scenario: writer (Alternative Scenario: writer=1 )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetTextColor
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getTextColorKey(), "#75FE36"));
+        assertEquals("The return value is not correct.", "#75FE36", adapter.getTextColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getTextColorKey=1 ) - Predicate: getTextColor - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetOutlineColor_InvalidColor
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getOutlineColorKey(), "HELLO"));
+        assertEquals("The return value is not correct.", "#000000", adapter.getOutlineColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getOutlineColorKey=1 ) - Predicate: getOutlineColor - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetFontName
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getFontNameKey(), "Arial"));
+        assertEquals("The return value is not correct.", "Arial", adapter.getFontName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getFontName=1 ) - Predicate: getFontName - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetFontName_InvalidName
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getFontNameKey(), "font"));
+        assertEquals("The return value is not correct.", "Default", adapter.getFontName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getFontName=1 ) - Predicate: getFontName - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetTextColor_InvalidColor
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getTextColorKey(), "TEXT"));
+        assertEquals("The return value is not correct.", "#000000", adapter.getTextColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getTextColorKey=1 ) - Predicate: getTextColor - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetY
+ Body: {
+        graphEdge.getPosition().setY(15.0);
+        assertEquals("The return value is not correct.", 15.0, adapter.getY());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setY (Alternative Action: setY=1 ) - Predicate: getY - Scenario: graphEdge.getPosition() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetFontSize_InvalidSize
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getFontSizeKey(), "size"));
+        assertEquals("The return value is not correct.", 10, adapter.getFontSize());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getFontSize=1 ) - Predicate: getFontSize - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetFontSize
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getFontSizeKey(), "18"));
+        assertEquals("The return value is not correct.", 18, adapter.getFontSize());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getFontSize=1 ) - Predicate: getFontSize - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetOutlineColor
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getOutlineColorKey(), "#F256D8"));
+        assertEquals("The return value is not correct.", "#F256D8", adapter.getOutlineColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getOutlineColorKey=1 ) - Predicate: getOutlineColor - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetY_InvalidY
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getYKey(), "test"));
+        assertEquals("The return value is not correct.", 0.0, adapter.getY());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getY=1 ) - Predicate: getY - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: GraphEdgeStyleObjectAdapterTests
+ Method: testGetX_InvalidX
+ Body: {
+        graphEdge.addProperty(TestHelper.createProperty(stylePanel.getXKey(), "test"));
+        assertEquals("The return value is not correct.", 0.0, adapter.getX());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addProperty (Alternative Action: getX=1 ) - Predicate: getX - Scenario: graphEdge (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UseCaseRelationshipAbstractImplTests
+ Method: testSetBase_NullBase
+ Body: {
+        relationship.setBase(null);
+
+        assertNull("Expects null base use case.", relationship.getBase());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setBase (Alternative Action: getBase=1 ) - Predicate: getBase - Scenario: relationship (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UseCaseRelationshipAbstractImplTests
+ Method: testSetTarget_NullTarget
+ Body: {
+        relationship.setTarget(null);
+
+        assertNull("Expects null target use case.", relationship.getTarget());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setTarget (Alternative Action: getTarget=1 ) - Predicate: getTarget - Scenario: relationship (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UseCaseRelationshipAbstractImplTests
+ Method: testSetBase
+ Body: {
+        UseCase other = new UseCaseImpl();
+
+        relationship.setBase(other);
+
+        assertSame("Failed to get the correct base use case.", other, relationship.getBase());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setBase (Alternative Action: getBase=1 ) - Predicate: getBase - Scenario: other (Alternative Scenario: other=1 )
+
+Project: mytcuml
+ Class: UseCaseRelationshipAbstractImplTests
+ Method: testSetTarget
+ Body: {
+        UseCase other = new UseCaseImpl();
+
+        relationship.setTarget(other);
+
+        assertSame("Failed to get the correct target use case.", other, relationship.getTarget());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setTarget (Alternative Action: getTarget=1 ) - Predicate: getTarget - Scenario: other (Alternative Scenario: other=1 )
+
+Project: mytcuml
+ Class: PastePackageActionTest
+ Method: testGetPresentationName
+ Body: {
+        testPastePackageAction();
+
+        assertEquals("Presentation name is incorrect.", "Paste Package", action
+                .getPresentationName());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: testPastePackageAction (Alternative Action: getPresentationName=1 ) - Predicate: getPresentationName - Scenario: N/A (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: BindingImplTests
+ Method: testCountArguments
+ Body: {
+        //Add test collection to bindingImpl.
+        bindingImpl.addArguments(collection);
+        assertEquals("BindingImpl#addArguments doesn't work properly.", 10, bindingImpl.getArguments().size());
+
+        assertEquals("BindingImpl#clearArguments doesn't work properly.", 10, bindingImpl.countArguments());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: addArguments (Alternative Action: addArguments=1 ) - Predicate: countArguments - Scenario: bindingImpl (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UndoableAbstractActionAccuracyTests
+ Method: testDie
+ Body: {
+        test.die();
+        assertFalse("Should can not do anything after die.", test.canUndo());
+        assertFalse("Should can not do anything after die.", test.canRedo());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: die (Alternative Action: canUndo=1 ) - Predicate: canRedo - Scenario: test (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ConfigurationExceptionUnitTests
+ Method: testCtor1
+ Body: {
+        ConfigurationException me = new ConfigurationException(ERROR_MESSAGE);
+        assertNotNull("Unable to instantiate ConfigurationException.", me);
+        assertEquals("Error message is not properly propagated to super class.", ERROR_MESSAGE, me.getMessage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getMessage=1 ) - Predicate: getMessage - Scenario: me (Alternative Scenario: me=1 )
+
+Project: mytcuml
+ Class: TestCSharpExceptionElementFormatter
+ Method: testCtor2_1
+ Body: {
+        JavaExceptionElementFormatter testObject =
+            new JavaExceptionElementFormatter(testNamespace, umlModelManager, testLanguage);
+        assertNotNull("Constructor failed.", testObject);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: testObject (Alternative Scenario: testObject=1 )
+
+Project: mytcuml
+ Class: TestCSharpExceptionElementFormatter
+ Method: testformat_GeneralCorrectness
+ Body: {
+        ModelElement element = getPreppedElement();
+        testObject.format(element);
+
+        assertEquals("Wrong number of methods added.", 4, ((Class) element).getFeatures().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: format (Alternative Action: getFeatures=1 ) - Predicate: size - Scenario: element (Alternative Scenario: element=1 )
+
+Project: mytcuml
+ Class: TestCSharpExceptionElementFormatter
+ Method: testformatWhenModificationIsNotRequired
+ Body: {
+        ModelElement element = new ClassImpl();
+        element.setName(someText);
+        assertFalse("Format failed.", testObject.format(element));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setName (Alternative Action: setName=1 ) - Predicate: format - Scenario: element (Alternative Scenario: element=1 )
+
+Project: mytcuml
+ Class: TestCSharpExceptionElementFormatter
+ Method: testCtor1_2
+ Body: {
+        JavaExceptionElementFormatter testObject =
+            new JavaExceptionElementFormatter(umlModelManager, testLanguage);
+
+        assertEquals("umlModelManager attribute was incorrectly set", umlModelManager, testObject.getUMLModelManager());
+        assertEquals("default language attribute was incorrectly set", testLanguage, testObject.getLanguage());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getLanguage=1 ) - Predicate: getLanguage - Scenario: testObject (Alternative Scenario: testObject=1 )
+
+Project: mytcuml
+ Class: TestCSharpExceptionElementFormatter
+ Method: testformat_Effect
+ Body: {
+        ModelElement element = getPreppedElement();
+        assertTrue("Format failed.", testObject.format(element));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: format=1 ) - Predicate: format - Scenario: element (Alternative Scenario: element=1 )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testSetFillColor_Accuracy
+ Body: {
+
+        lifeLineSeg.setFillColor(new Color(0, 0, 100));
+        assertEquals("Fail to set the fillcolor correctly", new Color(0, 0, 100), lifeLineSeg.getFillColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setFillColor (Alternative Action: getFillColor=1 ) - Predicate: getFillColor - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testSetStrokeColor_Accuracy
+ Body: {
+
+        lifeLineSeg.setStrokeColor(new Color(128, 128, 128));
+        assertEquals("Fail to set the strokecolor correctly.", new Color(128, 128, 128), lifeLineSeg.getStrokeColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setStrokeColor (Alternative Action: setStrokeColor=1 ) - Predicate: getStrokeColor - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testGetBounds
+ Body: {
+        Rectangle rect = lifeLineSeg.getBounds();
+        assertNotNull("Fail to call the method getBounds", rect);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getBounds=1 ) - Predicate: N/A - Scenario: rect (Alternative Scenario: rect=1 )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testSetRenderScheme_Accuracy
+ Body: {
+
+        lifeLineSeg.setRenderScheme(RenderScheme.SimpleScheme);
+        assertEquals("Fail to set the renderScheme correctly.", RenderScheme.SimpleScheme, lifeLineSeg
+                .getRenderScheme());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRenderScheme (Alternative Action: setRenderScheme=1 ) - Predicate: getRenderScheme - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testGetPopup
+ Body: {
+
+        JPopupMenu popup = new JPopupMenu();
+        lifeLineSeg.setPopup(popup);
+        assertSame("getPopup fails to get correctly", popup, lifeLineSeg.getPopup());
+
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPopup (Alternative Action: setPopup=1 ) - Predicate: getPopup - Scenario: popup (Alternative Scenario: popup=1 )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testGetStrokeColor
+ Body: {
+
+        lifeLineSeg.setStrokeColor(new Color(18, 18, 18));
+        assertEquals("Fail to get the strokecolor correctly", new Color(18, 18, 18), lifeLineSeg.getStrokeColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setStrokeColor (Alternative Action: setStrokeColor=1 ) - Predicate: getStrokeColor - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testSetShadowColor_Accuracy
+ Body: {
+
+        lifeLineSeg.setShadowColor(new Color(0, 0, 0));
+        assertEquals("Fail to set the shadowcolor correctly", new Color(0, 0, 0), lifeLineSeg.getShadowColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setShadowColor (Alternative Action: getShadowColor=1 ) - Predicate: getShadowColor - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testGetRenderScheme
+ Body: {
+
+        lifeLineSeg.setRenderScheme(RenderScheme.TopCoderScheme);
+        assertEquals("Fail to get the renderScheme correctly", RenderScheme.TopCoderScheme, lifeLineSeg
+                .getRenderScheme());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setRenderScheme (Alternative Action: setRenderScheme=1 ) - Predicate: getRenderScheme - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testSetPopup_Accuracy
+ Body: {
+
+        JPopupMenu popup = new JPopupMenu();
+        lifeLineSeg.setPopup(popup);
+        assertSame("setPopup fails to set correctly", popup, lifeLineSeg.getPopup());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setPopup (Alternative Action: setPopup=1 ) - Predicate: getPopup - Scenario: popup (Alternative Scenario: popup=1 )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testGetShadowColor
+ Body: {
+
+        lifeLineSeg.setShadowColor(new Color(12, 12, 12));
+        assertEquals("Fail to get the shadowcolor correctly", new Color(12, 12, 12), lifeLineSeg.getShadowColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setShadowColor (Alternative Action: getShadowColor=1 ) - Predicate: getShadowColor - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: LifelineSegmentTest
+ Method: testGetFillColor
+ Body: {
+
+        lifeLineSeg.setFillColor(new Color(12, 12, 12));
+        assertEquals("Fail to get the fillColor correctly", new Color(12, 12, 12), lifeLineSeg.getFillColor());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setFillColor (Alternative Action: getFillColor=1 ) - Predicate: getFillColor - Scenario: lifeLineSeg (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: ZUMLForkNodeImplUnitTest
+ Method: testCtor
+ Body: {
+        ZUMLActivityNode node = new ZUMLForkNodeImpl();
+        assertNotNull("Unable to create ZUMLForkNodeImpl instance.", node);
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action:  ) - Predicate: N/A - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: ZUMLForkNodeImplUnitTest
+ Method: testConvertToTCUML3
+ Body: {
+        ZUMLActivityNode node = new ZUMLForkNodeImpl();
+
+        assertEquals("The convertToTCUML() should always return the same instance.",
+            node.convertToTCUML(), node.convertToTCUML());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: convertToTCUML=2 ) - Predicate: convertToTCUML - Scenario: node (Alternative Scenario: node=1 )
+
+Project: mytcuml
+ Class: SendSignalActionTest
+ Method: testContains_False_2
+ Body: {
+        int x = sendSignalAction.getSelectionBound().x / 2;
+        int y = sendSignalAction.getSelectionBound().y + sendSignalAction.getSelectionBound().height / 4;
+        assertFalse("The given point should not be contained.", sendSignalAction.contains(x, y));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getSelectionBound=3 ) - Predicate: contains - Scenario: x (Alternative Scenario: x=1 )
+
+Project: mytcuml
+ Class: SendSignalActionTest
+ Method: testContains_False_1
+ Body: {
+        int x = -10;
+        int y = -10;
+        assertFalse("The given point should not be contained.", sendSignalAction.contains(x, y));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: contains=1 ) - Predicate: contains - Scenario: x (Alternative Scenario: x=1 )
+
+Project: mytcuml
+ Class: SendSignalActionTest
+ Method: testGetPreferredGraphNodeSize_DefaultSize
+ Body: {
+        sendSignalAction.getStereotypeCompartment().setVisible(false);
+        sendSignalAction.getNameCompartment().setVisible(false);
+        assertEquals("The default graph node size should be got correctly.", sendSignalAction
+                .getPreferredGraphNodeSize(), TestUtil.getPrivateField(SendSignalAction.class, sendSignalAction,
+                "DEFAULT_SIZE"));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: setVisible (Alternative Action: setVisible=2 ) - Predicate: getPreferredGraphNodeSize - Scenario: sendSignalAction.getStereotypeCompartment() (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: SendSignalActionTest
+ Method: testContains_True
+ Body: {
+        int x = sendSignalAction.getSelectionBound().x + (int) Math.round(graphNode.getSize().getWidth() / 2);
+        int y = sendSignalAction.getSelectionBound().y + (int) Math.round(graphNode.getSize().getHeight() / 2);
+        assertTrue("The given point should be contained.", sendSignalAction.contains(x, y));
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: N/A (Alternative Action: getSize=2 ) - Predicate: contains - Scenario: x (Alternative Scenario: x=1 )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogErrorMsgInOffLoggingLevel
+ Body: {
+        Util.logErrorMsg(logger, Level.OFF, new IllegalArgumentException("exception"));
+
+        assertEquals("Expects no log information in ERROR level.", 0, logger.getErrorMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logErrorMsg (Alternative Action: logErrorMsg=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogInfoMsgInInfoLoggingLevel
+ Body: {
+        Util.logInfoMsg(logger, Level.INFO, "message");
+
+        assertEquals("Expects the message is logged in INFO level.", 1, logger.getInfoMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logInfoMsg (Alternative Action: logInfoMsg=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogErrorMsgInWarnLoggingLevel
+ Body: {
+        Util.logErrorMsg(logger, Level.WARN, new IllegalArgumentException("exception"));
+
+        assertFalse("Expects error message is logged in ERROR level.", logger.getErrorMsgs().isEmpty());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logErrorMsg (Alternative Action: logErrorMsg=1 ) - Predicate: isEmpty - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogDebugMsgInOffLoggingLevel
+ Body: {
+        Util.logDebugMsg(logger, Level.OFF, "message");
+
+        assertEquals("Expects no log information in DEBUG level.", 0, logger.getDebugMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logDebugMsg (Alternative Action: size=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogWarnMsgInErrorLoggingLevel
+ Body: {
+        Util.logWarnMsg(logger, Level.ERROR, "message");
+
+        assertEquals("Expects no log information in WARN level.", 0, logger.getWarnMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logWarnMsg (Alternative Action: getWarnMsgs=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogErrorMsgInErrorLoggingLevel
+ Body: {
+        Util.logErrorMsg(logger, Level.ERROR, new IllegalArgumentException("exception"));
+
+        assertFalse("Expects error message is logged in ERROR level.", logger.getErrorMsgs().isEmpty());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logErrorMsg (Alternative Action: logErrorMsg=1 ) - Predicate: isEmpty - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogDebugMsgInErrorLoggingLevel
+ Body: {
+        Util.logDebugMsg(logger, Level.ERROR, "message");
+
+        assertEquals("Expects no log information in DEBUG level.", 0, logger.getDebugMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logDebugMsg (Alternative Action: size=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogWarnMsgInInfoLoggingLevel
+ Body: {
+        Util.logWarnMsg(logger, Level.INFO, "message");
+
+        assertEquals("Expects message is logged in WARN level.", 1, logger.getWarnMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logWarnMsg (Alternative Action: getWarnMsgs=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogDebugMsgInDebugLoggingLevel
+ Body: {
+        Util.logDebugMsg(logger, Level.DEBUG, "message");
+
+        assertEquals("Expects the message is logged in DEBUG level.", 1, logger.getDebugMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logDebugMsg (Alternative Action: size=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogDebugMsgInInfoLoggingLevel
+ Body: {
+        Util.logDebugMsg(logger, Level.INFO, "message");
+
+        assertEquals("Expects no log information in DEBUG level.", 0, logger.getDebugMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logDebugMsg (Alternative Action: size=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogInfoMsgInOffLoggingLevel
+ Body: {
+        Util.logInfoMsg(logger, Level.OFF, "message");
+
+        assertEquals("Expects no log information in INFO level.", 0, logger.getInfoMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logInfoMsg (Alternative Action: logInfoMsg=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogWarnMsgInWarnLoggingLevel
+ Body: {
+        Util.logWarnMsg(logger, Level.WARN, "message");
+
+        assertEquals("Expects message is logged in WARN level.", 1, logger.getWarnMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logWarnMsg (Alternative Action: getWarnMsgs=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogInfoMsgInDebugLoggingLevel
+ Body: {
+        Util.logInfoMsg(logger, Level.DEBUG, "message");
+
+        assertEquals("Expects the message is logged in INFO level.", 1, logger.getInfoMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logInfoMsg (Alternative Action: logInfoMsg=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testLogWarnMsgInDebugLoggingLevel
+ Body: {
+        Util.logWarnMsg(logger, Level.DEBUG, "message");
+
+        assertEquals("Expects message is logged in WARN level.", 1, logger.getWarnMsgs().size());
+    }
+ Pattern Name: NormalPattern_2/3LOC - Action: logWarnMsg (Alternative Action: getWarnMsgs=1 ) - Predicate: size - Scenario: Util (Alternative Scenario:  )
+
+
+
+
+

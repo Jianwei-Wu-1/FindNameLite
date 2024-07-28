@@ -1,0 +1,4764 @@
+Project: mytcuml
+ Class: NamespaceAbstractImplUnitTests
+ Method: testContainsOwnedElementNullOwnedElement
+ Body: {
+        try {
+            testNamespaceAbstractImpl.containsOwnedElement(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsOwnedElement - Predicate: N/A - Scenario: testNamespaceAbstractImpl
+
+Project: mytcuml
+ Class: AbstractCompartmentExtractorFailureTest
+ Method: testUpdateFirstAssociationEnd
+ Body: {
+        try {
+            extractor.updateFirstAssociationEnd(element);
+            fail("It should CompartmentNotSupportedException.");
+        } catch (CompartmentNotSupportedException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateFirstAssociationEnd - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: AbstractCompartmentExtractorFailureTest
+ Method: testExtractName
+ Body: {
+        try {
+            extractor.extractName();
+            fail("It should CompartmentNotSupportedException.");
+        } catch (CompartmentNotSupportedException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: extractName - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: AbstractCompartmentExtractorFailureTest
+ Method: testExtractStereotype
+ Body: {
+        try {
+            extractor.extractStereotype();
+            fail("It should CompartmentNotSupportedException.");
+        } catch (CompartmentNotSupportedException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: extractStereotype - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: AbstractCompartmentExtractorFailureTest
+ Method: testUpdateStereotype
+ Body: {
+        try {
+            extractor.updateStereotype(element);
+            fail("It should CompartmentNotSupportedException.");
+        } catch (CompartmentNotSupportedException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateStereotype - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: AbstractCompartmentExtractorFailureTest
+ Method: testUpdateAttribute
+ Body: {
+        try {
+            extractor.updateAttribute(element);
+            fail("It should CompartmentNotSupportedException.");
+        } catch (CompartmentNotSupportedException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateAttribute - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: CoreSemanticModelBridgeTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: CoreSemanticModelBridgeTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: CoreSemanticModelBridgeTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: CoreSemanticModelBridgeTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: AssociationEdgeFailureTest
+ Method: testNotifyGraphEdgeChangeForException1
+ Body: {
+        try {
+            edge.notifyGraphEdgeChange(null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyGraphEdgeChange - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: CutObjectActionUnitTest
+ Method: test_failure_execute
+ Body: {
+        try {
+            cutObjectAction.execute();
+            cutObjectAction.execute();
+            fail("ActionExecutionException Expected.");
+        } catch (ActionExecutionException e) {
+            // As expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: execute - Predicate: N/A - Scenario: cutObjectAction
+
+Project: mytcuml
+ Class: DirectionalActiveTabSelectorUnitTest
+ Method: testInstallSelectorFailure
+ Body: {
+        try {
+            selector.installSelector(null);
+            fail("Expect IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: installSelector - Predicate: N/A - Scenario: selector
+
+Project: mytcuml
+ Class: DirectionalActiveTabSelectorUnitTest
+ Method: testSelectNewActiveTabFailure
+ Body: {
+        try {
+            selector.selectNewActiveTab(null);
+            fail("Expect IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: selectNewActiveTab - Predicate: N/A - Scenario: selector
+
+Project: mytcuml
+ Class: DirectionalActiveTabSelectorUnitTest
+ Method: testUninstallSelectorFailure
+ Body: {
+        try {
+            selector.uninstallSelector(null);
+            fail("Expect IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: uninstallSelector - Predicate: N/A - Scenario: selector
+
+Project: mytcuml
+ Class: RemoveDiagramElementHandlerTest
+ Method: testActionPerformed_null
+ Body: {
+        try {
+            handler.actionPerformed(null, EventValidation.SUCCESSFUL);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: actionPerformed - Predicate: N/A - Scenario: handler
+
+Project: mytcuml
+ Class: RemoveDiagramElementHandlerTest
+ Method: testRedoActionPerformed_null
+ Body: {
+        try {
+            handler.redoActionPerformed(null, action);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: redoActionPerformed - Predicate: N/A - Scenario: handler
+
+Project: mytcuml
+ Class: RemoveDiagramElementHandlerTest
+ Method: testUndoActionPerformed_null
+ Body: {
+        try {
+            handler.undoActionPerformed(null, action);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: undoActionPerformed - Predicate: N/A - Scenario: handler
+
+Project: mytcuml
+ Class: HelperTest
+ Method: testValidateCollectionNotNullNotContainNullFailureNull
+ Body: {
+        try {
+            Helper.validateCollectionNotNullNotContainNull(null, "a");
+            fail("IllegalArgumentException should have been thrown.");
+        } catch (IllegalArgumentException iae) {
+            // ok to land here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateCollectionNotNullNotContainNull - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTest
+ Method: testValidateIndexRangeFailure
+ Body: {
+        try {
+            Helper.validateIndexRange(-1, 1, "a");
+            fail("IndexOutOfBoundsException should have been thrown.");
+        } catch (IndexOutOfBoundsException iae) {
+            // ok to land here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateIndexRange - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTest
+ Method: testValidateCollectionNotNullNotContainNullFailureEmpty1
+ Body: {
+        try {
+            Collection<Object> collection = new ArrayList<Object>();
+            collection.add(null);
+            Helper.validateCollectionNotNullNotContainNull(collection, "a");
+            fail("IllegalArgumentException should have been thrown.");
+        } catch (IllegalArgumentException iae) {
+            // ok to land here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateCollectionNotNullNotContainNull - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTest
+ Method: testValidateNotNullFailure
+ Body: {
+        try {
+            Helper.validateNotNull(null, "a");
+            fail("IllegalArgumentException should have been thrown.");
+        } catch (IllegalArgumentException iae) {
+            // ok to land here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateNotNull - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTest
+ Method: testValidateIndexRangeFailure2
+ Body: {
+        try {
+            Helper.validateIndexRange(2, 1, "a");
+            fail("IndexOutOfBoundsException should have been thrown.");
+        } catch (IndexOutOfBoundsException iae) {
+            // ok to land here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateIndexRange - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: EnumerationConnectorTest
+ Method: testGetConnectionPoint_null
+ Body: {
+        try {
+            connector.getConnectionPoint(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getConnectionPoint - Predicate: N/A - Scenario: connector
+
+Project: mytcuml
+ Class: PackageNodeConnectorTest
+ Method: testGetConnectionPoint_null
+ Body: {
+        try {
+            connector.getConnectionPoint(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getConnectionPoint - Predicate: N/A - Scenario: connector
+
+Project: mytcuml
+ Class: ClassifierCompartmentExtractorFailureTest
+ Method: testUpdateOperationNull
+ Body: {
+        try {
+            extractor.updateOperation(null);
+            fail("It should IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateOperation - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ClassifierCompartmentExtractorFailureTest
+ Method: testUpdateAttribute
+ Body: {
+        try {
+            extractor.updateAttribute(node);
+            fail("It should CompartmentNotFoundException.");
+        } catch (CompartmentNotFoundException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateAttribute - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ClassifierCompartmentExtractorFailureTest
+ Method: testExtractAttribute
+ Body: {
+        try {
+            extractor.extractAttribute();
+            fail("It should CompartmentNotFoundException.");
+        } catch (CompartmentNotFoundException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: extractAttribute - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ClassifierCompartmentExtractorFailureTest
+ Method: testUpdateAttributeNull
+ Body: {
+        try {
+            extractor.updateAttribute(null);
+            fail("It should IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateAttribute - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ClassifierCompartmentExtractorFailureTest
+ Method: testExtractOperation
+ Body: {
+        try {
+            extractor.extractOperation();
+            fail("It should CompartmentNotFoundException.");
+        } catch (CompartmentNotFoundException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: extractOperation - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ClassifierCompartmentExtractorFailureTest
+ Method: testUpdateOperation
+ Body: {
+        try {
+            extractor.updateOperation(node);
+            fail("It should CompartmentNotFoundException.");
+        } catch (CompartmentNotFoundException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateOperation - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_EmptyPropertyName
+ Body: {
+        try {
+            Util.getString(NAMESPACE, "");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckString_EmptyArg
+ Body: {
+        try {
+            Util.checkString("", "Test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_NullNamespace
+ Body: {
+        try {
+            Util.getString(null, "Test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_ProjectConfigurationException1
+ Body: {
+        try {
+            Util.getString(NAMESPACE, "exceptionStereotypeName");
+
+            fail("ProjectConfigurationException expected.");
+        } catch (ProjectConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_NullPropertyName
+ Body: {
+        try {
+            Util.getString(NAMESPACE, null);
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckString_NullArg
+ Body: {
+        try {
+            Util.checkString(null, "Test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckNull_NullArg
+ Body: {
+        try {
+            Util.checkNull(null, "test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNull - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testGetString_EmptyNamespace
+ Body: {
+        try {
+            Util.getString("", "Test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyStateNode_NullClipboard
+ Body: {
+        try {
+            ActivityObjectClipboardUtility.copyStateNode(state, null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyStateNode - Predicate: N/A - Scenario: ActivityObjectClipboardUtility
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyTransition_NullTransition
+ Body: {
+        try {
+            ActivityObjectClipboardUtility.copyTransition(null, clipboard);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyTransition - Predicate: N/A - Scenario: ActivityObjectClipboardUtility
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyStateNode_NullState
+ Body: {
+        try {
+            ActivityObjectClipboardUtility.copyStateNode(null, clipboard);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyStateNode - Predicate: N/A - Scenario: ActivityObjectClipboardUtility
+
+Project: mytcuml
+ Class: ActivityObjectClipboardUtilityTests
+ Method: testCopyTransition_NullClipboard
+ Body: {
+        try {
+            ActivityObjectClipboardUtility.copyTransition(transition, null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyTransition - Predicate: N/A - Scenario: ActivityObjectClipboardUtility
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock1_Null
+ Body: {
+        try {
+            container.dock(null);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock4_X_Negative
+ Body: {
+        try {
+            container.dock(dock, new Point(-10, 10), 1);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock2_Location_Null
+ Body: {
+        try {
+            container.dock(dock, null);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock2_X_Negative
+ Body: {
+        try {
+            container.dock(dock, new Point(-10, 10));
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testCanDock_Null
+ Body: {
+        try {
+            container.canDock(null);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: canDock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock2_Dock_Null
+ Body: {
+        try {
+            container.dock(null, new Point(10, 10));
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock4_Dock_Null
+ Body: {
+        try {
+            container.dock(null, new Point(10, 10), 1);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock4_Y_Negative
+ Body: {
+        try {
+            container.dock(dock, new Point(10, -10), 1);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testSetLocation_Null
+ Body: {
+        try {
+            container.setLocation(null);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLocation - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock2_Y_Negative
+ Body: {
+        try {
+            container.dock(dock, new Point(10, -10));
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testUnock_Null
+ Body: {
+        try {
+            container.undock(null);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: undock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock3_Null
+ Body: {
+        try {
+            container.dock(null, 1);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testDock4_Location_Null
+ Body: {
+        try {
+            container.dock(dock, null, 1);
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: dock - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testSetLocation_Y_Negative
+ Body: {
+        try {
+            container.setLocation(new Point(10, -10));
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLocation - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: DialogFloatContainerTests
+ Method: testSetLocation_X_Negative
+ Body: {
+        try {
+            container.setLocation(new Point(-10, 10));
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLocation - Predicate: N/A - Scenario: container
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckNotPositive_Zero
+ Body: {
+        try {
+            Helper.checkNotPositive(0, "zero");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNotPositive - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckNegative_Negative
+ Body: {
+        try {
+            Helper.checkNegative(-3, "negative");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNegative - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckNull_Null
+ Body: {
+        try {
+            Helper.checkNull(null, "null");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNull - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckPoint_Null
+ Body: {
+        try {
+            Helper.checkPoint(null, "null point");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkPoint - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckPoint_Y_Negative
+ Body: {
+        try {
+            Helper.checkPoint(new Point(3, -7), "invalid point");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkPoint - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckPoint_X_Negative
+ Body: {
+        try {
+            Helper.checkPoint(new Point(-3, 7), "invalid point");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkPoint - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperTests
+ Method: testCheckNotPositive_Negative
+ Body: {
+        try {
+            Helper.checkNotPositive(-3, "negative");
+            fail("IAE should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNotPositive - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: ChangeEntityNameHandlerTest
+ Method: testRedoActionPerformed_null
+ Body: {
+        try {
+            handler.redoActionPerformed(null, action);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: redoActionPerformed - Predicate: N/A - Scenario: handler
+
+Project: mytcuml
+ Class: ChangeEntityNameHandlerTest
+ Method: testActionPerformed_null
+ Body: {
+        try {
+            handler.actionPerformed(null, EventValidation.SUCCESSFUL);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: actionPerformed - Predicate: N/A - Scenario: handler
+
+Project: mytcuml
+ Class: ChangeEntityNameHandlerTest
+ Method: testUndoActionPerformed_null
+ Body: {
+        try {
+            handler.undoActionPerformed(null, action);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: undoActionPerformed - Predicate: N/A - Scenario: handler
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForPseudostate_NullState
+ Body: {
+        try {
+            ActivityObjectCloneUtility.clone((Pseudostate) null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: clone - Predicate: N/A - Scenario: ActivityObjectCloneUtility
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForFinalState_NullState
+ Body: {
+        try {
+            ActivityObjectCloneUtility.clone((FinalState) null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: clone - Predicate: N/A - Scenario: ActivityObjectCloneUtility
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForTransition_NullTransition
+ Body: {
+        try {
+            ActivityObjectCloneUtility.clone((Transition) null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: clone - Predicate: N/A - Scenario: ActivityObjectCloneUtility
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForSimpleState_NullState
+ Body: {
+        try {
+            ActivityObjectCloneUtility.clone((SimpleState) null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: clone - Predicate: N/A - Scenario: ActivityObjectCloneUtility
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForActionState_NullState
+ Body: {
+        try {
+            ActivityObjectCloneUtility.clone((ActionState) null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: clone - Predicate: N/A - Scenario: ActivityObjectCloneUtility
+
+Project: mytcuml
+ Class: ActivityObjectCloneUtilityTests
+ Method: testCloneForObjectFlowState_NullState
+ Body: {
+        try {
+            ActivityObjectCloneUtility.clone((ObjectFlowState) null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: clone - Predicate: N/A - Scenario: ActivityObjectCloneUtility
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadClass_NullElt
+ Body: {
+        try {
+            loader.loadClass(null);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: loadClass - Predicate: N/A - Scenario: loader
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadNamespace_NullElt
+ Body: {
+        try {
+            loader.loadNamespace(null);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: loadNamespace - Predicate: N/A - Scenario: loader
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadPrimitive_NullElt
+ Body: {
+        try {
+            loader.loadPrimitive(null);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: loadPrimitive - Predicate: N/A - Scenario: loader
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadInterface_NullElt
+ Body: {
+        try {
+            loader.loadInterface(null);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: loadInterface - Predicate: N/A - Scenario: loader
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadEnumeration_NullElt
+ Body: {
+        try {
+            loader.loadEnumeration(null);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: loadEnumeration - Predicate: N/A - Scenario: loader
+
+Project: mytcuml
+ Class: XMLLanguageClassDataLoaderTests
+ Method: testLoadDataType_NullElt
+ Body: {
+        try {
+            loader.loadDataType(null);
+            fail("ClassDataLoaderConfigurationException expected.");
+        } catch (ClassDataLoaderConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: loadDataType - Predicate: N/A - Scenario: loader
+
+Project: mytcuml
+ Class: FilledArrowEdgeEndingTests
+ Method: testPaintComponent_NullG
+ Body: {
+        try {
+            ending.paintComponent(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: paintComponent - Predicate: N/A - Scenario: ending
+
+Project: mytcuml
+ Class: GraphConnectorFailureTest
+ Method: testContainsGraphEdgeFailureNullGraphEdge
+ Body: {
+        try {
+            graphConnector.containsGraphEdge(null);
+            fail("Expect IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsGraphEdge - Predicate: N/A - Scenario: graphConnector
+
+Project: mytcuml
+ Class: GraphConnectorFailureTest
+ Method: testAddGraphEdgeFailureNullGraphEdge
+ Body: {
+        try {
+            graphConnector.addGraphEdge(null);
+            fail("Expect IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addGraphEdge - Predicate: N/A - Scenario: graphConnector
+
+Project: mytcuml
+ Class: GraphConnectorFailureTest
+ Method: testRemoveGraphEdgeFailureNullGraphEdge
+ Body: {
+        try {
+            graphConnector.removeGraphEdge(null);
+            fail("Expect IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeGraphEdge - Predicate: N/A - Scenario: graphConnector
+
+Project: mytcuml
+ Class: PackageNodeFailureTests
+ Method: testSetTransferHandler_NullHandler
+ Body: {
+        try {
+            packageNode.setTransferHandler(null);
+            fail("expect IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setTransferHandler - Predicate: N/A - Scenario: packageNode
+
+Project: mytcuml
+ Class: NamespaceAbstractImplFailureTest
+ Method: testAddOwnedElementNull
+ Body: {
+        try {
+            namespaceAbstractImpl.addOwnedElement(null);
+            fail("IllegalArgumentException is expected since owned element is null");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addOwnedElement - Predicate: N/A - Scenario: namespaceAbstractImpl
+
+Project: mytcuml
+ Class: NamespaceAbstractImplFailureTest
+ Method: testContainsOwnedElementNull
+ Body: {
+        try {
+            namespaceAbstractImpl.containsOwnedElement(null);
+            fail("IllegalArgumentException is expected since owned element is null");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsOwnedElement - Predicate: N/A - Scenario: namespaceAbstractImpl
+
+Project: mytcuml
+ Class: NamespaceAbstractImplFailureTest
+ Method: testRemoveOwnedElementNull
+ Body: {
+        try {
+            namespaceAbstractImpl.removeOwnedElement(null);
+            fail("IllegalArgumentException is expected since owned element is null");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeOwnedElement - Predicate: N/A - Scenario: namespaceAbstractImpl
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckString_EmptyArg
+ Body: {
+        try {
+            Util.checkString(" ", "Test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckString_NullArg
+ Body: {
+        try {
+            Util.checkString(null, "Test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkString - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: UtilTests
+ Method: testCheckNull_NullArg
+ Body: {
+        try {
+            Util.checkNull(null, "test");
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNull - Predicate: N/A - Scenario: Util
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionFailureTest
+ Method: testIsDataFlavorSupportedIfDataFlavorNull
+ Body: {
+        try {
+            auxiliaryElementSelection.isDataFlavorSupported(null);
+            fail("IllegalArgumentException is expected because dataFlavor cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: isDataFlavorSupported - Predicate: N/A - Scenario: auxiliaryElementSelection
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionFailureTest
+ Method: testGetTransferDataIfDataFlavorNull
+ Body: {
+        try {
+            auxiliaryElementSelection.getTransferData(null);
+            fail("IllegalArgumentException is expected because dataFlavor cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTransferData - Predicate: N/A - Scenario: auxiliaryElementSelection
+
+Project: mytcuml
+ Class: AuxiliaryElementSelectionFailureTest
+ Method: testGetTransferDataIfDataFlavorNotSupported
+ Body: {
+        try {
+            auxiliaryElementSelection.getTransferData(new DataFlavor(GraphNode.class, "my_graph_node"));
+            fail("UnsupportedFlavorException is expected because this dataFlavor is not supported.");
+        } catch (UnsupportedFlavorException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTransferData - Predicate: N/A - Scenario: auxiliaryElementSelection
+
+Project: mytcuml
+ Class: TextFieldFailureTest
+ Method: testSetAnchorageForException
+ Body: {
+        try {
+            instance.setAnchorage(null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setAnchorage - Predicate: N/A - Scenario: instance
+
+Project: mytcuml
+ Class: ZUMLJoinNodeImplFailureTest
+ Method: testSetJoinSpec_Failure
+ Body: {
+        try {
+            instance.setJoinSpec(null);
+            fail("IAE is expected");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setJoinSpec - Predicate: N/A - Scenario: instance
+
+Project: mytcuml
+ Class: JavaExceptionElementFormatterTests
+ Method: testFormat_NullElement
+ Body: {
+        try {
+            formatter.format(null);
+
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: format - Predicate: N/A - Scenario: formatter
+
+Project: mytcuml
+ Class: JavaExceptionElementFormatterTests
+ Method: testFormat_UnknownNamespace
+ Body: {
+        try {
+            formatter.format(element);
+
+            fail("ProjectConfigurationException expected.");
+        } catch (ProjectConfigurationException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: format - Predicate: N/A - Scenario: formatter
+
+Project: mytcuml
+ Class: ClassCentricDocumentTreeViewTests
+ Method: testRemoveTreeNode_NoExistTreeNode
+ Body: {
+        try {
+            view.removeTreeNode(new DocumentTreeNode("New"));
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: ClassCentricDocumentTreeViewTests
+ Method: testUpdateTreeNode_NullTreeNode
+ Body: {
+        try {
+            view.updateTreeNode(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: ClassCentricDocumentTreeViewTests
+ Method: testRemoveTreeNode_NullTreeNode
+ Body: {
+        try {
+            view.removeTreeNode(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: ClassCentricDocumentTreeViewTests
+ Method: testUpdateTreeNode_NoExistTreeNode
+ Body: {
+        try {
+            view.updateTreeNode(new DocumentTreeNode("New"));
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: ClassCentricDocumentTreeViewTests
+ Method: testAddTreeNode_NullTreeNode
+ Body: {
+        try {
+            view.addTreeNode(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: AddRemoveAttributeActionFailureTest
+ Method: testCreateRemoveAttributeAction_Null2
+ Body: {
+        try {
+            AddRemoveAttributeAction.createRemoveAttributeAction(extractor, null);
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createRemoveAttributeAction - Predicate: N/A - Scenario: AddRemoveAttributeAction
+
+Project: mytcuml
+ Class: AddRemoveAttributeActionFailureTest
+ Method: testCreateAddAttributeAction_Null2
+ Body: {
+        try {
+            AddRemoveAttributeAction.createAddAttributeAction(extractor, null);
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createAddAttributeAction - Predicate: N/A - Scenario: AddRemoveAttributeAction
+
+Project: mytcuml
+ Class: AddRemoveAttributeActionFailureTest
+ Method: testCreateAddAttributeAction_Null1
+ Body: {
+        try {
+            AddRemoveAttributeAction.createAddAttributeAction(null, new GraphNode());
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createAddAttributeAction - Predicate: N/A - Scenario: AddRemoveAttributeAction
+
+Project: mytcuml
+ Class: AddRemoveAttributeActionFailureTest
+ Method: testCreateRemoveAttributeAction_Null1
+ Body: {
+        try {
+            AddRemoveAttributeAction.createRemoveAttributeAction(null, new GraphNode());
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createRemoveAttributeAction - Predicate: N/A - Scenario: AddRemoveAttributeAction
+
+Project: mytcuml
+ Class: CutCommentRelationshipGraphEdgeActionTest
+ Method: testCopyToClipboard_NullNode
+ Body: {
+        try {
+            this.action.copyToClipboard(null, this.clipboard);
+            fail("IllegalArgumentException is expected!");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyToClipboard - Predicate: N/A - Scenario: this.action
+
+Project: mytcuml
+ Class: AbstractXMITransformerAccuracyTest
+ Method: testSetXMIWriterFailure
+ Body: {
+        try {
+            transfer.setXMIWriter(null);
+            fail("writer is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setXMIWriter - Predicate: N/A - Scenario: transfer
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testCopyModelElementAttributes_ModelElementModelElement_Null1
+ Body: {
+        try {
+            usecaseToolUtil.copyModelElementAttributes(null, new MockModelElementAbstractImpl());
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyModelElementAttributes - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testCopyModelElementAttributes_ModelElementModelElement_Null2
+ Body: {
+        try {
+            usecaseToolUtil.copyModelElementAttributes(new MockModelElementAbstractImpl(), null);
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyModelElementAttributes - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testCopyClassifierAttributes_ClassifierClassifier_Null2
+ Body: {
+        try {
+            usecaseToolUtil.copyClassifierAttributes(new MockClassifierAbstractImpl(), null);
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyClassifierAttributes - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testRemoveElementFromModel_ModelElement_Null
+ Body: {
+        try {
+            usecaseToolUtil.removeElementFromModel(null);
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeElementFromModel - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testAddElementToModel_ModelElementNamespace_NullModelElement
+ Body: {
+        try {
+            usecaseToolUtil.addElementToModel(null, namespace);
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addElementToModel - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testAddElementToModel_ModelElementNamespace_NullNamespace
+ Body: {
+        try {
+            usecaseToolUtil.addElementToModel(modelElement, null);
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addElementToModel - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: UsecaseToolUtilTest
+ Method: testCopyClassifierAttributes_ClassifierClassifier_Null1
+ Body: {
+        try {
+            usecaseToolUtil.copyClassifierAttributes(null, new MockClassifierAbstractImpl());
+            fail("Should throw an IllegalArgumentException here.");
+        } catch (IllegalArgumentException iae) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyClassifierAttributes - Predicate: N/A - Scenario: usecaseToolUtil
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_NullElementMapping1
+ Body: {
+
+        try {
+            SequenceEdge edge = edges.get(3);
+            edgeNodeMapping.remove(edge);
+            layoutStrategy.layout(edges, edgeNodeMapping);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_NullElementEdge
+ Body: {
+
+        try {
+            edges.set(2, null);
+            layoutStrategy.layout(edges, edgeNodeMapping);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_NullEdgeNodeMapping
+ Body: {
+
+        try {
+            layoutStrategy.layout(edges, null);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_InvalidElementMapping1
+ Body: {
+
+        try {
+            SequenceEdge edge = edges.get(1);
+            edgeNodeMapping.put(edge, TestUtil.createObjectNodes(3));
+            layoutStrategy.layout(edges, edgeNodeMapping);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_NullElementMapping2
+ Body: {
+
+        try {
+            SequenceEdge edge = edges.get(3);
+            edgeNodeMapping.put(edge, null);
+            layoutStrategy.layout(edges, edgeNodeMapping);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_InvalidElementMapping2
+ Body: {
+
+        try {
+            SequenceEdge edge = edges.get(1);
+            ObjectNode[] nodes = TestUtil.createObjectNodes(2);
+            nodes[1] = null;
+            edgeNodeMapping.put(edge, nodes);
+            layoutStrategy.layout(edges, edgeNodeMapping);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: DefaultEdgeLayoutStrategyTests
+ Method: testLayout_NullEdges
+ Body: {
+
+        try {
+            layoutStrategy.layout(null, edgeNodeMapping);
+            fail("should get IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // good
+        } catch (EdgeLayoutException e) {
+            fail("should get IllegalArgumentException");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: layout - Predicate: N/A - Scenario: layoutStrategy
+
+Project: mytcuml
+ Class: GraphNodeTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: GraphNodeTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: GraphNodeTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: GraphNodeTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testNotifyRemoveWayPointForException_NullRemovedPoint
+ Body: {
+        try {
+            edge.notifyChangeWayPoint(0, null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyChangeWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testSetActiveWidthForException_NegativeWidth
+ Body: {
+        try {
+            edge.setActiveWidth(-10);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setActiveWidth - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testSetAlignDeviationForException
+ Body: {
+        try {
+            edge.setAlignDeviation(-1.0);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setAlignDeviation - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testRemoveTextFieldForException
+ Body: {
+        try {
+            edge.removeTextField(null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testAddTextFieldForException_NullAnchorType
+ Body: {
+        try {
+            edge.addTextField(new GraphNode(), "text", null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testNotifyChangeWayPointForException_IllegalArgumentException
+ Body: {
+        try {
+            edge.notifyChangeWayPoint(1, null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyChangeWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testAddTextFieldForException_NullGraphNode
+ Body: {
+        try {
+            edge.addTextField(null, "text", AnchorType.LeftEnding);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testGetTextFieldForException
+ Body: {
+        try {
+            edge.getTextField(null);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testSetActiveWidthForException_ZeroWidth
+ Body: {
+        try {
+            edge.setActiveWidth(0);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setActiveWidth - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeFailureTest
+ Method: testAddTextFieldForException_NullText
+ Body: {
+        try {
+            edge.addTextField(new GraphNode(), null, AnchorType.LeftEnding);
+            // should not be here
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException e) {
+            // should be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: PropertyDefinitionTest
+ Method: testValueChoices_NullValue
+ Body: {
+        try {
+            instance.setValueChoices(new HashSet<String>(Arrays.asList("1", null, "3")));
+            fail("IAE is expected since null value is given");
+        } catch (IllegalArgumentException e) {
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setValueChoices - Predicate: N/A - Scenario: instance
+
+Project: mytcuml
+ Class: DiagramLinkTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: DiagramLinkTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: DiagramLinkTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: DiagramLinkTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: TagDefinitionImplFailureTest
+ Method: testAddTypedValue
+ Body: {
+        try {
+            tag.addTypedValue(null);
+            fail("typedValue is null, IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTypedValue - Predicate: N/A - Scenario: tag
+
+Project: mytcuml
+ Class: TagDefinitionImplFailureTest
+ Method: testRemoveTypedValue
+ Body: {
+        try {
+            tag.removeTypedValue(null);
+            fail("typedValue is null, IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTypedValue - Predicate: N/A - Scenario: tag
+
+Project: mytcuml
+ Class: TagDefinitionImplFailureTest
+ Method: testContainsTypedValue
+ Body: {
+        try {
+            tag.containsTypedValue(null);
+            fail("typedValue is null, IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsTypedValue - Predicate: N/A - Scenario: tag
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testAddMapping_EmptyClassName
+ Body: {
+        try {
+            modelElementFactory.addMapping("UML:Test", " ");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testGetMapping_NullXmlElement
+ Body: {
+        try {
+            modelElementFactory.getMapping(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testGetMapping_EmptyXmlElement
+ Body: {
+        try {
+            modelElementFactory.getMapping(" ");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testCreateModelElement_EmptyXmlElement
+ Body: {
+        try {
+            modelElementFactory.createModelElement(" ");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createModelElement - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testRemoveMapping_EmptyXmlElement
+ Body: {
+        try {
+            modelElementFactory.removeMapping(" ");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testAddMapping_NullClassName
+ Body: {
+        try {
+            modelElementFactory.addMapping("UML:Test", null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testCreateModelElement_NullXmlElement
+ Body: {
+        try {
+            modelElementFactory.createModelElement(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createModelElement - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testAddMapping_EmptyXmlElement
+ Body: {
+        try {
+            modelElementFactory.addMapping(" ", "Test");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testRemoveMapping_NullXmlElement
+ Body: {
+        try {
+            modelElementFactory.removeMapping(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: ModelElementFactoryTests
+ Method: testAddMapping_NullXmlElement
+ Body: {
+        try {
+            modelElementFactory.addMapping(null, "Test");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addMapping - Predicate: N/A - Scenario: modelElementFactory
+
+Project: mytcuml
+ Class: LineStyleTests
+ Method: testSetDashLength_NegativeDashLength
+ Body: {
+        try {
+            lineStyle.setDashLength(-98);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setDashLength - Predicate: N/A - Scenario: lineStyle
+
+Project: mytcuml
+ Class: LineStyleTests
+ Method: testPaint_NullP1
+ Body: {
+        try {
+            lineStyle.paint(new DebugGraphics(), null, new Point(13, 10));
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: paint - Predicate: N/A - Scenario: lineStyle
+
+Project: mytcuml
+ Class: LineStyleTests
+ Method: testSetDashLength_ZeroDashLength
+ Body: {
+        try {
+            lineStyle.setDashLength(0);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setDashLength - Predicate: N/A - Scenario: lineStyle
+
+Project: mytcuml
+ Class: LineStyleTests
+ Method: testSetBlankLength_NegativeBlankLength
+ Body: {
+        try {
+            lineStyle.setBlankLength(-98);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBlankLength - Predicate: N/A - Scenario: lineStyle
+
+Project: mytcuml
+ Class: LineStyleTests
+ Method: testPaint_NullP2
+ Body: {
+        try {
+            lineStyle.paint(new DebugGraphics(), new Point(13, 10), null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: paint - Predicate: N/A - Scenario: lineStyle
+
+Project: mytcuml
+ Class: LineStyleTests
+ Method: testPaint_NullG
+ Body: {
+        try {
+            lineStyle.paint(null, new Point(2, 4), new Point(100, 100));
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: paint - Predicate: N/A - Scenario: lineStyle
+
+Project: mytcuml
+ Class: BirdsEyeViewFailureTests
+ Method: test_setInputObject_failure
+ Body: {
+        try {
+            BirdsEyeView instance = new BirdsEyeView(new JPanel(), new Dimension(200, 200), new Point(10, 10));
+            instance.setInputObject(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setInputObject - Predicate: N/A - Scenario: instance
+
+Project: mytcuml
+ Class: BirdsEyeViewFailureTests
+ Method: test_setInputObjectViewDimension_failure
+ Body: {
+        try {
+            BirdsEyeView instance = new BirdsEyeView(new JPanel(), new Dimension(200, 200), new Point(10, 10));
+            instance.setInputObjectViewDimension(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setInputObjectViewDimension - Predicate: N/A - Scenario: instance
+
+Project: mytcuml
+ Class: ActivityDiagramConversionFacadeAccuracyTests
+ Method: testConvertDiagramsWithNullListElement
+ Body: {
+        try {
+            ActivityDiagramConversionFacade.convertDiagrams(Arrays.asList(new Diagram(), null));
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: convertDiagrams - Predicate: N/A - Scenario: ActivityDiagramConversionFacade
+
+Project: mytcuml
+ Class: ActivityDiagramConversionFacadeAccuracyTests
+ Method: testConvertDiagramsWithNullList
+ Body: {
+        try {
+            ActivityDiagramConversionFacade.convertDiagrams(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: convertDiagrams - Predicate: N/A - Scenario: ActivityDiagramConversionFacade
+
+Project: mytcuml
+ Class: AbstractActivityUndoableActionFailureTest
+ Method: testLogException
+ Body: {
+        try {
+            new MockedAbstractActivityUndoableAction("name").logException("message", null);
+            fail("exception is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expect
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: logException - Predicate: N/A - Scenario: new MockedAbstractActivityUndoableAction("name")
+
+Project: mytcuml
+ Class: PolylineTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: PolylineTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: PolylineTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: PolylineTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: CSharpGeneratorFailureTest
+ Method: testCreateClassifierCodeWithNullClassifier
+ Body: {
+        try {
+            generator.createClassifierCode(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createClassifierCode - Predicate: N/A - Scenario: generator
+
+Project: mytcuml
+ Class: RectangleConnectorTests
+ Method: testSetRectangle_NullRectangle
+ Body: {
+        try {
+            connector.setRectangle(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setRectangle - Predicate: N/A - Scenario: connector
+
+Project: mytcuml
+ Class: RectangleConnectorTests
+ Method: testGetConnectionPoint_NullWayPoint
+ Body: {
+        try {
+            connector.getConnectionPoint(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getConnectionPoint - Predicate: N/A - Scenario: connector
+
+Project: mytcuml
+ Class: DefaultCollapsedSideMenuPanelTest
+ Method: testMethodSetTextLabel_JVerticalLabel_failure1
+ Body: {
+        try {
+            target.setTextLabel(null);
+            fail("IllegalArgumentException if textLabel is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setTextLabel - Predicate: N/A - Scenario: target
+
+Project: mytcuml
+ Class: DefaultCollapsedSideMenuPanelTest
+ Method: testMethodSideMenuModelPropertyChange_PropertyChangeEvent_failure1
+ Body: {
+        try {
+            target = new MyDefaultCollapsedSideMenuPanel(sideMenuModel, TestHelper.EXPAND_ICON);
+            ((MyDefaultCollapsedSideMenuPanel) target).sideMenuModelPropertyChange(null);
+            fail("IllegalArgumentException if event is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: sideMenuModelPropertyChange - Predicate: N/A - Scenario: ((MyDefaultCollapsedSideMenuPanel) target)
+
+Project: mytcuml
+ Class: DefaultCollapsedSideMenuPanelTest
+ Method: testMethodSetUpperExpandButton_JButton_failure1
+ Body: {
+        try {
+            target.setUpperExpandButton(null);
+            fail("IllegalArgumentException if button is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setUpperExpandButton - Predicate: N/A - Scenario: target
+
+Project: mytcuml
+ Class: DefaultCollapsedSideMenuPanelTest
+ Method: testMethodSideMenuModelPropertyChange_PropertyChangeEvent_failure2
+ Body: {
+        try {
+            PropertyChangeEvent event = new PropertyChangeEvent(target, SideMenuModel.TITLE, 12, 34);
+            target = new MyDefaultCollapsedSideMenuPanel(sideMenuModel, TestHelper.EXPAND_ICON);
+            ((MyDefaultCollapsedSideMenuPanel) target).sideMenuModelPropertyChange(event);
+            fail("IllegalArgumentException if value of specific property is invalid.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: sideMenuModelPropertyChange - Predicate: N/A - Scenario: ((MyDefaultCollapsedSideMenuPanel) target)
+
+Project: mytcuml
+ Class: DefaultCollapsedSideMenuPanelTest
+ Method: test_mouseListener_failure
+ Body: {
+        try {
+            target.setSideMenuModel(null);
+            MouseAdapter mouseListener = (MouseAdapter) TestHelper.getPrivateField(
+                    DefaultCollapsedSideMenuPanel.class, target, "mouseListener");
+            mouseListener.mouseClicked(new MouseEvent(target, 1, System.currentTimeMillis(), 1, 1,
+                    1, 1, false));
+            fail("IllegalStateException if sideMenuModel is removed(sideMenuModel is null).");
+        } catch (IllegalStateException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: mouseClicked - Predicate: N/A - Scenario: mouseListener
+
+Project: mytcuml
+ Class: DefaultCollapsedSideMenuPanelTest
+ Method: testMethodSetLowerExpandButton_JButton_failure1
+ Body: {
+        try {
+            target.setLowerExpandButton(null);
+            fail("IllegalArgumentException if button is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLowerExpandButton - Predicate: N/A - Scenario: target
+
+Project: mytcuml
+ Class: ActivityStateCompartmentExtractorFailureTest
+ Method: testUpdateName
+ Body: {
+        try {
+            extractor.updateName(node);
+            fail("It should CompartmentNotFoundException.");
+        } catch (CompartmentNotFoundException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateName - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ActivityStateCompartmentExtractorFailureTest
+ Method: testExtractName
+ Body: {
+        try {
+            extractor.extractName();
+            fail("It should CompartmentNotFoundException.");
+        } catch (CompartmentNotFoundException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: extractName - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ActivityStateCompartmentExtractorFailureTest
+ Method: testUpdateNameNull
+ Body: {
+        try {
+            extractor.updateName(null);
+            fail("It should IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateName - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: BezierPointTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: BezierPointTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: BezierPointTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: BezierPointTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: ExportDiagramToImageActionUnitTest1
+ Method: test_failure_execute4
+ Body: {
+        try {
+            new ExportDiagramToImageAction(components, viewPorts, "exception", fileNames, "format", imageExporter)
+                .execute();
+            fail("ActionExecutionException Expected.");
+        } catch (ActionExecutionException e) {
+            // As Expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: execute - Predicate: N/A - Scenario: new ExportDiagramToImageAction(components, viewPorts, "exception", fileNames, "format", imageExporter)
+
+Project: mytcuml
+ Class: DefaultExpandedSideMenuPanelTest
+ Method: testMethodSetCollapseButton_JButton_failure1
+ Body: {
+        try {
+            target.setCollapseButton(null);
+            fail("IllegalArgumentException if the button is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setCollapseButton - Predicate: N/A - Scenario: target
+
+Project: mytcuml
+ Class: DefaultExpandedSideMenuPanelTest
+ Method: testMethodSetContent_JComponent_failure
+ Body: {
+        try {
+            target.setContent(null);
+            fail("IllegalArgumentException if the content is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setContent - Predicate: N/A - Scenario: target
+
+Project: mytcuml
+ Class: DefaultExpandedSideMenuPanelTest
+ Method: testMethodSideMenuModelPropertyChange_PropertyChangeEvent_failure2
+ Body: {
+        try {
+            PropertyChangeEvent event = new PropertyChangeEvent(new Object(),
+                    SideMenuModel.FLOATING, 12, 32);
+            target = new MyDefaultExpandedSideMenuPanel(sideMenuModel, TestHelper.CONTENT);
+            ((MyDefaultExpandedSideMenuPanel) target).sideMenuModelPropertyChange(event);
+            fail("IllegalArgumentException if value of property is invalid.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: sideMenuModelPropertyChange - Predicate: N/A - Scenario: ((MyDefaultExpandedSideMenuPanel) target)
+
+Project: mytcuml
+ Class: DefaultExpandedSideMenuPanelTest
+ Method: testMethodSideMenuModelPropertyChange_PropertyChangeEvent_failure1
+ Body: {
+        try {
+            target = new MyDefaultExpandedSideMenuPanel(sideMenuModel, TestHelper.CONTENT);
+            ((MyDefaultExpandedSideMenuPanel) target).sideMenuModelPropertyChange(null);
+            fail("IllegalArgumentException if event is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: sideMenuModelPropertyChange - Predicate: N/A - Scenario: ((MyDefaultExpandedSideMenuPanel) target)
+
+Project: mytcuml
+ Class: DefaultExpandedSideMenuPanelTest
+ Method: testMethodSetTextLabel_JLabel_failure
+ Body: {
+        try {
+            target.setTextLabel(null);
+            fail("IllegalArgumentException if textLabel is null.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setTextLabel - Predicate: N/A - Scenario: target
+
+Project: mytcuml
+ Class: CreateActivityDiagramActionFailureTest
+ Method: testFailureexecuteAction
+ Body: {
+        try {
+            createActivityDiagramAction.executeAction();
+            createActivityDiagramAction.executeAction();
+            fail("ActionExecutionException Expected.");
+        } catch (ActionExecutionException e) {
+            // As expected.
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: executeAction - Predicate: N/A - Scenario: createActivityDiagramAction
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testConsumeEvent_NullEvent
+ Body: {
+        try {
+            objectNode.consumeEvent(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: consumeEvent - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testGetPropertyNameMappingElement_NullKey
+ Body: {
+        try {
+            objectNode.getPropertyNameMappingElement(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getPropertyNameMappingElement - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetShadowLength_NegativeShadowLength
+ Body: {
+        try {
+            objectNode.setShadowLength(-5);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setShadowLength - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetPropertyNameMappingElement_NullValue
+ Body: {
+        try {
+            objectNode.setPropertyNameMappingElement(ObjectNodePropertyType.FONT_SIZE, null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setPropertyNameMappingElement - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetPropertyNameMappingElement_NullKey
+ Body: {
+        try {
+            objectNode.setPropertyNameMappingElement(null, "8");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setPropertyNameMappingElement - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetFontColor_NullFontColor
+ Body: {
+        try {
+            objectNode.setFontColor(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFontColor - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testPaintComponent_NullG
+ Body: {
+        try {
+            objectNode.paintComponent(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: paintComponent - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetPosition_NullPosition
+ Body: {
+        try {
+            objectNode.setPosition(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setPosition - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testApplyNewName_NullOldName
+ Body: {
+        try {
+            objectNode.applyNewName(null, "newName");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: applyNewName - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetFontFamily_NullFontFamily
+ Body: {
+        try {
+            objectNode.setFontFamily(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFontFamily - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetPropertyNameMappingElement_EmptyValue
+ Body: {
+        try {
+            objectNode.setPropertyNameMappingElement(ObjectNodePropertyType.FONT_SIZE, " ");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setPropertyNameMappingElement - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetFontFamily_EmptyFontFamily
+ Body: {
+        try {
+            objectNode.setFontFamily(" ");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFontFamily - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetStrokeColor_NullStrokeColor
+ Body: {
+        try {
+            objectNode.setStrokeColor(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setStrokeColor - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetRenderScheme_NullRenderScheme
+ Body: {
+        try {
+            objectNode.setRenderScheme(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setRenderScheme - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetName_NullName
+ Body: {
+        try {
+            objectNode.setName(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setName - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetRoundingRadius_NegativeRadius
+ Body: {
+        try {
+            objectNode.setRoundingRadius(-5);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setRoundingRadius - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testApplyNewName_NullNewName
+ Body: {
+        try {
+            objectNode.applyNewName("oldName", null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: applyNewName - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testProcessMouseEvent_NullE
+ Body: {
+        try {
+            objectNode.processMouseEvent(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: processMouseEvent - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetPopup_NullPopup
+ Body: {
+        try {
+            objectNode.setPopup(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setPopup - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetShadowColor_NullShadowColor
+ Body: {
+        try {
+            objectNode.setShadowColor(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setShadowColor - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetFillColor_NullFillColor
+ Body: {
+        try {
+            objectNode.setFillColor(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFillColor - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetFontSize_NegativeSize
+ Body: {
+        try {
+            objectNode.setFontSize(-8);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFontSize - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: ObjectNodeTests
+ Method: testSetFillColor2_NullFillColor2
+ Body: {
+        try {
+            objectNode.setFillColor2(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFillColor2 - Predicate: N/A - Scenario: objectNode
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetFillColorStyle_NullFillColor
+ Body: {
+        try {
+            stylePanel.setFillColorStyle(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFillColorStyle - Predicate: N/A - Scenario: stylePanel
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetFontFamilyStyle_NullFontFamily
+ Body: {
+        try {
+            stylePanel.setFontFamilyStyle(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFontFamilyStyle - Predicate: N/A - Scenario: stylePanel
+
+Project: mytcuml
+ Class: StylePanelTests
+ Method: testSetTextColorStyle_NullTextColor
+ Body: {
+        try {
+            stylePanel.setTextColorStyle(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setTextColorStyle - Predicate: N/A - Scenario: stylePanel
+
+Project: mytcuml
+ Class: TestProjectConfigurationManager
+ Method: testApplyInitialFormatting1_NullElement
+ Body: {
+        try {
+            manager.applyInitialFormatting("Java", (ModelElement) null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        } catch (Exception e) {
+            fail("unexpected exception throws.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: applyInitialFormatting - Predicate: N/A - Scenario: manager
+
+Project: mytcuml
+ Class: TestProjectConfigurationManager
+ Method: testRemoveInitialElementFormatter_EmptyLanguage
+ Body: {
+        try {
+            manager.removeInitialElementFormatter(" ", formatter);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        } catch (Exception e) {
+            fail("unexpected exception throws.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeInitialElementFormatter - Predicate: N/A - Scenario: manager
+
+Project: mytcuml
+ Class: TestProjectConfigurationManager
+ Method: testGetStandardStereotypes_NullLanguage
+ Body: {
+        try {
+            manager.getStandardStereotypes(null, "Class");
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        } catch (Exception e) {
+            fail("unexpected exception throws.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getStandardStereotypes - Predicate: N/A - Scenario: manager
+
+Project: mytcuml
+ Class: TestProjectConfigurationManager
+ Method: testAddInitialElementFormatter_NullFormatter
+ Body: {
+        try {
+            manager.addInitialElementFormatter("Java", null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        } catch (Exception e) {
+            fail("unexpected exception throws.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addInitialElementFormatter - Predicate: N/A - Scenario: manager
+
+Project: mytcuml
+ Class: TestProjectConfigurationManager
+ Method: testAddInitialDiagramFormatter_NullLanguage
+ Body: {
+        try {
+            manager.addInitialDiagramFormatter(null, df);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException e) {
+            // ok
+        } catch (Exception e) {
+            fail("unexpected exception throws.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addInitialDiagramFormatter - Predicate: N/A - Scenario: manager
+
+Project: mytcuml
+ Class: SelectionCornerTests
+ Method: testSetStrokeColor_NullStrokeColor
+ Body: {
+        try {
+            corner.setStrokeColor(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setStrokeColor - Predicate: N/A - Scenario: corner
+
+Project: mytcuml
+ Class: SelectionCornerTests
+ Method: testSetFillColor_NullFillColor
+ Body: {
+        try {
+            corner.setFillColor(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setFillColor - Predicate: N/A - Scenario: corner
+
+Project: mytcuml
+ Class: SelectionCornerTests
+ Method: testSetCenter_NullCenter
+ Body: {
+        try {
+            corner.setCenter(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setCenter - Predicate: N/A - Scenario: corner
+
+Project: mytcuml
+ Class: SelectionCornerTests
+ Method: testSetRadius_NegativeRadius
+ Body: {
+        try {
+            corner.setRadius(-87);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setRadius - Predicate: N/A - Scenario: corner
+
+Project: mytcuml
+ Class: SelectionCornerTests
+ Method: testSetRadius_ZeroRadius
+ Body: {
+        try {
+            corner.setRadius(0);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setRadius - Predicate: N/A - Scenario: corner
+
+Project: mytcuml
+ Class: DiagramCentricDocumentTreeViewTests
+ Method: testRemoveTreeNode_NullTreeNode
+ Body: {
+        try {
+            view.removeTreeNode(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: DiagramCentricDocumentTreeViewTests
+ Method: testAddTreeNode_NullTreeNode
+ Body: {
+        try {
+            view.addTreeNode(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: DiagramCentricDocumentTreeViewTests
+ Method: testUpdateTreeNode_NoExistTreeNode
+ Body: {
+        try {
+            view.updateTreeNode(new DocumentTreeNode("NewText"));
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: DiagramCentricDocumentTreeViewTests
+ Method: testUpdateTreeNode_NullTreeNode
+ Body: {
+        try {
+            view.updateTreeNode(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: DiagramCentricDocumentTreeViewTests
+ Method: testRemoveTreeNode_NoExistTreeNode
+ Body: {
+        try {
+            view.removeTreeNode(new DocumentTreeNode("NewText"));
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTreeNode - Predicate: N/A - Scenario: view
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc8
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc("", " ");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc6
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc("", "");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc9
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc(" ", "");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc2
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc(null, "");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc4
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc("", null);
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidateNotNull1
+ Body: {
+        try {
+            DocumentPanelHelper.validateNotNull(null, "test object");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(), "test object should not be null.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateNotNull - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testGetTagNameWithPrefix3
+ Body: {
+        try {
+            DocumentPanelHelper.getTagNameWithPrefix(null);
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Tag name should not be null.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTagNameWithPrefix - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc5
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc(" ", null);
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc7
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc(" ", " ");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidatePreDocAndCurrDoc3
+ Body: {
+        try {
+            DocumentPanelHelper.validatePreDocAndCurrDoc(null, " ");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Both previous document and current document are not valid(null or trimmed empty).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validatePreDocAndCurrDoc - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testCheckRowRange1
+ Body: {
+        try {
+            DocumentPanelHelper.checkRowRange(-1, 9);
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(),
+                  "Size of rows should not be negative.");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkRowRange - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: DocumentPanelHelperTestAcc
+ Method: testValidateString3
+ Body: {
+        try {
+            DocumentPanelHelper.validateString(" ", "test string");
+            fail("IllegalArgumentException is expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(), "test string should not be empty (trimmed).");
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateString - Predicate: getMessage - Scenario: DocumentPanelHelper
+
+Project: mytcuml
+ Class: AddEdgeActionTest
+ Method: testSetAddDiagramElementAction_null
+ Body: {
+        try {
+            action.setAddDiagramElementAction(null);
+            fail("IllegalArgumentException should be thrown.");
+        } catch (IllegalArgumentException iae) {
+            // Success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setAddDiagramElementAction - Predicate: N/A - Scenario: action
+
+Project: mytcuml
+ Class: FontSizeSelectorTests
+ Method: testSetListFontSize_NullListFontSize
+ Body: {
+        try {
+            selector.setListFontSize(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setListFontSize - Predicate: N/A - Scenario: selector
+
+Project: mytcuml
+ Class: FontSizeSelectorTests
+ Method: testSetDefaultFontSize_NonPositive
+ Body: {
+        try {
+            selector.setDefaultFontSize(-8);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setDefaultFontSize - Predicate: N/A - Scenario: selector
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetBounds_ZeroWidth
+ Body: {
+        try {
+            edge.setBounds(0, 0, 0, 500);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBounds - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyChangeWayPoint_NegativeIndex
+ Body: {
+        try {
+            edge.notifyChangeWayPoint(-76, new Point(134, 234));
+            fail("IndexOutOfBoundsException expected.");
+        } catch (IndexOutOfBoundsException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyChangeWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetBounds_NonZeroY
+ Body: {
+        try {
+            edge.setBounds(0, 5, 500, 500);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBounds - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetAlignDeviation_ZeroIndex
+ Body: {
+        try {
+            edge.setActiveWidth(0);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setActiveWidth - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetLocation_NonZeroY
+ Body: {
+        try {
+            edge.setLocation(0, 10);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLocation - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyRemoveWayPoint_NegativeIndex
+ Body: {
+        try {
+            edge.notifyRemoveWayPoint(-8, new Point(100, 300));
+            fail("IndexOutOfBoundsException expected.");
+        } catch (IndexOutOfBoundsException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyRemoveWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetBounds_NegativeWidth
+ Body: {
+        try {
+            edge.setBounds(0, 0, -500, 500);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBounds - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyChangeWayPoint_TooLargeIndex
+ Body: {
+        try {
+            edge.notifyChangeWayPoint(76, new Point(134, 234));
+            fail("IndexOutOfBoundsException expected.");
+        } catch (IndexOutOfBoundsException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyChangeWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetActiveWidth_NegativeActiveWidth
+ Body: {
+        try {
+            edge.setActiveWidth(-87);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setActiveWidth - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testAddTextField_NullGraphNode
+ Body: {
+        try {
+            edge.addTextField(null, "Hello", AnchorType.Line);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyAddWayPoint_TooLargeIndex
+ Body: {
+        try {
+            edge.notifyAddWayPoint(54);
+            fail("IndexOutOfBoundsException expected.");
+        } catch (IndexOutOfBoundsException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyAddWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetBounds_NonZeroX
+ Body: {
+        try {
+            edge.setBounds(6, 0, 500, 500);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBounds - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetAlignDeviation_NegativeIndex
+ Body: {
+        try {
+            edge.setActiveWidth(-98);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setActiveWidth - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetActiveWidth_ZeroActiveWidth
+ Body: {
+        try {
+            edge.setActiveWidth(0);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setActiveWidth - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyAddWayPoint_NegativeIndex
+ Body: {
+        try {
+            edge.notifyAddWayPoint(-98);
+            fail("IndexOutOfBoundsException expected.");
+        } catch (IndexOutOfBoundsException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyAddWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetBounds_ZeroHeight
+ Body: {
+        try {
+            edge.setBounds(0, 0, 500, 0);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBounds - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testAddTextField_NullType
+ Body: {
+        try {
+            edge.addTextField(new GraphNode(), "Hello", null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetLocation_NonZeroX
+ Body: {
+        try {
+            edge.setLocation(8, 0);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLocation - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyRemoveWayPoint_NullRemovedPoint
+ Body: {
+        try {
+            edge.notifyRemoveWayPoint(0, null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyRemoveWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyRemoveWayPoint_TooLargeIndex
+ Body: {
+        try {
+            edge.notifyRemoveWayPoint(8, new Point(100, 300));
+            fail("IndexOutOfBoundsException expected.");
+        } catch (IndexOutOfBoundsException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyRemoveWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testAddTextField_NullText
+ Body: {
+        try {
+            edge.addTextField(new GraphNode(), null, AnchorType.Line);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testNotifyChangeWayPoint_NullOldPoint
+ Body: {
+        try {
+            edge.notifyChangeWayPoint(0, null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyChangeWayPoint - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testSetBounds_NegativeHeight
+ Body: {
+        try {
+            edge.setBounds(0, 0, 500, -500);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBounds - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testGetTextField_NullGraphNode
+ Body: {
+        try {
+            edge.getTextField(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: EdgeTests
+ Method: testRemoveTextField_NullGraphNode
+ Body: {
+        try {
+            edge.removeTextField(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeTextField - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: MessageImplUnitTest
+ Method: testSetMessageSort_Failure2
+ Body: {
+        try {
+            Message msg = new MessageImpl();
+            msg.setMessageSort("call");
+
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setMessageSort - Predicate: N/A - Scenario: msg
+
+Project: mytcuml
+ Class: MessageImplUnitTest
+ Method: testSetMessageSort_Failure1
+ Body: {
+        try {
+            Message msg = new MessageImpl();
+            msg.setMessageSort(null);
+
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setMessageSort - Predicate: N/A - Scenario: msg
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testGetStringPropertyValue_EmptyName
+ Body: {
+        try {
+            AuxiliaryElementsHelper.getStringPropertyValue(VALID_NAMESPACE, "", true);
+            fail("ConfigurationException expected.");
+        } catch (ConfigurationException ce) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getStringPropertyValue - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testCheckNotNullAndNotEmptyString_EmptyString
+ Body: {
+        try {
+            AuxiliaryElementsHelper.checkNotNullAndNotEmptyString("", "emptyString");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNotNullAndNotEmptyString - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testGetStringPropertyValue_InvalidNamespace
+ Body: {
+        try {
+            AuxiliaryElementsHelper.getStringPropertyValue("invalidnamespace", "name", true);
+            fail("ConfigurationException expected.");
+        } catch (ConfigurationException ce) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getStringPropertyValue - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testValidateGraphNodeForTextNode
+ Body: {
+        try {
+            AuxiliaryElementsHelper.validateGraphNodeForTextNode(new GraphNode());
+            fail("IllegalGraphNodeException expected.");
+        } catch (IllegalGraphNodeException ige) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateGraphNodeForTextNode - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testGetStringPropertyValue_NullNamespace
+ Body: {
+        try {
+            AuxiliaryElementsHelper.getStringPropertyValue(null, "name", true);
+            fail("IllegalGraphNodeException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getStringPropertyValue - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testGetStringPropertyValue_NullName
+ Body: {
+        try {
+            AuxiliaryElementsHelper.getStringPropertyValue(VALID_NAMESPACE, null, true);
+            fail("ConfigurationException expected.");
+        } catch (ConfigurationException ce) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getStringPropertyValue - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testValidateGraphNodeForCommentNode
+ Body: {
+        try {
+            AuxiliaryElementsHelper.validateGraphNodeForCommentNode(new GraphNode());
+            fail("IllegalGraphNodeException expected.");
+        } catch (IllegalGraphNodeException ige) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateGraphNodeForCommentNode - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testParseColor_InvalidColorString
+ Body: {
+        try {
+            AuxiliaryElementsHelper.parseColor(new GraphNode(), "invalid");
+            fail("IllegalGraphNodeException expected.");
+        } catch (IllegalGraphNodeException ige) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: parseColor - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testValidateGraphNodeForFreeTextNode
+ Body: {
+        try {
+            AuxiliaryElementsHelper.validateGraphNodeForFreeTextNode(new GraphNode());
+            fail("IllegalGraphNodeException expected.");
+        } catch (IllegalGraphNodeException ige) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: validateGraphNodeForFreeTextNode - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testCheckNotNullAndNotEmptyString_NullString
+ Body: {
+        try {
+            AuxiliaryElementsHelper.checkNotNullAndNotEmptyString(null, "nullString");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNotNullAndNotEmptyString - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testGetStringPropertyValue_EmptyNamespace
+ Body: {
+        try {
+            AuxiliaryElementsHelper.getStringPropertyValue("", "name", true);
+            fail("IllegalGraphNodeException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getStringPropertyValue - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: AuxiliaryElementsHelperTests
+ Method: testCheckNotNull
+ Body: {
+        try {
+            AuxiliaryElementsHelper.checkNotNull(null, "nullObject");
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNotNull - Predicate: N/A - Scenario: AuxiliaryElementsHelper
+
+Project: mytcuml
+ Class: GraphElementTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: GraphElementTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: GraphElementTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: GraphElementTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: LeafElementTransformerTest
+ Method: testTransformWithObjectCannotCast
+ Body: {
+        try {
+            transformer.transform(new Object(), document, d2XMITransformer);
+            fail("ClassCastException is expected.");
+        } catch (ClassCastException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: LeafElementTransformerTest
+ Method: testTransformWithNullCaller
+ Body: {
+        try {
+            transformer.transform(element, document, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: LeafElementTransformerTest
+ Method: testTransformWithNullObject
+ Body: {
+        try {
+            transformer.transform(null, document, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: LeafElementTransformerTest
+ Method: testTransformWithNullDocument
+ Body: {
+        try {
+            transformer.transform(element, null, d2XMITransformer);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: transform - Predicate: N/A - Scenario: transformer
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testAddClients_Null
+ Body: {
+        try {
+            dependencyImpl.addClients((Collection<ModelElement>) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addClients - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testAddSuppliers_ContainsNull
+ Body: {
+        try {
+            Collection<ModelElement> collection = new ArrayList<ModelElement>();
+            collection.add(new ModelElementAbstractImpl() {});
+            collection.add(null);
+            dependencyImpl.addSuppliers(collection);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addSuppliers - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testAddClient_Null
+ Body: {
+        try {
+            dependencyImpl.addClient((ModelElement) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addClient - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testRemoveSuppliers_Null
+ Body: {
+        try {
+            dependencyImpl.removeSuppliers((Collection<ModelElement>) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeSuppliers - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testContainsClient_Null
+ Body: {
+        try {
+            dependencyImpl.containsClient((ModelElement) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsClient - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testRemoveSupplier_Null
+ Body: {
+        try {
+            dependencyImpl.removeSupplier((ModelElement) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeSupplier - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testRemoveClients_Null
+ Body: {
+        try {
+            dependencyImpl.removeClients((Collection<ModelElement>) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeClients - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testAddClients_ContainsNull
+ Body: {
+        try {
+            Collection<ModelElement> collection = new ArrayList<ModelElement>();
+            collection.add(new ModelElementAbstractImpl() {});
+            collection.add(null);
+            dependencyImpl.addClients(collection);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addClients - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testAddSupplier_Null
+ Body: {
+        try {
+            dependencyImpl.addSupplier((ModelElement) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addSupplier - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testRemoveSuppliers_ConainsNull
+ Body: {
+        try {
+            Collection<ModelElement> collection = new ArrayList<ModelElement>();
+            collection.add(new ModelElementAbstractImpl() {});
+            collection.add(null);
+            dependencyImpl.removeSuppliers(collection);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeSuppliers - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testRemoveClient_Null
+ Body: {
+        try {
+            dependencyImpl.removeClient((ModelElement) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeClient - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testRemoveClients_ConainsNull
+ Body: {
+        try {
+            Collection<ModelElement> collection = new ArrayList<ModelElement>();
+            collection.add(new ModelElementAbstractImpl() {});
+            collection.add(null);
+            dependencyImpl.removeClients(collection);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeClients - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testContainsSupplier_Null
+ Body: {
+        try {
+            dependencyImpl.containsSupplier((ModelElement) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsSupplier - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: DependencyImplTests
+ Method: testAddSuppliers_Null
+ Body: {
+        try {
+            dependencyImpl.addSuppliers((Collection<ModelElement>) null);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addSuppliers - Predicate: N/A - Scenario: dependencyImpl
+
+Project: mytcuml
+ Class: HelperUnitTest
+ Method: testCheckCollection_Failure3
+ Body: {
+        try {
+            Collection<String> col = new LinkedList<String>();
+            col.add(null);
+
+            Helper.checkCollection(col, "col");
+
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkCollection - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperUnitTest
+ Method: testCheckCollection_Failure2
+ Body: {
+        try {
+            Collection<String> col = new LinkedList<String>();
+
+            Helper.checkCollection(col, "col");
+
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkCollection - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperUnitTest
+ Method: testCheckCollection_Failure1
+ Body: {
+        try {
+            Helper.checkCollection(null, "col");
+
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkCollection - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: HelperUnitTest
+ Method: testCheckNull_Failure
+ Body: {
+        try {
+            Helper.checkNull(null, "null");
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException ex) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: checkNull - Predicate: N/A - Scenario: Helper
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetTextColorIllegalStateException
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getTextColor();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTextColor - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetOutlineColorIllegalStateException
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getOutlineColor();
+            fail("expect throw IllegalStateException");
+        } catch (IllegalStateException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getOutlineColor - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetWidthFaiureTest
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getWidth();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getWidth - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetFontNameIllegalStateException
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getFontName();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getFontName - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetFontSizeIllegalStateException
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getFontSize();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getFontSize - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetHeightFaiureTest
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getHeight();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getHeight - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetYIllegalStateException
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getY();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getY - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetXIllegalStateException
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getX();
+            fail("expect throw StyleNotSupportedException");
+        } catch (StyleNotSupportedException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getX - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: PolylineStyleObjectAdapterFailureTests
+ Method: testGetFillColorFaiureTest
+ Body: {
+        try {
+            polylineStyleObjectAdapter.getFillColor();
+            fail("expect throw IllegalStateException");
+        } catch (IllegalStateException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getFillColor - Predicate: N/A - Scenario: polylineStyleObjectAdapter
+
+Project: mytcuml
+ Class: AuxiliaryElementClipboardUtilityFailureTest
+ Method: testCopyCommentGraphNodeIfNodeNull
+ Body: {
+        try {
+            AuxiliaryElementClipboardUtility.copyCommentGraphNode(null, CLIPBOARD);
+            fail("IllegalArgumentException is expected because node cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyCommentGraphNode - Predicate: N/A - Scenario: AuxiliaryElementClipboardUtility
+
+Project: mytcuml
+ Class: AuxiliaryElementClipboardUtilityFailureTest
+ Method: testCopyPolylineGraphEdgeIfNodeNull
+ Body: {
+        try {
+            AuxiliaryElementClipboardUtility.copyPolylineGraphEdge(null, CLIPBOARD);
+            fail("IllegalArgumentException is expected because edge cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyPolylineGraphEdge - Predicate: N/A - Scenario: AuxiliaryElementClipboardUtility
+
+Project: mytcuml
+ Class: AuxiliaryElementClipboardUtilityFailureTest
+ Method: testCopyNoteRelationshipIfCommentNull
+ Body: {
+        try {
+            AuxiliaryElementClipboardUtility.copyNoteRelationship(null, CLIPBOARD);
+            fail("IllegalArgumentException is expected because comment cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyNoteRelationship - Predicate: N/A - Scenario: AuxiliaryElementClipboardUtility
+
+Project: mytcuml
+ Class: AuxiliaryElementClipboardUtilityFailureTest
+ Method: testCopyCommentRelationshipGraphEdgeIfNodeNull
+ Body: {
+        try {
+            AuxiliaryElementClipboardUtility.copyCommentRelationshipGraphEdge(null, CLIPBOARD);
+            fail("IllegalArgumentException is expected because edge cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyCommentRelationshipGraphEdge - Predicate: N/A - Scenario: AuxiliaryElementClipboardUtility
+
+Project: mytcuml
+ Class: AuxiliaryElementClipboardUtilityFailureTest
+ Method: testCopyCommentIfCommentNull
+ Body: {
+        try {
+            AuxiliaryElementClipboardUtility.copyComment(null, CLIPBOARD);
+            fail("IllegalArgumentException is expected because comment cannot be null.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: copyComment - Predicate: N/A - Scenario: AuxiliaryElementClipboardUtility
+
+Project: mytcuml
+ Class: AddRemoveOperationActionFailureTest
+ Method: testCreateAddOperationAction_Null2
+ Body: {
+        try {
+            AddRemoveOperationAction.createAddOperationAction(extractor, null);
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createAddOperationAction - Predicate: N/A - Scenario: AddRemoveOperationAction
+
+Project: mytcuml
+ Class: AddRemoveOperationActionFailureTest
+ Method: testCreateRemoveOperationAction_Null2
+ Body: {
+        try {
+            AddRemoveOperationAction.createRemoveOperationAction(extractor, null);
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createRemoveOperationAction - Predicate: N/A - Scenario: AddRemoveOperationAction
+
+Project: mytcuml
+ Class: AddRemoveOperationActionFailureTest
+ Method: testCreateRemoveOperationAction_Null1
+ Body: {
+        try {
+            AddRemoveOperationAction.createRemoveOperationAction(null, new GraphNode());
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createRemoveOperationAction - Predicate: N/A - Scenario: AddRemoveOperationAction
+
+Project: mytcuml
+ Class: AddRemoveOperationActionFailureTest
+ Method: testCreateAddOperationAction_Null1
+ Body: {
+        try {
+            AddRemoveOperationAction.createAddOperationAction(null, new GraphNode());
+            fail("It should throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: createAddOperationAction - Predicate: N/A - Scenario: AddRemoveOperationAction
+
+Project: mytcuml
+ Class: GeneralizationEdgeUnitTests
+ Method: testNotifyGraphEdgeChange_Failure_NullMessage
+ Body: {
+        try {
+            edge.notifyGraphEdgeChange(null);
+            fail("Should throw IAE.");
+        } catch (IllegalArgumentException e) {
+            //pass
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: notifyGraphEdgeChange - Predicate: N/A - Scenario: edge
+
+Project: mytcuml
+ Class: ActivityNodeCompartmentExtractorTests
+ Method: testUpdateStereotype_NullNewElement
+ Body: {
+        try {
+            extractor.updateStereotype(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateStereotype - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: ActivityNodeCompartmentExtractorTests
+ Method: testUpdateName_NullNewElement
+ Body: {
+        try {
+            extractor.updateName(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: updateName - Predicate: N/A - Scenario: extractor
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testRemoveDockListener
+ Body: {
+        try {
+            dock.removeDockListener(null);
+            fail("the listener is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeDockListener - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testFloatToNull
+ Body: {
+        try {
+            dock.floatTo(null);
+            fail("the location is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: floatTo - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testFloatToNegY
+ Body: {
+        try {
+            dock.floatTo(new Point(1, -1));
+            fail("the location is with y = -1, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: floatTo - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testAddDockListener
+ Body: {
+        try {
+            dock.addDockListener(null);
+            fail("the listener is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addDockListener - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testFireUndocked
+ Body: {
+        try {
+            dock.fireUndocked(null);
+            fail("the listener is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: fireUndocked - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testFireDocked
+ Body: {
+        try {
+            dock.fireDocked(null);
+            fail("the listener is null, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: fireDocked - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: DefaultDockFailureTest
+ Method: testFloatToNegX
+ Body: {
+        try {
+            dock.floatTo(new Point(-1, 1));
+            fail("the location is with x = -1, IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: floatTo - Predicate: N/A - Scenario: dock
+
+Project: mytcuml
+ Class: ActivityObjectSelectionTests
+ Method: testGetTransferData_NullFlavor
+ Body: {
+        try {
+            selection.getTransferData(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTransferData - Predicate: N/A - Scenario: selection
+
+Project: mytcuml
+ Class: ActivityObjectSelectionTests
+ Method: testIsDataFlavorSupported_NullFlavor
+ Body: {
+        try {
+            selection.isDataFlavorSupported(null);
+            fail("IllegalArgumentException expected.");
+        } catch (IllegalArgumentException iae) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: isDataFlavorSupported - Predicate: N/A - Scenario: selection
+
+Project: mytcuml
+ Class: TagOptionManagerTests
+ Method: testGetTagOptions
+ Body: {
+        try {
+            this.manager.getTagOptions(null);
+            fail("The optionId is unknown.");
+        } catch (UnknownElementTypeException e) {
+            //good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: getTagOptions - Predicate: N/A - Scenario: this.manager
+
+Project: mytcuml
+ Class: CollectionVariableTest
+ Method: testAddSingularIntFailureNull
+ Body: {
+        try {
+            // create object under test, and invoke name
+            Object objectUnderTest = UnitTestHelper.createInstance(classUnderTest, new Class[0], new Object[0]);
+            String invokeMethodName = testInvokeMethodMapping.get("testAddSingularIntFailureNull");
+
+            // invoke the method to test
+            UnitTestHelper.invokeMethod(objectUnderTest, classUnderTest, invokeMethodName.replaceAll("INT", ""),
+                invokeMethodParamMapping.get(invokeMethodName), new Object[] {0, null});
+            fail("IllegalArgumentException should have been thrown out." + "Please check " + classUnderTest.getName()
+                + "#" + invokeMethodName);
+        } catch (IllegalArgumentException e) {
+            // ok be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: invokeMethod - Predicate: N/A - Scenario: UnitTestHelper
+
+Project: mytcuml
+ Class: CollectionVariableTest
+ Method: testSetSingularIntFailureIndexOutOfRange3
+ Body: {
+        try {
+            // create object under test, and invoke name
+            Object objectUnderTest = UnitTestHelper.createInstance(classUnderTest, new Class[0], new Object[0]);
+            String invokeMethodName = testInvokeMethodMapping.get("testSetSingularIntFailureIndexOutOfRange3");
+
+            // create test value
+            Object testValue1 = UnitTestHelper.createInstance(paramConcreteClass, new Class[0], new Object[0]);
+
+            // invoke the method to test
+            UnitTestHelper.invokeMethod(objectUnderTest, classUnderTest, invokeMethodName.replaceAll("INT", ""),
+                invokeMethodParamMapping.get(invokeMethodName), new Object[] {1, testValue1});
+            fail("IndexOutOfBoundsException should have been thrown out.");
+        } catch (IndexOutOfBoundsException e) {
+            // ok be here
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: invokeMethod - Predicate: N/A - Scenario: UnitTestHelper
+
+Project: mytcuml
+ Class: AbstractZUMLOpaqueExpressionUnitTest
+ Method: testSetBody_Failure
+ Body: {
+        try {
+            expression.setBody(null);
+
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setBody - Predicate: N/A - Scenario: expression
+
+Project: mytcuml
+ Class: AbstractZUMLOpaqueExpressionUnitTest
+ Method: testSetLanguage_Failure2
+ Body: {
+        try {
+            expression.setLanguage("   ");
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLanguage - Predicate: N/A - Scenario: expression
+
+Project: mytcuml
+ Class: AbstractZUMLOpaqueExpressionUnitTest
+ Method: testSetLanguage_Failure1
+ Body: {
+        try {
+            expression.setLanguage(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException e) {
+            //success
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setLanguage - Predicate: N/A - Scenario: expression
+
+Project: mytcuml
+ Class: AssociationClassImplFailureTest
+ Method: testSetConnectionNegativeIndex
+ Body: {
+        try {
+            impl.setConnection(-1, new AssociationEndImpl());
+            fail("IndexOutOfBoundsException is expected.");
+        } catch (IndexOutOfBoundsException ioobe) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setConnection - Predicate: N/A - Scenario: impl
+
+Project: mytcuml
+ Class: AssociationClassImplFailureTest
+ Method: testRemoveConnectionIntIndexOutOfRange
+ Body: {
+        try {
+            impl.removeConnection(0);
+            fail("IndexOutOfBoundsException is expected.");
+        } catch (IndexOutOfBoundsException ioobe) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: removeConnection - Predicate: N/A - Scenario: impl
+
+Project: mytcuml
+ Class: AssociationClassImplFailureTest
+ Method: testSetConnectionNullConnection
+ Body: {
+        try {
+            impl.addConnection(new AssociationEndImpl());
+            impl.setConnection(0, null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setConnection - Predicate: N/A - Scenario: impl
+
+Project: mytcuml
+ Class: AssociationClassImplFailureTest
+ Method: testAddConnectionIntAssociationEndIndexOutOfRange
+ Body: {
+        try {
+            impl.addConnection(1, new AssociationEndImpl());
+            fail("IndexOutOfBoundsException is expected.");
+        } catch (IndexOutOfBoundsException ioobe) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: addConnection - Predicate: N/A - Scenario: impl
+
+Project: mytcuml
+ Class: AssociationClassImplFailureTest
+ Method: testContainsConnectionNullConnection
+ Body: {
+        try {
+            impl.containsConnection(null);
+            fail("IllegalArgumentException is expected.");
+        } catch (IllegalArgumentException iae) {
+            // good
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: containsConnection - Predicate: N/A - Scenario: impl
+
+Project: mytcuml
+ Class: SequenceEdgeFailureTests
+ Method: testSetDashLength_NegativeLength
+ Body: {
+        try {
+            sequenceEdge.setDashLength(-1);
+            fail("expect throw IllegalArgumentException.");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+ Pattern Name: TryCatchPattern_oneTryOnly - Action: setDashLength - Predicate: N/A - Scenario: sequenceEdge
+
